@@ -45,7 +45,10 @@ font-weight:900;
 letter-spacing:2px
 }
 
-.logo span,.accent{color:#7c5cff}
+.logo span,
+.accent{
+color:#7c5cff
+}
 
 .head-right{
 display:flex;
@@ -53,7 +56,8 @@ align-items:center;
 gap:8px
 }
 
-.ping,.userbox{
+.ping,
+.userbox{
 padding:9px 12px;
 background:#12141b;
 border:1px solid #292c36;
@@ -61,9 +65,13 @@ border-radius:13px;
 font-size:12px
 }
 
-.ping b{color:#62ff9a}
+.ping b{
+color:#62ff9a
+}
 
-.userbox{color:#c9cbd3}
+.userbox{
+color:#c9cbd3
+}
 
 .logout{
 padding:9px 12px;
@@ -92,7 +100,9 @@ font-size:clamp(38px,8vw,68px);
 font-weight:900
 }
 
-.hero h1 span{color:#7c5cff}
+.hero h1 span{
+color:#7c5cff
+}
 
 .hero p{
 color:#969bab;
@@ -128,7 +138,9 @@ grid-template-columns:1fr 1fr;
 gap:12px
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
 width:100%;
 border:1px solid #292c38;
 background:#080a0f;
@@ -139,7 +151,9 @@ outline:none;
 font-size:14px
 }
 
-input:focus,select:focus,textarea:focus{
+input:focus,
+select:focus,
+textarea:focus{
 border-color:#7c5cff
 }
 
@@ -159,7 +173,7 @@ padding:15px;
 font-weight:bold
 }
 
-.add:disabled,.auth-form button:disabled{
+.add:disabled{
 opacity:.6;
 cursor:not-allowed
 }
@@ -173,7 +187,8 @@ margin-bottom:18px
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+grid-template-columns:
+repeat(auto-fill,minmax(250px,1fr));
 gap:15px
 }
 
@@ -216,7 +231,8 @@ gap:8px;
 margin-top:12px
 }
 
-.buy,.delete{
+.buy,
+.delete{
 flex:1;
 border:0;
 border-radius:13px;
@@ -362,21 +378,17 @@ border-radius:13px;
 font-weight:bold
 }
 
+.auth-form button:disabled{
+opacity:.6;
+cursor:not-allowed
+}
+
 .auth-help{
 font-size:11px;
 line-height:1.9;
 color:#777c8b;
 text-align:center;
 margin-top:14px
-}
-
-.debug{
-font-size:10px;
-direction:ltr;
-text-align:left;
-word-break:break-word;
-opacity:.7;
-margin-top:8px
 }
 
 @media(max-width:650px){
@@ -390,7 +402,9 @@ flex-wrap:wrap;
 justify-content:flex-end
 }
 
-.userbox{display:none}
+.userbox{
+display:none
+}
 
 main{
 padding:18px 12px
@@ -400,7 +414,8 @@ padding:18px 12px
 grid-template-columns:1fr
 }
 
-textarea,.add{
+textarea,
+.add{
 grid-column:auto
 }
 
@@ -549,7 +564,7 @@ RP City <span>Market</span>
 </section>
 
 
-<!-- ADD PRODUCT -->
+<!-- ================= ADD PRODUCT ================= -->
 
 <section class="panel">
 
@@ -618,7 +633,7 @@ type="button">
 </section>
 
 
-<!-- PRODUCTS -->
+<!-- ================= PRODUCTS ================= -->
 
 <section class="panel">
 
@@ -678,6 +693,8 @@ class="empty">
 </main>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer id="footer" class="hidden">
 
 RP City Market
@@ -729,7 +746,7 @@ document.getElementById(id);
 
 
 /* =========================================
-   پیام
+   MESSAGE
 ========================================= */
 
 function showBox(id,text,type){
@@ -772,11 +789,9 @@ username.trim()
 }
 
 
-/*
-  Supabase Auth ایمیل/پسورد را قبول می‌کند.
-  برای اینکه کاربر فقط Username ببیند،
-  Username به یک ایمیل داخلی تبدیل می‌شود.
-*/
+/* =========================================
+   AUTH EMAIL
+========================================= */
 
 function authEmail(username){
 
@@ -842,15 +857,6 @@ return 'فرمت اطلاعات حساب توسط Supabase قبول نشد.';
 
 
 if(
-x.includes('email')
-){
-
-return 'اطلاعات حساب معتبر نیست.';
-
-}
-
-
-if(
 x.includes('fetch') ||
 x.includes('network')
 ){
@@ -867,7 +873,7 @@ return message ||
 
 
 /* =========================================
-   AUTH TAB
+   AUTH MODE
 ========================================= */
 
 function setAuthMode(mode){
@@ -895,7 +901,8 @@ button.textContent =
 'ورود به بازار';
 
 $('authPassword')
-.autocomplete = 'current-password';
+.autocomplete =
+'current-password';
 
 }else{
 
@@ -907,7 +914,8 @@ button.textContent =
 'ساخت حساب و ورود';
 
 $('authPassword')
-.autocomplete = 'new-password';
+.autocomplete =
+'new-password';
 
 }
 
@@ -931,6 +939,7 @@ showBox(
 );
 
 return;
+
 }
 
 
@@ -953,6 +962,7 @@ showBox(
 );
 
 return;
+
 }
 
 
@@ -965,6 +975,7 @@ showBox(
 );
 
 return;
+
 }
 
 
@@ -974,6 +985,8 @@ $('authButton');
 button.disabled = true;
 
 
+try{
+
 if(authMode === 'signup'){
 
 showBox(
@@ -982,8 +995,6 @@ showBox(
 'info'
 );
 
-
-try{
 
 const {data,error} =
 await sb.auth.signUp({
@@ -1015,7 +1026,7 @@ if(data?.session){
 
 showBox(
 'authMessage',
-'حساب با موفقیت ساخته شد.',
+'حساب با موفقیت ساخته شد. ✅',
 'success'
 );
 
@@ -1033,18 +1044,6 @@ showBox(
 
 }
 
-}catch(err){
-
-console.error(err);
-
-showBox(
-'authMessage',
-translateAuthError(err),
-'error'
-);
-
-}
-
 }else{
 
 showBox(
@@ -1053,8 +1052,6 @@ showBox(
 'info'
 );
 
-
-try{
 
 const {data,error} =
 await sb.auth.signInWithPassword({
@@ -1079,6 +1076,8 @@ showApp(
 data.user
 );
 
+}
+
 }catch(err){
 
 console.error(err);
@@ -1088,8 +1087,6 @@ showBox(
 translateAuthError(err),
 'error'
 );
-
-}
 
 }
 
@@ -1126,6 +1123,7 @@ user.email.split('@')[0]
 :
 'کاربر'
 );
+
 
 $('currentUser')
 .textContent =
@@ -1174,7 +1172,7 @@ setAuthMode('login');
 
 
 /* =========================================
-   PRODUCTS
+   LOAD PRODUCTS
 ========================================= */
 
 async function loadProducts(){
@@ -1198,7 +1196,9 @@ await sb
 .select('*')
 .order(
 'created_at',
-{ascending:false}
+{
+ascending:false
+}
 );
 
 
@@ -1212,7 +1212,8 @@ console.error(error);
 
 showBox(
 'message',
-'دریافت محصولات با خطا مواجه شد.',
+'دریافت محصولات با خطا مواجه شد: ' +
+error.message,
 'error'
 );
 
@@ -1320,7 +1321,8 @@ function createCard(p){
 const card =
 document.createElement('div');
 
-card.className = 'card';
+card.className =
+'card';
 
 
 const title =
@@ -1333,7 +1335,8 @@ p.name || 'بدون نام';
 const price =
 document.createElement('div');
 
-price.className = 'price';
+price.className =
+'price';
 
 price.textContent =
 Number(p.price || 0)
@@ -1345,7 +1348,8 @@ Number(p.price || 0)
 const meta =
 document.createElement('div');
 
-meta.className = 'meta';
+meta.className =
+'meta';
 
 meta.textContent =
 'دسته: ' +
@@ -1355,7 +1359,8 @@ meta.textContent =
 const seller =
 document.createElement('div');
 
-seller.className = 'meta';
+seller.className =
+'meta';
 
 seller.textContent =
 'فروشنده: @' +
@@ -1366,24 +1371,29 @@ String(p.seller_id || '')
 const desc =
 document.createElement('div');
 
-desc.className = 'desc';
+desc.className =
+'desc';
 
 desc.textContent =
-p.description || 'بدون توضیحات';
+p.description ||
+'بدون توضیحات';
 
 
 const actions =
 document.createElement('div');
 
-actions.className = 'actions';
+actions.className =
+'actions';
 
 
 const buy =
 document.createElement('button');
 
-buy.className = 'buy';
+buy.className =
+'buy';
 
-buy.type = 'button';
+buy.type =
+'button';
 
 buy.textContent =
 '🛒 خرید';
@@ -1426,7 +1436,7 @@ encodeURIComponent(id),
 actions.appendChild(buy);
 
 
-/* فقط صاحب محصول */
+/* فقط صاحب محصول می‌تواند حذف کند */
 
 if(
 currentUser &&
@@ -1436,9 +1446,11 @@ currentUser.id === p.owner_id
 const del =
 document.createElement('button');
 
-del.className = 'delete';
+del.className =
+'delete';
 
-del.type = 'button';
+del.type =
+'button';
 
 del.textContent =
 '🗑 حذف';
@@ -1446,7 +1458,8 @@ del.textContent =
 
 del.addEventListener(
 'click',
-() => deleteProduct(p.id)
+() =>
+deleteProduct(p.id)
 );
 
 
@@ -1497,19 +1510,23 @@ $('name')
 .value
 .trim();
 
+
 const price =
 Number(
 $('price').value
 );
 
+
 const category =
 $('category').value;
+
 
 const seller =
 $('seller')
 .value
 .trim()
 .replace(/^@/,'');
+
 
 const description =
 $('description')
@@ -1565,12 +1582,18 @@ $('addButton');
 button.disabled = true;
 
 
-const {
-error
-} =
-await sb
-.from('products')
-.insert({
+try{
+
+/*
+=========================================
+مهم:
+محصول بدون عکس هم ثبت می‌شود.
+هر دو مقدار صراحتاً رشته خالی هستند
+تا NULL ارسال نشود.
+=========================================
+*/
+
+const productData = {
 
 owner_id:
 currentUser.id,
@@ -1588,7 +1611,7 @@ seller_id:
 seller,
 
 description:
-description,
+description || '',
 
 image_url:
 '',
@@ -1596,15 +1619,29 @@ image_url:
 image_path:
 ''
 
-});
+};
 
 
-button.disabled = false;
+console.log(
+'PRODUCT INSERT:',
+productData
+);
+
+
+const {
+error
+} =
+await sb
+.from('products')
+.insert(productData);
 
 
 if(error){
 
-console.error(error);
+console.error(
+'PRODUCT ERROR:',
+error
+);
 
 showBox(
 'message',
@@ -1636,11 +1673,29 @@ showBox(
 
 await loadProducts();
 
+
+}catch(err){
+
+console.error(err);
+
+showBox(
+'message',
+'خطا در ثبت محصول: ' +
+(err?.message || err),
+'error'
+);
+
+}finally{
+
+button.disabled = false;
+
+}
+
 }
 
 
 /* =========================================
-   DELETE
+   DELETE PRODUCT
 ========================================= */
 
 async function deleteProduct(id){
@@ -1667,7 +1722,10 @@ error
 await sb
 .from('products')
 .delete()
-.eq('id',id)
+.eq(
+'id',
+id
+)
 .eq(
 'owner_id',
 currentUser.id
@@ -1820,7 +1878,9 @@ return;
 }
 
 
-if(data?.session?.user){
+if(
+data?.session?.user
+){
 
 showApp(
 data.session.user
@@ -1879,14 +1939,16 @@ showBox(
 $('loginTab')
 .addEventListener(
 'click',
-() => setAuthMode('login')
+() =>
+setAuthMode('login')
 );
 
 
 $('signupTab')
 .addEventListener(
 'click',
-() => setAuthMode('signup')
+() =>
+setAuthMode('signup')
 );
 
 
@@ -1956,4 +2018,4 @@ init();
 </script>
 
 </body>
-</html>
+   </html>
