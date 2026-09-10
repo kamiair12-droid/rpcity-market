@@ -1,166 +1,272 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RP City Market</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Tahoma, Arial, sans-serif;
-    }
+<title>RP City Market</title>
 
-    body {
-      background: #080b12;
-      color: white;
-      min-height: 100vh;
-    }
+<style>
+:root{
+  --bg:#080b12;
+  --panel:#101722;
+  --panel2:#151d2b;
+  --text:#fff;
+  --muted:#9eacc2;
+  --border:#26344f;
+  --primary:#2578ff;
+  --primary2:#6338d8;
+  --danger:#ff496c;
+  --success:#20c997;
+  --shadow:0 15px 40px rgba(0,0,0,.25);
+}
 
-    header {
-      padding: 25px 18px;
-      text-align: center;
-      background: linear-gradient(135deg, #10182b, #111827);
-      border-bottom: 1px solid #26344f;
-    }
+.light{
+  --bg:#f4f7fb;
+  --panel:#fff;
+  --panel2:#eef3fa;
+  --text:#111827;
+  --muted:#65748b;
+  --border:#d9e1ec;
+  --shadow:0 15px 40px rgba(20,40,80,.10);
+}
 
-    header h1 {
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Tahoma,Arial,sans-serif;
+}
 
-    header p {
-      color: #9fb4d8;
-      font-size: 14px;
-    }
+body{
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  transition:.25s;
+}
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 20px;
-    }
+button,input,select,textarea{
+  font-family:inherit;
+}
 
-    .search {
-      width: 100%;
-      padding: 15px;
-      border-radius: 14px;
-      border: 1px solid #26344f;
-      background: #101722;
-      color: white;
-      outline: none;
-      margin-bottom: 18px;
-      font-size: 15px;
-    }
+button{
+  cursor:pointer;
+}
 
-    .card {
-      background: #101722;
-      border: 1px solid #26344f;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 15px;
-    }
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  padding:18px;
+  background:rgba(8,11,18,.92);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+}
 
-    .card h2 {
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
+.light header{
+  background:rgba(255,255,255,.92);
+}
 
-    .card p {
-      color: #aebbd0;
-      line-height: 1.8;
-      margin-bottom: 8px;
-    }
+.header-inner{
+  max-width:1000px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
 
-    .price {
-      color: #4da3ff;
-      font-size: 20px;
-      font-weight: bold;
-      margin: 12px 0;
-    }
+.logo{
+  font-size:21px;
+  font-weight:bold;
+}
 
-    .btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 13px;
-      border-radius: 12px;
-      background: #1769aa;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 10px;
-    }
+.logo span{
+  color:#4da3ff;
+}
 
-    .btn:hover {
-      background: #2187d4;
-    }
+.header-buttons{
+  display:flex;
+  gap:8px;
+}
 
-    .add {
-      background: linear-gradient(135deg, #1769aa, #5636c9);
-      margin-bottom: 20px;
-    }
+.icon-btn{
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  font-size:19px;
+}
 
-    footer {
-      text-align: center;
-      padding: 30px 15px;
-      color: #718096;
-      font-size: 13px;
-    }
-  </style>
-</head>
+.hero{
+  max-width:1000px;
+  margin:25px auto 0;
+  padding:20px;
+}
 
-<body>
+.hero-box{
+  padding:30px 22px;
+  border:1px solid var(--border);
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(37,120,255,.25),transparent 35%),
+    linear-gradient(135deg,var(--panel),var(--panel2));
+  box-shadow:var(--shadow);
+}
 
-  <header>
-    <h1>🛒 RP CITY MARKET</h1>
-    <p>خرید و فروش آیتم‌های RP City</p>
-  </header>
+.hero h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
 
-  <div class="container">
+.hero p{
+  color:var(--muted);
+  line-height:1.9;
+}
 
-    <input
-      class="search"
-      type="text"
-      placeholder="🔎 جستجوی آیتم..."
-    >
+.hero-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
 
-    <div class="card add">
-      <h2>➕ فروش آیتم</h2>
-      <p>آیتم خودت رو برای فروش قرار بده.</p>
-      <a class="btn" href="https://rubika.ir/" target="_blank">
-        ثبت آیتم
-      </a>
-    </div>
+.btn{
+  border:0;
+  padding:13px 17px;
+  border-radius:13px;
+  font-weight:bold;
+  color:white;
+  background:var(--primary);
+}
 
-    <div class="card">
-      <h2>🏆 آیتم ویژه</h2>
-      <p>فروشنده: RP CITY</p>
-      <p>وضعیت: موجود</p>
-      <div class="price">50,000 تومان</div>
+.btn.secondary{
+  background:var(--panel2);
+  border:1px solid var(--border);
+  color:var(--text);
+}
 
-      <a class="btn" href="https://rubika.ir/" target="_blank">
-        💬 ارتباط با فروشنده
-      </a>
-    </div>
+.btn.gradient{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+}
 
-    <div class="card">
-      <h2>💎 آیتم کمیاب</h2>
-      <p>فروشنده: RP SHOP</p>
-      <p>وضعیت: موجود</p>
-      <div class="price">80,000 تومان</div>
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
 
-      <a class="btn" href="https://rubika.ir/" target="_blank">
-        💬 ارتباط با فروشنده
-      </a>
-    </div>
+.search-box{
+  position:relative;
+  margin-bottom:16px;
+}
 
-  </div>
+.search{
+  width:100%;
+  padding:16px 48px 16px 15px;
+  border-radius:15px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--text);
+  outline:none;
+  font-size:15px;
+}
 
-  <footer>
-    RP City Market © 2026
-  </footer>
+.search-icon{
+  position:absolute;
+  right:17px;
+  top:15px;
+}
 
-</body>
-</html>
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:10px;
+  margin-bottom:18px;
+}
+
+.category{
+  white-space:nowrap;
+  padding:10px 15px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color:var(--muted);
+}
+
+.category.active{
+  background:var(--primary);
+  color:white;
+  border-color:var(--primary);
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:25px 0 14px;
+}
+
+.section-title h2{
+  font-size:20px;
+}
+
+.count{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+
+.product-image{
+  height:130px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:58px;
+  background:linear-gradient(135deg,#18243a,#101827);
+  margin-bottom:14px;
+}
+
+.light .product-image{
+  background:linear-gradient(135deg,#e9f1ff,#f5f7fb);
+}
+
+.badge{
+  position:absolute;
+  top:25px;
+  right:25px;
+  background:#ff496c;
+  color:white;
+  padding:5px 8px;
+  border-radius:8px;
+  font-size:11px;
+}
+
+.favorite{
+  position:absolute;
+  left:25px;
+  top:25px;
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  color
