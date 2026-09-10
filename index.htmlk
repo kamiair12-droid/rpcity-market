@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RP City Market</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    body {
+      background: #080b12;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 25px 18px;
+      text-align: center;
+      background: linear-gradient(135deg, #10182b, #111827);
+      border-bottom: 1px solid #26344f;
+    }
+
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #9fb4d8;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid #26344f;
+      background: #101722;
+      color: white;
+      outline: none;
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    .card {
+      background: #101722;
+      border: 1px solid #26344f;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #aebbd0;
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #4da3ff;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px;
+      border-radius: 12px;
+      background: #1769aa;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #2187d4;
+    }
+
+    .add {
+      background: linear-gradient(135deg, #1769aa, #5636c9);
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: #718096;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🛒 RP CITY MARKET</h1>
+    <p>خرید و فروش آیتم‌های RP City</p>
+  </header>
+
+  <div class="container">
+
+    <input
+      class="search"
+      type="text"
+      placeholder="🔎 جستجوی آیتم..."
+    >
+
+    <div class="card add">
+      <h2>➕ فروش آیتم</h2>
+      <p>آیتم خودت رو برای فروش قرار بده.</p>
+      <a class="btn" href="https://rubika.ir/" target="_blank">
+        ثبت آیتم
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>🏆 آیتم ویژه</h2>
+      <p>فروشنده: RP CITY</p>
+      <p>وضعیت: موجود</p>
+      <div class="price">50,000 تومان</div>
+
+      <a class="btn" href="https://rubika.ir/" target="_blank">
+        💬 ارتباط با فروشنده
+      </a>
+    </div>
+
+    <div class="card">
+      <h2>💎 آیتم کمیاب</h2>
+      <p>فروشنده: RP SHOP</p>
+      <p>وضعیت: موجود</p>
+      <div class="price">80,000 تومان</div>
+
+      <a class="btn" href="https://rubika.ir/" target="_blank">
+        💬 ارتباط با فروشنده
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    RP City Market © 2026
+  </footer>
+
+</body>
+</html>
