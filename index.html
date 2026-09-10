@@ -1,135 +1,735 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RP City Market</title>
 
-  <title>RP City Market</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <meta name="theme-color" content="#07111f">
-  <meta name="description" content="بازار خرید و فروش آیتم های RP City">
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Tahoma,Arial,sans-serif;
+ background:#08090d;
+ color:#fff;
+}
+header{
+ padding:18px 6%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid #20222b;
+ background:#0b0c11;
+ position:sticky;
+ top:0;
+ z-index:10;
+}
+.logo{
+ font-size:24px;
+ font-weight:900;
+ letter-spacing:2px;
+}
+.logo span{color:#7c5cff}
+.ping{
+ background:#12141b;
+ border:1px solid #252836;
+ padding:8px 13px;
+ border-radius:12px;
+ font-size:13px;
+}
+#pingValue{color:#62ff9a;font-weight:bold}
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+main{max-width:1150px;margin:auto;padding:45px 18px}
 
-  <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+.hero{
+ text-align:center;
+ padding:35px 10px 45px;
+}
+.hero h1{
+ font-size:clamp(34px,7vw,65px);
+ margin:0 0 12px;
+ font-weight:900;
+}
+.hero h1 span{color:#7c5cff}
+.hero p{
+ color:#9da1b2;
+ margin:0;
+ font-size:15px;
+}
+.status{
+ display:inline-block;
+ margin-top:20px;
+ padding:9px 15px;
+ border-radius:20px;
+ background:#101c16;
+ color:#62ff9a;
+ font-size:13px;
+}
 
-    html{
-      scroll-behavior:smooth;
-    }
+.panel{
+ background:#0e1016;
+ border:1px solid #20232d;
+ border-radius:20px;
+ padding:20px;
+ margin-bottom:22px;
+}
 
-    body{
-      min-height:100vh;
-      font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(0,120,255,.16),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at bottom left,
-          rgba(0,255,170,.08),
-          transparent 35%
-        ),
-        #050b14;
-      color:#fff;
-    }
+.form{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px;
+}
+input,select,textarea{
+ width:100%;
+ background:#080a0f;
+ border:1px solid #292c38;
+ color:#fff;
+ border-radius:12px;
+ padding:13px;
+ outline:none;
+ font-family:inherit;
+}
+textarea{
+ min-height:90px;
+ resize:vertical;
+ grid-column:1/-1;
+}
+input:focus,select:focus,textarea:focus{
+ border-color:#7c5cff;
+}
+button{
+ border:0;
+ cursor:pointer;
+ border-radius:12px;
+ padding:13px 18px;
+ font-family:inherit;
+ font-weight:bold;
+}
+.add{
+ background:#7c5cff;
+ color:#fff;
+ grid-column:1/-1;
+}
+.add:hover{opacity:.88}
 
-    button,
-    input,
-    select,
-    textarea{
-      font-family:inherit;
-    }
+.controls{
+ display:grid;
+ grid-template-columns:1fr 180px;
+ gap:10px;
+ margin-bottom:18px;
+}
 
-    button{
-      cursor:pointer;
-    }
+.products{
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+ gap:15px;
+}
 
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
+.card{
+ background:#101219;
+ border:1px solid #242733;
+ border-radius:18px;
+ padding:18px;
+ transition:.2s;
+}
+.card:hover{
+ transform:translateY(-3px);
+ border-color:#5140a5;
+}
+.card h3{
+ margin:0 0 10px;
+ font-size:18px;
+}
+.price{
+ font-size:22px;
+ font-weight:900;
+ color:#8e78ff;
+ margin:10px 0;
+}
+.meta{
+ color:#969bab;
+ font-size:12px;
+ margin:6px 0;
+}
+.desc{
+ color:#c6c8d1;
+ font-size:13px;
+ line-height:1.8;
+ min-height:45px;
+}
+.buy{
+ width:100%;
+ margin-top:12px;
+ background:#242033;
+ color:#fff;
+}
+.buy:hover{background:#30294a}
+.delete{
+ width:100%;
+ margin-top:7px;
+ background:#27151a;
+ color:#ff7585;
+}
 
-    .container{
-      width:min(1180px,92%);
-      margin:auto;
-    }
+.empty{
+ text-align:center;
+ color:#777c8b;
+ padding:45px 10px;
+}
 
-    /* =========================
-       HEADER
-    ========================= */
+footer{
+ text-align:center;
+ color:#777c8b;
+ padding:35px 15px;
+ border-top:1px solid #20222b;
+ margin-top:30px;
+}
+footer a{
+ color:#8e78ff;
+ text-decoration:none;
+}
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      backdrop-filter:blur(18px);
-      background:rgba(4,10,18,.78);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
+.toast{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ background:#171a23;
+ border:1px solid #303442;
+ padding:13px 17px;
+ border-radius:13px;
+ display:none;
+ z-index:99;
+ max-width:90%;
+}
+.toast.show{display:block}
 
-    .nav{
-      min-height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
+@media(max-width:650px){
+ .form{grid-template-columns:1fr}
+ .controls{grid-template-columns:1fr}
+ header{padding:15px}
+ main{padding:25px 12px}
+}
+</style>
+</head>
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-size:20px;
-      font-weight:900;
-      letter-spacing:1px;
-    }
+<body>
 
-    .brand-logo{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:
-        linear-gradient(
-          135deg,
-          #00e5ff,
-          #1677ff
-        );
-      box-shadow:
-        0 0 25px rgba(0,180,255,.3);
-    }
+<header>
+ <div class="logo">RP <span>CITY</span></div>
+ <div class="ping">PING: <span id="pingValue">...</span></div>
+</header>
 
-    .brand-logo span{
-      font-size:19px;
-      font-weight:1000;
-    }
+<main>
 
-    .ping-box{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      padding:9px 13px;
-      border:1px solid rgba(255,255,255,.09);
-      background:rgba(255,255,255,.035);
-      border-radius:14px;
-      color:#d8e4f0;
-      font-size:12px;
-    }
+<section class="hero">
+ <h1>RP City <span>Market</span></h1>
+ <p>بازار خرید و فروش محصولات RP City</p>
+ <div class="status">● بازار فعال RP City</div>
+</section>
 
-    .ping-dot{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:#00e676
+<section class="panel">
+ <h2>➕ ثبت محصول</h2>
+
+ <div class="form">
+  <input id="name" placeholder="نام محصول">
+  <input id="price" type="number" placeholder="قیمت به تومان">
+
+  <select id="category">
+   <option value="سکه">🪙 سکه</option>
+   <option value="آیتم">📦 آیتم</option>
+   <option value="اکانت">👤 اکانت</option>
+   <option value="سایر">⭐ سایر</option>
+  </select>
+
+  <input id="seller" placeholder="آیدی روبیکا فروشنده">
+
+  <textarea id="description" placeholder="توضیحات محصول"></textarea>
+
+  <button class="add" onclick="addProduct()">ثبت محصول</button>
+ </div>
+</section>
+
+<section class="panel">
+
+ <div class="controls">
+  <input id="search" placeholder="🔎 جستجوی محصول..." oninput="renderProducts()">
+
+  <select id="filter" onchange="renderProducts()">
+   <option value="همه">همه دسته‌ها</option>
+   <option value="سکه">🪙 سکه</option>
+   <option value="آیتم">📦 آیتم</option>
+   <option value="اکانت">👤 اکانت</option>
+   <option value="سایر">⭐ سایر</option>
+  </select>
+ </div>
+
+ <div id="products" class="products"></div>
+
+ <div id="empty" class="empty" style="display:none">
+  محصولی پیدا نشد.
+ </div>
+
+</section>
+
+</main>
+
+<footer>
+ RP City Market<br><br>
+ پشتیبانی:
+ <a href="https://ble.ir/rpcity_lor" target="_blank">@rpcity_lor</a>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script>
+const SUPABASE_URL =
+"https://cjntwmohtwbfqtxlgxrt.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
+
+const supabaseClient =
+window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_PUBLISHABLE_KEY,
+ {
+  auth:{
+   autoRefreshToken:true,
+   persistSession:true,
+   detectSessionInUrl:true
+  }
+ }
+);
+
+let currentUser=null;
+let products=[];
+
+/* Toast */
+function toast(message){
+ const box=document.getElementById("toast");
+ box.textContent=message;
+ box.classList.add("show");
+
+ setTimeout(()=>{
+  box.classList.remove("show");
+ },3000);
+}
+
+/* Auth */
+async function initAuth(){
+
+ try{
+
+  let {data:{session}} =
+  await supabaseClient.auth.getSession();
+
+  if(session){
+   currentUser=session.user;
+   return true;
+  }
+
+  const result =
+  await supabaseClient.auth.signInAnonymously();
+
+  if(result.error){
+   console.error(result.error);
+
+   toast(
+    "ورود ناشناس Supabase فعال نیست. Anonymous Sign-Ins را در Auth فعال کنید."
+   );
+
+   return false;
+  }
+
+  currentUser=result.data.user;
+
+  return true;
+
+ }catch(error){
+
+  console.error(error);
+  toast("خطا در اتصال به Supabase.");
+  return false;
+
+ }
+}
+
+/* Load */
+async function loadProducts(){
+
+ try{
+
+  const {data,error} =
+  await supabaseClient
+  .from("products")
+  .select(`
+   id,
+   owner_id,
+   name,
+   price,
+   category,
+   seller_id,
+   description,
+   created_at
+  `)
+  .order("created_at",{ascending:false});
+
+  if(error){
+   console.error(error);
+   toast("خطا در دریافت محصولات.");
+   return;
+  }
+
+  products=(data || []).filter(product=>{
+
+   const n=(product.name || "").toLowerCase();
+
+   return ![
+    "50k coin",
+    "100k coin",
+    "200k coin"
+   ].includes(n);
+
+  });
+
+  renderProducts();
+
+ }catch(error){
+
+  console.error(error);
+  toast("خطا در دریافت محصولات.");
+
+ }
+}
+
+/* Render */
+function renderProducts(){
+
+ const container=
+ document.getElementById("products");
+
+ const empty=
+ document.getElementById("empty");
+
+ const search=
+ document.getElementById("search")
+ .value
+ .trim()
+ .toLowerCase();
+
+ const filter=
+ document.getElementById("filter").value;
+
+ let list=products.filter(product=>{
+
+  const text=(
+   (product.name || "")+" "+
+   (product.description || "")+" "+
+   (product.seller_id || "")
+  ).toLowerCase();
+
+  const searchOK=
+   !search || text.includes(search);
+
+  const categoryOK=
+   filter==="همه" ||
+   product.category===filter;
+
+  return searchOK && categoryOK;
+
+ });
+
+ container.innerHTML="";
+
+ if(!list.length){
+  empty.style.display="block";
+  return;
+ }
+
+ empty.style.display="none";
+
+ list.forEach(product=>{
+  container.appendChild(createCard(product));
+ });
+
+}
+
+/* Card */
+function createCard(product){
+
+ const card=document.createElement("div");
+ card.className="card";
+
+ const name=escapeHtml(product.name || "بدون نام");
+ const description=
+  escapeHtml(product.description || "بدون توضیحات");
+
+ const seller=
+  escapeHtml(product.seller_id || "");
+
+ const category=
+  escapeHtml(product.category || "سایر");
+
+ const price=
+  Number(product.price || 0)
+  .toLocaleString("fa-IR");
+
+ card.innerHTML=`
+
+  <h3>${name}</h3>
+
+  <div class="meta">
+   دسته: ${category}
+  </div>
+
+  <div class="price">
+   ${price} تومان
+  </div>
+
+  <div class="desc">
+   ${description}
+  </div>
+
+  <div class="meta">
+   فروشنده: ${seller ? "@"+seller : "نامشخص"}
+  </div>
+
+  <button class="buy">
+   🛒 خرید محصول
+  </button>
+
+  ${
+   currentUser &&
+   product.owner_id===currentUser.id
+   ?
+   `<button class="delete">
+      🗑 حذف محصول
+    </button>`
+   :""
+  }
+
+ `;
+
+ card.querySelector(".buy")
+ .onclick=()=>{
+  buyProduct(product.seller_id);
+ };
+
+ const del=card.querySelector(".delete");
+
+ if(del){
+  del.onclick=()=>{
+   deleteProduct(product.id);
+  };
+ }
+
+ return card;
+}
+
+/* Buy */
+function buyProduct(seller){
+
+ if(!seller){
+  toast("آیدی فروشنده ثبت نشده.");
+  return;
+ }
+
+ let id=seller.trim();
+
+ if(id.startsWith("@")){
+  id=id.substring(1);
+ }
+
+ const url=
+ "https://rubika.ir/"+encodeURIComponent(id);
+
+ window.open(url,"_blank");
+
+}
+
+/* Add */
+async function addProduct(){
+
+ if(!currentUser){
+
+  toast("ابتدا اتصال به Supabase را بررسی کنید.");
+  return;
+
+ }
+
+ const name=
+ document.getElementById("name").value.trim();
+
+ const price=
+ Number(document.getElementById("price").value);
+
+ const category=
+ document.getElementById("category").value;
+
+ const seller=
+ document.getElementById("seller").value.trim();
+
+ const description=
+ document.getElementById("description").value.trim();
+
+ if(!name){
+  toast("نام محصول را وارد کنید.");
+  return;
+ }
+
+ if(!price || price<1){
+  toast("قیمت محصول را وارد کنید.");
+  return;
+ }
+
+ if(!seller){
+  toast("آیدی روبیکا فروشنده را وارد کنید.");
+  return;
+ }
+
+ try{
+
+  const {error}=await supabaseClient
+  .from("products")
+  .insert({
+   owner_id:currentUser.id,
+   name:name,
+   price:price,
+   category:category,
+   seller_id:seller,
+   description:description
+  });
+
+  if(error){
+
+   console.error(error);
+   toast("خطا در ثبت محصول: "+error.message);
+   return;
+
+  }
+
+  document.getElementById("name").value="";
+  document.getElementById("price").value="";
+  document.getElementById("seller").value="";
+  document.getElementById("description").value="";
+
+  toast("✅ محصول با موفقیت ثبت شد.");
+
+  await loadProducts();
+
+ }catch(error){
+
+  console.error(error);
+  toast("خطا در ثبت محصول.");
+
+ }
+}
+
+/* Delete */
+async function deleteProduct(id){
+
+ if(!currentUser){
+  toast("کاربر شناسایی نشد.");
+  return;
+ }
+
+ if(!confirm("محصول حذف شود؟")){
+  return;
+ }
+
+ try{
+
+  const {error}=await supabaseClient
+  .from("products")
+  .delete()
+  .eq("id",id)
+  .eq("owner_id",currentUser.id);
+
+  if(error){
+
+   console.error(error);
+   toast("خطا در حذف محصول.");
+   return;
+
+  }
+
+  toast("🗑 محصول حذف شد.");
+
+  await loadProducts();
+
+ }catch(error){
+
+  console.error(error);
+  toast("خطا در حذف محصول.");
+
+ }
+}
+
+/* Real HTTP Ping */
+async function realPing(){
+
+ const start=performance.now();
+
+ try{
+
+  await fetch(
+   window.location.origin+
+   "/?ping="+
+   Date.now()+
+   "-"+
+   Math.random(),
+   {
+    method:"HEAD",
+    cache:"no-store"
+   }
+  );
+
+  const ms=Math.round(
+   performance.now()-start
+  );
+
+  document.getElementById("pingValue")
+   .textContent=ms+" ms";
+
+ }catch(error){
+
+  document.getElementById("pingValue")
+   .textContent="OFF";
+
+ }
+
+}
+
+/* Escape */
+function escapeHtml(value){
+
+ return String(value)
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
+
+}
+
+/* Start */
+(async function(){
+
+ realPing();
+
+ setInterval(realPing,10000);
+
+ const authOK=await initAuth();
+
+ if(authOK){
+  await loadProducts();
+ }
+
+})();
+
+</script>
+
+</body>
+</html>
