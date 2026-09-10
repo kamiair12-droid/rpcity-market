@@ -1,1102 +1,2345 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RP City | Coin Shop</title>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>RP City Market</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    font-family:Tahoma,Arial,sans-serif;
-    background:#08090d;
-    color:#fff;
-    min-height:100vh;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#080b12;
+  color:#fff;
+  line-height:1.8;
 }
 
-button,input{
-    font-family:inherit;
+a{
+  text-decoration:none;
+  color:inherit;
 }
 
-.header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(8,9,13,.92);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid #20232d;
-}
-
-.nav{
-    max-width:1200px;
-    margin:auto;
-    padding:18px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.logo{
-    font-size:24px;
-    font-weight:900;
-}
-
-.logo span{
-    color:#7c5cff;
-}
-
-.status{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:#11131a;
-    border:1px solid #242735;
-    padding:9px 14px;
-    border-radius:50px;
-    font-size:13px;
-}
-
-.dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#777;
-}
-
-.dot.online{
-    background:#29d17d;
-    box-shadow:0 0 12px #29d17d;
-}
-
-.hero{
-    max-width:1200px;
-    margin:40px auto 25px;
-    padding:0 20px;
-}
-
-.hero-box{
-    min-height:260px;
-    border-radius:25px;
-    padding:45px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    overflow:hidden;
-    position:relative;
-    background:
-      radial-gradient(circle at 80% 20%,#654cff55,transparent 35%),
-      linear-gradient(135deg,#15101f,#0d1018);
-    border:1px solid #2b2542;
-}
-
-.hero h1{
-    font-size:42px;
-    margin-bottom:12px;
-}
-
-.hero p{
-    color:#aaaebe;
-    line-height:2;
-}
-
-.hero-badge{
-    margin-top:20px;
-    display:inline-block;
-    padding:10px 17px;
-    border-radius:12px;
-    background:#7c5cff;
-    font-weight:bold;
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
 }
 
 .container{
-    max-width:1200px;
-    margin:auto;
-    padding:0 20px 60px;
+  width:min(1150px,92%);
+  margin:auto;
 }
 
-.toolbar{
-    display:flex;
-    gap:12px;
-    margin-bottom:25px;
-    flex-wrap:wrap;
+/* ================= HEADER ================= */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(8,11,18,.96);
+  border-bottom:1px solid #252d3e;
+  backdrop-filter:blur(12px);
 }
+
+.nav{
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo{
+  font-size:23px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#8b5cf6;
+}
+
+.nav-links{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.nav-links a{
+  padding:9px 13px;
+  color:#cbd3e1;
+  border-radius:10px;
+}
+
+.nav-links a:hover{
+  background:#171d2b;
+  color:#fff;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+  border:0;
+  border-radius:11px;
+  padding:11px 17px;
+  font-weight:bold;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.primary{
+  background:linear-gradient(
+    135deg,
+    #7c3aed,
+    #a855f7
+  );
+  color:#fff;
+}
+
+.dark{
+  background:#171d2b;
+  border:1px solid #2b354b;
+  color:#fff;
+}
+
+.green{
+  background:#087f5b;
+  color:#fff;
+}
+
+.red{
+  background:#6f2633;
+  color:#fff;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  padding:70px 0 45px;
+
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(124,58,237,.20),
+      transparent 30%
+    );
+}
+
+.hero h1{
+  font-size:clamp(35px,7vw,62px);
+  line-height:1.2;
+  margin:12px 0;
+}
+
+.hero h1 span{
+  color:#9b7cff;
+}
+
+.hero p{
+  color:#a6b0c1;
+  max-width:700px;
+  margin-bottom:22px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+  padding:15px 0 35px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.stat{
+  background:#111621;
+  border:1px solid #252e40;
+  border-radius:16px;
+  padding:18px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  color:#a78bfa;
+  font-size:27px;
+}
+
+/* ================= SECTION ================= */
+
+section{
+  padding:40px 0;
+}
+
+.title{
+  margin-bottom:20px;
+}
+
+.title h2{
+  font-size:29px;
+}
+
+.title p{
+  color:#8994a8;
+  font-size:14px;
+}
+
+/* ================= SEARCH ================= */
 
 .search{
-    flex:1;
-    min-width:220px;
-    background:#11131a;
-    color:white;
-    border:1px solid #292d39;
-    padding:14px 17px;
-    border-radius:13px;
-    outline:none;
+  width:100%;
+  padding:14px;
+  background:#111621;
+  border:1px solid #293348;
+  color:#fff;
+  border-radius:12px;
+  outline:none;
+  margin-bottom:15px;
 }
 
 .search:focus{
-    border-color:#7c5cff;
+  border-color:#7c3aed;
 }
 
-.admin{
-    background:#151722;
-    border:1px solid #303442;
-    color:white;
-    padding:13px 18px;
-    border-radius:13px;
-    cursor:pointer;
+/* ================= CATEGORIES ================= */
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:22px;
 }
 
-.admin:hover{
-    border-color:#7c5cff;
+.category{
+  background:#111621;
+  color:#cbd3e1;
+  border:1px solid #293348;
+  padding:8px 15px;
+  border-radius:30px;
+  cursor:pointer;
 }
+
+.category:hover{
+  border-color:#7c3aed;
+}
+
+.category.active{
+  background:#7c3aed;
+  border-color:#7c3aed;
+  color:#fff;
+}
+
+/* ================= PRODUCTS ================= */
 
 .products{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    gap:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
 }
 
-.card{
-    background:#11131a;
-    border:1px solid #242733;
-    border-radius:20px;
-    overflow:hidden;
-    transition:.25s;
+.product{
+  background:#111621;
+  border:1px solid #273149;
+  border-radius:18px;
+  overflow:hidden;
+  transition:.2s;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-    border-color:#51418f;
+.product:hover{
+  border-color:#493a72;
+  transform:translateY(-3px);
 }
 
-.banner{
-    height:105px;
-    background:#181b25;
-    overflow:hidden;
+/* ================= PRODUCT BANNER ================= */
+
+.product-banner{
+  height:125px;
+  background:
+    linear-gradient(
+      135deg,
+      #151b29,
+      #0d121c
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
-.banner img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.product-banner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
+
+.banner-placeholder{
+  color:#667085;
+  font-size:14px;
+}
+
+/* ================= PRODUCT IMAGE ================= */
 
 .product-image{
-    width:120px;
-    height:120px;
-    border-radius:20px;
-    object-fit:cover;
-    display:block;
-    margin:-55px auto 10px;
-    position:relative;
-    border:5px solid #11131a;
-    background:#181b25;
+  height:160px;
+  background:#0c111a;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  overflow:hidden;
 }
 
-.card-body{
-    padding:15px 18px 20px;
-    text-align:center;
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.card h3{
-    font-size:18px;
-    margin-bottom:9px;
+.no-image{
+  font-size:60px;
+  opacity:.35;
 }
 
-.desc{
-    color:#8f94a5;
-    font-size:13px;
-    min-height:40px;
-    line-height:1.8;
+/* ================= PRODUCT CONTENT ================= */
+
+.product-content{
+  padding:17px;
+}
+
+.product-content h3{
+  font-size:18px;
+}
+
+.description{
+  color:#929db0;
+  font-size:13px;
+  min-height:45px;
+  margin:5px 0;
 }
 
 .price{
-    color:#8d74ff;
-    font-size:21px;
-    font-weight:900;
-    margin:15px 0;
+  color:#b69cff;
+  font-size:20px;
+  font-weight:900;
+  margin:8px 0;
 }
 
-.buy{
-    width:100%;
-    border:0;
-    background:#7c5cff;
-    color:#fff;
-    padding:13px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
+.seller{
+  color:#9ba6b8;
+  font-size:12px;
+  margin-bottom:10px;
 }
 
-.buy:hover{
-    background:#6948ff;
+.product-buttons{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
 }
+
+.product-buttons .btn{
+  width:100%;
+  font-size:12px;
+}
+
+/* ================= FORM ================= */
+
+.form-box{
+  background:#111621;
+  border:1px solid #293348;
+  border-radius:18px;
+  padding:20px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-size:13px;
+  color:#cbd3e1;
+}
+
+.field input,
+.field textarea,
+.field select{
+  background:#090e17;
+  border:1px solid #293348;
+  color:#fff;
+  padding:12px;
+  border-radius:10px;
+  outline:none;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:#7c3aed;
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.hint{
+  font-size:11px;
+  color:#78849a;
+}
+
+/* ================= UPLOAD ================= */
+
+.upload-box{
+  background:#090e17;
+  border:1px dashed #39445a;
+  border-radius:12px;
+  padding:18px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.upload-box:hover{
+  border-color:#7c3aed;
+  background:#0c111a;
+}
+
+.upload-icon{
+  font-size:30px;
+  display:block;
+  margin-bottom:5px;
+}
+
+.upload-title{
+  display:block;
+  font-weight:bold;
+  color:#dce2ec;
+}
+
+.upload-subtitle{
+  display:block;
+  font-size:11px;
+  color:#78849a;
+  margin-top:3px;
+}
+
+.file-input{
+  display:none;
+}
+
+/* ================= UPLOAD PREVIEW ================= */
+
+.upload-preview{
+  display:none;
+  margin-top:12px;
+  position:relative;
+}
+
+.upload-preview img{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid #293348;
+}
+
+.remove-upload{
+  position:absolute;
+  top:8px;
+  left:8px;
+
+  width:35px;
+  height:35px;
+
+  border:0;
+  border-radius:9px;
+
+  background:#6f2633;
+  color:#fff;
+
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* ================= SUPPORT ================= */
+
+.support-box{
+  background:
+    linear-gradient(
+      145deg,
+      #151b29,
+      #0e131d
+    );
+
+  border:1px solid #293348;
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+}
+
+.support-box p{
+  color:#98a3b5;
+  margin:8px 0 18px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:20px;
+
+  transform:
+    translate(-50%,120px);
+
+  background:#161d2b;
+  border:1px solid #35425a;
+
+  padding:12px 18px;
+
+  border-radius:11px;
+
+  opacity:0;
+
+  transition:.3s;
+
+  z-index:9999;
+
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* ================= EMPTY ================= */
 
 .empty{
-    grid-column:1/-1;
-    text-align:center;
-    color:#858a9b;
-    padding:60px;
-    background:#11131a;
-    border:1px dashed #303442;
-    border-radius:18px;
+  background:#111621;
+  border:1px dashed #303b52;
+  border-radius:16px;
+  padding:45px;
+  text-align:center;
+  color:#8994a8;
 }
 
-/* MODAL */
+/* ================= LOADING ================= */
 
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(7px);
+.loading{
+  grid-column:1/-1;
+
+  background:#111621;
+  border:1px solid #293348;
+
+  border-radius:16px;
+
+  padding:40px;
+
+  text-align:center;
+
+  color:#8994a8;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .nav-links a:not(.support){
     display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:500;
-    padding:20px;
-}
+  }
 
-.modal.show{
-    display:flex;
-}
+  .stats-grid,
+  .products,
+  .form-grid{
+    grid-template-columns:1fr;
+  }
 
-.modal-box{
+  .full{
+    grid-column:auto;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-actions .btn{
     width:100%;
-    max-width:570px;
-    max-height:90vh;
-    overflow:auto;
-    background:#11131a;
-    border:1px solid #303442;
-    border-radius:22px;
-    padding:25px;
+  }
+
+  .product-buttons{
+    grid-template-columns:1fr;
+  }
+
 }
 
-.modal-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.close{
-    background:#1b1e28;
-    border:0;
-    color:white;
-    width:38px;
-    height:38px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:20px;
-}
-
-.form-group{
-    margin-bottom:16px;
-}
-
-.form-group label{
-    display:block;
-    color:#b9bdca;
-    margin-bottom:8px;
-    font-size:13px;
-}
-
-.form-group input,
-.form-group textarea{
-    width:100%;
-    background:#090b10;
-    border:1px solid #2c303d;
-    color:white;
-    border-radius:11px;
-    padding:13px;
-    outline:none;
-}
-
-.form-group textarea{
-    resize:vertical;
-    min-height:90px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus{
-    border-color:#7c5cff;
-}
-
-.upload{
-    border:1px dashed #3b4050;
-    border-radius:12px;
-    padding:17px;
-    text-align:center;
-    cursor:pointer;
-    color:#9298a8;
-}
-
-.upload:hover{
-    border-color:#7c5cff;
-    color:white;
-}
-
-.preview{
-    display:none;
-    width:100%;
-    max-height:180px;
-    object-fit:cover;
-    margin-top:10px;
-    border-radius:12px;
-}
-
-.form-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
-}
-
-.save{
-    flex:1;
-    border:0;
-    background:#7c5cff;
-    color:white;
-    padding:14px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.cancel{
-    flex:1;
-    border:1px solid #303442;
-    background:#171a22;
-    color:white;
-    padding:14px;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-.delete-btn{
-    width:100%;
-    margin-top:10px;
-    background:#2a1418;
-    color:#ff6978;
-    border:1px solid #54232b;
-    padding:12px;
-    border-radius:12px;
-    cursor:pointer;
-}
-
-footer{
-    border-top:1px solid #20232d;
-    color:#707585;
-    text-align:center;
-    padding:25px;
-    font-size:13px;
-}
-
-@media(max-width:650px){
-    .hero-box{
-        padding:30px 22px;
-    }
-
-    .hero h1{
-        font-size:30px;
-    }
-
-    .hero-box{
-        min-height:230px;
-    }
-
-    .nav{
-        padding:14px;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<header class="header">
-    <div class="nav">
-        <div class="logo">
-            RP <span>CITY</span>
-        </div>
+<!-- ================= HEADER ================= -->
 
-        <div class="status">
-            <span class="dot" id="statusDot"></span>
-            <span id="pingText">در حال بررسی...</span>
-        </div>
-    </div>
+<header>
+
+<div class="container nav">
+
+<a href="#" class="logo">
+RP <span>City</span> Market
+</a>
+
+<nav class="nav-links">
+
+<a href="#products">
+محصولات
+</a>
+
+<a href="#add">
+ثبت محصول
+</a>
+
+<a
+  class="btn primary support"
+  href="https://ble.ir/rpcity_lor"
+  target="_blank"
+  rel="noopener"
+>
+📢 پشتیبانی
+</a>
+
+</nav>
+
+</div>
+
 </header>
 
-<section class="hero">
-    <div class="hero-box">
-        <div>
-            <h1>RP City Shop</h1>
-            <p>
-                فروش سریع و مطمئن سکه‌های RP City
-                <br>
-                محصولات موردنظرت رو انتخاب کن.
-            </p>
 
-            <span class="hero-badge">🪙 Coin Shop</span>
-        </div>
-    </div>
+<main>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="container">
+
+<div style="color:#a78bfa;font-weight:bold">
+🔥 مارکت آزاد RP City
+</div>
+
+<h1>
+محصولت رو بذار،
+<span>مشتری پیدا کن</span>
+</h1>
+
+<p>
+هر کسی می‌تونه محصول خودش رو ثبت کنه،
+عکس و بنر بذاره، قیمت و آیدی بله خودش رو وارد کنه
+و مشتری مستقیم با فروشنده ارتباط بگیره.
+</p>
+
+<div class="hero-actions">
+
+<a
+  class="btn primary"
+  href="#add"
+>
+➕ ثبت محصول رایگان
+</a>
+
+<a
+  class="btn dark"
+  href="#products"
+>
+🛍 مشاهده محصولات
+</a>
+
+<a
+  class="btn dark"
+  href="https://ble.ir/rpcity_lor"
+  target="_blank"
+  rel="noopener"
+>
+🛟 پشتیبانی
+</a>
+
+</div>
+
+</div>
+
 </section>
 
-<main class="container">
 
-    <div class="toolbar">
-        <input
-            class="search"
-            id="search"
-            type="text"
-            placeholder="🔎 جستجوی محصول..."
-        >
+<!-- ================= STATS ================= -->
 
-        <button class="admin" onclick="openAdmin()">
-            ⚙️ مدیریت محصولات
-        </button>
-    </div>
+<section class="stats">
 
-    <div class="products" id="products"></div>
+<div class="container stats-grid">
+
+<div class="stat">
+
+<strong id="productCount">
+۰
+</strong>
+
+<span>
+محصول ثبت شده
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+آزاد
+</strong>
+
+<span>
+ثبت محصول برای همه
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+📩
+</strong>
+
+<span>
+ارتباط مستقیم با فروشنده
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section id="products">
+
+<div class="container">
+
+<div class="title">
+
+<h2>
+🛍 محصولات
+</h2>
+
+<p>
+محصول موردنظرت رو پیدا کن و مستقیم با فروشنده صحبت کن.
+</p>
+
+</div>
+
+
+<input
+  id="search"
+  class="search"
+  placeholder="🔎 جستجوی محصول، فروشنده یا توضیحات..."
+>
+
+
+<div class="categories">
+
+<button
+  class="category active"
+  data-cat="all"
+>
+همه
+</button>
+
+<button
+  class="category"
+  data-cat="item"
+>
+آیتم
+</button>
+
+<button
+  class="category"
+  data-cat="car"
+>
+ماشین
+</button>
+
+<button
+  class="category"
+  data-cat="account"
+>
+اکانت
+</button>
+
+<button
+  class="category"
+  data-cat="other"
+>
+سایر
+</button>
+
+</div>
+
+
+<div
+  id="productsList"
+  class="products"
+></div>
+
+
+<div
+  id="empty"
+  class="empty"
+  style="display:none"
+>
+هنوز محصولی ثبت نشده.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ADD PRODUCT ================= -->
+
+<section id="add">
+
+<div class="container">
+
+<div class="title">
+
+<h2>
+➕ ثبت محصول
+</h2>
+
+<p>
+محصولت رو همراه عکس و بنر ثبت کن.
+</p>
+
+</div>
+
+
+<div class="form-box">
+
+<form id="productForm">
+
+<div class="form-grid">
+
+
+<!-- NAME -->
+
+<div class="field">
+
+<label>
+نام محصول *
+</label>
+
+<input
+  id="name"
+  required
+  maxlength="80"
+  placeholder="مثلاً ماشین اسپرت"
+>
+
+</div>
+
+
+<!-- PRICE -->
+
+<div class="field">
+
+<label>
+قیمت *
+</label>
+
+<input
+  id="price"
+  required
+  inputmode="numeric"
+  placeholder="مثلاً 120000"
+>
+
+</div>
+
+
+<!-- CATEGORY -->
+
+<div class="field">
+
+<label>
+دسته‌بندی *
+</label>
+
+<select id="category">
+
+<option value="item">
+آیتم
+</option>
+
+<option value="car">
+ماشین
+</option>
+
+<option value="account">
+اکانت
+</option>
+
+<option value="other">
+سایر
+</option>
+
+</select>
+
+</div>
+
+
+<!-- SELLER -->
+
+<div class="field">
+
+<label>
+آیدی بله فروشنده *
+</label>
+
+<input
+  id="seller"
+  required
+  placeholder="@username"
+>
+
+<span class="hint">
+مثلاً @kamiair یا kamiair
+</span>
+
+</div>
+
+
+<!-- DESCRIPTION -->
+
+<div class="field full">
+
+<label>
+توضیحات محصول
+</label>
+
+<textarea
+  id="description"
+  maxlength="500"
+  placeholder="توضیحات محصول..."
+></textarea>
+
+</div>
+
+
+<!-- PRODUCT IMAGE -->
+
+<div class="field full">
+
+<label>
+📷 عکس محصول *
+</label>
+
+<label
+  class="upload-box"
+  for="image"
+>
+
+<span class="upload-icon">
+📷
+</span>
+
+<span class="upload-title">
+انتخاب عکس محصول
+</span>
+
+<span class="upload-subtitle">
+برای انتخاب عکس ضربه بزن
+</span>
+
+</label>
+
+<input
+  id="image"
+  class="file-input"
+  type="file"
+  accept="image/*"
+  required
+>
+
+
+<div
+  id="imagePreviewBox"
+  class="upload-preview"
+>
+
+<img
+  id="imagePreview"
+  alt="پیش‌نمایش عکس محصول"
+>
+
+<button
+  type="button"
+  class="remove-upload"
+  onclick="removeImage()"
+>
+✕
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT BANNER -->
+
+<div class="field full">
+
+<label>
+🖼️ بنر محصول
+</label>
+
+<label
+  class="upload-box"
+  for="banner"
+>
+
+<span class="upload-icon">
+🖼️
+</span>
+
+<span class="upload-title">
+انتخاب بنر محصول
+</span>
+
+<span class="upload-subtitle">
+بنر اختیاری است؛ اگر نداشتی خالی بگذار
+</span>
+
+</label>
+
+<input
+  id="banner"
+  class="file-input"
+  type="file"
+  accept="image/*"
+>
+
+
+<div
+  id="bannerPreviewBox"
+  class="upload-preview"
+>
+
+<img
+  id="bannerPreview"
+  alt="پیش‌نمایش بنر محصول"
+>
+
+<button
+  type="button"
+  class="remove-upload"
+  onclick="removeBanner()"
+>
+✕
+</button>
+
+</div>
+
+</div>
+
+
+<!-- SUBMIT -->
+
+<div class="field full">
+
+<button
+  id="submitBtn"
+  class="btn primary"
+  type="submit"
+>
+
+🚀 ثبت محصول
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SUPPORT ================= -->
+
+<section>
+
+<div class="container">
+
+<div class="support-box">
+
+<h2>
+🛟 ارتباط با پشتیبانی
+</h2>
+
+<p>
+برای مشکل در ثبت، حذف یا گزارش محصول با پشتیبانی ارتباط بگیر.
+</p>
+
+<a
+  class="btn primary"
+  href="https://ble.ir/rpcity_lor"
+  target="_blank"
+  rel="noopener"
+>
+📢 ارتباط با پشتیبانی
+</a>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
-<footer>
-    © 2026 RP City Shop — تمامی حقوق محفوظ است.
-</footer>
 
-
-<!-- ADMIN MODAL -->
-
-<div class="modal" id="adminModal">
-    <div class="modal-box">
-
-        <div class="modal-head">
-            <h2 id="modalTitle">افزودن محصول</h2>
-            <button class="close" onclick="closeAdmin()">×</button>
-        </div>
-
-        <input type="hidden" id="editId">
-
-        <div class="form-group">
-            <label>نام محصول</label>
-            <input id="productName" placeholder="مثلاً 50K Coin">
-        </div>
-
-        <div class="form-group">
-            <label>قیمت</label>
-            <input id="productPrice" placeholder="مثلاً 10000 تومان">
-        </div>
-
-        <div class="form-group">
-            <label>توضیحات</label>
-            <textarea id="productDesc" placeholder="توضیحات محصول..."></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>عکس محصول</label>
-
-            <label class="upload">
-                📷 انتخاب عکس محصول
-                <input
-                    id="productImage"
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    onchange="previewImage(this,'imagePreview')"
-                >
-            </label>
-
-            <img id="imagePreview" class="preview">
-        </div>
-
-        <div class="form-group">
-            <label>بنر محصول</label>
-
-            <label class="upload">
-                🖼️ انتخاب بنر محصول
-                <input
-                    id="productBanner"
-                    type="file"
-                    accept="image/*"
-                    hidden
-                    onchange="previewImage(this,'bannerPreview')"
-                >
-            </label>
-
-            <img id="bannerPreview" class="preview">
-        </div>
-
-        <div class="form-buttons">
-            <button class="save" onclick="saveProduct()">
-                💾 ذخیره محصول
-            </button>
-
-            <button class="cancel" onclick="closeAdmin()">
-                انصراف
-            </button>
-        </div>
-
-        <button
-            id="deleteProduct"
-            class="delete-btn"
-            onclick="deleteProduct()"
-            style="display:none"
-        >
-            🗑️ حذف محصول
-        </button>
-
-    </div>
-</div>
+<div
+  id="toast"
+  class="toast"
+></div>
 
 
 <script>
 
-/* =========================
-   DEFAULT PRODUCTS
-========================= */
+/* ==================================================
+   SUPABASE CONFIG
+   این دو مقدار را با اطلاعات پروژه خودت عوض کن
+================================================== */
 
-const defaultProducts = [
-    {
-        id: crypto.randomUUID(),
-        name:"50K Coin",
-        price:"10,000 تومان",
-        desc:"بسته 50 هزار سکه RP City",
-        image:"",
-        banner:""
-    },
-    {
-        id: crypto.randomUUID(),
-        name:"100K Coin",
-        price:"20,000 تومان",
-        desc:"بسته 100 هزار سکه RP City",
-        image:"",
-        banner:""
-    },
-    {
-        id: crypto.randomUUID(),
-        name:"200K Coin",
-        price:"40,000 تومان",
-        desc:"بسته 200 هزار سکه RP City",
-        image:"",
-        banner:""
-    }
-];
+const SUPABASE_URL =
+"YOUR_SUPABASE_URL";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"YOUR_SUPABASE_PUBLISHABLE_KEY";
 
 
-/* =========================
-   STORAGE
-========================= */
+/* ==================================================
+   CONNECTION
+================================================== */
 
-let products = JSON.parse(
-    localStorage.getItem("rpcity_products")
-);
+const connected =
+  !SUPABASE_URL.includes("YOUR_") &&
+  !SUPABASE_PUBLISHABLE_KEY.includes("YOUR_");
 
-if(!products){
-    products = defaultProducts;
-    localStorage.setItem(
-        "rpcity_products",
-        JSON.stringify(products)
-    );
+
+const db =
+  connected
+    ? supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      )
+    : null;
+
+
+let products = [];
+
+let selectedCategory = "all";
+
+
+/* ==================================================
+   TOAST
+================================================== */
+
+function toast(message){
+
+  const box =
+    document.getElementById("toast");
+
+  box.textContent =
+    message;
+
+  box.classList.add("show");
+
+  setTimeout(function(){
+
+    box.classList.remove("show");
+
+  },3000);
+
 }
 
 
-/* =========================
-   RENDER
-========================= */
+/* ==================================================
+   CLEAN SELLER ID
+================================================== */
+
+function cleanId(id){
+
+  return String(id || "")
+    .trim()
+    .replace(/^@/,"")
+    .replace(/\s/g,"");
+
+}
+
+
+/* ==================================================
+   SELLER LINK
+================================================== */
+
+function sellerLink(id){
+
+  const clean =
+    cleanId(id);
+
+  return "https://ble.ir/" +
+    encodeURIComponent(clean);
+
+}
+
+
+/* ==================================================
+   MONEY
+================================================== */
+
+function money(value){
+
+  return Number(value || 0)
+    .toLocaleString("fa-IR")
+    + " تومان";
+
+}
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/[&<>"']/g,function(char){
+
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+      }[char];
+
+    });
+
+}
+
+
+/* ==================================================
+   RENDER PRODUCTS
+================================================== */
 
 function renderProducts(){
 
-    const box = document.getElementById("products");
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .trim()
+      .toLowerCase();
 
-    const query =
-        document.getElementById("search").value
-        .trim()
+
+  const filtered =
+    products.filter(function(product){
+
+      const categoryOK =
+        selectedCategory === "all" ||
+        product.category === selectedCategory;
+
+
+      const text =
+        [
+          product.name,
+          product.description,
+          product.seller_id
+        ]
+        .join(" ")
         .toLowerCase();
 
-    const filtered = products.filter(p =>
-        p.name.toLowerCase().includes(query) ||
-        p.desc.toLowerCase().includes(query)
+
+      const searchOK =
+        !search ||
+        text.includes(search);
+
+
+      return categoryOK && searchOK;
+
+    });
+
+
+  document
+    .getElementById("productCount")
+    .textContent =
+      products.length
+        .toLocaleString("fa-IR");
+
+
+  const list =
+    document
+      .getElementById("productsList");
+
+
+  list.innerHTML = "";
+
+
+  filtered.forEach(function(product){
+
+    const productImage =
+      product.image_url
+        ?
+        `
+        <img
+          src="${escapeHTML(product.image_url)}"
+          alt="${escapeHTML(product.name)}"
+          loading="lazy"
+        >
+        `
+        :
+        `
+        <div class="no-image">
+          📦
+        </div>
+        `;
+
+
+    const productBanner =
+      product.banner_url
+        ?
+        `
+        <img
+          src="${escapeHTML(product.banner_url)}"
+          alt=""
+          loading="lazy"
+        >
+        `
+        :
+        `
+        <div class="banner-placeholder">
+          RP City
+        </div>
+        `;
+
+
+    const article =
+      document.createElement("article");
+
+
+    article.className =
+      "product";
+
+
+    article.innerHTML = `
+
+      <div class="product-banner">
+        ${productBanner}
+      </div>
+
+      <div class="product-image">
+        ${productImage}
+      </div>
+
+      <div class="product-content">
+
+        <h3>
+          ${escapeHTML(product.name)}
+        </h3>
+
+        <div class="description">
+          ${escapeHTML(
+            product.description ||
+            "بدون توضیحات"
+          )}
+        </div>
+
+        <div class="price">
+          ${money(product.price)}
+        </div>
+
+        <div class="seller">
+          👤 فروشنده:
+          @${escapeHTML(
+            cleanId(product.seller_id)
+          )}
+        </div>
+
+        <div class="product-buttons">
+
+          <a
+            class="btn green"
+            href="${escapeHTML(
+              sellerLink(product.seller_id)
+            )}"
+            target="_blank"
+            rel="noopener"
+          >
+            📩 ارتباط با فروشنده
+          </a>
+
+          <button
+            class="btn red"
+            onclick="deleteProduct('${product.id}')"
+          >
+            🗑 حذف محصول من
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+
+    list.appendChild(article);
+
+  });
+
+
+  document
+    .getElementById("empty")
+    .style.display =
+      filtered.length
+        ? "none"
+        : "block";
+
+}
+
+
+/* ==================================================
+   ANONYMOUS LOGIN
+================================================== */
+
+async function getUser(){
+
+  if(!connected){
+
+    return null;
+
+  }
+
+
+  const sessionResult =
+    await db.auth.getSession();
+
+
+  if(
+    sessionResult.data &&
+    sessionResult.data.session
+  ){
+
+    return sessionResult.data.session.user;
+
+  }
+
+
+  const login =
+    await db.auth.signInAnonymously();
+
+
+  if(login.error){
+
+    console.error(
+      login.error
     );
 
-    box.innerHTML = "";
+    toast(
+      "ورود ناشناس در Supabase فعال نیست."
+    );
 
-    if(filtered.length === 0){
+    return null;
 
-        box.innerHTML = `
-            <div class="empty">
-                محصولی پیدا نشد.
-            </div>
-        `;
+  }
 
-        return;
-    }
 
-    filtered.forEach(product => {
+  return login.data.user;
 
-        const card = document.createElement("article");
-
-        card.className = "card";
-
-        card.innerHTML = `
-
-            <div class="banner">
-                ${
-                    product.banner
-                    ? `<img src="${product.banner}" alt="">`
-                    : ""
-                }
-            </div>
-
-            ${
-                product.image
-                ? `<img class="product-image"
-                        src="${product.image}"
-                        alt="${escapeHTML(product.name)}">`
-                : `<div class="product-image"></div>`
-            }
-
-            <div class="card-body">
-
-                <h3>
-                    ${escapeHTML(product.name)}
-                </h3>
-
-                <div class="desc">
-                    ${escapeHTML(product.desc)}
-                </div>
-
-                <div class="price">
-                    ${escapeHTML(product.price)}
-                </div>
-
-                <button
-                    class="buy"
-                    onclick="buyProduct('${product.id}')"
-                >
-                    🛒 خرید محصول
-                </button>
-
-                <button
-                    class="admin"
-                    style="width:100%;margin-top:8px;"
-                    onclick="editProduct('${product.id}')"
-                >
-                    ✏️ ویرایش
-                </button>
-
-            </div>
-        `;
-
-        box.appendChild(card);
-    });
 }
 
 
-function escapeHTML(text){
+/* ==================================================
+   LOAD PRODUCTS
+================================================== */
 
-    return String(text)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
+async function loadProducts(){
 
+  if(!connected){
 
-/* =========================
-   ADMIN
-========================= */
+    products = [];
 
-function openAdmin(){
+    renderProducts();
 
-    resetForm();
+    toast(
+      "Supabase را در کد تنظیم کن."
+    );
 
-    document
-        .getElementById("adminModal")
-        .classList.add("show");
-}
+    return;
 
-function closeAdmin(){
-
-    document
-        .getElementById("adminModal")
-        .classList.remove("show");
-
-    resetForm();
-}
-
-function resetForm(){
-
-    document.getElementById("editId").value = "";
-
-    document.getElementById("productName").value = "";
-
-    document.getElementById("productPrice").value = "";
-
-    document.getElementById("productDesc").value = "";
-
-    document.getElementById("productImage").value = "";
-
-    document.getElementById("productBanner").value = "";
-
-    document.getElementById("imagePreview").style.display = "none";
-
-    document.getElementById("bannerPreview").style.display = "none";
-
-    document.getElementById("imagePreview").src = "";
-
-    document.getElementById("bannerPreview").src = "";
-
-    document.getElementById("modalTitle").textContent =
-        "افزودن محصول";
-
-    document.getElementById("deleteProduct").style.display =
-        "none";
-}
+  }
 
 
-/* =========================
-   FILE TO BASE64
-========================= */
-
-function fileToBase64(file){
-
-    return new Promise((resolve,reject)=>{
-
-        if(!file){
-            resolve("");
-            return;
+  const result =
+    await db
+      .from("products")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
         }
-
-        const reader = new FileReader();
-
-        reader.onload = () => resolve(reader.result);
-
-        reader.onerror = reject;
-
-        reader.readAsDataURL(file);
-    });
-}
+      );
 
 
-/* =========================
-   PREVIEW
-========================= */
+  if(result.error){
 
-function previewImage(input,targetId){
-
-    const file = input.files[0];
-
-    if(!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-        const img =
-            document.getElementById(targetId);
-
-        img.src = e.target.result;
-
-        img.style.display = "block";
-    };
-
-    reader.readAsDataURL(file);
-}
-
-
-/* =========================
-   SAVE
-========================= */
-
-async function saveProduct(){
-
-    const name =
-        document.getElementById("productName")
-        .value.trim();
-
-    const price =
-        document.getElementById("productPrice")
-        .value.trim();
-
-    const desc =
-        document.getElementById("productDesc")
-        .value.trim();
-
-    const editId =
-        document.getElementById("editId")
-        .value;
-
-    if(!name || !price){
-
-        alert("نام محصول و قیمت را وارد کن.");
-
-        return;
-    }
-
-    const imageFile =
-        document.getElementById("productImage")
-        .files[0];
-
-    const bannerFile =
-        document.getElementById("productBanner")
-        .files[0];
-
-    let image = "";
-
-    let banner = "";
-
-    if(editId){
-
-        const old =
-            products.find(p => p.id === editId);
-
-        image = old?.image || "";
-
-        banner = old?.banner || "";
-    }
-
-    if(imageFile){
-
-        image = await fileToBase64(imageFile);
-    }
-
-    if(bannerFile){
-
-        banner = await fileToBase64(bannerFile);
-    }
-
-    const product = {
-
-        id: editId || crypto.randomUUID(),
-
-        name,
-
-        price,
-
-        desc,
-
-        image,
-
-        banner
-    };
-
-    if(editId){
-
-        const index =
-            products.findIndex(p => p.id === editId);
-
-        products[index] = product;
-
-    }else{
-
-        products.push(product);
-    }
-
-    localStorage.setItem(
-        "rpcity_products",
-        JSON.stringify(products)
+    console.error(
+      result.error
     );
 
-    renderProducts();
-
-    closeAdmin();
-}
-
-
-/* =========================
-   EDIT
-========================= */
-
-function editProduct(id){
-
-    const product =
-        products.find(p => p.id === id);
-
-    if(!product) return;
-
-    document.getElementById("editId").value =
-        product.id;
-
-    document.getElementById("productName").value =
-        product.name;
-
-    document.getElementById("productPrice").value =
-        product.price;
-
-    document.getElementById("productDesc").value =
-        product.desc;
-
-    if(product.image){
-
-        const img =
-            document.getElementById("imagePreview");
-
-        img.src = product.image;
-
-        img.style.display = "block";
-    }
-
-    if(product.banner){
-
-        const img =
-            document.getElementById("bannerPreview");
-
-        img.src = product.banner;
-
-        img.style.display = "block";
-    }
-
-    document.getElementById("modalTitle").textContent =
-        "ویرایش محصول";
-
-    document.getElementById("deleteProduct").style.display =
-        "block";
-
-    document
-        .getElementById("adminModal")
-        .classList.add("show");
-}
-
-
-/* =========================
-   DELETE
-========================= */
-
-function deleteProduct(){
-
-    const id =
-        document.getElementById("editId").value;
-
-    if(!id) return;
-
-    if(!confirm("این محصول حذف شود؟")) return;
-
-    products =
-        products.filter(p => p.id !== id);
-
-    localStorage.setItem(
-        "rpcity_products",
-        JSON.stringify(products)
+    toast(
+      "خطا در دریافت محصولات."
     );
 
-    renderProducts();
+    return;
 
-    closeAdmin();
+  }
+
+
+  products =
+    result.data || [];
+
+
+  renderProducts();
+
 }
 
 
-/* =========================
-   BUY
-========================= */
+/* ==================================================
+   FILE VALIDATION
+================================================== */
 
-function buyProduct(id){
+function validateImage(file){
 
-    const product =
-        products.find(p => p.id === id);
+  if(!file){
 
-    if(!product) return;
+    return false;
 
-    /*
-       اینجا می‌توانی لینک خرید،
-       آیدی روبیکا یا درگاه پرداخت
-       خودت را قرار بدهی.
-    */
+  }
 
-    alert(
-        "محصول انتخاب شد:\n\n" +
-        product.name +
-        "\n" +
-        product.price
+
+  if(!file.type.startsWith("image/")){
+
+    toast(
+      "فقط فایل تصویری انتخاب کن."
     );
+
+    return false;
+
+  }
+
+
+  if(file.size > 5 * 1024 * 1024){
+
+    toast(
+      "حجم عکس باید کمتر از ۵ مگابایت باشد."
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/* ==================================================
+   IMAGE PREVIEW
+================================================== */
 
 document
-    .getElementById("search")
-    .addEventListener(
-        "input",
-        renderProducts
-    );
+  .getElementById("image")
+  .addEventListener(
+    "change",
+    function(){
+
+      const file =
+        this.files[0];
 
 
-/* =========================
-   REAL NETWORK PING
-========================= */
+      if(!file){
 
-/*
-   نکته:
-   مرورگر اجازه ICMP Ping مستقیم نمی‌دهد.
-   این روش زمان رفت‌وبرگشت یک HTTP Request
-   به سرور را اندازه می‌گیرد.
-*/
+        return;
 
-async function checkPing(){
+      }
 
-    const pingText =
-        document.getElementById("pingText");
 
-    const dot =
-        document.getElementById("statusDot");
+      if(!validateImage(file)){
 
-    const start =
-        performance.now();
+        this.value = "";
 
-    try{
+        return;
 
-        await fetch(
-            window.location.origin +
-            "/?ping=" +
-            Date.now(),
-            {
-                method:"HEAD",
-                cache:"no-store"
-            }
-        );
+      }
 
-        const end =
-            performance.now();
 
-        const ms =
-            Math.round(end - start);
+      const url =
+        URL.createObjectURL(file);
 
-        pingText.textContent =
-            "Ping: " + ms + " ms";
 
-        dot.classList.add("online");
+      document
+        .getElementById("imagePreview")
+        .src = url;
 
-    }catch(error){
 
-        pingText.textContent =
-            "اتصال نامشخص";
+      document
+        .getElementById("imagePreviewBox")
+        .style.display =
+          "block";
 
-        dot.classList.remove("online");
     }
+  );
+
+
+/* ==================================================
+   BANNER PREVIEW
+================================================== */
+
+document
+  .getElementById("banner")
+  .addEventListener(
+    "change",
+    function(){
+
+      const file =
+        this.files[0];
+
+
+      if(!file){
+
+        return;
+
+      }
+
+
+      if(!validateImage(file)){
+
+        this.value = "";
+
+        return;
+
+      }
+
+
+      const url =
+        URL.createObjectURL(file);
+
+
+      document
+        .getElementById("bannerPreview")
+        .src = url;
+
+
+      document
+        .getElementById("bannerPreviewBox")
+        .style.display =
+          "block";
+
+    }
+  );
+
+
+/* ==================================================
+   REMOVE IMAGE
+================================================== */
+
+function removeImage(){
+
+  const input =
+    document.getElementById("image");
+
+  const preview =
+    document.getElementById("imagePreview");
+
+  input.value = "";
+
+  preview.src = "";
+
+  document
+    .getElementById("imagePreviewBox")
+    .style.display =
+      "none";
+
 }
 
 
-/* =========================
+/* ==================================================
+   REMOVE BANNER
+================================================== */
+
+function removeBanner(){
+
+  const input =
+    document.getElementById("banner");
+
+  const preview =
+    document.getElementById("bannerPreview");
+
+  input.value = "";
+
+  preview.src = "";
+
+  document
+    .getElementById("bannerPreviewBox")
+    .style.display =
+      "none";
+
+}
+
+
+/* ==================================================
+   UPLOAD FILE
+================================================== */
+
+async function uploadFile(
+  userId,
+  file,
+  folder
+){
+
+  const extension =
+    (
+      file.name
+        .split(".")
+        .pop() ||
+      "jpg"
+    ).toLowerCase();
+
+
+  const path =
+    userId +
+    "/" +
+    folder +
+    "/" +
+    crypto.randomUUID() +
+    "." +
+    extension;
+
+
+  const upload =
+    await db
+      .storage
+      .from("product-images")
+      .upload(
+        path,
+        file,
+        {
+          upsert:false,
+          contentType:file.type
+        }
+      );
+
+
+  if(upload.error){
+
+    throw upload.error;
+
+  }
+
+
+  const publicURL =
+    db
+      .storage
+      .from("product-images")
+      .getPublicUrl(path)
+      .data
+      .publicUrl;
+
+
+  return {
+    url:publicURL,
+    path:path
+  };
+
+}
+
+
+/* ==================================================
+   FORM SUBMIT
+================================================== */
+
+document
+  .getElementById("productForm")
+  .addEventListener(
+    "submit",
+    async function(event){
+
+      event.preventDefault();
+
+
+      if(!connected){
+
+        toast(
+          "اول اطلاعات Supabase را وارد کن."
+        );
+
+        return;
+
+      }
+
+
+      const user =
+        await getUser();
+
+
+      if(!user){
+
+        return;
+
+      }
+
+
+      const imageFile =
+        document
+          .getElementById("image")
+          .files[0];
+
+
+      const bannerFile =
+        document
+          .getElementById("banner")
+          .files[0];
+
+
+      if(!imageFile){
+
+        toast(
+          "عکس محصول را انتخاب کن."
+        );
+
+        return;
+
+      }
+
+
+      if(!validateImage(imageFile)){
+
+        return;
+
+      }
+
+
+      if(
+        bannerFile &&
+        !validateImage(bannerFile)
+      ){
+
+        return;
+
+      }
+
+
+      const button =
+        document
+          .getElementById("submitBtn");
+
+
+      button.disabled = true;
+
+      button.textContent =
+        "⏳ در حال ثبت...";
+
+
+      let uploadedImage = null;
+
+      let uploadedBanner = null;
+
+
+      try{
+
+        /* ==========================
+           PRODUCT IMAGE
+        ========================== */
+
+        uploadedImage =
+          await uploadFile(
+            user.id,
+            imageFile,
+            "products"
+          );
+
+
+        /* ==========================
+           PRODUCT BANNER
+        ========================== */
+
+        if(bannerFile){
+
+          uploadedBanner =
+            await uploadFile(
+              user.id,
+              bannerFile,
+              "banners"
+            );
+
+        }
+
+
+        /* ==========================
+           INSERT DATABASE
+        ========================== */
+
+        const insert =
+          await db
+            .from("products")
+            .insert({
+
+              owner_id:
+                user.id,
+
+              name:
+                document
+                  .getElementById("name")
+                  .value
+                  .trim(),
+
+              price:
+                Number(
+                  document
+                    .getElementById("price")
+                    .value
+                    .replace(
+                      /[^0-9]/g,
+                      ""
+                    )
+                ),
+
+              category:
+                document
+                  .getElementById("category")
+                  .value,
+
+              seller_id:
+                cleanId(
+                  document
+                    .getElementById("seller")
+                    .value
+                ),
+
+              description:
+                document
+                  .getElementById("description")
+                  .value
+                  .trim(),
+
+              image_url:
+                uploadedImage.url,
+
+              image_path:
+                uploadedImage.path,
+
+              banner_url:
+                uploadedBanner
+                  ? uploadedBanner.url
+                  : null,
+
+              banner_path:
+                uploadedBanner
+                  ? uploadedBanner.path
+                  : null
+
+            });
+
+
+        if(insert.error){
+
+          throw insert.error;
+
+        }
+
+
+        toast(
+          "✅ محصول با موفقیت ثبت شد."
+        );
+
+
+        document
+          .getElementById("productForm")
+          .reset();
+
+
+        removeImage();
+
+        removeBanner();
+
+
+        await loadProducts();
+
+
+        location.hash =
+          "products";
+
+
+      }
+      catch(error){
+
+        console.error(
+          error
+        );
+
+
+        /* اگر ذخیره دیتابیس شکست خورد،
+           فایل‌هایی که همین الان آپلود شدند
+           پاک می‌شوند.
+        */
+
+        const paths = [];
+
+
+        if(uploadedImage){
+
+          paths.push(
+            uploadedImage.path
+          );
+
+        }
+
+
+        if(uploadedBanner){
+
+          paths.push(
+            uploadedBanner.path
+          );
+
+        }
+
+
+        if(paths.length){
+
+          await db
+            .storage
+            .from("product-images")
+            .remove(paths);
+
+        }
+
+
+        toast(
+          "❌ ثبت محصول انجام نشد. تنظیمات Supabase را بررسی کن."
+        );
+
+      }
+      finally{
+
+        button.disabled =
+          false;
+
+        button.textContent =
+          "🚀 ثبت محصول";
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
+
+
+/* ==================================================
+   CATEGORIES
+================================================== */
+
+document
+  .querySelectorAll(".category")
+  .forEach(function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        document
+          .querySelectorAll(".category")
+          .forEach(function(item){
+
+            item.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        this.classList.add(
+          "active"
+        );
+
+
+        selectedCategory =
+          this.dataset.cat;
+
+
+        renderProducts();
+
+      }
+    );
+
+  });
+
+
+/* ==================================================
+   DELETE PRODUCT
+================================================== */
+
+async function deleteProduct(id){
+
+  if(!connected){
+
+    toast(
+      "Supabase متصل نیست."
+    );
+
+    return;
+
+  }
+
+
+  const user =
+    await getUser();
+
+
+  if(!user){
+
+    return;
+
+  }
+
+
+  const product =
+    products.find(function(item){
+
+      return item.id === id;
+
+    });
+
+
+  if(!product){
+
+    return;
+
+  }
+
+
+  if(
+    product.owner_id !==
+    user.id
+  ){
+
+    toast(
+      "❌ فقط صاحب محصول می‌تواند آن را حذف کند."
+    );
+
+    return;
+
+  }
+
+
+  const answer =
+    confirm(
+      "مطمئنی می‌خواهی این محصول حذف شود؟"
+    );
+
+
+  if(!answer){
+
+    return;
+
+  }
+
+
+  const deleted =
+    await db
+      .from("products")
+      .delete()
+      .eq("id",id)
+      .eq(
+        "owner_id",
+        user.id
+      );
+
+
+  if(deleted.error){
+
+    console.error(
+      deleted.error
+    );
+
+    toast(
+      "❌ حذف محصول انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  /* حذف فایل عکس و بنر */
+
+  const paths = [];
+
+
+  if(product.image_path){
+
+    paths.push(
+      product.image_path
+    );
+
+  }
+
+
+  if(product.banner_path){
+
+    paths.push(
+      product.banner_path
+    );
+
+  }
+
+
+  if(paths.length){
+
+    const remove =
+      await db
+        .storage
+        .from("product-images")
+        .remove(paths);
+
+
+    if(remove.error){
+
+      console.error(
+        remove.error
+      );
+
+    }
+
+  }
+
+
+  toast(
+    "🗑 محصول حذف شد."
+  );
+
+
+  await loadProducts();
+
+}
+
+
+/* ==================================================
    START
-========================= */
+================================================== */
 
-renderProducts();
+(async function(){
 
-checkPing();
+  if(connected){
 
-setInterval(
-    checkPing,
-    10000
-);
+    await getUser();
+
+  }
+
+  await loadProducts();
+
+})();
 
 </script>
 
 </body>
-</html>
+    </html>
