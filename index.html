@@ -3,35 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b12">
 <title>RP City Market</title>
 
 <style>
-:root{
-  --bg:#080b12;
-  --panel:#101722;
-  --panel2:#151d2b;
-  --text:#ffffff;
-  --muted:#9eacc2;
-  --border:#26344f;
-  --primary:#2578ff;
-  --primary2:#6338d8;
-  --danger:#ff496c;
-  --success:#20c997;
-  --warning:#ffb020;
-  --shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-.light{
-  --bg:#f4f7fb;
-  --panel:#ffffff;
-  --panel2:#eef3fa;
-  --text:#111827;
-  --muted:#65748b;
-  --border:#d9e1ec;
-  --shadow:0 15px 40px rgba(20,40,80,.10);
-}
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -39,46 +13,41 @@
   font-family:Tahoma,Arial,sans-serif;
 }
 
-html{
-  scroll-behavior:smooth;
+:root{
+  --bg:#070b12;
+  --card:#101722;
+  --card2:#151e2d;
+  --text:#ffffff;
+  --muted:#9eacc2;
+  --border:#26344f;
+  --blue:#2578ff;
+  --purple:#6338d8;
+  --green:#20c997;
+  --red:#ff496c;
 }
 
 body{
   background:var(--bg);
   color:var(--text);
   min-height:100vh;
-  transition:.25s;
-}
-
-button,input,select,textarea{
-  font-family:inherit;
-}
-
-button{
-  cursor:pointer;
 }
 
 header{
+  background:#0c121d;
+  border-bottom:1px solid var(--border);
+  padding:16px;
   position:sticky;
   top:0;
-  z-index:100;
-  padding:15px;
-  background:rgba(8,11,18,.94);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--border);
+  z-index:50;
 }
 
-.light header{
-  background:rgba(255,255,255,.94);
-}
-
-.header-inner{
-  max-width:1050px;
+.nav{
+  max-width:1000px;
   margin:auto;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:12px;
+  align-items:center;
+  gap:10px;
 }
 
 .logo{
@@ -90,87 +59,75 @@ header{
   color:#4da3ff;
 }
 
-.header-buttons{
+.nav-buttons{
   display:flex;
-  gap:8px;
+  gap:7px;
 }
 
-.icon-btn{
+.nav button{
+  background:var(--card);
+  color:white;
   border:1px solid var(--border);
-  background:var(--panel);
-  color:var(--text);
-  width:42px;
-  height:42px;
-  border-radius:13px;
-  font-size:18px;
-}
-
-.icon-btn:hover{
-  border-color:var(--primary);
+  border-radius:11px;
+  padding:10px 12px;
+  font-size:16px;
 }
 
 .hero{
-  max-width:1050px;
-  margin:22px auto 0;
+  max-width:1000px;
+  margin:22px auto;
   padding:15px;
 }
 
 .hero-box{
-  padding:30px 22px;
   border:1px solid var(--border);
-  border-radius:25px;
+  border-radius:24px;
+  padding:30px 22px;
   background:
-    radial-gradient(circle at 80% 20%,rgba(37,120,255,.25),transparent 35%),
-    linear-gradient(135deg,var(--panel),var(--panel2));
-  box-shadow:var(--shadow);
+    radial-gradient(circle at 80% 20%,rgba(37,120,255,.22),transparent 35%),
+    linear-gradient(135deg,#101722,#151e2d);
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
 
 .hero h1{
-  font-size:30px;
-  margin-bottom:10px;
+  font-size:29px;
+  margin-bottom:12px;
 }
 
 .hero p{
   color:var(--muted);
-  line-height:1.9;
+  line-height:2;
+  font-size:14px;
 }
 
-.hero-actions{
+.actions{
   display:flex;
+  flex-wrap:wrap;
   gap:10px;
   margin-top:20px;
-  flex-wrap:wrap;
 }
 
 .btn{
   border:0;
-  padding:13px 17px;
-  border-radius:13px;
+  border-radius:12px;
+  padding:13px 18px;
+  background:var(--blue);
+  color:white;
   font-weight:bold;
-  color:#fff;
-  background:var(--primary);
-}
-
-.btn:hover{
-  opacity:.9;
-}
-
-.btn.secondary{
-  background:var(--panel2);
-  border:1px solid var(--border);
-  color:var(--text);
+  cursor:pointer;
 }
 
 .btn.gradient{
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  background:linear-gradient(135deg,var(--blue),var(--purple));
 }
 
-.btn.danger{
-  background:var(--danger);
+.btn.dark{
+  background:var(--card2);
+  border:1px solid var(--border);
 }
 
 .container{
-  max-width:1050px;
+  max-width:1000px;
   margin:auto;
   padding:15px;
 }
@@ -178,22 +135,22 @@ header{
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin:5px 0 20px;
+  gap:10px;
+  margin-bottom:20px;
 }
 
 .stat{
-  background:var(--panel);
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:17px;
+  border-radius:16px;
   padding:15px;
   text-align:center;
 }
 
-.stat strong{
+.stat b{
   display:block;
-  font-size:21px;
-  margin-bottom:5px;
+  font-size:20px;
+  margin-bottom:6px;
 }
 
 .stat span{
@@ -201,30 +158,20 @@ header{
   font-size:12px;
 }
 
-.search-box{
-  position:relative;
-  margin-bottom:14px;
-}
-
 .search{
   width:100%;
-  padding:16px 48px 16px 15px;
-  border-radius:15px;
+  background:var(--card);
   border:1px solid var(--border);
-  background:var(--panel);
-  color:var(--text);
+  color:white;
+  border-radius:14px;
+  padding:16px;
+  font-size:14px;
   outline:none;
-  font-size:15px;
+  margin-bottom:13px;
 }
 
 .search:focus{
-  border-color:var(--primary);
-}
-
-.search-icon{
-  position:absolute;
-  right:17px;
-  top:15px;
+  border-color:var(--blue);
 }
 
 .categories{
@@ -232,38 +179,38 @@ header{
   gap:8px;
   overflow-x:auto;
   padding-bottom:8px;
-  margin-bottom:18px;
 }
 
 .category{
   white-space:nowrap;
-  padding:10px 15px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:var(--panel);
+  background:var(--card);
   color:var(--muted);
+  border:1px solid var(--border);
+  border-radius:11px;
+  padding:10px 14px;
+  cursor:pointer;
 }
 
 .category.active{
-  background:var(--primary);
-  color:#fff;
-  border-color:var(--primary);
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
 }
 
-.section-title{
+.title{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   margin:25px 0 14px;
 }
 
-.section-title h2{
+.title h2{
   font-size:20px;
 }
 
-.count{
+.title span{
   color:var(--muted);
-  font-size:13px;
+  font-size:12px;
 }
 
 .products{
@@ -272,176 +219,164 @@ header{
   gap:14px;
 }
 
-.card{
-  background:var(--panel);
+.product{
+  position:relative;
+  background:var(--card);
   border:1px solid var(--border);
   border-radius:20px;
-  padding:16px;
-  box-shadow:var(--shadow);
-  position:relative;
+  padding:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 .product-image{
   height:135px;
   border-radius:15px;
+  background:linear-gradient(135deg,#18253b,#0d1522);
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   font-size:58px;
-  background:linear-gradient(135deg,#18243a,#101827);
   margin-bottom:14px;
-}
-
-.light .product-image{
-  background:linear-gradient(135deg,#e9f1ff,#f5f7fb);
 }
 
 .badge{
   position:absolute;
   top:25px;
   right:25px;
-  background:var(--danger);
-  color:#fff;
-  padding:5px 8px;
+  background:var(--red);
+  color:white;
   border-radius:8px;
-  font-size:11px;
+  padding:5px 8px;
+  font-size:10px;
 }
 
-.favorite{
-  position:absolute;
-  left:25px;
-  top:25px;
-  width:35px;
-  height:35px;
-  border-radius:10px;
-  border:1px solid var(--border);
-  background:var(--panel);
-  color:var(--text);
-  font-size:17px;
-}
-
-.favorite.active{
-  color:var(--danger);
-}
-
-.card h3{
+.product h3{
   font-size:17px;
   margin-bottom:8px;
 }
 
 .description{
   color:var(--muted);
-  font-size:13px;
-  line-height:1.8;
+  font-size:12px;
+  line-height:1.9;
   min-height:45px;
 }
 
 .seller{
   color:var(--muted);
-  font-size:12px;
+  font-size:11px;
+  margin-top:8px;
+}
+
+.status{
+  display:inline-block;
+  color:var(--green);
+  background:rgba(32,201,151,.1);
+  padding:5px 8px;
+  border-radius:7px;
+  font-size:10px;
   margin-top:8px;
 }
 
 .price{
   color:#4da3ff;
-  font-size:20px;
+  font-size:19px;
   font-weight:bold;
   margin:13px 0;
 }
 
-.status{
-  display:inline-block;
-  color:var(--success);
-  background:rgba(32,201,151,.1);
-  padding:5px 8px;
-  border-radius:8px;
-  font-size:11px;
-  margin-top:7px;
-}
-
-.card-buttons{
+.product-buttons{
   display:flex;
   gap:7px;
-  margin-top:10px;
 }
 
-.card-buttons .btn{
+.product-buttons button{
   flex:1;
-  padding:11px 8px;
-  font-size:12px;
+  padding:11px 5px;
+  border-radius:10px;
+  border:0;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.empty{
-  text-align:center;
-  padding:40px 15px;
-  color:var(--muted);
-  display:none;
+.contact{
+  background:var(--blue);
+  color:white;
 }
 
-.add-box{
-  margin-top:20px;
-  padding:20px;
-  border-radius:20px;
+.details{
+  background:var(--card2);
+  color:white;
+  border:1px solid var(--border) !important;
+}
+
+.add{
+  margin-top:25px;
+  background:linear-gradient(135deg,rgba(37,120,255,.12),rgba(99,56,216,.12));
   border:1px solid var(--border);
-  background:
-    linear-gradient(135deg,rgba(37,120,255,.12),rgba(99,56,216,.12)),
-    var(--panel);
+  border-radius:20px;
+  padding:20px;
 }
 
-.add-box h2{
+.add h2{
   margin-bottom:8px;
 }
 
-.add-box p{
+.add p{
   color:var(--muted);
   font-size:13px;
   line-height:1.8;
   margin-bottom:15px;
 }
 
-.form-grid{
+.form{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
-.form-control{
+.input{
   width:100%;
-  padding:13px;
-  border-radius:12px;
+  background:var(--card);
+  color:white;
   border:1px solid var(--border);
-  background:var(--panel2);
-  color:var(--text);
+  border-radius:11px;
+  padding:13px;
   outline:none;
 }
 
-textarea.form-control{
-  resize:vertical;
+textarea.input{
   min-height:90px;
+  resize:vertical;
 }
 
 .full{
   grid-column:1/-1;
 }
 
+.empty{
+  display:none;
+  text-align:center;
+  color:var(--muted);
+  padding:40px;
+}
+
 footer{
-  max-width:1050px;
-  margin:25px auto 0;
-  padding:30px 15px;
   text-align:center;
   color:var(--muted);
   font-size:12px;
+  padding:35px 15px;
 }
 
 .modal{
+  display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.7);
-  display:none;
-  align-items:center;
+  background:rgba(0,0,0,.75);
+  z-index:200;
   justify-content:center;
-  padding:18px;
-  z-index:500;
+  align-items:center;
+  padding:20px;
 }
 
 .modal.show{
@@ -450,17 +385,14 @@ footer{
 
 .modal-box{
   width:100%;
-  max-width:480px;
-  max-height:90vh;
-  overflow:auto;
-  background:var(--panel);
+  max-width:450px;
+  background:var(--card);
   border:1px solid var(--border);
-  border-radius:22px;
+  border-radius:20px;
   padding:20px;
-  box-shadow:var(--shadow);
 }
 
-.modal-header{
+.modal-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -468,92 +400,63 @@ footer{
 }
 
 .close{
-  width:35px;
-  height:35px;
-  border-radius:10px;
+  background:var(--card2);
+  color:white;
   border:1px solid var(--border);
-  background:var(--panel2);
-  color:var(--text);
-  font-size:18px;
-}
-
-.form-group{
-  margin-bottom:12px;
-}
-
-.form-group label{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-  margin-bottom:6px;
+  border-radius:9px;
+  padding:8px 11px;
+  cursor:pointer;
 }
 
 .toast{
   position:fixed;
   bottom:20px;
-  right:20px;
   left:20px;
-  max-width:420px;
+  right:20px;
+  max-width:400px;
   margin:auto;
-  background:var(--panel);
+  background:#151e2d;
+  color:white;
   border:1px solid var(--border);
-  color:var(--text);
-  padding:14px 16px;
-  border-radius:13px;
+  border-radius:12px;
+  padding:14px;
   text-align:center;
-  box-shadow:var(--shadow);
-  transform:translateY(100px);
-  opacity:0;
-  transition:.3s;
-  z-index:1000;
+  display:none;
+  z-index:300;
 }
 
 .toast.show{
-  transform:translateY(0);
-  opacity:1;
-}
-
-.no-results{
-  display:none;
-  text-align:center;
-  color:var(--muted);
-  padding:35px 10px;
+  display:block;
 }
 
 @media(max-width:650px){
+
   .products{
     grid-template-columns:1fr;
   }
 
-  .stats{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .stat strong{
-    font-size:17px;
-  }
-
-  .hero h1{
-    font-size:25px;
-  }
-
-  .form-grid{
+  .form{
     grid-template-columns:1fr;
   }
 
   .full{
     grid-column:auto;
   }
-}
 
-@media(max-width:380px){
-  .logo{
-    font-size:17px;
+  .hero h1{
+    font-size:24px;
   }
 
-  .icon-btn{
-    width:38px;
-    height:38px;
+  .stats{
+    gap:7px;
+  }
+
+  .stat{
+    padding:12px 5px;
+  }
+
+  .stat b{
+    font-size:17px;
   }
 }
 </style>
@@ -562,104 +465,120 @@ footer{
 <body>
 
 <header>
-  <div class="header-inner">
-    <div class="logo">🛒 RP <span>CITY MARKET</span></div>
+  <div class="nav">
 
-    <div class="header-buttons">
-      <button class="icon-btn" onclick="toggleTheme()" title="تغییر حالت">🌙</button>
-      <button class="icon-btn" onclick="scrollToAdd()" title="فروش آیتم">➕</button>
+    <div class="logo">
+      🛒 RP <span>CITY MARKET</span>
     </div>
+
+    <div class="nav-buttons">
+      <button onclick="showToast('🌙 حالت تاریک فعال است')">🌙</button>
+      <button onclick="scrollToAdd()">➕</button>
+    </div>
+
   </div>
 </header>
 
 <section class="hero">
+
   <div class="hero-box">
-    <h1>🏙️ بازار RP City</h1>
+
+    <h1>🏙️ RP City Market</h1>
 
     <p>
-      خرید و فروش آیتم‌های RP City در یک محیط ساده و سریع.
+      بازار خرید و فروش آیتم‌های RP City.
       آیتم موردنظرت رو پیدا کن یا آیتم خودت رو برای فروش ثبت کن.
     </p>
 
-    <div class="hero-actions">
+    <div class="actions">
+
       <button class="btn gradient" onclick="scrollToProducts()">
         🛍️ مشاهده آیتم‌ها
       </button>
 
-      <button class="btn secondary" onclick="scrollToAdd()">
+      <button class="btn dark" onclick="scrollToAdd()">
         ➕ فروش آیتم
       </button>
+
     </div>
+
   </div>
+
 </section>
 
 <div class="container">
 
   <div class="stats">
+
     <div class="stat">
-      <strong id="productCount">6</strong>
+      <b id="count">6</b>
       <span>آیتم موجود</span>
     </div>
 
     <div class="stat">
-      <strong>24/7</strong>
+      <b>24/7</b>
       <span>فعال</span>
     </div>
 
     <div class="stat">
-      <strong>100%</strong>
+      <b>100%</b>
       <span>آنلاین</span>
     </div>
+
   </div>
 
-  <div class="search-box">
-    <span class="search-icon">🔎</span>
 
-    <input
-      id="search"
-      class="search"
-      type="text"
-      placeholder="جستجوی آیتم، فروشنده یا دسته‌بندی..."
-      oninput="filterProducts()"
-    >
-  </div>
+  <input
+    id="search"
+    class="search"
+    type="text"
+    placeholder="🔎 جستجوی آیتم..."
+    oninput="searchProducts()"
+  >
+
 
   <div class="categories">
-    <button class="category active" onclick="selectCategory('all',this)">
+
+    <button class="category active" onclick="category('all',this)">
       همه
     </button>
 
-    <button class="category" onclick="selectCategory('special',this)">
+    <button class="category" onclick="category('special',this)">
       🏆 ویژه
     </button>
 
-    <button class="category" onclick="selectCategory('rare',this)">
+    <button class="category" onclick="category('rare',this)">
       💎 کمیاب
     </button>
 
-    <button class="category" onclick="selectCategory('car',this)">
+    <button class="category" onclick="category('car',this)">
       🚗 ماشین
     </button>
 
-    <button class="category" onclick="selectCategory('money',this)">
+    <button class="category" onclick="category('money',this)">
       💰 پول
     </button>
+
   </div>
 
-  <div class="section-title" id="productsSection">
-    <h2>🔥 آیتم‌های موجود</h2>
-    <span class="count" id="resultCount">6 آیتم</span>
+
+  <div class="title" id="productsSection">
+
+    <h2>🔥 آیتم‌های بازار</h2>
+
+    <span id="result">6 آیتم</span>
+
   </div>
 
-  <div class="products" id="products">
 
-    <div class="card product"
+  <div class="products">
+
+
+    <div class="product"
          data-category="special"
-         data-search="آیتم ویژه rp city ویژه">
-      
-      <span class="badge">ویژه</span>
+         data-name="آیتم ویژه rp city">
 
-      <button class="favorite" onclick="favorite(this)">♡</button>
+      <span class="badge">ویژه</span>
 
       <div class="product-image">🏆</div>
 
@@ -669,31 +588,40 @@ footer{
         یک آیتم ویژه برای بازیکنان RP City.
       </p>
 
-      <div class="seller">👤 فروشنده: RP CITY</div>
+      <div class="seller">
+        👤 فروشنده: RP CITY
+      </div>
 
       <span class="status">● موجود</span>
 
-      <div class="price">50,000 تومان</div>
+      <div class="price">
+        50,000 تومان
+      </div>
 
-      <div class="card-buttons">
-        <button class="btn" onclick="contactSeller('RP CITY')">
+      <div class="product-buttons">
+
+        <button
+          class="contact"
+          onclick="contact('RP CITY')">
           💬 ارتباط
         </button>
 
-        <button class="btn secondary" onclick="showDetails('آیتم ویژه RP City','50,000')">
+        <button
+          class="details"
+          onclick="details('آیتم ویژه RP City','50,000')">
           👁️ جزئیات
         </button>
+
       </div>
+
     </div>
 
 
-    <div class="card product"
+    <div class="product"
          data-category="rare"
-         data-search="آیتم کمیاب rp shop rare">
+         data-name="آیتم کمیاب rp shop">
 
       <span class="badge">کمیاب</span>
-
-      <button class="favorite" onclick="favorite(this)">♡</button>
 
       <div class="product-image">💎</div>
 
@@ -703,129 +631,165 @@ footer{
         آیتم کمیاب و ارزشمند برای بازیکنان حرفه‌ای.
       </p>
 
-      <div class="seller">👤 فروشنده: RP SHOP</div>
+      <div class="seller">
+        👤 فروشنده: RP SHOP
+      </div>
 
       <span class="status">● موجود</span>
 
-      <div class="price">80,000 تومان</div>
+      <div class="price">
+        80,000 تومان
+      </div>
 
-      <div class="card-buttons">
-        <button class="btn" onclick="contactSeller('RP SHOP')">
+      <div class="product-buttons">
+
+        <button
+          class="contact"
+          onclick="contact('RP SHOP')">
           💬 ارتباط
         </button>
 
-        <button class="btn secondary" onclick="showDetails('آیتم کمیاب','80,000')">
+        <button
+          class="details"
+          onclick="details('آیتم کمیاب','80,000')">
           👁️ جزئیات
         </button>
+
       </div>
+
     </div>
 
 
-    <div class="card product"
+    <div class="product"
          data-category="car"
-         data-search="ماشین اسپرت خودرو car">
-
-      <button class="favorite" onclick="favorite(this)">♡</button>
+         data-name="ماشین اسپرت خودرو">
 
       <div class="product-image">🚗</div>
 
       <h3>ماشین اسپرت</h3>
 
       <p class="description">
-        ماشین اسپرت برای گشت‌وگذار و مسابقات RP City.
+        ماشین اسپرت برای مسابقات و گشت‌وگذار.
       </p>
 
-      <div class="seller">👤 فروشنده: CITY GARAGE</div>
+      <div class="seller">
+        👤 فروشنده: CITY GARAGE
+      </div>
 
       <span class="status">● موجود</span>
 
-      <div class="price">120,000 تومان</div>
+      <div class="price">
+        120,000 تومان
+      </div>
 
-      <div class="card-buttons">
-        <button class="btn" onclick="contactSeller('CITY GARAGE')">
+      <div class="product-buttons">
+
+        <button
+          class="contact"
+          onclick="contact('CITY GARAGE')">
           💬 ارتباط
         </button>
 
-        <button class="btn secondary" onclick="showDetails('ماشین اسپرت','120,000')">
+        <button
+          class="details"
+          onclick="details('ماشین اسپرت','120,000')">
           👁️ جزئیات
         </button>
+
       </div>
+
     </div>
 
 
-    <div class="card product"
+    <div class="product"
          data-category="money"
-         data-search="پول سکه cash money">
-
-      <button class="favorite" onclick="favorite(this)">♡</button>
+         data-name="پول پک پول money">
 
       <div class="product-image">💰</div>
 
       <h3>پک پول RP</h3>
 
       <p class="description">
-        پک پول مخصوص استفاده در سرور RP City.
+        پک پول مخصوص استفاده در RP City.
       </p>
 
-      <div class="seller">👤 فروشنده: RP BANK</div>
+      <div class="seller">
+        👤 فروشنده: RP BANK
+      </div>
 
       <span class="status">● موجود</span>
 
-      <div class="price">100,000 تومان</div>
+      <div class="price">
+        100,000 تومان
+      </div>
 
-      <div class="card-buttons">
-        <button class="btn" onclick="contactSeller('RP BANK')">
+      <div class="product-buttons">
+
+        <button
+          class="contact"
+          onclick="contact('RP BANK')">
           💬 ارتباط
         </button>
 
-        <button class="btn secondary" onclick="showDetails('پک پول RP','100,000')">
+        <button
+          class="details"
+          onclick="details('پک پول RP','100,000')">
           👁️ جزئیات
         </button>
+
       </div>
+
     </div>
 
 
-    <div class="card product"
+    <div class="product"
          data-category="special"
-         data-search="اسلحه ویژه weapon special">
+         data-name="پک ویژه rp store">
 
       <span class="badge">جدید</span>
 
-      <button class="favorite" onclick="favorite(this)">♡</button>
-
-      <div class="product-image">🔫</div>
+      <div class="product-image">🎁</div>
 
       <h3>پک ویژه</h3>
 
       <p class="description">
-        پک ویژه برای بازیکنان RP City.
+        پک ویژه مخصوص بازیکنان RP City.
       </p>
 
-      <div class="seller">👤 فروشنده: RP STORE</div>
+      <div class="seller">
+        👤 فروشنده: RP STORE
+      </div>
 
       <span class="status">● موجود</span>
 
-      <div class="price">150,000 تومان</div>
+      <div class="price">
+        150,000 تومان
+      </div>
 
-      <div class="card-buttons">
-        <button class="btn" onclick="contactSeller('RP STORE')">
+      <div class="product-buttons">
+
+        <button
+          class="contact"
+          onclick="contact('RP STORE')">
           💬 ارتباط
         </button>
 
-        <button class="btn secondary" onclick="showDetails('پک ویژه','150,000')">
+        <button
+          class="details"
+          onclick="details('پک ویژه','150,000')">
           👁️ جزئیات
         </button>
+
       </div>
+
     </div>
 
 
-    <div class="card product"
+    <div class="product"
          data-category="rare"
-         data-search="آیتم افسانه ای legendary کمیاب">
+         data-name="آیتم افسانه ای legendary">
 
       <span class="badge">افسانه‌ای</span>
-
-      <button class="favorite" onclick="favorite(this)">♡</button>
 
       <div class="product-image">👑</div>
 
@@ -835,79 +799,82 @@ footer{
         یکی از آیتم‌های خاص و کمیاب بازار.
       </p>
 
-      <div class="seller">👤 فروشنده: LEGEND SHOP</div>
+      <div class="seller">
+        👤 فروشنده: LEGEND SHOP
+      </div>
 
       <span class="status">● موجود</span>
 
-      <div class="price">200,000 تومان</div>
+      <div class="price">
+        200,000 تومان
+      </div>
 
-      <div class="card-buttons">
-        <button class="btn" onclick="contactSeller('LEGEND SHOP')">
+      <div class="product-buttons">
+
+        <button
+          class="contact"
+          onclick="contact('LEGEND SHOP')">
           💬 ارتباط
         </button>
 
-        <button class="btn secondary" onclick="showDetails('آیتم افسانه‌ای','200,000')">
+        <button
+          class="details"
+          onclick="details('آیتم افسانه‌ای','200,000')">
           👁️ جزئیات
         </button>
+
       </div>
+
     </div>
 
   </div>
 
-  <div class="no-results" id="noResults">
+
+  <div class="empty" id="empty">
     😕 آیتمی پیدا نشد.
   </div>
 
 
-  <div class="add-box" id="addSection">
+  <div class="add" id="addSection">
 
-    <h2>➕ فروش آیتم</h2>
+    <h2>➕ ثبت آیتم برای فروش</h2>
 
     <p>
-      می‌خوای آیتم خودت رو بفروشی؟
-      اطلاعات آیتم رو وارد کن تا برای ثبت آماده بشه.
+      اطلاعات آیتم خودت رو وارد کن و درخواست فروش رو ارسال کن.
     </p>
 
-    <div class="form-grid">
+    <div class="form">
 
       <input
-        class="form-control"
+        class="input"
         id="itemName"
-        placeholder="نام آیتم"
-      >
+        placeholder="نام آیتم">
 
       <input
-        class="form-control"
+        class="input"
         id="itemPrice"
-        placeholder="قیمت به تومان"
         type="number"
-      >
-
-      <select class="form-control">
-        <option>انتخاب دسته‌بندی</option>
-        <option>ویژه</option>
-        <option>کمیاب</option>
-        <option>ماشین</option>
-        <option>پول</option>
-      </select>
+        placeholder="قیمت به تومان">
 
       <input
-        class="form-control"
-        id="sellerName"
-        placeholder="نام فروشنده"
-      >
+        class="input"
+        id="seller"
+        placeholder="نام فروشنده">
+
+      <input
+        class="input"
+        id="contact"
+        placeholder="آیدی روبیکا">
 
       <textarea
-        class="form-control full"
-        id="itemDescription"
-        placeholder="توضیحات آیتم..."
-      ></textarea>
+        class="input full"
+        id="description"
+        placeholder="توضیحات آیتم..."></textarea>
 
       <button
         class="btn gradient full"
-        onclick="submitItem()"
-      >
-        🚀 ارسال درخواست فروش
+        onclick="submitItem()">
+        🚀 ثبت درخواست فروش
       </button>
 
     </div>
@@ -918,10 +885,13 @@ footer{
 
 
 <footer>
+
   <div>🛒 RP City Market</div>
+
   <div style="margin-top:8px;">
     خرید و فروش آیتم‌های RP City © 2026
   </div>
+
 </footer>
 
 
@@ -929,18 +899,21 @@ footer{
 
   <div class="modal-box">
 
-    <div class="modal-header">
-      <h3 id="modalTitle">جزئیات</h3>
+    <div class="modal-top">
+
+      <h3 id="modalTitle">
+        جزئیات آیتم
+      </h3>
 
       <button
         class="close"
-        onclick="closeModal()"
-      >
+        onclick="closeModal()">
         ✕
       </button>
+
     </div>
 
-    <div id="modalContent"></div>
+    <div id="modalText"></div>
 
   </div>
 
@@ -955,79 +928,71 @@ footer{
 let currentCategory = "all";
 
 
-function toggleTheme(){
+function scrollToProducts(){
 
-  document.body.classList.toggle("light");
-
-  const button = document.querySelector(".header-buttons .icon-btn");
-
-  if(document.body.classList.contains("light")){
-    button.textContent = "☀️";
-    localStorage.setItem("theme","light");
-  }else{
-    button.textContent = "🌙";
-    localStorage.setItem("theme","dark");
-  }
+  document
+    .getElementById("productsSection")
+    .scrollIntoView({behavior:"smooth"});
 
 }
 
 
-function loadTheme(){
+function scrollToAdd(){
 
-  const saved = localStorage.getItem("theme");
-
-  if(saved === "light"){
-    document.body.classList.add("light");
-
-    const button = document.querySelector(".header-buttons .icon-btn");
-
-    if(button){
-      button.textContent = "☀️";
-    }
-  }
+  document
+    .getElementById("addSection")
+    .scrollIntoView({behavior:"smooth"});
 
 }
 
 
-function selectCategory(category,button){
+function category(type,button){
 
-  currentCategory = category;
+  currentCategory = type;
 
-  document.querySelectorAll(".category").forEach(function(item){
-    item.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".category")
+    .forEach(function(btn){
+      btn.classList.remove("active");
+    });
 
   button.classList.add("active");
 
-  filterProducts();
+  searchProducts();
 
 }
 
 
-function filterProducts(){
+function searchProducts(){
 
-  const searchInput = document.getElementById("search");
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
 
-  const search = searchInput.value.toLowerCase().trim();
-
-  const products = document.querySelectorAll(".product");
+  const products =
+    document.querySelectorAll(".product");
 
   let visible = 0;
 
   products.forEach(function(product){
 
-    const category = product.dataset.category || "";
+    const name =
+      product.dataset.name.toLowerCase();
 
-    const text = product.dataset.search || "";
+    const cat =
+      product.dataset.category;
 
-    const categoryMatch =
+    const categoryOk =
       currentCategory === "all" ||
-      category === currentCategory;
+      cat === currentCategory;
 
-    const searchMatch =
-      text.toLowerCase().includes(search);
+    const searchOk =
+      name.includes(search);
 
-    if(categoryMatch && searchMatch){
+    if(categoryOk && searchOk){
 
       product.style.display = "";
 
@@ -1042,66 +1007,37 @@ function filterProducts(){
   });
 
 
-  document.getElementById("resultCount").textContent =
+  document.getElementById("result").textContent =
     visible + " آیتم";
 
-  document.getElementById("noResults").style.display =
+  document.getElementById("count").textContent =
+    visible;
+
+  document.getElementById("empty").style.display =
     visible === 0 ? "block" : "none";
 
 }
 
 
-function favorite(button){
+function contact(seller){
 
-  button.classList.toggle("active");
-
-  if(button.classList.contains("active")){
-
-    button.textContent = "♥";
-
-    showToast("❤️ به علاقه‌مندی‌ها اضافه شد");
-
-  }else{
-
-    button.textContent = "♡";
-
-    showToast("از علاقه‌مندی‌ها حذف شد");
-
-  }
+  showToast(
+    "💬 فروشنده: " + seller
+  );
 
 }
 
 
-function contactSeller(seller){
-
-  showToast("💬 ارتباط با " + seller + " انتخاب شد");
-
-  setTimeout(function(){
-
-    window.open(
-      "https://rubika.ir/",
-      "_blank"
-    );
-
-  },700);
-
-}
-
-
-function showDetails(name,price){
+function details(name,price){
 
   document.getElementById("modalTitle").textContent =
-    "جزئیات آیتم";
+    name;
 
-  document.getElementById("modalContent").innerHTML =
+  document.getElementById("modalText").innerHTML =
 
-    "<div style='text-align:center;font-size:55px;margin:10px;'>🛍️</div>" +
+    "<div style='text-align:center;font-size:55px;margin-bottom:15px;'>🛍️</div>" +
 
-    "<h3 style='margin-bottom:10px;'>" +
-    name +
-    "</h3>" +
-
-    "<p style='color:var(--muted);line-height:1.9;'>" +
+    "<p style='color:var(--muted);line-height:2;'>" +
     "این آیتم در بازار RP City موجود است." +
     "</p>" +
 
@@ -1110,50 +1046,35 @@ function showDetails(name,price){
     " تومان" +
     "</div>" +
 
-    "<button class='btn' style='width:100%;' onclick=\"contactSeller('فروشنده')\">" +
+    "<button class='btn gradient' style='width:100%;' onclick=\"contact('فروشنده')\">" +
     "💬 ارتباط با فروشنده" +
     "</button>";
 
-  document.getElementById("modal").classList.add("show");
+  document
+    .getElementById("modal")
+    .classList.add("show");
 
 }
 
 
 function closeModal(){
 
-  document.getElementById("modal").classList.remove("show");
+  document
+    .getElementById("modal")
+    .classList.remove("show");
 
 }
 
 
-document.getElementById("modal").addEventListener(
-  "click",
-  function(event){
+document
+  .getElementById("modal")
+  .addEventListener("click",function(e){
 
-    if(event.target === this){
+    if(e.target === this){
       closeModal();
     }
 
-  }
-);
-
-
-function scrollToProducts(){
-
-  document.getElementById("productsSection").scrollIntoView({
-    behavior:"smooth"
   });
-
-}
-
-
-function scrollToAdd(){
-
-  document.getElementById("addSection").scrollIntoView({
-    behavior:"smooth"
-  });
-
-}
 
 
 function submitItem(){
@@ -1165,27 +1086,33 @@ function submitItem(){
     document.getElementById("itemPrice").value.trim();
 
   const seller =
-    document.getElementById("sellerName").value.trim();
+    document.getElementById("seller").value.trim();
 
-  const description =
-    document.getElementById("itemDescription").value.trim();
+  const contact =
+    document.getElementById("contact").value.trim();
 
 
-  if(!name || !price || !seller){
+  if(!name || !price || !seller || !contact){
 
-    showToast("⚠️ لطفاً نام، قیمت و فروشنده را وارد کن.");
+    showToast(
+      "⚠️ لطفاً اطلاعات اصلی را کامل کن."
+    );
 
     return;
 
   }
 
 
-  showToast("✅ درخواست فروش ثبت شد!");
+  showToast(
+    "✅ درخواست فروش با موفقیت ثبت شد."
+  );
+
 
   document.getElementById("itemName").value = "";
   document.getElementById("itemPrice").value = "";
-  document.getElementById("sellerName").value = "";
-  document.getElementById("itemDescription").value = "";
+  document.getElementById("seller").value = "";
+  document.getElementById("contact").value = "";
+  document.getElementById("description").value = "";
 
 }
 
@@ -1208,11 +1135,9 @@ function showToast(message){
 }
 
 
-loadTheme();
-
-filterProducts();
+searchProducts();
 
 </script>
 
 </body>
-  </html>
+</html>
