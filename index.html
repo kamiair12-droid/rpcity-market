@@ -8,11 +8,29 @@
 
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;min-height:100%;font-family:Tahoma,Arial,sans-serif;background:#08090d;color:#fff}
+
+html,body{
+margin:0;
+padding:0;
+min-height:100%;
+font-family:Tahoma,Arial,sans-serif;
+background:#08090d;
+color:#fff
+}
+
 body{min-height:100vh}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
+
+button,input,select,textarea{
+font:inherit
+}
+
+button{
+cursor:pointer
+}
+
+.hidden{
+display:none!important
+}
 
 header{
 position:sticky;
@@ -34,7 +52,10 @@ font-weight:900;
 letter-spacing:2px
 }
 
-.logo span,.accent{color:#7c5cff}
+.logo span,
+.accent{
+color:#7c5cff
+}
 
 .head-right{
 display:flex;
@@ -42,7 +63,8 @@ align-items:center;
 gap:8px
 }
 
-.ping,.userbox{
+.ping,
+.userbox{
 padding:9px 12px;
 background:#12141b;
 border:1px solid #292c36;
@@ -50,9 +72,13 @@ border-radius:13px;
 font-size:12px
 }
 
-.ping b{color:#62ff9a}
+.ping b{
+color:#62ff9a
+}
 
-.userbox{color:#c9cbd3}
+.userbox{
+color:#c9cbd3
+}
 
 .logout{
 padding:9px 12px;
@@ -81,7 +107,9 @@ font-size:clamp(38px,8vw,68px);
 font-weight:900
 }
 
-.hero h1 span{color:#7c5cff}
+.hero h1 span{
+color:#7c5cff
+}
 
 .hero p{
 color:#969bab;
@@ -117,7 +145,9 @@ grid-template-columns:1fr 1fr;
 gap:12px
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
 width:100%;
 border:1px solid #292c38;
 background:#080a0f;
@@ -128,7 +158,9 @@ outline:none;
 font-size:14px
 }
 
-input:focus,select:focus,textarea:focus{
+input:focus,
+select:focus,
+textarea:focus{
 border-color:#7c5cff
 }
 
@@ -206,7 +238,8 @@ gap:8px;
 margin-top:12px
 }
 
-.buy,.delete{
+.buy,
+.delete{
 flex:1;
 border:0;
 border-radius:13px;
@@ -360,19 +393,49 @@ margin-top:14px
 }
 
 @media(max-width:650px){
-header{padding:13px 12px}
+
+header{
+padding:13px 12px
+}
+
 .head-right{
 flex-wrap:wrap;
 justify-content:flex-end
 }
-.userbox{display:none}
-main{padding:18px 12px}
-.form{grid-template-columns:1fr}
-textarea,.add{grid-column:auto}
-.controls{grid-template-columns:1fr}
-.hero{padding-top:25px}
-.panel{padding:17px}
-.actions{flex-direction:column}
+
+.userbox{
+display:none
+}
+
+main{
+padding:18px 12px
+}
+
+.form{
+grid-template-columns:1fr
+}
+
+textarea,
+.add{
+grid-column:auto
+}
+
+.controls{
+grid-template-columns:1fr
+}
+
+.hero{
+padding-top:25px
+}
+
+.panel{
+padding:17px
+}
+
+.actions{
+flex-direction:column
+}
+
 }
 </style>
 </head>
@@ -393,13 +456,15 @@ RP <span class="accent">CITY</span>
 
 <div class="tabs">
 
-<button id="loginTab"
+<button
+id="loginTab"
 class="tab active"
 type="button">
 ورود
 </button>
 
-<button id="signupTab"
+<button
+id="signupTab"
 class="tab"
 type="button">
 ثبت‌نام
@@ -634,6 +699,7 @@ rel="noopener">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
 'use strict';
 
 const SUPABASE_URL =
@@ -643,11 +709,20 @@ const SUPABASE_KEY =
 'sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9';
 
 let sb = null;
+
 let products = [];
+
 let authMode = 'login';
+
 let currentUser = null;
 
-const $ = id => document.getElementById(id);
+const $ = id =>
+document.getElementById(id);
+
+
+/* =========================
+   پیام‌ها
+========================= */
 
 function showBox(id,text,type){
 
@@ -668,11 +743,17 @@ const el = $(id);
 
 if(!el) return;
 
-el.className = 'message';
+el.className =
+'message';
 
 el.textContent = '';
 
 }
+
+
+/* =========================
+   اعتبارسنجی نام کاربری
+========================= */
 
 function validUsername(username){
 
@@ -680,12 +761,24 @@ return /^[a-zA-Z0-9_]{3,20}$/.test(username);
 
 }
 
+
+/* =========================
+   تبدیل Username به Email
+========================= */
+
 function authEmail(username){
 
-return username.trim().toLowerCase()
-+ '@rpcity.local';
+return username
+.trim()
+.toLowerCase()
++ '@rpcitymarket.com';
 
 }
+
+
+/* =========================
+   ترجمه خطاهای Auth
+========================= */
 
 function translateAuthError(err){
 
@@ -699,34 +792,54 @@ if(
 x.includes('invalid login credentials') ||
 x.includes('invalid login')
 ){
+
 return 'نام کاربری یا رمز عبور اشتباه است.';
+
 }
 
 if(
 x.includes('user already registered') ||
 x.includes('already registered')
 ){
+
 return 'این نام کاربری قبلاً ثبت شده است.';
+
 }
 
-if(x.includes('password')){
+if(
+x.includes('password')
+){
+
 return 'رمز عبور باید حداقل ۶ کاراکتر باشد.';
+
 }
 
-if(x.includes('email')){
+if(
+x.includes('email')
+){
+
 return 'اطلاعات ورود معتبر نیست.';
+
 }
 
 if(
 x.includes('fetch') ||
 x.includes('network')
 ){
+
 return 'اتصال به سرور برقرار نشد. اینترنت و Supabase را بررسی کن.';
-}
-
-return m || 'خطایی رخ داد. دوباره تلاش کن.';
 
 }
+
+return m ||
+'خطایی رخ داد. دوباره تلاش کن.';
+
+}
+
+
+/* =========================
+   حالت ورود / ثبت‌نام
+========================= */
 
 function setAuthMode(mode){
 
@@ -748,17 +861,26 @@ mode === 'signup'
 
 $('authButton').textContent =
 mode === 'login'
-? 'ورود به بازار'
-: 'ساخت حساب و ورود';
+?
+'ورود به بازار'
+:
+'ساخت حساب و ورود';
 
 $('authPassword').autocomplete =
 mode === 'login'
-? 'current-password'
-: 'new-password';
+?
+'current-password'
+:
+'new-password';
 
 hideBox('authMessage');
 
 }
+
+
+/* =========================
+   نمایش سایت
+========================= */
 
 function showApp(user){
 
@@ -787,6 +909,11 @@ updatePing();
 
 }
 
+
+/* =========================
+   نمایش صفحه ورود
+========================= */
+
 function showLogin(){
 
 currentUser = null;
@@ -808,6 +935,11 @@ $('currentUser').textContent =
 
 }
 
+
+/* =========================
+   ورود / ثبت‌نام
+========================= */
+
 async function handleAuth(event){
 
 event.preventDefault();
@@ -816,7 +948,7 @@ if(!sb){
 
 showBox(
 'authMessage',
-'کتابخانه Supabase بارگذاری نشد. صفحه را دوباره باز کن.',
+'Supabase آماده نیست. صفحه را دوباره باز کن.',
 'error'
 );
 
@@ -864,8 +996,10 @@ btn.disabled = true;
 
 btn.textContent =
 authMode === 'login'
-? 'در حال ورود...'
-: 'در حال ساخت حساب...';
+?
+'در حال ورود...'
+:
+'در حال ساخت حساب...';
 
 hideBox('authMessage');
 
@@ -876,23 +1010,31 @@ if(authMode === 'signup'){
 const {data,error} =
 await sb.auth.signUp({
 
-email:authEmail(username),
+email:
+authEmail(username),
 
-password:password,
+password:
+password,
 
 options:{
+
 data:{
-username:username.toLowerCase()
+username:
+username.toLowerCase()
 }
+
 }
 
 });
 
-if(error) throw error;
+if(error)
+throw error;
 
 if(data?.session?.user){
 
-showApp(data.session.user);
+showApp(
+data.session.user
+);
 
 }else{
 
@@ -909,13 +1051,16 @@ showBox(
 const {data,error} =
 await sb.auth.signInWithPassword({
 
-email:authEmail(username),
+email:
+authEmail(username),
 
-password:password
+password:
+password
 
 });
 
-if(error) throw error;
+if(error)
+throw error;
 
 if(!data?.session?.user){
 
@@ -925,7 +1070,9 @@ throw new Error(
 
 }
 
-showApp(data.session.user);
+showApp(
+data.session.user
+);
 
 }
 
@@ -945,16 +1092,24 @@ btn.disabled = false;
 
 btn.textContent =
 authMode === 'login'
-? 'ورود به بازار'
-: 'ساخت حساب و ورود';
+?
+'ورود به بازار'
+:
+'ساخت حساب و ورود';
 
 }
 
 }
+
+
+/* =========================
+   خروج
+========================= */
 
 async function logout(){
 
-if(!sb) return;
+if(!sb)
+return;
 
 await sb.auth.signOut();
 
@@ -966,13 +1121,26 @@ setAuthMode('login');
 
 }
 
+
+/* =========================
+   قیمت
+========================= */
+
 function money(n){
 
 return new Intl.NumberFormat('fa-IR')
-.format(Number(n || 0))
-+ ' تومان';
+.format(
+Number(n || 0)
+)
++
+' تومان';
 
 }
+
+
+/* =========================
+   دریافت محصولات
+========================= */
 
 async function loadProducts(){
 
@@ -992,16 +1160,21 @@ await sb
 )
 .order(
 'created_at',
-{ascending:false}
+{
+ascending:false
+}
 );
 
-if(error) throw error;
+if(error)
+throw error;
 
 products =
 (data || []).filter(x=>{
 
 const name =
-String(x.name || '')
+String(
+x.name || ''
+)
 .trim()
 .toLowerCase();
 
@@ -1037,6 +1210,11 @@ loading.style.display =
 }
 
 }
+
+
+/* =========================
+   نمایش محصولات
+========================= */
 
 function renderProducts(){
 
@@ -1091,13 +1269,20 @@ return;
 empty.style.display =
 'none';
 
-list.forEach(p =>
+list.forEach(p=>{
+
 box.appendChild(
 createCard(p)
-)
 );
 
+});
+
 }
+
+
+/* =========================
+   ساخت کارت محصول
+========================= */
 
 function createCard(p){
 
@@ -1107,11 +1292,14 @@ document.createElement('div');
 card.className =
 'card';
 
+
 const h =
 document.createElement('h3');
 
 h.textContent =
-p.name || 'بدون نام';
+p.name ||
+'بدون نام';
+
 
 const price =
 document.createElement('div');
@@ -1122,6 +1310,7 @@ price.className =
 price.textContent =
 money(p.price);
 
+
 const meta =
 document.createElement('div');
 
@@ -1130,7 +1319,11 @@ meta.className =
 
 meta.textContent =
 'دسته: ' +
-(p.category || 'سایر');
+(
+p.category ||
+'سایر'
+);
+
 
 const seller =
 document.createElement('div');
@@ -1140,14 +1333,12 @@ seller.className =
 
 seller.textContent =
 'فروشنده: @' +
-String(p.seller_id || '')
-.replace(/^@+/,' ');
-
-seller.textContent =
-'فروشنده: @' +
-String(p.seller_id || '')
+String(
+p.seller_id || ''
+)
 .replace(/^@+/,'')
 .trim();
+
 
 const desc =
 document.createElement('div');
@@ -1159,11 +1350,13 @@ desc.textContent =
 p.description ||
 'بدون توضیحات';
 
+
 const actions =
 document.createElement('div');
 
 actions.className =
 'actions';
+
 
 const buy =
 document.createElement('button');
@@ -1182,7 +1375,9 @@ buy.addEventListener(
 ()=>{
 
 const s =
-String(p.seller_id || '')
+String(
+p.seller_id || ''
+)
 .replace(/^@+/,'')
 .trim();
 
@@ -1206,7 +1401,10 @@ alert(
 }
 );
 
-actions.appendChild(buy);
+actions.appendChild(
+buy
+);
+
 
 if(
 currentUser &&
@@ -1230,9 +1428,12 @@ del.addEventListener(
 ()=>deleteProduct(p.id)
 );
 
-actions.appendChild(del);
+actions.appendChild(
+del
+);
 
 }
+
 
 card.append(
 h,
@@ -1247,9 +1448,17 @@ return card;
 
 }
 
+
+/* =========================
+   ثبت محصول
+========================= */
+
 async function addProduct(){
 
-if(!sb || !currentUser){
+if(
+!sb ||
+!currentUser
+){
 
 showBox(
 'message',
@@ -1285,41 +1494,55 @@ $('description')
 .value
 .trim();
 
+
 if(!name){
 
-return showBox(
+showBox(
 'message',
 'نام محصول را وارد کن.',
 'error'
 );
 
+return;
+
 }
+
 
 if(
 price === '' ||
 Number(price) < 0
 ){
 
-return showBox(
+showBox(
 'message',
 'قیمت محصول را درست وارد کن.',
 'error'
 );
 
+return;
+
 }
 
+
 seller =
-seller.replace(/^@+/,'');
+seller.replace(
+/^@+/,
+''
+);
+
 
 if(!seller){
 
-return showBox(
+showBox(
 'message',
 'آیدی روبیکا فروشنده را وارد کن.',
 'error'
 );
 
+return;
+
 }
+
 
 btn.disabled = true;
 
@@ -1328,6 +1551,7 @@ btn.textContent =
 
 hideBox('message');
 
+
 try{
 
 const {data,error} =
@@ -1335,17 +1559,23 @@ await sb
 .from('products')
 .insert({
 
-owner_id:currentUser.id,
+owner_id:
+currentUser.id,
 
-name:name,
+name:
+name,
 
-price:Number(price),
+price:
+Number(price),
 
-category:category,
+category:
+category,
 
-seller_id:seller,
+seller_id:
+seller,
 
-description:description
+description:
+description
 
 })
 .select(
@@ -1353,16 +1583,25 @@ description:description
 )
 .single();
 
-if(error) throw error;
+if(error)
+throw error;
 
-products.unshift(data);
+
+products.unshift(
+data
+);
 
 renderProducts();
 
+
 $('name').value = '';
+
 $('price').value = '';
+
 $('seller').value = '';
+
 $('description').value = '';
+
 
 showBox(
 'message',
@@ -1392,13 +1631,23 @@ btn.textContent =
 
 }
 
+
+/* =========================
+   حذف محصول
+========================= */
+
 async function deleteProduct(id){
 
-if(!currentUser) return;
+if(!currentUser)
+return;
 
 if(
-!confirm('این محصول حذف شود؟')
-) return;
+!confirm(
+'این محصول حذف شود؟'
+)
+)
+return;
+
 
 try{
 
@@ -1406,20 +1655,27 @@ const {error} =
 await sb
 .from('products')
 .delete()
-.eq('id',id)
+.eq(
+'id',
+id
+)
 .eq(
 'owner_id',
 currentUser.id
 );
 
-if(error) throw error;
+if(error)
+throw error;
+
 
 products =
 products.filter(
-p=>p.id !== id
+p =>
+p.id !== id
 );
 
 renderProducts();
+
 
 showBox(
 'message',
@@ -1441,6 +1697,11 @@ err.message ||
 }
 
 }
+
+
+/* =========================
+   Ping
+========================= */
 
 async function updatePing(){
 
@@ -1467,15 +1728,19 @@ await sb
 .select('id')
 .limit(1);
 
-if(error) throw error;
+if(error)
+throw error;
 
 el.textContent =
 Math.max(
 1,
 Math.round(
-performance.now() - start
+performance.now() -
+start
 )
-) + ' ms';
+)
++
+' ms';
 
 }catch(err){
 
@@ -1485,6 +1750,11 @@ el.textContent =
 }
 
 }
+
+
+/* =========================
+   راه‌اندازی سایت
+========================= */
 
 function init(){
 
@@ -1497,7 +1767,7 @@ if(
 
 showBox(
 'authMessage',
-'کتابخانه Supabase بارگذاری نشد. اینترنت را بررسی و صفحه را رفرش کن.',
+'Supabase بارگذاری نشد. اینترنت را بررسی و صفحه را رفرش کن.',
 'error'
 );
 
@@ -1505,30 +1775,53 @@ return;
 
 }
 
+
 sb =
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY,
 {
+
 auth:{
-persistSession:true,
-autoRefreshToken:true,
-detectSessionInUrl:false
+
+persistSession:
+true,
+
+autoRefreshToken:
+true,
+
+detectSessionInUrl:
+false
+
 }
+
 }
 );
+
+
+/* تب ورود */
 
 $('loginTab')
 .addEventListener(
 'click',
-()=>setAuthMode('login')
+()=>setAuthMode(
+'login'
+)
 );
+
+
+/* تب ثبت‌نام */
 
 $('signupTab')
 .addEventListener(
 'click',
-()=>setAuthMode('signup')
+()=>setAuthMode(
+'signup'
+)
 );
+
+
+/* فرم ورود */
 
 $('authForm')
 .addEventListener(
@@ -1536,11 +1829,17 @@ $('authForm')
 handleAuth
 );
 
+
+/* خروج */
+
 $('logoutButton')
 .addEventListener(
 'click',
 logout
 );
+
+
+/* ثبت محصول */
 
 $('addButton')
 .addEventListener(
@@ -1548,17 +1847,26 @@ $('addButton')
 addProduct
 );
 
+
+/* جستجو */
+
 $('search')
 .addEventListener(
 'input',
 renderProducts
 );
 
+
+/* فیلتر */
+
 $('filter')
 .addEventListener(
 'change',
 renderProducts
 );
+
+
+/* تغییر وضعیت Auth */
 
 sb.auth.onAuthStateChange(
 (event,session)=>{
@@ -1580,14 +1888,20 @@ showLogin();
 }
 );
 
+
+/* بررسی Session فعلی */
+
 sb.auth
 .getSession()
 .then(
 ({data,error})=>{
 
-if(error) throw error;
+if(error)
+throw error;
 
-if(data?.session?.user){
+if(
+data?.session?.user
+){
 
 showApp(
 data.session.user
@@ -1615,6 +1929,9 @@ showBox(
 
 });
 
+
+/* Ping هر ۱۰ ثانیه */
+
 setInterval(
 ()=>{
 
@@ -1632,6 +1949,7 @@ updatePing();
 10000
 );
 
+
 }catch(err){
 
 console.error(err);
@@ -1645,6 +1963,11 @@ showBox(
 }
 
 }
+
+
+/* =========================
+   شروع
+========================= */
 
 if(
 document.readyState === 'loading'
