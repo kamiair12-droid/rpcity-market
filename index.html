@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#080b12">
 <title>RP City Market</title>
 
 <style>
@@ -11,19 +11,20 @@
   --bg:#080b12;
   --panel:#101722;
   --panel2:#151d2b;
-  --text:#fff;
+  --text:#ffffff;
   --muted:#9eacc2;
   --border:#26344f;
   --primary:#2578ff;
   --primary2:#6338d8;
   --danger:#ff496c;
   --success:#20c997;
+  --warning:#ffb020;
   --shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 .light{
   --bg:#f4f7fb;
-  --panel:#fff;
+  --panel:#ffffff;
   --panel2:#eef3fa;
   --text:#111827;
   --muted:#65748b;
@@ -36,6 +37,10 @@
   margin:0;
   padding:0;
   font-family:Tahoma,Arial,sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
@@ -56,19 +61,19 @@ button{
 header{
   position:sticky;
   top:0;
-  z-index:20;
-  padding:18px;
-  background:rgba(8,11,18,.92);
+  z-index:100;
+  padding:15px;
+  background:rgba(8,11,18,.94);
   backdrop-filter:blur(15px);
   border-bottom:1px solid var(--border);
 }
 
 .light header{
-  background:rgba(255,255,255,.92);
+  background:rgba(255,255,255,.94);
 }
 
 .header-inner{
-  max-width:1000px;
+  max-width:1050px;
   margin:auto;
   display:flex;
   align-items:center;
@@ -94,16 +99,20 @@ header{
   border:1px solid var(--border);
   background:var(--panel);
   color:var(--text);
-  width:43px;
-  height:43px;
+  width:42px;
+  height:42px;
   border-radius:13px;
-  font-size:19px;
+  font-size:18px;
+}
+
+.icon-btn:hover{
+  border-color:var(--primary);
 }
 
 .hero{
-  max-width:1000px;
-  margin:25px auto 0;
-  padding:20px;
+  max-width:1050px;
+  margin:22px auto 0;
+  padding:15px;
 }
 
 .hero-box{
@@ -117,7 +126,7 @@ header{
 }
 
 .hero h1{
-  font-size:32px;
+  font-size:30px;
   margin-bottom:10px;
 }
 
@@ -138,8 +147,12 @@ header{
   padding:13px 17px;
   border-radius:13px;
   font-weight:bold;
-  color:white;
+  color:#fff;
   background:var(--primary);
+}
+
+.btn:hover{
+  opacity:.9;
 }
 
 .btn.secondary{
@@ -152,15 +165,45 @@ header{
   background:linear-gradient(135deg,var(--primary),var(--primary2));
 }
 
+.btn.danger{
+  background:var(--danger);
+}
+
 .container{
-  max-width:1000px;
+  max-width:1050px;
   margin:auto;
-  padding:20px;
+  padding:15px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:5px 0 20px;
+}
+
+.stat{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:15px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:21px;
+  margin-bottom:5px;
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
 }
 
 .search-box{
   position:relative;
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
 
 .search{
@@ -174,6 +217,10 @@ header{
   font-size:15px;
 }
 
+.search:focus{
+  border-color:var(--primary);
+}
+
 .search-icon{
   position:absolute;
   right:17px;
@@ -184,7 +231,7 @@ header{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  padding-bottom:10px;
+  padding-bottom:8px;
   margin-bottom:18px;
 }
 
@@ -199,7 +246,7 @@ header{
 
 .category.active{
   background:var(--primary);
-  color:white;
+  color:#fff;
   border-color:var(--primary);
 }
 
@@ -235,7 +282,7 @@ header{
 }
 
 .product-image{
-  height:130px;
+  height:135px;
   border-radius:15px;
   display:flex;
   align-items:center;
@@ -253,8 +300,8 @@ header{
   position:absolute;
   top:25px;
   right:25px;
-  background:#ff496c;
-  color:white;
+  background:var(--danger);
+  color:#fff;
   padding:5px 8px;
   border-radius:8px;
   font-size:11px;
@@ -264,9 +311,908 @@ header{
   position:absolute;
   left:25px;
   top:25px;
-  width:34px;
-  height:34px;
+  width:35px;
+  height:35px;
   border-radius:10px;
   border:1px solid var(--border);
   background:var(--panel);
-  color
+  color:var(--text);
+  font-size:17px;
+}
+
+.favorite.active{
+  color:var(--danger);
+}
+
+.card h3{
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.description{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+  min-height:45px;
+}
+
+.seller{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:8px;
+}
+
+.price{
+  color:#4da3ff;
+  font-size:20px;
+  font-weight:bold;
+  margin:13px 0;
+}
+
+.status{
+  display:inline-block;
+  color:var(--success);
+  background:rgba(32,201,151,.1);
+  padding:5px 8px;
+  border-radius:8px;
+  font-size:11px;
+  margin-top:7px;
+}
+
+.card-buttons{
+  display:flex;
+  gap:7px;
+  margin-top:10px;
+}
+
+.card-buttons .btn{
+  flex:1;
+  padding:11px 8px;
+  font-size:12px;
+}
+
+.empty{
+  text-align:center;
+  padding:40px 15px;
+  color:var(--muted);
+  display:none;
+}
+
+.add-box{
+  margin-top:20px;
+  padding:20px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background:
+    linear-gradient(135deg,rgba(37,120,255,.12),rgba(99,56,216,.12)),
+    var(--panel);
+}
+
+.add-box h2{
+  margin-bottom:8px;
+}
+
+.add-box p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.8;
+  margin-bottom:15px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.form-control{
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:var(--text);
+  outline:none;
+}
+
+textarea.form-control{
+  resize:vertical;
+  min-height:90px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+footer{
+  max-width:1050px;
+  margin:25px auto 0;
+  padding:30px 15px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:500;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:480px;
+  max-height:90vh;
+  overflow:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.close{
+  width:35px;
+  height:35px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--panel2);
+  color:var(--text);
+  font-size:18px;
+}
+
+.form-group{
+  margin-bottom:12px;
+}
+
+.form-group label{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.toast{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  left:20px;
+  max-width:420px;
+  margin:auto;
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:14px 16px;
+  border-radius:13px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  transform:translateY(100px);
+  opacity:0;
+  transition:.3s;
+  z-index:1000;
+}
+
+.toast.show{
+  transform:translateY(0);
+  opacity:1;
+}
+
+.no-results{
+  display:none;
+  text-align:center;
+  color:var(--muted);
+  padding:35px 10px;
+}
+
+@media(max-width:650px){
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .stat strong{
+    font-size:17px;
+  }
+
+  .hero h1{
+    font-size:25px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+}
+
+@media(max-width:380px){
+  .logo{
+    font-size:17px;
+  }
+
+  .icon-btn{
+    width:38px;
+    height:38px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">🛒 RP <span>CITY MARKET</span></div>
+
+    <div class="header-buttons">
+      <button class="icon-btn" onclick="toggleTheme()" title="تغییر حالت">🌙</button>
+      <button class="icon-btn" onclick="scrollToAdd()" title="فروش آیتم">➕</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-box">
+    <h1>🏙️ بازار RP City</h1>
+
+    <p>
+      خرید و فروش آیتم‌های RP City در یک محیط ساده و سریع.
+      آیتم موردنظرت رو پیدا کن یا آیتم خودت رو برای فروش ثبت کن.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn gradient" onclick="scrollToProducts()">
+        🛍️ مشاهده آیتم‌ها
+      </button>
+
+      <button class="btn secondary" onclick="scrollToAdd()">
+        ➕ فروش آیتم
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="productCount">6</strong>
+      <span>آیتم موجود</span>
+    </div>
+
+    <div class="stat">
+      <strong>24/7</strong>
+      <span>فعال</span>
+    </div>
+
+    <div class="stat">
+      <strong>100%</strong>
+      <span>آنلاین</span>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <span class="search-icon">🔎</span>
+
+    <input
+      id="search"
+      class="search"
+      type="text"
+      placeholder="جستجوی آیتم، فروشنده یا دسته‌بندی..."
+      oninput="filterProducts()"
+    >
+  </div>
+
+  <div class="categories">
+    <button class="category active" onclick="selectCategory('all',this)">
+      همه
+    </button>
+
+    <button class="category" onclick="selectCategory('special',this)">
+      🏆 ویژه
+    </button>
+
+    <button class="category" onclick="selectCategory('rare',this)">
+      💎 کمیاب
+    </button>
+
+    <button class="category" onclick="selectCategory('car',this)">
+      🚗 ماشین
+    </button>
+
+    <button class="category" onclick="selectCategory('money',this)">
+      💰 پول
+    </button>
+  </div>
+
+  <div class="section-title" id="productsSection">
+    <h2>🔥 آیتم‌های موجود</h2>
+    <span class="count" id="resultCount">6 آیتم</span>
+  </div>
+
+  <div class="products" id="products">
+
+    <div class="card product"
+         data-category="special"
+         data-search="آیتم ویژه rp city ویژه">
+      
+      <span class="badge">ویژه</span>
+
+      <button class="favorite" onclick="favorite(this)">♡</button>
+
+      <div class="product-image">🏆</div>
+
+      <h3>آیتم ویژه RP City</h3>
+
+      <p class="description">
+        یک آیتم ویژه برای بازیکنان RP City.
+      </p>
+
+      <div class="seller">👤 فروشنده: RP CITY</div>
+
+      <span class="status">● موجود</span>
+
+      <div class="price">50,000 تومان</div>
+
+      <div class="card-buttons">
+        <button class="btn" onclick="contactSeller('RP CITY')">
+          💬 ارتباط
+        </button>
+
+        <button class="btn secondary" onclick="showDetails('آیتم ویژه RP City','50,000')">
+          👁️ جزئیات
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card product"
+         data-category="rare"
+         data-search="آیتم کمیاب rp shop rare">
+
+      <span class="badge">کمیاب</span>
+
+      <button class="favorite" onclick="favorite(this)">♡</button>
+
+      <div class="product-image">💎</div>
+
+      <h3>آیتم کمیاب</h3>
+
+      <p class="description">
+        آیتم کمیاب و ارزشمند برای بازیکنان حرفه‌ای.
+      </p>
+
+      <div class="seller">👤 فروشنده: RP SHOP</div>
+
+      <span class="status">● موجود</span>
+
+      <div class="price">80,000 تومان</div>
+
+      <div class="card-buttons">
+        <button class="btn" onclick="contactSeller('RP SHOP')">
+          💬 ارتباط
+        </button>
+
+        <button class="btn secondary" onclick="showDetails('آیتم کمیاب','80,000')">
+          👁️ جزئیات
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card product"
+         data-category="car"
+         data-search="ماشین اسپرت خودرو car">
+
+      <button class="favorite" onclick="favorite(this)">♡</button>
+
+      <div class="product-image">🚗</div>
+
+      <h3>ماشین اسپرت</h3>
+
+      <p class="description">
+        ماشین اسپرت برای گشت‌وگذار و مسابقات RP City.
+      </p>
+
+      <div class="seller">👤 فروشنده: CITY GARAGE</div>
+
+      <span class="status">● موجود</span>
+
+      <div class="price">120,000 تومان</div>
+
+      <div class="card-buttons">
+        <button class="btn" onclick="contactSeller('CITY GARAGE')">
+          💬 ارتباط
+        </button>
+
+        <button class="btn secondary" onclick="showDetails('ماشین اسپرت','120,000')">
+          👁️ جزئیات
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card product"
+         data-category="money"
+         data-search="پول سکه cash money">
+
+      <button class="favorite" onclick="favorite(this)">♡</button>
+
+      <div class="product-image">💰</div>
+
+      <h3>پک پول RP</h3>
+
+      <p class="description">
+        پک پول مخصوص استفاده در سرور RP City.
+      </p>
+
+      <div class="seller">👤 فروشنده: RP BANK</div>
+
+      <span class="status">● موجود</span>
+
+      <div class="price">100,000 تومان</div>
+
+      <div class="card-buttons">
+        <button class="btn" onclick="contactSeller('RP BANK')">
+          💬 ارتباط
+        </button>
+
+        <button class="btn secondary" onclick="showDetails('پک پول RP','100,000')">
+          👁️ جزئیات
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card product"
+         data-category="special"
+         data-search="اسلحه ویژه weapon special">
+
+      <span class="badge">جدید</span>
+
+      <button class="favorite" onclick="favorite(this)">♡</button>
+
+      <div class="product-image">🔫</div>
+
+      <h3>پک ویژه</h3>
+
+      <p class="description">
+        پک ویژه برای بازیکنان RP City.
+      </p>
+
+      <div class="seller">👤 فروشنده: RP STORE</div>
+
+      <span class="status">● موجود</span>
+
+      <div class="price">150,000 تومان</div>
+
+      <div class="card-buttons">
+        <button class="btn" onclick="contactSeller('RP STORE')">
+          💬 ارتباط
+        </button>
+
+        <button class="btn secondary" onclick="showDetails('پک ویژه','150,000')">
+          👁️ جزئیات
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card product"
+         data-category="rare"
+         data-search="آیتم افسانه ای legendary کمیاب">
+
+      <span class="badge">افسانه‌ای</span>
+
+      <button class="favorite" onclick="favorite(this)">♡</button>
+
+      <div class="product-image">👑</div>
+
+      <h3>آیتم افسانه‌ای</h3>
+
+      <p class="description">
+        یکی از آیتم‌های خاص و کمیاب بازار.
+      </p>
+
+      <div class="seller">👤 فروشنده: LEGEND SHOP</div>
+
+      <span class="status">● موجود</span>
+
+      <div class="price">200,000 تومان</div>
+
+      <div class="card-buttons">
+        <button class="btn" onclick="contactSeller('LEGEND SHOP')">
+          💬 ارتباط
+        </button>
+
+        <button class="btn secondary" onclick="showDetails('آیتم افسانه‌ای','200,000')">
+          👁️ جزئیات
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="no-results" id="noResults">
+    😕 آیتمی پیدا نشد.
+  </div>
+
+
+  <div class="add-box" id="addSection">
+
+    <h2>➕ فروش آیتم</h2>
+
+    <p>
+      می‌خوای آیتم خودت رو بفروشی؟
+      اطلاعات آیتم رو وارد کن تا برای ثبت آماده بشه.
+    </p>
+
+    <div class="form-grid">
+
+      <input
+        class="form-control"
+        id="itemName"
+        placeholder="نام آیتم"
+      >
+
+      <input
+        class="form-control"
+        id="itemPrice"
+        placeholder="قیمت به تومان"
+        type="number"
+      >
+
+      <select class="form-control">
+        <option>انتخاب دسته‌بندی</option>
+        <option>ویژه</option>
+        <option>کمیاب</option>
+        <option>ماشین</option>
+        <option>پول</option>
+      </select>
+
+      <input
+        class="form-control"
+        id="sellerName"
+        placeholder="نام فروشنده"
+      >
+
+      <textarea
+        class="form-control full"
+        id="itemDescription"
+        placeholder="توضیحات آیتم..."
+      ></textarea>
+
+      <button
+        class="btn gradient full"
+        onclick="submitItem()"
+      >
+        🚀 ارسال درخواست فروش
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<footer>
+  <div>🛒 RP City Market</div>
+  <div style="margin-top:8px;">
+    خرید و فروش آیتم‌های RP City © 2026
+  </div>
+</footer>
+
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <div class="modal-header">
+      <h3 id="modalTitle">جزئیات</h3>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+let currentCategory = "all";
+
+
+function toggleTheme(){
+
+  document.body.classList.toggle("light");
+
+  const button = document.querySelector(".header-buttons .icon-btn");
+
+  if(document.body.classList.contains("light")){
+    button.textContent = "☀️";
+    localStorage.setItem("theme","light");
+  }else{
+    button.textContent = "🌙";
+    localStorage.setItem("theme","dark");
+  }
+
+}
+
+
+function loadTheme(){
+
+  const saved = localStorage.getItem("theme");
+
+  if(saved === "light"){
+    document.body.classList.add("light");
+
+    const button = document.querySelector(".header-buttons .icon-btn");
+
+    if(button){
+      button.textContent = "☀️";
+    }
+  }
+
+}
+
+
+function selectCategory(category,button){
+
+  currentCategory = category;
+
+  document.querySelectorAll(".category").forEach(function(item){
+    item.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  filterProducts();
+
+}
+
+
+function filterProducts(){
+
+  const searchInput = document.getElementById("search");
+
+  const search = searchInput.value.toLowerCase().trim();
+
+  const products = document.querySelectorAll(".product");
+
+  let visible = 0;
+
+  products.forEach(function(product){
+
+    const category = product.dataset.category || "";
+
+    const text = product.dataset.search || "";
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      category === currentCategory;
+
+    const searchMatch =
+      text.toLowerCase().includes(search);
+
+    if(categoryMatch && searchMatch){
+
+      product.style.display = "";
+
+      visible++;
+
+    }else{
+
+      product.style.display = "none";
+
+    }
+
+  });
+
+
+  document.getElementById("resultCount").textContent =
+    visible + " آیتم";
+
+  document.getElementById("noResults").style.display =
+    visible === 0 ? "block" : "none";
+
+}
+
+
+function favorite(button){
+
+  button.classList.toggle("active");
+
+  if(button.classList.contains("active")){
+
+    button.textContent = "♥";
+
+    showToast("❤️ به علاقه‌مندی‌ها اضافه شد");
+
+  }else{
+
+    button.textContent = "♡";
+
+    showToast("از علاقه‌مندی‌ها حذف شد");
+
+  }
+
+}
+
+
+function contactSeller(seller){
+
+  showToast("💬 ارتباط با " + seller + " انتخاب شد");
+
+  setTimeout(function(){
+
+    window.open(
+      "https://rubika.ir/",
+      "_blank"
+    );
+
+  },700);
+
+}
+
+
+function showDetails(name,price){
+
+  document.getElementById("modalTitle").textContent =
+    "جزئیات آیتم";
+
+  document.getElementById("modalContent").innerHTML =
+
+    "<div style='text-align:center;font-size:55px;margin:10px;'>🛍️</div>" +
+
+    "<h3 style='margin-bottom:10px;'>" +
+    name +
+    "</h3>" +
+
+    "<p style='color:var(--muted);line-height:1.9;'>" +
+    "این آیتم در بازار RP City موجود است." +
+    "</p>" +
+
+    "<div class='price'>" +
+    price +
+    " تومان" +
+    "</div>" +
+
+    "<button class='btn' style='width:100%;' onclick=\"contactSeller('فروشنده')\">" +
+    "💬 ارتباط با فروشنده" +
+    "</button>";
+
+  document.getElementById("modal").classList.add("show");
+
+}
+
+
+function closeModal(){
+
+  document.getElementById("modal").classList.remove("show");
+
+}
+
+
+document.getElementById("modal").addEventListener(
+  "click",
+  function(event){
+
+    if(event.target === this){
+      closeModal();
+    }
+
+  }
+);
+
+
+function scrollToProducts(){
+
+  document.getElementById("productsSection").scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+function scrollToAdd(){
+
+  document.getElementById("addSection").scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+function submitItem(){
+
+  const name =
+    document.getElementById("itemName").value.trim();
+
+  const price =
+    document.getElementById("itemPrice").value.trim();
+
+  const seller =
+    document.getElementById("sellerName").value.trim();
+
+  const description =
+    document.getElementById("itemDescription").value.trim();
+
+
+  if(!name || !price || !seller){
+
+    showToast("⚠️ لطفاً نام، قیمت و فروشنده را وارد کن.");
+
+    return;
+
+  }
+
+
+  showToast("✅ درخواست فروش ثبت شد!");
+
+  document.getElementById("itemName").value = "";
+  document.getElementById("itemPrice").value = "";
+  document.getElementById("sellerName").value = "";
+  document.getElementById("itemDescription").value = "";
+
+}
+
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2500);
+
+}
+
+
+loadTheme();
+
+filterProducts();
+
+</script>
+
+</body>
+  </html>
