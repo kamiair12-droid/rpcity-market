@@ -30,14 +30,13 @@ a{
   margin:auto;
 }
 
-/* Header */
 header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:rgba(8,11,18,.94);
+  background:rgba(8,11,18,.95);
+  border-bottom:1px solid #252d3e;
   backdrop-filter:blur(12px);
-  border-bottom:1px solid #202636;
 }
 
 .nav{
@@ -45,30 +44,28 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:15px;
 }
 
 .logo{
-  font-size:24px;
+  font-size:23px;
   font-weight:900;
-  color:#7c5cff;
 }
 
 .logo span{
-  color:#fff;
+  color:#8b5cf6;
 }
 
 .nav-links{
   display:flex;
-  gap:10px;
+  gap:8px;
   align-items:center;
 }
 
 .nav-links a{
-  padding:9px 15px;
+  padding:9px 13px;
+  color:#cbd3e1;
   border-radius:10px;
-  color:#cbd2e1;
-  transition:.2s;
 }
 
 .nav-links a:hover{
@@ -76,18 +73,16 @@ header{
   color:#fff;
 }
 
-/* Buttons */
 .btn{
+  border:0;
+  border-radius:11px;
+  padding:11px 17px;
+  font-weight:bold;
+  cursor:pointer;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
-  border:0;
-  cursor:pointer;
-  padding:12px 20px;
-  border-radius:12px;
-  font-size:15px;
-  font-weight:bold;
+  gap:7px;
   transition:.2s;
 }
 
@@ -95,286 +90,284 @@ header{
   transform:translateY(-2px);
 }
 
-.gradient{
-  background:linear-gradient(135deg,#7c5cff,#b44cff);
-  color:#fff;
-  box-shadow:0 8px 25px rgba(124,92,255,.25);
+.primary{
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:white;
 }
 
-.dark-btn{
+.dark{
   background:#171d2b;
-  color:#fff;
-  border:1px solid #293247;
+  border:1px solid #2b354b;
+  color:white;
 }
 
-.green-btn{
-  background:#0f8f58;
-  color:#fff;
+.green{
+  background:#087f5b;
+  color:white;
 }
 
-/* Hero */
+.red{
+  background:#6f2633;
+  color:white;
+}
+
 .hero{
-  padding:80px 0 60px;
+  padding:70px 0 45px;
   background:
-    radial-gradient(circle at 80% 20%,rgba(124,92,255,.18),transparent 30%),
-    radial-gradient(circle at 20% 80%,rgba(180,76,255,.12),transparent 30%);
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:35px;
-  align-items:center;
-}
-
-.badge{
-  display:inline-block;
-  padding:7px 13px;
-  background:#171d2b;
-  border:1px solid #293247;
-  color:#b9aaff;
-  border-radius:50px;
-  margin-bottom:15px;
-  font-size:13px;
+  radial-gradient(circle at 80% 10%,rgba(124,58,237,.2),transparent 30%);
 }
 
 .hero h1{
-  font-size:clamp(35px,6vw,65px);
-  line-height:1.15;
-  margin-bottom:20px;
+  font-size:clamp(35px,7vw,62px);
+  line-height:1.2;
+  margin:12px 0;
 }
 
 .hero h1 span{
-  color:#9b82ff;
+  color:#9b7cff;
 }
 
 .hero p{
-  color:#aeb7c8;
-  max-width:650px;
-  font-size:17px;
-  margin-bottom:25px;
+  color:#a6b0c1;
+  max-width:700px;
+  margin-bottom:22px;
 }
 
 .hero-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:12px;
+  gap:10px;
 }
 
-.hero-card{
-  background:linear-gradient(145deg,#131927,#0d111a);
-  border:1px solid #252e42;
-  border-radius:25px;
-  padding:30px;
-  box-shadow:0 20px 60px rgba(0,0,0,.25);
-}
-
-.hero-card h3{
-  margin-bottom:20px;
-  font-size:22px;
-}
-
-.info-row{
-  display:flex;
-  justify-content:space-between;
-  padding:13px 0;
-  border-bottom:1px solid #242b39;
-  color:#b9c1d1;
-}
-
-.info-row:last-child{
-  border-bottom:0;
-}
-
-/* Stats */
 .stats{
-  padding:20px 0 50px;
+  padding:15px 0 35px;
 }
 
 .stats-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:15px;
+  gap:12px;
 }
 
 .stat{
   background:#111621;
-  border:1px solid #222b3c;
-  padding:22px;
-  border-radius:17px;
+  border:1px solid #252e40;
+  border-radius:16px;
+  padding:18px;
   text-align:center;
 }
 
 .stat strong{
   display:block;
-  font-size:30px;
-  color:#a38fff;
+  color:#a78bfa;
+  font-size:27px;
 }
 
-/* Section */
 section{
-  padding:65px 0;
+  padding:40px 0;
 }
 
-.section-title{
-  margin-bottom:25px;
+.title{
+  margin-bottom:20px;
 }
 
-.section-title h2{
-  font-size:30px;
-  margin-bottom:7px;
+.title h2{
+  font-size:29px;
 }
 
-.section-title p{
-  color:#8e98aa;
+.title p{
+  color:#8994a8;
+  font-size:14px;
 }
 
-/* Search */
-.search-box{
-  display:flex;
-  gap:10px;
-  margin-bottom:25px;
-}
-
-.search-box input{
-  flex:1;
+.search{
+  width:100%;
+  padding:14px;
   background:#111621;
-  border:1px solid #283246;
+  border:1px solid #293348;
   color:#fff;
-  padding:14px 17px;
   border-radius:12px;
   outline:none;
+  margin-bottom:15px;
 }
 
-.search-box input:focus{
-  border-color:#7c5cff;
-}
-
-/* Categories */
 .categories{
   display:flex;
   flex-wrap:wrap;
-  gap:9px;
-  margin-bottom:25px;
+  gap:8px;
+  margin-bottom:22px;
 }
 
 .category{
-  border:1px solid #293247;
   background:#111621;
-  color:#c7cfdd;
-  padding:9px 16px;
-  border-radius:50px;
+  color:#cbd3e1;
+  border:1px solid #293348;
+  padding:8px 15px;
+  border-radius:30px;
   cursor:pointer;
 }
 
-.category.active,
-.category:hover{
-  background:#7c5cff;
+.category.active{
+  background:#7c3aed;
+  border-color:#7c3aed;
   color:#fff;
-  border-color:#7c5cff;
 }
 
-/* Products */
 .products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:18px;
+  gap:17px;
 }
 
 .product{
   background:#111621;
-  border:1px solid #242d3f;
-  border-radius:20px;
+  border:1px solid #273149;
+  border-radius:18px;
   overflow:hidden;
-  transition:.25s;
-}
-
-.product:hover{
-  transform:translateY(-5px);
-  border-color:#7c5cff;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 .product-image{
-  height:170px;
+  height:190px;
+  background:#0c111a;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.no-image{
   font-size:60px;
-  background:linear-gradient(135deg,#171d2c,#101521);
 }
 
 .product-content{
-  padding:20px;
+  padding:17px;
 }
 
 .product-content h3{
-  margin-bottom:7px;
-  font-size:19px;
+  font-size:18px;
 }
 
-.product-content p{
-  color:#929caf;
-  font-size:14px;
-  min-height:50px;
+.description{
+  color:#929db0;
+  font-size:13px;
+  min-height:45px;
+  margin:5px 0;
 }
 
 .price{
-  color:#a993ff;
-  font-size:21px;
-  font-weight:bold;
-  margin:12px 0;
+  color:#b69cff;
+  font-size:20px;
+  font-weight:900;
+  margin:8px 0;
 }
 
-.product-actions{
-  display:flex;
-  gap:9px;
-}
-
-.product-actions .btn{
-  flex:1;
-}
-
-/* Order */
-.order-box{
-  background:linear-gradient(145deg,#151b2a,#0e131d);
-  border:1px solid #293247;
-  border-radius:22px;
-  padding:35px;
-  text-align:center;
-}
-
-.order-box h2{
+.seller{
+  color:#9ba6b8;
+  font-size:12px;
   margin-bottom:10px;
 }
 
-.order-box p{
-  color:#a0a9b9;
-  margin-bottom:20px;
+.product-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
-/* Footer */
-footer{
-  border-top:1px solid #202838;
-  padding:30px 0;
-  color:#7f899b;
+.product-buttons .btn{
+  width:100%;
+  font-size:12px;
+}
+
+.form-box{
+  background:#111621;
+  border:1px solid #293348;
+  border-radius:18px;
+  padding:20px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-size:13px;
+  color:#cbd3e1;
+}
+
+.field input,
+.field textarea,
+.field select{
+  background:#090e17;
+  border:1px solid #293348;
+  color:#fff;
+  padding:12px;
+  border-radius:10px;
+  outline:none;
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.hint{
+  font-size:11px;
+  color:#78849a;
+}
+
+.preview{
+  max-width:180px;
+  max-height:150px;
+  border-radius:10px;
+  display:none;
+}
+
+.support{
+  background:linear-gradient(145deg,#151b29,#0e131d);
+  border:1px solid #293348;
+  border-radius:20px;
+  padding:30px;
   text-align:center;
 }
 
-footer strong{
-  color:#a993ff;
+.support p{
+  color:#98a3b5;
+  margin:8px 0 18px;
 }
 
-/* Toast */
+footer{
+  border-top:1px solid #20293a;
+  text-align:center;
+  color:#7d899d;
+  padding:30px 0;
+}
+
 .toast{
   position:fixed;
-  bottom:25px;
   left:50%;
-  transform:translateX(-50%) translateY(100px);
-  background:#151c29;
-  border:1px solid #303b52;
-  padding:13px 20px;
-  border-radius:12px;
+  bottom:20px;
+  transform:translate(-50%,120px);
+  background:#161d2b;
+  border:1px solid #35425a;
+  padding:12px 18px;
+  border-radius:11px;
   opacity:0;
   transition:.3s;
   z-index:9999;
@@ -382,35 +375,37 @@ footer strong{
 
 .toast.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+  transform:translate(-50%,0);
 }
 
-/* Responsive */
-@media(max-width:850px){
-  .hero-grid{
-    grid-template-columns:1fr;
-  }
+.empty{
+  background:#111621;
+  border:1px dashed #303b52;
+  border-radius:16px;
+  padding:45px;
+  text-align:center;
+  color:#8994a8;
+}
 
+@media(max-width:850px){
   .products{
     grid-template-columns:repeat(2,1fr);
   }
 }
 
 @media(max-width:600px){
-  .nav-links{
+  .nav-links a:not(.support){
     display:none;
   }
 
-  .hero{
-    padding-top:55px;
-  }
-
-  .stats-grid{
+  .stats-grid,
+  .products,
+  .form-grid{
     grid-template-columns:1fr;
   }
 
-  .products{
-    grid-template-columns:1fr;
+  .full{
+    grid-column:auto;
   }
 
   .hero-actions{
@@ -421,485 +416,360 @@ footer strong{
     width:100%;
   }
 
-  .search-box{
-    flex-direction:column;
-  }
-
-  .product-actions{
-    flex-direction:column;
+  .product-buttons{
+    grid-template-columns:1fr;
   }
 }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
 
 <header>
-  <div class="container nav">
+<div class="container nav">
 
-    <a href="#" class="logo">
-      RP <span>City</span> Market
-    </a>
+<a href="#" class="logo">
+RP <span>City</span> Market
+</a>
 
-    <nav class="nav-links">
-      <a href="#products">محصولات</a>
-      <a href="#order">نحوه سفارش</a>
+<nav class="nav-links">
 
-      <a
-        href="https://ble.ir/rpcity_lor"
-        target="_blank"
-        rel="noopener"
-        class="btn gradient"
-      >
-        📢 کانال فروش
-      </a>
-    </nav>
+<a href="#products">محصولات</a>
 
-  </div>
+<a href="#add">ثبت محصول</a>
+
+<a
+class="btn primary support"
+href="https://ble.ir/rpcity_lor"
+target="_blank"
+rel="noopener">
+📢 پشتیبانی
+</a>
+
+</nav>
+
+</div>
 </header>
+
 
 <main>
 
-<!-- Hero -->
 <section class="hero">
-  <div class="container hero-grid">
 
-    <div>
+<div class="container">
 
-      <span class="badge">
-        🔥 فروشگاه رسمی RP City
-      </span>
+<div style="color:#a78bfa;font-weight:bold">
+🔥 مارکت آزاد RP City
+</div>
 
-      <h1>
-        بازار <span>RP City</span>
-      </h1>
+<h1>
+محصولت رو بذار،
+<span>مشتری پیدا کن</span>
+</h1>
 
-      <p>
-        خرید و سفارش آیتم‌ها، ماشین‌ها، پک‌ها و محصولات ویژه
-        برای تجربه بهتر در RP City.
-      </p>
+<p>
+هر کسی می‌تونه محصول خودش رو ثبت کنه،
+عکس و قیمت بذاره و آیدی بله خودش رو وارد کنه.
+مشتری هم مستقیم با فروشنده ارتباط می‌گیره.
+</p>
 
-      <div class="hero-actions">
+<div class="hero-actions">
 
-        <a href="#products" class="btn gradient">
-          🛒 مشاهده محصولات
-        </a>
+<a class="btn primary" href="#add">
+➕ ثبت محصول رایگان
+</a>
 
-        <!-- دکمه اصلی کانال فروش -->
-        <a
-          href="https://ble.ir/rpcity_lor"
-          target="_blank"
-          rel="noopener"
-          class="btn dark-btn"
-        >
-          📢 ورود به کانال فروش
-        </a>
+<a class="btn dark" href="#products">
+🛍 مشاهده محصولات
+</a>
 
-      </div>
+<a
+class="btn dark"
+href="https://ble.ir/rpcity_lor"
+target="_blank"
+rel="noopener">
+🛟 پشتیبانی
+</a>
 
-    </div>
+</div>
 
-    <div class="hero-card">
+</div>
 
-      <h3>📦 سفارش سریع</h3>
-
-      <div class="info-row">
-        <span>انتخاب محصول</span>
-        <strong>✓</strong>
-      </div>
-
-      <div class="info-row">
-        <span>زدن دکمه سفارش</span>
-        <strong>✓</strong>
-      </div>
-
-      <div class="info-row">
-        <span>ورود به کانال بله</span>
-        <strong>✓</strong>
-      </div>
-
-      <div class="info-row">
-        <span>ثبت سفارش</span>
-        <strong>✓</strong>
-      </div>
-
-    </div>
-
-  </div>
 </section>
 
 
-<!-- Stats -->
 <section class="stats">
-  <div class="container">
 
-    <div class="stats-grid">
+<div class="container stats-grid">
 
-      <div class="stat">
-        <strong>100%</strong>
-        <span>سفارش مستقیم</span>
-      </div>
+<div class="stat">
+<strong id="productCount">۰</strong>
+<span>محصول ثبت شده</span>
+</div>
 
-      <div class="stat">
-        <strong>24/7</strong>
-        <span>دسترسی به کانال</span>
-      </div>
+<div class="stat">
+<strong>آزاد</strong>
+<span>ثبت محصول برای همه</span>
+</div>
 
-      <div class="stat">
-        <strong>RP</strong>
-        <span>ویژه بازیکنان RP City</span>
-      </div>
+<div class="stat">
+<strong>📩</strong>
+<span>ارتباط مستقیم با فروشنده</span>
+</div>
 
-    </div>
+</div>
 
-  </div>
 </section>
 
 
-<!-- Products -->
 <section id="products">
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
-      <h2>🛍 محصولات</h2>
-      <p>
-        محصول موردنظرت رو پیدا کن و برای سفارش وارد کانال شو.
-      </p>
-    </div>
+<div class="title">
 
+<h2>🛍 محصولات</h2>
 
-    <div class="search-box">
+<p>
+محصول موردنظرت رو پیدا کن و مستقیم با فروشنده صحبت کن.
+</p>
 
-      <input
-        type="text"
-        id="search"
-        placeholder="🔎 جستجوی محصول..."
-      >
+</div>
 
-    </div>
+<input
+id="search"
+class="search"
+placeholder="🔎 جستجوی محصول، فروشنده یا توضیحات..."
+>
 
 
-    <div class="categories">
+<div class="categories">
 
-      <button class="category active" data-category="all">
-        همه
-      </button>
+<button class="category active" data-cat="all">
+همه
+</button>
 
-      <button class="category" data-category="item">
-        آیتم
-      </button>
+<button class="category" data-cat="item">
+آیتم
+</button>
 
-      <button class="category" data-category="car">
-        ماشین
-      </button>
+<button class="category" data-cat="car">
+ماشین
+</button>
 
-      <button class="category" data-category="pack">
-        پک
-      </button>
+<button class="category" data-cat="account">
+اکانت
+</button>
 
-    </div>
+<button class="category" data-cat="other">
+سایر
+</button>
 
+</div>
 
-    <div class="products" id="productsList">
 
+<div id="productsList" class="products"></div>
 
-      <!-- Product 1 -->
-      <article class="product" data-category="item">
+<div id="empty" class="empty" style="display:none">
+هنوز محصولی ثبت نشده.
+</div>
 
-        <div class="product-image">
-          🎁
-        </div>
-
-        <div class="product-content">
-
-          <h3>آیتم ویژه RP City</h3>
-
-          <p>
-            آیتم ویژه برای بازیکنان RP City.
-          </p>
-
-          <div class="price">
-            ۵۰,۰۰۰ تومان
-          </div>
-
-          <div class="product-actions">
-
-            <a
-              href="https://ble.ir/rpcity_lor"
-              target="_blank"
-              rel="noopener"
-              class="btn gradient"
-            >
-              🛒 سفارش
-            </a>
-
-            <button
-              class="btn dark-btn"
-              onclick="showInfo('آیتم ویژه RP City')"
-            >
-              جزئیات
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 2 -->
-      <article class="product" data-category="item">
-
-        <div class="product-image">
-          💎
-        </div>
-
-        <div class="product-content">
-
-          <h3>آیتم کمیاب</h3>
-
-          <p>
-            آیتم کمیاب و جذاب برای استفاده در RP City.
-          </p>
-
-          <div class="price">
-            ۸۰,۰۰۰ تومان
-          </div>
-
-          <div class="product-actions">
-
-            <a
-              href="https://ble.ir/rpcity_lor"
-              target="_blank"
-              rel="noopener"
-              class="btn gradient"
-            >
-              🛒 سفارش
-            </a>
-
-            <button
-              class="btn dark-btn"
-              onclick="showInfo('آیتم کمیاب')"
-            >
-              جزئیات
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 3 -->
-      <article class="product" data-category="car">
-
-        <div class="product-image">
-          🏎️
-        </div>
-
-        <div class="product-content">
-
-          <h3>ماشین اسپرت</h3>
-
-          <p>
-            ماشین اسپرت ویژه برای رانندگی و کل‌کل در شهر.
-          </p>
-
-          <div class="price">
-            ۱۲۰,۰۰۰ تومان
-          </div>
-
-          <div class="product-actions">
-
-            <a
-              href="https://ble.ir/rpcity_lor"
-              target="_blank"
-              rel="noopener"
-              class="btn gradient"
-            >
-              🛒 سفارش
-            </a>
-
-            <button
-              class="btn dark-btn"
-              onclick="showInfo('ماشین اسپرت')"
-            >
-              جزئیات
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 4 -->
-      <article class="product" data-category="pack">
-
-        <div class="product-image">
-          💰
-        </div>
-
-        <div class="product-content">
-
-          <h3>پک پول RP</h3>
-
-          <p>
-            پک ویژه برای افزایش سرمایه داخل RP City.
-          </p>
-
-          <div class="price">
-            ۱۰۰,۰۰۰ تومان
-          </div>
-
-          <div class="product-actions">
-
-            <a
-              href="https://ble.ir/rpcity_lor"
-              target="_blank"
-              rel="noopener"
-              class="btn gradient"
-            >
-              🛒 سفارش
-            </a>
-
-            <button
-              class="btn dark-btn"
-              onclick="showInfo('پک پول RP')"
-            >
-              جزئیات
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 5 -->
-      <article class="product" data-category="pack">
-
-        <div class="product-image">
-          🔥
-        </div>
-
-        <div class="product-content">
-
-          <h3>پک ویژه</h3>
-
-          <p>
-            مجموعه‌ای از آیتم‌های جذاب برای بازیکنان.
-          </p>
-
-          <div class="price">
-            ۱۵۰,۰۰۰ تومان
-          </div>
-
-          <div class="product-actions">
-
-            <a
-              href="https://ble.ir/rpcity_lor"
-              target="_blank"
-              rel="noopener"
-              class="btn gradient"
-            >
-              🛒 سفارش
-            </a>
-
-            <button
-              class="btn dark-btn"
-              onclick="showInfo('پک ویژه')"
-            >
-              جزئیات
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 6 -->
-      <article class="product" data-category="item">
-
-        <div class="product-image">
-          👑
-        </div>
-
-        <div class="product-content">
-
-          <h3>آیتم افسانه‌ای</h3>
-
-          <p>
-            آیتم خاص و محدود برای بازیکنان حرفه‌ای.
-          </p>
-
-          <div class="price">
-            ۲۰۰,۰۰۰ تومان
-          </div>
-
-          <div class="product-actions">
-
-            <a
-              href="https://ble.ir/rpcity_lor"
-              target="_blank"
-              rel="noopener"
-              class="btn gradient"
-            >
-              🛒 سفارش
-            </a>
-
-            <button
-              class="btn dark-btn"
-              onclick="showInfo('آیتم افسانه‌ای')"
-            >
-              جزئیات
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- Order -->
-<section id="order">
+<section id="add">
 
-  <div class="container">
+<div class="container">
 
-    <div class="order-box">
+<div class="title">
 
-      <h2>📢 سفارش از کانال</h2>
+<h2>➕ ثبت محصول</h2>
 
-      <p>
-        برای خرید هر محصول، روی دکمه «سفارش» بزن
-        تا مستقیم وارد کانال فروش RP City بشی.
-      </p>
+<p>
+ثبت محصول برای همه آزاد است.
+</p>
 
-      <a
-        href="https://ble.ir/rpcity_lor"
-        target="_blank"
-        rel="noopener"
-        class="btn gradient"
-      >
-        🛒 ورود به کانال و ثبت سفارش
-      </a>
+</div>
 
-    </div>
 
-  </div>
+<div class="form-box">
+
+<form id="productForm">
+
+<div class="form-grid">
+
+
+<div class="field">
+
+<label>
+نام محصول *
+</label>
+
+<input
+id="name"
+required
+maxlength="80"
+placeholder="مثلاً ماشین اسپرت"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+قیمت *
+</label>
+
+<input
+id="price"
+required
+inputmode="numeric"
+placeholder="مثلاً 120000"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+دسته‌بندی *
+</label>
+
+<select id="category">
+
+<option value="item">
+آیتم
+</option>
+
+<option value="car">
+ماشین
+</option>
+
+<option value="account">
+اکانت
+</option>
+
+<option value="other">
+سایر
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+آیدی بله فروشنده *
+</label>
+
+<input
+id="seller"
+required
+placeholder="@username"
+>
+
+<span class="hint">
+مثلاً @kamiair یا kamiair
+</span>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+توضیحات محصول
+</label>
+
+<textarea
+id="description"
+maxlength="500"
+placeholder="توضیحات محصول..."
+></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+📷 عکس محصول *
+</label>
+
+<input
+id="image"
+type="file"
+accept="image/*"
+required
+>
+
+<img
+id="preview"
+class="preview"
+>
+
+</div>
+
+
+<div class="field full">
+
+<button
+id="submitBtn"
+class="btn primary"
+type="submit">
+
+🚀 ثبت محصول
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+<div class="support">
+
+<h2>
+🛟 ارتباط با پشتیبانی
+</h2>
+
+<p>
+برای مشکل در ثبت، حذف یا گزارش محصول با پشتیبانی ارتباط بگیر.
+</p>
+
+<a
+class="btn primary"
+href="https://ble.ir/rpcity_lor"
+target="_blank"
+rel="noopener">
+
+📢 ارتباط با پشتیبانی
+
+</a>
+
+</div>
+
+</div>
 
 </section>
 
@@ -908,125 +778,770 @@ footer strong{
 
 <footer>
 
-  <div class="container">
-
-    <p>
-      © 2026
-      <strong>RP City Market</strong>
-      — تمامی حقوق محفوظ است.
-    </p>
-
-    <p style="margin-top:8px">
-
-      <a
-        href="https://ble.ir/rpcity_lor"
-        target="_blank"
-        rel="noopener"
-        style="color:#a993ff"
-      >
-        📢 کانال فروش RP City
-      </a>
-
-    </p>
-
-  </div>
+© 2026 RP City Market
 
 </footer>
 
 
-<div class="toast" id="toast"></div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-/* Search */
+/* =========================================
+   SUPABASE
+   فقط این دو مقدار را از پروژه خودت بگذار
+========================================= */
 
-const searchInput = document.getElementById("search");
-const products = document.querySelectorAll(".product");
+const SUPABASE_URL =
+"YOUR_SUPABASE_URL";
 
-searchInput.addEventListener("input", function(){
-
-  const value = this.value.trim().toLowerCase();
-
-  products.forEach(function(product){
-
-    const text = product.innerText.toLowerCase();
-
-    if(text.includes(value)){
-      product.style.display = "";
-    }else{
-      product.style.display = "none";
-    }
-
-  });
-
-});
+const SUPABASE_PUBLISHABLE_KEY =
+"YOUR_SUPABASE_PUBLISHABLE_KEY";
 
 
-/* Categories */
-
-const categories = document.querySelectorAll(".category");
-
-categories.forEach(function(category){
-
-  category.addEventListener("click", function(){
-
-    categories.forEach(function(item){
-      item.classList.remove("active");
-    });
-
-    this.classList.add("active");
-
-    const selected = this.dataset.category;
-
-    products.forEach(function(product){
-
-      if(
-        selected === "all" ||
-        product.dataset.category === selected
-      ){
-        product.style.display = "";
-      }else{
-        product.style.display = "none";
-      }
-
-    });
-
-  });
-
-});
+const connected =
+!SUPABASE_URL.includes("YOUR_") &&
+!SUPABASE_PUBLISHABLE_KEY.includes("YOUR_");
 
 
-/* Product information */
+const db =
+connected
+? supabase.createClient(
+SUPABASE_URL,
+SUPABASE_PUBLISHABLE_KEY
+)
+: null;
 
-function showInfo(name){
 
-  showToast(
-    "برای سفارش «" + name + "» روی دکمه سفارش بزن و وارد کانال شو."
-  );
+let products = [];
+let selectedCategory = "all";
+
+
+function toast(message){
+
+const box =
+document.getElementById("toast");
+
+box.textContent = message;
+
+box.classList.add("show");
+
+setTimeout(()=>{
+box.classList.remove("show");
+},3000);
 
 }
 
 
-/* Toast */
+function cleanId(id){
 
-function showToast(message){
-
-  const toast = document.getElementById("toast");
-
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
-  setTimeout(function(){
-
-    toast.classList.remove("show");
-
-  },3000);
+return String(id || "")
+.trim()
+.replace(/^@/,"")
+.replace(/\s/g,"");
 
 }
+
+
+function sellerLink(id){
+
+const clean =
+cleanId(id);
+
+return "https://ble.ir/" +
+encodeURIComponent(clean);
+
+}
+
+
+function money(value){
+
+return Number(value || 0)
+.toLocaleString("fa-IR")
++ " تومان";
+
+}
+
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replace(/[&<>"']/g,function(char){
+
+return {
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[char];
+
+});
+
+}
+
+
+/* نمایش محصولات */
+
+function renderProducts(){
+
+const search =
+document
+.getElementById("search")
+.value
+.trim()
+.toLowerCase();
+
+
+const filtered =
+products.filter(product=>{
+
+const categoryOK =
+selectedCategory === "all" ||
+product.category === selectedCategory;
+
+
+const text =
+[
+product.name,
+product.description,
+product.seller_id
+]
+.join(" ")
+.toLowerCase();
+
+
+const searchOK =
+!search ||
+text.includes(search);
+
+
+return categoryOK && searchOK;
+
+});
+
+
+document
+.getElementById("productCount")
+.textContent =
+products.length.toLocaleString("fa-IR");
+
+
+document
+.getElementById("productsList")
+.innerHTML =
+filtered.map(product=>{
+
+
+const image =
+product.image_url
+?
+`
+<img
+src="${escapeHTML(product.image_url)}"
+alt="${escapeHTML(product.name)}"
+>
+`
+:
+`
+<div class="no-image">
+📦
+</div>
+`;
+
+
+return `
+
+<article class="product">
+
+<div class="product-image">
+${image}
+</div>
+
+<div class="product-content">
+
+<h3>
+${escapeHTML(product.name)}
+</h3>
+
+<div class="description">
+${escapeHTML(product.description || "بدون توضیحات")}
+</div>
+
+<div class="price">
+${money(product.price)}
+</div>
+
+<div class="seller">
+👤 فروشنده:
+@${escapeHTML(cleanId(product.seller_id))}
+</div>
+
+<div class="product-buttons">
+
+<a
+class="btn green"
+href="${escapeHTML(sellerLink(product.seller_id))}"
+target="_blank"
+rel="noopener">
+
+📩 ارتباط با فروشنده
+
+</a>
+
+<button
+class="btn red"
+onclick="deleteProduct('${product.id}')">
+
+🗑 حذف محصول من
+
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+`;
+
+}).join("");
+
+
+document
+.getElementById("empty")
+.style.display =
+filtered.length
+?
+"none"
+:
+"block";
+
+}
+
+
+/* ورود ناشناس */
+
+async function getUser(){
+
+if(!connected){
+
+return null;
+
+}
+
+
+const session =
+await db.auth.getSession();
+
+
+if(session.data.session){
+
+return session.data.session.user;
+
+}
+
+
+const login =
+await db.auth.signInAnonymously();
+
+
+if(login.error){
+
+console.error(login.error);
+
+toast(
+"Anonymous Auth در Supabase فعال نیست."
+);
+
+return null;
+
+}
+
+
+return login.data.user;
+
+}
+
+
+/* دریافت محصولات */
+
+async function loadProducts(){
+
+if(!connected){
+
+products = [];
+
+renderProducts();
+
+toast(
+"Supabase هنوز وصل نشده؛ دو مقدار اتصال را وارد کن."
+);
+
+return;
+
+}
+
+
+const result =
+await db
+.from("products")
+.select("*")
+.order("created_at",{ascending:false});
+
+
+if(result.error){
+
+console.error(result.error);
+
+toast("خطا در دریافت محصولات.");
+
+return;
+
+}
+
+
+products =
+result.data || [];
+
+
+renderProducts();
+
+}
+
+
+/* ثبت محصول */
+
+document
+.getElementById("productForm")
+.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+
+if(!connected){
+
+toast(
+"اول Supabase را وصل کن."
+);
+
+return;
+
+}
+
+
+const user =
+await getUser();
+
+
+if(!user){
+
+return;
+
+}
+
+
+const file =
+document
+.getElementById("image")
+.files[0];
+
+
+if(!file){
+
+toast("عکس محصول را انتخاب کن.");
+
+return;
+
+}
+
+
+if(file.size > 5 * 1024 * 1024){
+
+toast(
+"حجم عکس باید کمتر از ۵ مگابایت باشد."
+);
+
+return;
+
+}
+
+
+const button =
+document.getElementById("submitBtn");
+
+
+button.disabled = true;
+
+button.textContent =
+"⏳ در حال ثبت...";
+
+
+try{
+
+
+const extension =
+(
+file.name
+.split(".")
+.pop()
+||
+"jpg"
+)
+.toLowerCase();
+
+
+const path =
+user.id
++
+"/"
++
+crypto.randomUUID()
++
+"."
++
+extension;
+
+
+/* آپلود عکس */
+
+const upload =
+await db
+.storage
+.from("product-images")
+.upload(
+path,
+file,
+{
+upsert:false,
+contentType:file.type
+}
+);
+
+
+if(upload.error){
+
+throw upload.error;
+
+}
+
+
+const publicURL =
+db
+.storage
+.from("product-images")
+.getPublicUrl(path)
+.data.publicUrl;
+
+
+/* ذخیره محصول */
+
+const insert =
+await db
+.from("products")
+.insert({
+
+owner_id:user.id,
+
+name:
+document
+.getElementById("name")
+.value
+.trim(),
+
+price:
+Number(
+document
+.getElementById("price")
+.value
+.replace(/[^0-9]/g,"")
+),
+
+category:
+document
+.getElementById("category")
+.value,
+
+seller_id:
+cleanId(
+document
+.getElementById("seller")
+.value
+),
+
+description:
+document
+.getElementById("description")
+.value
+.trim(),
+
+image_url:
+publicURL,
+
+image_path:
+path
+
+});
+
+
+if(insert.error){
+
+await db
+.storage
+.from("product-images")
+.remove([path]);
+
+throw insert.error;
+
+}
+
+
+toast(
+"✅ محصول با موفقیت ثبت شد."
+);
+
+
+document
+.getElementById("productForm")
+.reset();
+
+
+document
+.getElementById("preview")
+.style.display =
+"none";
+
+
+await loadProducts();
+
+
+location.hash =
+"products";
+
+
+}
+catch(error){
+
+console.error(error);
+
+toast(
+"ثبت محصول انجام نشد. تنظیمات Supabase را بررسی کن."
+);
+
+}
+finally{
+
+button.disabled = false;
+
+button.textContent =
+"🚀 ثبت محصول";
+
+}
+
+});
+
+
+/* پیش‌نمایش عکس */
+
+document
+.getElementById("image")
+.addEventListener(
+"change",
+function(){
+
+const file =
+this.files[0];
+
+if(!file){
+
+return;
+
+}
+
+
+const url =
+URL.createObjectURL(file);
+
+
+const preview =
+document.getElementById("preview");
+
+
+preview.src = url;
+
+preview.style.display =
+"block";
+
+});
+
+
+/* جستجو */
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+renderProducts
+);
+
+
+/* دسته‌بندی */
+
+document
+.querySelectorAll(".category")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+function(){
+
+document
+.querySelectorAll(".category")
+.forEach(item=>{
+item.classList.remove("active");
+});
+
+
+this.classList.add("active");
+
+
+selectedCategory =
+this.dataset.cat;
+
+
+renderProducts();
+
+});
+
+});
+
+
+/* حذف محصول */
+
+async function deleteProduct(id){
+
+if(!connected){
+
+toast(
+"اول Supabase را وصل کن."
+);
+
+return;
+
+}
+
+
+const user =
+await getUser();
+
+
+if(!user){
+
+return;
+
+}
+
+
+const product =
+products.find(
+item => item.id === id
+);
+
+
+if(!product){
+
+return;
+
+}
+
+
+/* فقط صاحب محصول */
+
+if(product.owner_id !== user.id){
+
+toast(
+"❌ فقط صاحب محصول می‌تواند آن را حذف کند."
+);
+
+return;
+
+}
+
+
+const answer =
+confirm(
+"مطمئنی می‌خواهی این محصول حذف شود؟"
+);
+
+
+if(!answer){
+
+return;
+
+}
+
+
+const deleted =
+await db
+.from("products")
+.delete()
+.eq("id",id)
+.eq("owner_id",user.id);
+
+
+if(deleted.error){
+
+console.error(deleted.error);
+
+toast(
+"حذف محصول انجام نشد."
+);
+
+return;
+
+}
+
+
+if(product.image_path){
+
+await db
+.storage
+.from("product-images")
+.remove([
+product.image_path
+]);
+
+}
+
+
+toast(
+"🗑 محصول حذف شد."
+);
+
+
+await loadProducts();
+
+}
+
+
+/* شروع */
+
+(async function(){
+
+if(connected){
+
+await getUser();
+
+}
+
+await loadProducts();
+
+})();
 
 </script>
 
 </body>
-        </html>
+</html>
