@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090d">
+
 <title>RP City Market</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
-*{box-sizing:border-box}
+
+*{
+ box-sizing:border-box;
+}
 
 html,body{
  margin:0;
@@ -26,17 +29,17 @@ body{
 header{
  position:sticky;
  top:0;
- z-index:20;
+ z-index:100;
  display:flex;
  justify-content:space-between;
  align-items:center;
- padding:17px 6%;
+ padding:16px 6%;
  background:#0b0c11;
  border-bottom:1px solid #20222b;
 }
 
 .logo{
- font-size:25px;
+ font-size:26px;
  font-weight:900;
  letter-spacing:2px;
 }
@@ -48,7 +51,7 @@ header{
 .ping{
  padding:9px 14px;
  background:#12141b;
- border:1px solid #272a35;
+ border:1px solid #292c36;
  border-radius:13px;
  font-size:13px;
 }
@@ -62,17 +65,17 @@ main{
  width:100%;
  max-width:1150px;
  margin:auto;
- padding:35px 16px;
+ padding:25px 15px;
 }
 
 .hero{
  text-align:center;
- padding:35px 10px 45px;
+ padding:35px 10px 40px;
 }
 
 .hero h1{
  margin:0 0 12px;
- font-size:clamp(36px,8vw,68px);
+ font-size:clamp(38px,8vw,68px);
  font-weight:900;
 }
 
@@ -81,15 +84,14 @@ main{
 }
 
 .hero p{
- margin:0;
  color:#969bab;
  font-size:15px;
 }
 
 .status{
  display:inline-block;
- margin-top:20px;
- padding:9px 16px;
+ margin-top:15px;
+ padding:10px 17px;
  border-radius:25px;
  background:#0d2117;
  color:#62ff9a;
@@ -99,13 +101,14 @@ main{
 .panel{
  background:#0e1016;
  border:1px solid #20232d;
- border-radius:21px;
- padding:21px;
+ border-radius:22px;
+ padding:22px;
  margin-bottom:22px;
 }
 
 .panel h2{
  margin-top:0;
+ font-size:22px;
 }
 
 .form{
@@ -114,13 +117,15 @@ main{
  gap:12px;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
  width:100%;
  border:1px solid #292c38;
  background:#080a0f;
  color:#fff;
- border-radius:13px;
- padding:14px;
+ border-radius:14px;
+ padding:15px;
  outline:none;
  font-family:inherit;
  font-size:14px;
@@ -133,7 +138,7 @@ textarea:focus{
 }
 
 textarea{
- min-height:100px;
+ min-height:105px;
  resize:vertical;
  grid-column:1/-1;
 }
@@ -141,8 +146,8 @@ textarea{
 button{
  border:0;
  cursor:pointer;
- border-radius:13px;
- padding:14px;
+ border-radius:14px;
+ padding:15px;
  font-family:inherit;
  font-weight:bold;
 }
@@ -151,10 +156,12 @@ button{
  grid-column:1/-1;
  background:#7c5cff;
  color:white;
+ font-size:15px;
 }
 
-.add:hover{
- opacity:.9;
+.add:disabled{
+ opacity:.6;
+ cursor:not-allowed;
 }
 
 .controls{
@@ -206,24 +213,18 @@ button{
  color:#c6c8d1;
  font-size:13px;
  line-height:1.9;
+ white-space:pre-wrap;
 }
 
 .buy{
  width:100%;
  margin-top:12px;
  background:#28213f;
- color:#fff;
+ color:white;
 }
 
 .buy:hover{
  background:#342b52;
-}
-
-.delete{
- width:100%;
- margin-top:7px;
- background:#29151a;
- color:#ff7585;
 }
 
 .empty{
@@ -246,16 +247,40 @@ footer a{
  text-decoration:none;
 }
 
-#offline{
+.message{
  display:none;
- margin:0 16px 10px;
- padding:10px 14px;
+ margin-bottom:15px;
+ padding:12px 15px;
+ border-radius:13px;
  text-align:center;
- background:#1b1710;
- color:#ffd27a;
- border:1px solid #443820;
- border-radius:12px;
- font-size:12px;
+ font-size:13px;
+}
+
+.message.success{
+ display:block;
+ background:#0d2117;
+ color:#62ff9a;
+ border:1px solid #214d36;
+}
+
+.message.error{
+ display:block;
+ background:#251316;
+ color:#ff8794;
+ border:1px solid #4d242b;
+}
+
+.message.info{
+ display:block;
+ background:#171528;
+ color:#b9adff;
+ border:1px solid #342d5e;
+}
+
+.loading{
+ text-align:center;
+ padding:30px;
+ color:#888;
 }
 
 @media(max-width:650px){
@@ -265,7 +290,7 @@ footer a{
  }
 
  main{
-  padding:25px 12px;
+  padding:20px 12px;
  }
 
  .form{
@@ -282,23 +307,25 @@ footer a{
  }
 
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
- <div class="logo">RP <span>CITY</span></div>
+
+ <div class="logo">
+  RP <span>CITY</span>
+ </div>
 
  <div class="ping">
   PING:
   <span id="pingValue">...</span>
  </div>
+
 </header>
 
-<div id="offline">
- اتصال آنلاین موقتاً در دسترس نیست؛ سایت در حالت آفلاین فعال است.
-</div>
 
 <main>
 
@@ -323,37 +350,59 @@ footer a{
 
  <h2>➕ ثبت محصول</h2>
 
+ <div id="message" class="message"></div>
+
  <div class="form">
 
   <input
    id="name"
    type="text"
+   maxlength="100"
    placeholder="نام محصول"
   >
 
   <input
    id="price"
    type="number"
+   min="0"
    placeholder="قیمت به تومان"
   >
 
   <select id="category">
-   <option value="سکه">🪙 سکه</option>
-   <option value="آیتم">📦 آیتم</option>
-   <option value="اکانت">👤 اکانت</option>
-   <option value="سایر">⭐ سایر</option>
+
+   <option value="سکه">
+    🪙 سکه
+   </option>
+
+   <option value="آیتم">
+    📦 آیتم
+   </option>
+
+   <option value="اکانت">
+    👤 اکانت
+   </option>
+
+   <option value="سایر">
+    ⭐ سایر
+   </option>
+
   </select>
+
 
   <input
    id="seller"
    type="text"
+   maxlength="100"
    placeholder="آیدی روبیکا فروشنده"
   >
 
+
   <textarea
    id="description"
+   maxlength="500"
    placeholder="توضیحات محصول"
   ></textarea>
+
 
   <button
    class="add"
@@ -368,6 +417,7 @@ footer a{
 </section>
 
 
+
 <section class="panel">
 
  <div class="controls">
@@ -379,23 +429,51 @@ footer a{
    oninput="renderProducts()"
   >
 
+
   <select
    id="filter"
    onchange="renderProducts()"
   >
-   <option value="همه">همه دسته‌ها</option>
-   <option value="سکه">🪙 سکه</option>
-   <option value="آیتم">📦 آیتم</option>
-   <option value="اکانت">👤 اکانت</option>
-   <option value="سایر">⭐ سایر</option>
+
+   <option value="همه">
+    همه دسته‌ها
+   </option>
+
+   <option value="سکه">
+    🪙 سکه
+   </option>
+
+   <option value="آیتم">
+    📦 آیتم
+   </option>
+
+   <option value="اکانت">
+    👤 اکانت
+   </option>
+
+   <option value="سایر">
+    ⭐ سایر
+   </option>
+
   </select>
 
  </div>
 
+
  <div
   id="products"
   class="products"
- ></div>
+ >
+ </div>
+
+
+ <div
+  id="loading"
+  class="loading"
+ >
+  در حال دریافت محصولات...
+ </div>
+
 
  <div
   id="empty"
@@ -407,6 +485,7 @@ footer a{
 </section>
 
 </main>
+
 
 
 <footer>
@@ -428,11 +507,12 @@ footer a{
 </footer>
 
 
+
 <script>
 
-/* =========================
+/* =========================================
    SUPABASE
-========================= */
+========================================= */
 
 const SUPABASE_URL =
 "https://cjntwmohtwbfqtxlgxrt.supabase.co";
@@ -440,304 +520,475 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
 
-let supabaseClient=null;
-let onlineDatabase=false;
-let currentUser=null;
-let products=[];
+
+const API_URL =
+SUPABASE_URL + "/rest/v1/products";
 
 
-/* =========================
-   LOCAL STORAGE
-========================= */
-
-const LOCAL_KEY="rpcity_market_products";
+let products = [];
 
 
-function getLocalProducts(){
 
- try{
+/* =========================================
+   MESSAGE
+========================================= */
 
-  const data=
-   localStorage.getItem(LOCAL_KEY);
+function showMessage(text,type){
 
-  if(!data) return [];
+ const box =
+  document.getElementById("message");
 
-  const parsed=JSON.parse(data);
+ box.className =
+  "message " + type;
 
-  return Array.isArray(parsed)
-   ? parsed
-   : [];
-
- }catch(e){
-
-  return [];
-
- }
+ box.textContent =
+  text;
 
 }
 
 
-function saveLocalProducts(){
+function hideMessage(){
 
- try{
+ const box =
+  document.getElementById("message");
 
-  localStorage.setItem(
-   LOCAL_KEY,
-   JSON.stringify(products)
+ box.className =
+  "message";
+
+ box.textContent =
+  "";
+
+}
+
+
+
+/* =========================================
+   SUPABASE REQUEST
+========================================= */
+
+async function supabaseRequest(
+ method,
+ body=null,
+ query=""
+){
+
+ const options = {
+
+  method:method,
+
+  headers:{
+   "apikey":SUPABASE_KEY,
+   "Authorization":"Bearer " + SUPABASE_KEY,
+   "Content-Type":"application/json",
+   "Accept":"application/json"
+  }
+
+ };
+
+
+ if(body !== null){
+
+  options.headers["Prefer"] =
+   "return=representation";
+
+  options.body =
+   JSON.stringify(body);
+
+ }
+
+
+ const response =
+  await fetch(
+   API_URL + query,
+   options
   );
 
- }catch(e){}
 
-}
+ const text =
+  await response.text();
 
 
-/* =========================
-   SUPABASE INIT
-========================= */
-
-function initSupabase(){
+ let data=null;
 
  try{
 
-  if(
-   !window.supabase ||
-   !window.supabase.createClient
-  ){
-
-   return false;
-
-  }
-
-  supabaseClient=
-   window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY,
-    {
-     auth:{
-      autoRefreshToken:true,
-      persistSession:true,
-      detectSessionInUrl:true
-     }
-    }
-   );
-
-  return true;
+  data =
+   text ? JSON.parse(text) : null;
 
  }catch(e){
 
-  console.log("Supabase unavailable",e);
-
-  return false;
+  data=null;
 
  }
+
+
+ if(!response.ok){
+
+  let errorText =
+   "خطا در اتصال به سرور";
+
+  if(data){
+
+   errorText =
+    data.message ||
+    data.error_description ||
+    data.hint ||
+    errorText;
+
+  }
+
+  throw new Error(errorText);
+
+ }
+
+
+ return data;
 
 }
 
 
-/* =========================
-   ANONYMOUS AUTH
-========================= */
 
-async function initAuth(){
-
- if(!supabaseClient){
-  return false;
- }
-
- try{
-
-  const sessionResult=
-   await supabaseClient.auth.getSession();
-
-  if(
-   sessionResult &&
-   sessionResult.data &&
-   sessionResult.data.session
-  ){
-
-   currentUser=
-    sessionResult.data.session.user;
-
-   onlineDatabase=true;
-
-   return true;
-
-  }
-
-
-  const result=
-   await supabaseClient.auth.signInAnonymously();
-
-
-  if(
-   result &&
-   result.data &&
-   result.data.user
-  ){
-
-   currentUser=result.data.user;
-
-   onlineDatabase=true;
-
-   return true;
-
-  }
-
-
-  return false;
-
- }catch(e){
-
-  console.log(
-   "Anonymous auth unavailable",
-   e
-  );
-
-  return false;
-
- }
-
-}
-
-
-/* =========================
+/* =========================================
    LOAD PRODUCTS
-========================= */
+========================================= */
 
 async function loadProducts(){
 
- let remoteLoaded=false;
+ const productsBox =
+  document.getElementById("products");
 
- if(
-  supabaseClient &&
-  onlineDatabase
- ){
-
-  try{
-
-   const result=
-    await supabaseClient
-    .from("products")
-    .select(`
-     id,
-     owner_id,
-     name,
-     price,
-     category,
-     seller_id,
-     description,
-     created_at
-    `)
-    .order(
-     "created_at",
-     {ascending:false}
-    );
+ const loading =
+  document.getElementById("loading");
 
 
-   if(
-    !result.error &&
-    Array.isArray(result.data)
-   ){
+ loading.style.display =
+  "block";
 
-    products=
-     result.data.filter(function(item){
 
-      const name=
-       String(item.name || "")
-       .toLowerCase();
+ try{
 
-      return ![
-       "50k coin",
-       "100k coin",
-       "200k coin"
-      ].includes(name);
-
-     });
-
-    remoteLoaded=true;
-
-   }
-
-  }catch(e){
-
-   console.log(
-    "Database load failed",
-    e
+  const data =
+   await supabaseRequest(
+    "GET",
+    null,
+    "?select=id,owner_id,name,price,category,seller_id,description,created_at&order=created_at.desc"
    );
+
+
+  if(Array.isArray(data)){
+
+   products =
+    data.filter(function(item){
+
+     const name =
+      String(item.name || "")
+      .trim()
+      .toLowerCase();
+
+     return ![
+      "50k coin",
+      "100k coin",
+      "200k coin"
+     ].includes(name);
+
+    });
+
+  }else{
+
+   products=[];
 
   }
 
+
+  loading.style.display =
+   "none";
+
+
+  renderProducts();
+
+
+ }catch(error){
+
+  console.log(error);
+
+  loading.style.display =
+   "none";
+
+
+  products=[];
+
+  renderProducts();
+
+
+  showMessage(
+   "اتصال به بازار برقرار نشد.",
+   "error"
+  );
+
  }
-
-
- if(!remoteLoaded){
-
-  products=
-   getLocalProducts();
-
-  document
-   .getElementById("offline")
-   .style.display="block";
-
- }else{
-
-  document
-   .getElementById("offline")
-   .style.display="none";
-
- }
-
- renderProducts();
 
 }
 
 
-/* =========================
-   RENDER
-========================= */
+
+/* =========================================
+   ADD PRODUCT
+========================================= */
+
+async function addProduct(){
+
+ const button =
+  document.getElementById("addButton");
+
+
+ const name =
+  document.getElementById("name")
+  .value
+  .trim();
+
+
+ const price =
+  document.getElementById("price")
+  .value;
+
+
+ const category =
+  document.getElementById("category")
+  .value;
+
+
+ let seller =
+  document.getElementById("seller")
+  .value
+  .trim();
+
+
+ const description =
+  document.getElementById("description")
+  .value
+  .trim();
+
+
+
+ /* VALIDATION */
+
+ if(!name){
+
+  showMessage(
+   "نام محصول را وارد کن.",
+   "error"
+  );
+
+  return;
+
+ }
+
+
+ if(!price || Number(price)<0){
+
+  showMessage(
+   "قیمت محصول را درست وارد کن.",
+   "error"
+  );
+
+  return;
+
+ }
+
+
+ if(!seller){
+
+  showMessage(
+   "آیدی روبیکا فروشنده را وارد کن.",
+   "error"
+  );
+
+  return;
+
+ }
+
+
+ /* حذف @ از اول آیدی */
+
+ seller =
+  seller.replace(/^@+/,"");
+
+
+ if(!seller){
+
+  showMessage(
+   "آیدی روبیکا معتبر نیست.",
+   "error"
+  );
+
+  return;
+
+ }
+
+
+ button.disabled=true;
+
+ button.textContent =
+  "در حال ثبت...";
+
+
+ hideMessage();
+
+
+
+ try{
+
+  const newProduct = {
+
+   name:name,
+
+   price:Number(price),
+
+   category:category,
+
+   seller_id:seller,
+
+   description:description
+
+  };
+
+
+  const result =
+   await supabaseRequest(
+    "POST",
+    newProduct
+   );
+
+
+  if(
+   Array.isArray(result) &&
+   result.length>0
+  ){
+
+   products.unshift(
+    result[0]
+   );
+
+  }else{
+
+   await loadProducts();
+
+  }
+
+
+  /* CLEAR FORM */
+
+  document
+   .getElementById("name")
+   .value="";
+
+
+  document
+   .getElementById("price")
+   .value="";
+
+
+  document
+   .getElementById("seller")
+   .value="";
+
+
+  document
+   .getElementById("description")
+   .value="";
+
+
+  document
+   .getElementById("category")
+   .value="سکه";
+
+
+  renderProducts();
+
+
+  showMessage(
+   "✅ محصول با موفقیت ثبت شد.",
+   "success"
+  );
+
+
+ }catch(error){
+
+  console.log(
+   "ADD PRODUCT ERROR:",
+   error
+  );
+
+
+  showMessage(
+   "❌ ثبت محصول انجام نشد. Policy مربوط به INSERT را در Supabase بررسی کن.",
+   "error"
+  );
+
+ }
+
+
+ button.disabled=false;
+
+ button.textContent =
+  "ثبت محصول";
+
+}
+
+
+
+/* =========================================
+   RENDER PRODUCTS
+========================================= */
 
 function renderProducts(){
 
- const container=
+ const container =
   document.getElementById("products");
 
- const empty=
+
+ const empty =
   document.getElementById("empty");
 
- const search=
+
+ const search =
   document.getElementById("search")
   .value
   .trim()
   .toLowerCase();
 
- const filter=
+
+ const filter =
   document.getElementById("filter")
   .value;
 
 
- const list=
+ const list =
   products.filter(function(product){
 
-   const text=(
-    String(product.name || "")+
-    " "+
-    String(product.description || "")+
-    " "+
-    String(product.seller_id || "")
-   ).toLowerCase();
+   const text =
+    (
+     String(product.name || "") +
+     " " +
+     String(product.description || "") +
+     " " +
+     String(product.seller_id || "")
+    )
+    .toLowerCase();
 
 
-   const searchOK=
+   const searchOK =
     !search ||
     text.includes(search);
 
 
-   const categoryOK=
-    filter==="همه" ||
-    product.category===filter;
+   const categoryOK =
+    filter === "همه" ||
+    product.category === filter;
 
 
-   return searchOK && categoryOK;
+   return searchOK &&
+          categoryOK;
 
   });
 
@@ -747,14 +998,16 @@ function renderProducts(){
 
  if(!list.length){
 
-  empty.style.display="block";
+  empty.style.display =
+   "block";
 
   return;
 
  }
 
 
- empty.style.display="none";
+ empty.style.display =
+  "none";
 
 
  list.forEach(function(product){
@@ -768,51 +1021,61 @@ function renderProducts(){
 }
 
 
-/* =========================
-   CARD
-========================= */
+
+/* =========================================
+   CREATE CARD
+========================================= */
 
 function createCard(product){
 
- const card=
+ const card =
   document.createElement("div");
 
- card.className="card";
+
+ card.className =
+  "card";
 
 
- const name=
+ const name =
   escapeHtml(
-   product.name || "بدون نام"
+   product.name ||
+   "بدون نام"
   );
 
 
- const category=
+ const category =
   escapeHtml(
-   product.category || "سایر"
+   product.category ||
+   "سایر"
   );
 
 
- const description=
+ const description =
   escapeHtml(
    product.description ||
    "بدون توضیحات"
   );
 
 
- const seller=
+ const seller =
   escapeHtml(
-   product.seller_id || ""
+   product.seller_id ||
+   ""
   );
 
 
- const price=
-  Number(product.price || 0)
+ const price =
+  Number(
+   product.price || 0
+  )
   .toLocaleString("fa-IR");
 
 
- card.innerHTML=`
+ card.innerHTML = `
 
-  <h3>${name}</h3>
+  <h3>
+   ${name}
+  </h3>
 
   <div class="meta">
    دسته: ${category}
@@ -828,54 +1091,41 @@ function createCard(product){
 
   <div class="meta">
    فروشنده:
-   ${seller ? "@"+seller : "نامشخص"}
+   ${seller ? "@" + seller : "نامشخص"}
   </div>
 
   <button class="buy">
    🛒 خرید محصول
   </button>
 
-  ${
-   onlineDatabase &&
-   currentUser &&
-   product.owner_id===currentUser.id
-   ?
-   `<button class="delete">
-      🗑 حذف محصول
-    </button>`
-   :
-   ""
-  }
-
  `;
 
 
- card
-  .querySelector(".buy")
-  .onclick=function(){
+ const buyButton =
+  card.querySelector(".buy");
 
-   buyProduct(
-    product.seller_id
+
+ buyButton.onclick =
+  function(){
+
+   if(!seller){
+
+    return;
+
+   }
+
+
+   const username =
+    seller.replace(/^@+/,"");
+
+
+   window.open(
+    "https://rubika.ir/" +
+    encodeURIComponent(username),
+    "_blank"
    );
 
   };
-
-
- const deleteButton=
-  card.querySelector(".delete");
-
-
- if(deleteButton){
-
-  deleteButton.onclick=function(){
-
-   deleteProduct(
-    product.id
-   );
-
-  };
-
- }
 
 
  return card;
@@ -883,356 +1133,10 @@ function createCard(product){
 }
 
 
-/* =========================
-   BUY
-========================= */
 
-function buyProduct(seller){
-
- if(!seller){
-
-  return;
-
- }
-
- let id=
-  String(seller).trim();
-
-
- if(id.startsWith("@")){
-
-  id=id.substring(1);
-
- }
-
-
- if(!id){
-
-  return;
-
- }
-
-
- window.open(
-  "https://rubika.ir/"+
-  encodeURIComponent(id),
-  "_blank"
- );
-
-}
-
-
-/* =========================
-   ADD PRODUCT
-========================= */
-
-async function addProduct(){
-
- const name=
-  document.getElementById("name")
-  .value
-  .trim();
-
-
- const price=
-  Number(
-   document.getElementById("price")
-   .value
-  );
-
-
- const category=
-  document.getElementById("category")
-  .value;
-
-
- const seller=
-  document.getElementById("seller")
-  .value
-  .trim();
-
-
- const description=
-  document.getElementById("description")
-  .value
-  .trim();
-
-
- if(!name){
-
-  return;
-
- }
-
-
- if(!price || price<1){
-
-  return;
-
- }
-
-
- if(!seller){
-
-  return;
-
- }
-
-
- const localProduct={
-
-  id:
-   "local_"+Date.now(),
-
-  owner_id:
-   currentUser
-   ? currentUser.id
-   : null,
-
-  name:name,
-
-  price:price,
-
-  category:category,
-
-  seller_id:seller,
-
-  description:description,
-
-  created_at:
-   new Date().toISOString()
-
- };
-
-
- /* ONLINE */
-
- if(
-  supabaseClient &&
-  onlineDatabase &&
-  currentUser
- ){
-
-  try{
-
-   const result=
-    await supabaseClient
-    .from("products")
-    .insert({
-
-     owner_id:
-      currentUser.id,
-
-     name:name,
-
-     price:price,
-
-     category:category,
-
-     seller_id:seller,
-
-     description:description
-
-    })
-    .select()
-    .single();
-
-
-   if(
-    !result.error &&
-    result.data
-   ){
-
-    products.unshift(
-     result.data
-    );
-
-    clearForm();
-
-    renderProducts();
-
-    return;
-
-   }
-
-  }catch(e){
-
-   console.log(
-    "Online insert failed",
-    e
-   );
-
-  }
-
- }
-
-
- /* OFFLINE FALLBACK */
-
- products.unshift(
-  localProduct
- );
-
- saveLocalProducts();
-
- clearForm();
-
- renderProducts();
-
-}
-
-
-/* =========================
-   CLEAR FORM
-========================= */
-
-function clearForm(){
-
- document.getElementById("name")
-  .value="";
-
- document.getElementById("price")
-  .value="";
-
- document.getElementById("seller")
-  .value="";
-
- document.getElementById("description")
-  .value="";
-
-}
-
-
-/* =========================
-   DELETE
-========================= */
-
-async function deleteProduct(id){
-
- if(!id){
-
-  return;
-
- }
-
-
- /* ONLINE */
-
- if(
-  supabaseClient &&
-  onlineDatabase &&
-  currentUser &&
-  !String(id).startsWith("local_")
- ){
-
-  try{
-
-   const result=
-    await supabaseClient
-    .from("products")
-    .delete()
-    .eq("id",id)
-    .eq(
-     "owner_id",
-     currentUser.id
-    );
-
-
-   if(!result.error){
-
-    products=
-     products.filter(function(item){
-
-      return item.id!==id;
-
-     });
-
-    renderProducts();
-
-    return;
-
-   }
-
-  }catch(e){
-
-   console.log(
-    "Online delete failed",
-    e
-   );
-
-  }
-
- }
-
-
- /* LOCAL */
-
- products=
-  products.filter(function(item){
-
-   return item.id!==id;
-
-  });
-
-
- saveLocalProducts();
-
- renderProducts();
-
-}
-
-
-/* =========================
-   PING
-========================= */
-
-async function realPing(){
-
- const start=
-  performance.now();
-
-
- try{
-
-  await fetch(
-   window.location.origin+
-   "/?ping="+
-   Date.now()+
-   Math.random(),
-   {
-    method:"HEAD",
-    cache:"no-store"
-   }
-  );
-
-
-  const ms=
-   Math.round(
-    performance.now()-start
-   );
-
-
-  document
-   .getElementById("pingValue")
-   .textContent=
-   ms+" ms";
-
-
- }catch(e){
-
-  document
-   .getElementById("pingValue")
-   .textContent=
-   "—";
-
- }
-
-}
-
-
-/* =========================
+/* =========================================
    ESCAPE HTML
-========================= */
+========================================= */
 
 function escapeHtml(value){
 
@@ -1246,35 +1150,81 @@ function escapeHtml(value){
 }
 
 
-/* =========================
-   START
-========================= */
 
-(async function(){
+/* =========================================
+   REAL HTTP PING
+========================================= */
 
- realPing();
+async function updatePing(){
 
- setInterval(
-  realPing,
-  10000
- );
+ const ping =
+  document.getElementById("pingValue");
 
 
- const supabaseOK=
-  initSupabase();
+ const start =
+  performance.now();
 
 
- if(supabaseOK){
+ try{
 
-  await initAuth();
+  await fetch(
+   SUPABASE_URL +
+   "/rest/v1/products?select=id&limit=1",
+   {
+    method:"GET",
+    headers:{
+     "apikey":SUPABASE_KEY
+    },
+    cache:"no-store"
+   }
+  );
+
+
+  const end =
+   performance.now();
+
+
+  const ms =
+   Math.max(
+    1,
+    Math.round(end-start)
+   );
+
+
+  ping.textContent =
+   ms + " ms";
+
+
+ }catch(e){
+
+  ping.textContent =
+   "OFF";
 
  }
 
+}
 
- await loadProducts();
 
 
-})();
+/* =========================================
+   START
+========================================= */
+
+document.addEventListener(
+ "DOMContentLoaded",
+ function(){
+
+  loadProducts();
+
+  updatePing();
+
+  setInterval(
+   updatePing,
+   10000
+  );
+
+ }
+);
 
 </script>
 
