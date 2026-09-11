@@ -25,10 +25,7 @@ body{
   min-height:100vh;
 }
 
-button,
-input,
-textarea,
-select{
+button,input,textarea,select{
   font-family:inherit;
 }
 
@@ -45,10 +42,12 @@ button{
   margin:auto;
 }
 
+/* ================= HEADER ================= */
+
 header{
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:50;
   background:rgba(7,9,13,.96);
   backdrop-filter:blur(15px);
   border-bottom:1px solid #1c222c;
@@ -60,6 +59,7 @@ header{
   align-items:center;
   justify-content:space-between;
   gap:15px;
+  padding:10px 0;
 }
 
 .logo{
@@ -71,10 +71,17 @@ header{
   color:#00ff88;
 }
 
+.username-small{
+  color:#7f8998;
+  font-size:11px;
+  margin-top:4px;
+}
+
 .user-area{
   display:flex;
   align-items:center;
-  gap:9px;
+  justify-content:flex-end;
+  gap:8px;
   flex-wrap:wrap;
 }
 
@@ -84,9 +91,9 @@ header{
   gap:7px;
   background:#0d1713;
   border:1px solid #174a34;
-  padding:8px 12px;
-  border-radius:12px;
-  font-size:12px;
+  padding:8px 11px;
+  border-radius:11px;
+  font-size:11px;
 }
 
 .dot{
@@ -97,12 +104,29 @@ header{
   box-shadow:0 0 10px #00ff88;
 }
 
-.logout{
-  border:1px solid #2a323e;
-  background:#151a22;
+.online small{
+  color:#6e7d72;
+}
+
+.ping-box{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  background:#10151c;
+  border:1px solid #222b36;
+  padding:8px 11px;
+  border-radius:11px;
+  font-size:11px;
+}
+
+.logout,
+.shop-button{
+  border:1px solid #26313b;
+  background:#111820;
   color:#fff;
-  padding:9px 13px;
+  padding:9px 12px;
   border-radius:10px;
+  font-weight:900;
 }
 
 .logout:hover{
@@ -110,57 +134,13 @@ header{
 }
 
 .shop-button{
-  border:1px solid #174a34;
-  background:#0d1713;
-  color:#00ff88;
-  padding:9px 13px;
-  border-radius:10px;
-  font-weight:900;
   text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.shop-button:hover{
-  background:#10251b;
-  border-color:#00ff88;
-}
-
-.container{
-  padding:30px 0 50px;
-}
-
-.hero{
-  text-align:center;
-  padding:35px 20px;
-  margin-bottom:25px;
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(0,255,136,.13),
-      transparent 35%
-    ),
-    linear-gradient(145deg,#0c1017,#080a0f);
-  border:1px solid #1d2530;
-  border-radius:24px;
-}
-
-.hero h1{
-  font-size:clamp(30px,6vw,52px);
-  margin-bottom:10px;
-}
-
-.hero h1 span{
   color:#00ff88;
+  border-color:#174a34;
+  background:#0d1713;
 }
 
-.hero p{
-  color:#929aa8;
-  line-height:2;
-}
-
-/* AUTH */
+/* ================= AUTH ================= */
 
 .auth-page{
   min-height:100vh;
@@ -169,11 +149,7 @@ header{
   justify-content:center;
   padding:25px;
   background:
-    radial-gradient(
-      circle at top,
-      #10251d,
-      #07090d 55%
-    );
+    radial-gradient(circle at top,#10251d,#07090d 55%);
 }
 
 .auth-box{
@@ -267,7 +243,6 @@ header{
   font-weight:900;
   padding:14px;
   border-radius:11px;
-  margin-top:5px;
 }
 
 .primary:hover{
@@ -276,7 +251,6 @@ header{
 
 .primary:disabled{
   opacity:.6;
-  cursor:not-allowed;
 }
 
 .message{
@@ -291,7 +265,38 @@ header{
   color:#00ff88!important;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
+.container{
+  padding:28px 0 50px;
+}
+
+.hero{
+  text-align:center;
+  padding:35px 20px;
+  margin-bottom:20px;
+  background:
+    radial-gradient(circle at top right,rgba(0,255,136,.13),transparent 35%),
+    linear-gradient(145deg,#0c1017,#080a0f);
+  border:1px solid #1d2530;
+  border-radius:24px;
+}
+
+.hero h1{
+  font-size:clamp(30px,6vw,52px);
+  margin-bottom:10px;
+}
+
+.hero h1 span{
+  color:#00ff88;
+}
+
+.hero p{
+  color:#929aa8;
+  line-height:2;
+}
+
+/* ================= GRID ================= */
 
 .grid{
   display:grid;
@@ -317,6 +322,33 @@ header{
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:16px;
 }
+
+/* ================= FORM ================= */
+
+.price-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.hint{
+  color:#697584;
+  font-size:11px;
+  line-height:1.8;
+  margin-top:4px;
+}
+
+.file-preview{
+  width:100%;
+  max-height:180px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-top:8px;
+  display:none;
+  border:1px solid #26313c;
+}
+
+/* ================= PRODUCTS ================= */
 
 .product{
   background:#0c1118;
@@ -389,13 +421,14 @@ header{
 .seller{
   color:#858f9e;
   font-size:12px;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .contact-title{
   color:#cbd3dd;
   margin-bottom:8px;
   font-weight:900;
+  font-size:12px;
 }
 
 .contact-buttons{
@@ -413,11 +446,6 @@ header{
   border-radius:10px;
   font-size:12px;
   font-weight:900;
-  transition:.2s;
-}
-
-.contact-btn:hover{
-  transform:translateY(-2px);
 }
 
 .contact-btn.rubika{
@@ -430,13 +458,6 @@ header{
   border-color:#087c62;
   background:#0d211b;
   color:#50ffc5;
-}
-
-.contact-id{
-  display:block;
-  margin-top:4px;
-  font-size:11px;
-  color:#8e99a8;
 }
 
 .actions{
@@ -480,61 +501,150 @@ header{
   grid-column:1/-1;
 }
 
-.hint{
-  color:#697584;
+/* ================= CHAT ================= */
+
+.chat-panel{
+  margin-top:18px;
+}
+
+.chat-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.chat-title{
+  font-size:20px;
+  font-weight:1000;
+}
+
+.chat-status{
+  color:#00ff88;
   font-size:11px;
-  line-height:1.8;
-  margin-top:4px;
 }
 
-.file-preview{
-  width:100%;
-  max-height:180px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-top:8px;
-  display:none;
-  border:1px solid #26313c;
+.chat-messages{
+  height:390px;
+  overflow-y:auto;
+  background:#080c12;
+  border:1px solid #202936;
+  border-radius:15px;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
 }
 
-/* TOAST */
-
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  transform:translate(-50%,120px);
-  background:#101820;
-  border:1px solid #284033;
-  color:#fff;
-  padding:12px 18px;
-  border-radius:12px;
-  opacity:0;
-  transition:.25s;
-  z-index:9999;
+.chat-empty{
+  margin:auto;
+  color:#687384;
   text-align:center;
-  max-width:90%;
+  font-size:13px;
 }
 
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
+.chat-message{
+  max-width:85%;
+  padding:10px 12px;
+  background:#111820;
+  border:1px solid #222d39;
+  border-radius:13px;
+  align-self:flex-start;
 }
 
-/* SUPPORT */
+.chat-message.mine{
+  align-self:flex-end;
+  background:#0d2119;
+  border-color:#175538;
+}
+
+.chat-meta{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:5px;
+}
+
+.chat-user{
+  color:#00ff88;
+  font-size:12px;
+  font-weight:900;
+}
+
+.chat-time{
+  color:#687384;
+  font-size:9px;
+}
+
+.chat-text{
+  color:#e6eaf0;
+  font-size:13px;
+  line-height:1.8;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.chat-bottom{
+  margin-top:10px;
+}
+
+.chat-emojis{
+  display:flex;
+  gap:7px;
+  margin-bottom:8px;
+}
+
+.emoji-btn{
+  flex:1;
+  border:1px solid #29323d;
+  background:#10161e;
+  color:#fff;
+  padding:9px 5px;
+  border-radius:10px;
+  font-size:17px;
+}
+
+.emoji-btn:hover{
+  border-color:#00ff88;
+}
+
+.chat-form{
+  display:flex;
+  gap:8px;
+}
+
+.chat-input{
+  flex:1;
+  background:#080c12;
+  color:#fff;
+  border:1px solid #27303b;
+  border-radius:11px;
+  padding:13px;
+  outline:none;
+}
+
+.chat-input:focus{
+  border-color:#00ff88;
+}
+
+.chat-send{
+  width:100px;
+  border:0;
+  background:#00ff88;
+  color:#03110a;
+  font-weight:900;
+  border-radius:11px;
+}
+
+/* ================= SUPPORT ================= */
 
 .support{
   margin-top:25px;
   padding:24px;
   border-radius:20px;
   border:1px solid #1e3a2d;
-  background:
-    radial-gradient(
-      circle at left,
-      #00ff8820,
-      transparent 35%
-    ),
-    #0c1218;
+  background:#0c1218;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -558,7 +668,6 @@ header{
   padding:12px 20px;
   border-radius:11px;
   font-weight:900;
-  white-space:nowrap;
 }
 
 footer{
@@ -566,6 +675,32 @@ footer{
   color:#596474;
   padding:25px;
 }
+
+/* ================= TOAST ================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,120px);
+  background:#101820;
+  border:1px solid #284033;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:12px;
+  opacity:0;
+  transition:.25s;
+  z-index:9999;
+  text-align:center;
+  max-width:90%;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+/* ================= MOBILE ================= */
 
 @media(max-width:850px){
 
@@ -576,6 +711,7 @@ footer{
   .products{
     grid-template-columns:1fr;
   }
+
 }
 
 @media(max-width:600px){
@@ -583,7 +719,6 @@ footer{
   .nav{
     flex-direction:column;
     align-items:flex-start;
-    padding:13px 0;
   }
 
   .user-area{
@@ -591,16 +726,11 @@ footer{
     justify-content:flex-start;
   }
 
+  .online,
+  .ping-box,
+  .logout,
   .shop-button{
-    order:1;
-  }
-
-  .online{
-    order:2;
-  }
-
-  .logout{
-    order:3;
+    font-size:10px;
   }
 
   .filters{
@@ -623,13 +753,27 @@ footer{
   .contact-btn{
     width:100%;
   }
+
+  .chat-form{
+    flex-direction:column;
+  }
+
+  .chat-send{
+    width:100%;
+    padding:13px;
+  }
+
+  .chat-message{
+    max-width:92%;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUTH -->
+<!-- ================= AUTH ================= -->
 
 <section id="authPage" class="auth-page">
 
@@ -645,16 +789,11 @@ footer{
 
     <div class="tabs">
 
-      <button
-        id="loginTab"
-        class="active"
-        type="button">
+      <button id="loginTab" class="active" type="button">
         ورود
       </button>
 
-      <button
-        id="signupTab"
-        type="button">
+      <button id="signupTab" type="button">
         ثبت نام
       </button>
 
@@ -663,10 +802,7 @@ footer{
     <form id="authForm">
 
       <div class="field">
-
-        <label>
-          نام کاربری
-        </label>
+        <label>نام کاربری</label>
 
         <input
           id="username"
@@ -676,14 +812,10 @@ footer{
           maxlength="10"
           placeholder="مثلاً Saeed"
           required>
-
       </div>
 
       <div class="field">
-
-        <label>
-          رمز عبور
-        </label>
+        <label>رمز عبور</label>
 
         <input
           id="password"
@@ -692,16 +824,11 @@ footer{
           minlength="6"
           maxlength="72"
           required>
-
       </div>
 
-      <div
-        id="passwordAgainBox"
-        class="field hidden">
+      <div id="passwordAgainBox" class="field hidden">
 
-        <label>
-          تکرار رمز عبور
-        </label>
+        <label>تکرار رمز عبور</label>
 
         <input
           id="passwordAgain"
@@ -712,19 +839,11 @@ footer{
 
       </div>
 
-      <button
-        id="authButton"
-        class="primary"
-        type="submit">
-
+      <button id="authButton" class="primary" type="submit">
         ورود به حساب
-
       </button>
 
-      <div
-        id="authMessage"
-        class="message">
-      </div>
+      <div id="authMessage" class="message"></div>
 
     </form>
 
@@ -733,7 +852,7 @@ footer{
 </section>
 
 
-<!-- SITE -->
+<!-- ================= SITE ================= -->
 
 <div id="site" class="hidden">
 
@@ -742,47 +861,24 @@ footer{
   <div class="wrap nav">
 
     <div>
-
       <div class="logo">
         RP <span>CITY</span> MARKET
       </div>
 
-      <div
-        style="
-          color:#7f8998;
-          font-size:11px;
-          margin-top:4px
-        ">
-
-        کاربر:
-        <strong id="currentUsername">
-          —
-        </strong>
-
-        ·
-
-        <span id="ping">
-          Ping: —ms
-        </span>
-
+      <div id="currentUsername" class="username-small">
+        کاربر
       </div>
-
     </div>
-
 
     <div class="user-area">
 
       <a
-        href="#productsSection"
-        id="shopButton"
+        href="#chat"
         class="shop-button">
-
-        🛒 فروشگاه
-
+        💬 گپ آنلاین
       </a>
 
       <div class="online">
-
         <span class="dot"></span>
 
         <span>
@@ -790,17 +886,24 @@ footer{
         </span>
 
         <strong id="onlineCount">
-          0
+          7
         </strong>
 
+        <small>
+          +۷ نمایشی
+        </small>
+      </div>
+
+      <div class="ping-box">
+        <span>Ping:</span>
+        <strong id="ping">—ms</strong>
       </div>
 
       <button
         id="logoutButton"
-        class="logout">
-
+        class="logout"
+        type="button">
         خروج
-
       </button>
 
     </div>
@@ -810,446 +913,445 @@ footer{
 </header>
 
 
-<main class="wrap container">
+<main class="container">
 
-<section class="hero">
+<div class="wrap">
 
-  <h1>
-    RP <span>CITY</span> MARKET
-  </h1>
+  <section class="hero">
 
-  <p>
-    بازار خرید و فروش آیتم، اکانت، سکه و سایر محصولات RP City
-  </p>
-
-</section>
-
-
-<section class="grid">
-
-<!-- ADD PRODUCT -->
-
-<div class="panel">
-
-  <div class="panel-title">
-    ➕ ثبت محصول جدید
-  </div>
-
-  <form id="productForm">
-
-    <div class="field">
-
-      <label>
-        نام محصول
-      </label>
-
-      <input
-        id="productName"
-        maxlength="100"
-        placeholder="مثلاً اکانت لول 50"
-        required>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        دسته‌بندی
-      </label>
-
-      <select id="productCategory">
-
-        <option value="آیتم">
-          آیتم
-        </option>
-
-        <option value="اکانت">
-          اکانت
-        </option>
-
-        <option value="سکه">
-          سکه
-        </option>
-
-        <option value="سایر">
-          سایر
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        نوع قیمت
-      </label>
-
-      <select id="priceType">
-
-        <option value="coin">
-          🪙 سکه
-        </option>
-
-        <option value="toman">
-          💵 تومان
-        </option>
-
-      </select>
-
-      <div
-        id="priceHint"
-        class="hint">
-
-        حداقل قیمت سکه: ۵۰۰
-
-      </div>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        قیمت
-      </label>
-
-      <input
-        id="productPrice"
-        type="number"
-        min="500"
-        inputmode="numeric"
-        placeholder="مثلاً 500"
-        required>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        🟣 آیدی روبیکا
-      </label>
-
-      <input
-        id="rubikaId"
-        maxlength="100"
-        placeholder="@username">
-
-      <div class="hint">
-        اختیاری — فقط اگر فروشنده روبیکا دارد
-      </div>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        🔵 آیدی بله
-      </label>
-
-      <input
-        id="baleId"
-        maxlength="100"
-        placeholder="@username">
-
-      <div class="hint">
-        اختیاری — فقط اگر فروشنده بله دارد
-      </div>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        توضیحات
-      </label>
-
-      <textarea
-        id="productDescription"
-        maxlength="500"
-        placeholder="توضیحات محصول..."></textarea>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        🖼️ عکس محصول
-      </label>
-
-      <input
-        id="productImage"
-        type="file"
-        accept="image/*">
-
-      <img
-        id="imagePreview"
-        class="file-preview"
-        alt="پیش‌نمایش">
-
-      <div class="hint">
-        حداکثر حجم عکس: ۲ مگابایت
-      </div>
-
-    </div>
-
-
-    <button
-      id="submitProduct"
-      class="primary"
-      type="submit">
-
-      🚀 ثبت محصول
-
-    </button>
-
-    <div
-      id="productMessage"
-      class="message">
-    </div>
-
-  </form>
-
-</div>
-
-
-<!-- PRODUCTS -->
-
-<div
-  id="productsSection"
-  class="panel">
-
-  <div class="panel-title">
-    🛍 محصولات فروشگاه
-  </div>
-
-  <div class="filters">
-
-    <input
-      id="searchInput"
-      placeholder="🔎 جستجوی محصول یا فروشنده...">
-
-    <select id="categoryFilter">
-
-      <option value="all">
-        همه دسته‌ها
-      </option>
-
-      <option value="آیتم">
-        آیتم
-      </option>
-
-      <option value="اکانت">
-        اکانت
-      </option>
-
-      <option value="سکه">
-        سکه
-      </option>
-
-      <option value="سایر">
-        سایر
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <div
-    id="products"
-    class="products">
-  </div>
-
-  <div
-    id="emptyProducts"
-    class="empty hidden">
-
-    هنوز محصولی ثبت نشده.
-
-  </div>
-
-</div>
-
-</section>
-
-
-<section class="support">
-
-  <div>
-
-    <h2>
-      🛟 پشتیبانی RP City
-    </h2>
+    <h1>
+      RP <span>CITY</span> MARKET
+    </h1>
 
     <p>
-      برای مشکل در ثبت یا حذف محصول با پشتیبانی ارتباط بگیر.
+      بازار خرید و فروش آیتم، اکانت و سکه RP City
     </p>
+
+  </section>
+
+
+  <!-- ================= PRODUCTS ================= -->
+
+  <div class="grid">
+
+    <section class="panel">
+
+      <div class="panel-title">
+        🛒 ثبت آگهی
+      </div>
+
+      <form id="productForm">
+
+        <div class="field">
+
+          <label>
+            نام محصول
+          </label>
+
+          <input
+            id="productName"
+            type="text"
+            maxlength="100"
+            placeholder="مثلاً اسکین کمیاب"
+            required>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            دسته‌بندی
+          </label>
+
+          <select id="category">
+
+            <option value="آیتم">
+              آیتم
+            </option>
+
+            <option value="اکانت">
+              اکانت
+            </option>
+
+            <option value="سکه">
+              سکه
+            </option>
+
+            <option value="سایر">
+              سایر
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            نوع قیمت
+          </label>
+
+          <select id="priceType">
+
+            <option value="coin">
+              🪙 سکه
+            </option>
+
+            <option value="toman">
+              💵 تومان
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            قیمت
+          </label>
+
+          <input
+            id="price"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="حداقل سکه ۵۰۰ / حداکثر تومان ۵۰۰"
+            required>
+
+          <div class="hint">
+            🪙 حداقل قیمت سکه: ۵۰۰
+            <br>
+            💵 حداکثر قیمت تومان: ۵۰۰
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            آیدی روبیکا
+          </label>
+
+          <input
+            id="rubikaId"
+            type="text"
+            maxlength="100"
+            placeholder="@username">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            آیدی بله
+          </label>
+
+          <input
+            id="baleId"
+            type="text"
+            maxlength="100"
+            placeholder="@username">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            توضیحات
+          </label>
+
+          <textarea
+            id="description"
+            maxlength="2000"
+            placeholder="توضیحات محصول..."></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            تصویر محصول
+          </label>
+
+          <input
+            id="imageFile"
+            type="file"
+            accept="image/*">
+
+          <div class="hint">
+            حداکثر حجم تصویر: ۲ مگابایت
+          </div>
+
+          <img
+            id="filePreview"
+            class="file-preview"
+            alt="preview">
+
+        </div>
+
+
+        <button
+          id="productButton"
+          class="primary"
+          type="submit">
+
+          ثبت آگهی
+
+        </button>
+
+        <div
+          id="productMessage"
+          class="message">
+        </div>
+
+      </form>
+
+    </section>
+
+
+    <section class="panel">
+
+      <div class="panel-title">
+        🔎 آگهی‌ها
+      </div>
+
+      <div class="filters">
+
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="جستجو...">
+
+        <select id="filterCategory">
+
+          <option value="">
+            همه دسته‌ها
+          </option>
+
+          <option value="آیتم">
+            آیتم
+          </option>
+
+          <option value="اکانت">
+            اکانت
+          </option>
+
+          <option value="سکه">
+            سکه
+          </option>
+
+          <option value="سایر">
+            سایر
+          </option>
+
+        </select>
+
+      </div>
+
+      <div
+        id="products"
+        class="products">
+
+      </div>
+
+    </section>
 
   </div>
 
-  <a
-    href="https://ble.ir/rpcity_lor"
-    target="_blank"
-    rel="noopener">
 
-    📢 پشتیبانی
+  <!-- ================= CHAT ================= -->
 
-  </a>
+  <section id="chat" class="panel chat-panel">
 
-</section>
+    <div class="chat-head">
+
+      <div class="chat-title">
+        💬 گپ آنلاین RP CITY
+      </div>
+
+      <div class="chat-status">
+        🟢 آنلاین
+      </div>
+
+    </div>
+
+
+    <div
+      id="chatMessages"
+      class="chat-messages">
+
+      <div class="chat-empty">
+        هنوز پیامی ارسال نشده 👋
+      </div>
+
+    </div>
+
+
+    <div class="chat-bottom">
+
+      <div class="chat-emojis">
+
+        <button
+          class="emoji-btn"
+          type="button"
+          data-emoji="❤️">
+          ❤️
+        </button>
+
+        <button
+          class="emoji-btn"
+          type="button"
+          data-emoji="😂">
+          😂
+        </button>
+
+        <button
+          class="emoji-btn"
+          type="button"
+          data-emoji="🔥">
+          🔥
+        </button>
+
+        <button
+          class="emoji-btn"
+          type="button"
+          data-emoji="👍">
+          👍
+        </button>
+
+      </div>
+
+
+      <form id="chatForm" class="chat-form">
+
+        <input
+          id="chatInput"
+          class="chat-input"
+          maxlength="500"
+          placeholder="پیامت رو بنویس..."
+          autocomplete="off"
+          required>
+
+        <button
+          class="chat-send"
+          type="submit">
+
+          ارسال
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= SUPPORT ================= -->
+
+  <section class="support">
+
+    <div>
+
+      <h2>
+        🛟 پشتیبانی RP CITY
+      </h2>
+
+      <p>
+        اگر مشکلی داشتی از طریق پشتیبانی با ما در ارتباط باش.
+      </p>
+
+    </div>
+
+    <a
+      href="https://ble.ir/rpcity_lor"
+      target="_blank"
+      rel="noopener">
+
+      پشتیبانی
+
+    </a>
+
+  </section>
+
+
+</div>
 
 </main>
 
 
 <footer>
-
   RP CITY MARKET © 2026
-
 </footer>
 
 </div>
 
 
-<div
-  id="toast"
-  class="toast">
-</div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-/* =========================================
-   SUPABASE
-========================================= */
-
 const SUPABASE_URL =
-"https://cjntwmohtwbfqtxlgxrt.supabase.co";
+  "https://cjntwmohtwbfqtxlgxrt.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
-
-const AUTH_FUNCTION =
-SUPABASE_URL + "/functions/v1/username-auth";
+  "sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
 
 const supabaseClient =
-supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-/* =========================================
-   STATE
-========================================= */
+/* ================= STATE ================= */
 
 let currentUser = null;
-let currentUsernameValue = "";
-let products = [];
+let currentUsername = "";
 let authMode = "login";
 
+let productsCache = [];
 
-/* =========================================
-   ELEMENTS
-========================================= */
+let chatChannel = null;
 
-const authPage =
-document.getElementById("authPage");
-
-const site =
-document.getElementById("site");
-
-const loginTab =
-document.getElementById("loginTab");
-
-const signupTab =
-document.getElementById("signupTab");
-
-const authForm =
-document.getElementById("authForm");
-
-const usernameInput =
-document.getElementById("username");
-
-const passwordInput =
-document.getElementById("password");
-
-const passwordAgain =
-document.getElementById("passwordAgain");
-
-const passwordAgainBox =
-document.getElementById("passwordAgainBox");
-
-const authButton =
-document.getElementById("authButton");
-
-const authMessage =
-document.getElementById("authMessage");
-
-const productForm =
-document.getElementById("productForm");
-
-const productMessage =
-document.getElementById("productMessage");
-
-const submitProduct =
-document.getElementById("submitProduct");
-
-const priceType =
-document.getElementById("priceType");
-
-const productPrice =
-document.getElementById("productPrice");
-
-const priceHint =
-document.getElementById("priceHint");
-
-const productImage =
-document.getElementById("productImage");
-
-const imagePreview =
-document.getElementById("imagePreview");
+const FAKE_ONLINE = 7;
 
 
-/* =========================================
-   HELPERS
-========================================= */
+/* ================= HELPERS ================= */
 
-function toast(message){
-
-  const box =
-  document.getElementById("toast");
-
-  box.textContent = message;
-
-  box.classList.add("show");
-
-  setTimeout(()=>{
-    box.classList.remove("show");
-  },2500);
+function $(id){
+  return document.getElementById(id);
 }
 
 
 function escapeHTML(value){
 
   return String(value ?? "")
-  .replace(/[&<>"']/g,function(char){
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
-    return {
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[char];
+}
 
-  });
+
+function escapeJS(value){
+
+  return String(value ?? "")
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'")
+    .replaceAll("\n","\\n")
+    .replaceAll("\r","\\r");
 
 }
 
@@ -1257,17 +1359,15 @@ function escapeHTML(value){
 function cleanId(value){
 
   return String(value || "")
-  .trim()
-  .replace(/^@+/,"")
-  .replace(/\s/g,"");
+    .trim()
+    .replace(/^@+/,"");
 
 }
 
 
 function displayId(value){
 
-  const id =
-  cleanId(value);
+  const id = cleanId(value);
 
   return id
     ? "@" + id
@@ -1276,250 +1376,200 @@ function displayId(value){
 }
 
 
-/* =========================================
-   COPY ID
-========================================= */
+function showToast(text){
 
-async function copySellerId(value,label){
+  const toast = $("toast");
 
-  const id =
-  cleanId(value);
+  toast.textContent = text;
+
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+    setTimeout(
+      () => toast.classList.remove("show"),
+      2200
+    );
+
+}
+
+
+async function copySellerId(value, platform){
+
+  const id = displayId(value);
 
   if(!id){
-
-    toast("❌ آیدی وجود ندارد.");
-
     return;
   }
 
-  const finalId =
-  "@" + id;
-
   try{
 
-    if(
-      navigator.clipboard &&
-      window.isSecureContext
-    ){
+    await navigator.clipboard.writeText(id);
 
-      await navigator.clipboard.writeText(finalId);
+  }catch{
 
-    }else{
-
-      const area =
+    const textarea =
       document.createElement("textarea");
 
-      area.value = finalId;
+    textarea.value = id;
 
-      area.style.position = "fixed";
-      area.style.opacity = "0";
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
 
-      document.body.appendChild(area);
+    document.body.appendChild(textarea);
 
-      area.focus();
-      area.select();
+    textarea.focus();
+    textarea.select();
 
+    try{
       document.execCommand("copy");
+    }catch{}
 
-      area.remove();
-
-    }
-
-    toast(
-      "✅ آیدی " +
-      label +
-      " کپی شد: " +
-      finalId
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    toast(
-      "❌ کپی کردن آیدی انجام نشد."
-    );
+    textarea.remove();
 
   }
+
+  showToast(
+    `آیدی ${platform} کپی شد: ${id}`
+  );
 
 }
 
 
-/* =========================================
-   PRICE TYPE
-========================================= */
+/* ================= AUTH TABS ================= */
 
-function updatePriceRules(){
-
-  if(priceType.value === "coin"){
-
-    productPrice.min = "500";
-    productPrice.max = "";
-    productPrice.placeholder =
-      "حداقل ۵۰۰ سکه";
-
-    priceHint.textContent =
-      "🪙 حداقل قیمت سکه: ۵۰۰";
-
-  }else{
-
-    productPrice.min = "0";
-    productPrice.max = "500";
-    productPrice.placeholder =
-      "حداکثر ۵۰۰ تومان";
-
-    priceHint.textContent =
-      "💵 حداکثر قیمت تومان: ۵۰۰";
-
-  }
-
-}
-
-
-priceType.addEventListener(
-  "change",
-  updatePriceRules
+$("loginTab").addEventListener(
+  "click",
+  () => setAuthMode("login")
 );
 
-updatePriceRules();
+$("signupTab").addEventListener(
+  "click",
+  () => setAuthMode("signup")
+);
 
-
-/* =========================================
-   AUTH UI
-========================================= */
 
 function setAuthMode(mode){
 
   authMode = mode;
 
-  authMessage.textContent = "";
-  authMessage.classList.remove("success");
+  $("loginTab")
+    .classList.toggle(
+      "active",
+      mode === "login"
+    );
 
-  if(mode === "login"){
+  $("signupTab")
+    .classList.toggle(
+      "active",
+      mode === "signup"
+    );
 
-    loginTab.classList.add("active");
-    signupTab.classList.remove("active");
+  $("passwordAgainBox")
+    .classList.toggle(
+      "hidden",
+      mode !== "signup"
+    );
 
-    passwordAgainBox.classList.add("hidden");
+  $("authButton").textContent =
+    mode === "login"
+      ? "ورود به حساب"
+      : "ساخت حساب";
 
-    passwordAgain.required = false;
-
-    authButton.textContent =
-      "ورود به حساب";
-
-  }else{
-
-    signupTab.classList.add("active");
-    loginTab.classList.remove("active");
-
-    passwordAgainBox.classList.remove("hidden");
-
-    passwordAgain.required = true;
-
-    authButton.textContent =
-      "ساخت حساب";
-
-  }
+  $("authMessage").textContent = "";
 
 }
 
 
-loginTab.addEventListener(
-  "click",
-  ()=>setAuthMode("login")
-);
+/* ================= CUSTOM AUTH ================= */
 
-signupTab.addEventListener(
-  "click",
-  ()=>setAuthMode("signup")
+$("authForm").addEventListener(
+  "submit",
+  handleAuth
 );
 
 
-/* =========================================
-   AUTH
-========================================= */
-
-authForm.addEventListener(
-"submit",
-async function(event){
+async function handleAuth(event){
 
   event.preventDefault();
 
-  authMessage.textContent = "";
-  authMessage.classList.remove("success");
-
   const username =
-  usernameInput.value.trim();
+    $("username").value.trim();
 
   const password =
-  passwordInput.value;
+    $("password").value;
 
-  if(
-    !/^[A-Za-z0-9_.-]{3,10}$/.test(username)
-  ){
+  const again =
+    $("passwordAgain").value;
 
-    authMessage.textContent =
-      "❌ نام کاربری باید ۳ تا ۱۰ کاراکتر انگلیسی باشد.";
+  $("authMessage").className =
+    "message";
+
+  if(!/^[A-Za-z0-9_.-]{3,10}$/.test(username)){
+
+    $("authMessage").textContent =
+      "نام کاربری باید ۳ تا ۱۰ کاراکتر انگلیسی باشد.";
 
     return;
+
   }
 
   if(password.length < 6){
 
-    authMessage.textContent =
-      "❌ رمز عبور حداقل ۶ کاراکتر باشد.";
+    $("authMessage").textContent =
+      "رمز عبور باید حداقل ۶ کاراکتر باشد.";
 
     return;
-  }
-
-  if(authMode === "signup"){
-
-    if(password !== passwordAgain.value){
-
-      authMessage.textContent =
-        "❌ تکرار رمز عبور صحیح نیست.";
-
-      return;
-    }
 
   }
 
-  authButton.disabled = true;
+  if(authMode === "signup" && password !== again){
 
-  authButton.textContent =
-    "⏳ لطفاً صبر کن...";
+    $("authMessage").textContent =
+      "تکرار رمز عبور یکسان نیست.";
+
+    return;
+
+  }
+
+  $("authButton").disabled = true;
+
+  $("authMessage").textContent =
+    "در حال اتصال...";
 
 
   try{
 
     const response =
-    await fetch(
-      AUTH_FUNCTION,
-      {
-        method:"POST",
+      await fetch(
+        SUPABASE_URL +
+        "/functions/v1/username-auth",
+        {
+          method:"POST",
 
-        headers:{
-          "Content-Type":
-          "application/json"
-        },
+          headers:{
+            "Content-Type":"application/json"
+          },
 
-        body:JSON.stringify({
-          action:authMode,
-          username,
-          password
-        })
-      }
-    );
+          body:JSON.stringify({
+            action:authMode,
+            username,
+            password
+          })
+        }
+      );
 
 
     const data =
-    await response.json();
+      await response.json();
 
 
     if(!response.ok){
 
       throw new Error(
         data.error ||
+        data.message ||
         "خطا در احراز هویت"
       );
 
@@ -1529,186 +1579,147 @@ async function(event){
     if(!data.session){
 
       throw new Error(
-        "Session دریافت نشد."
+        "جلسه ورود دریافت نشد."
       );
 
     }
 
 
-    const sessionResult =
     await supabaseClient.auth.setSession({
-      access_token:
-        data.session.access_token,
-
-      refresh_token:
-        data.session.refresh_token
+      access_token:data.session.access_token,
+      refresh_token:data.session.refresh_token
     });
 
 
-    if(sessionResult.error){
+    currentUsername = username;
 
-      throw sessionResult.error;
+    $("authMessage").className =
+      "message success";
 
-    }
+    $("authMessage").textContent =
+      authMode === "signup"
+        ? "حساب ساخته شد."
+        : "ورود موفق بود.";
 
+    await new Promise(
+      resolve => setTimeout(resolve,300)
+    );
 
-    currentUser =
-      sessionResult.data.user;
-
-    currentUsernameValue =
-      username;
-
-
-    await afterLogin();
+    await startSite();
 
   }catch(error){
 
-    console.error(error);
-
-    authMessage.textContent =
-      "❌ " +
-      (
-        error.message ||
-        "خطا در ورود"
-      );
+    $("authMessage").textContent =
+      error.message ||
+      "خطا رخ داد.";
 
   }finally{
 
-    authButton.disabled = false;
-
-    authButton.textContent =
-      authMode === "login"
-      ? "ورود به حساب"
-      : "ساخت حساب";
-
-  }
-
-});
-
-
-/* =========================================
-   SESSION
-========================================= */
-
-async function checkSession(){
-
-  const result =
-  await supabaseClient.auth.getSession();
-
-  if(
-    result.data &&
-    result.data.session
-  ){
-
-    currentUser =
-      result.data.session.user;
-
-    await loadCurrentUsername();
-
-    await afterLogin();
-
-  }else{
-
-    showAuth();
+    $("authButton").disabled = false;
 
   }
 
 }
 
 
-async function loadCurrentUsername(){
+/* ================= SESSION ================= */
+
+async function restoreSession(){
+
+  const {
+    data
+  } =
+    await supabaseClient.auth.getSession();
+
+
+  if(data.session){
+
+    currentUser =
+      data.session.user;
+
+    const {
+      data:profile
+    } =
+      await supabaseClient
+        .from("profiles")
+        .select("username")
+        .eq("id",currentUser.id)
+        .maybeSingle();
+
+
+    currentUsername =
+      profile?.username ||
+      currentUser.email?.split("@")[0] ||
+      "کاربر";
+
+    await startSite();
+
+  }
+
+}
+
+
+/* ================= START SITE ================= */
+
+async function startSite(){
+
+  const {
+    data
+  } =
+    await supabaseClient.auth.getUser();
+
+
+  currentUser =
+    data.user;
+
 
   if(!currentUser){
-
     return;
   }
 
-  const result =
-  await supabaseClient
-  .from("profiles")
-  .select("username")
-  .eq("id",currentUser.id)
-  .maybeSingle();
 
-  if(
-    !result.error &&
-    result.data
-  ){
+  $("authPage")
+    .classList.add("hidden");
 
-    currentUsernameValue =
-      result.data.username;
-
-  }
-
-}
+  $("site")
+    .classList.remove("hidden");
 
 
-function showAuth(){
+  $("currentUsername").textContent =
+    "👤 " + currentUsername;
 
-  authPage.classList.remove("hidden");
-  site.classList.add("hidden");
-
-}
-
-
-function showSite(){
-
-  authPage.classList.add("hidden");
-  site.classList.remove("hidden");
-
-}
-
-
-async function afterLogin(){
-
-  showSite();
-
-  document
-  .getElementById("currentUsername")
-  .textContent =
-    currentUsernameValue || "—";
 
   await markOnline();
 
   await loadProducts();
 
-  await updateOnlineCount();
+  await loadChat();
+
+  subscribeChat();
+
+  updateOnlineCount();
+
+  startHeartbeat();
+
+  startPing();
 
 }
 
 
-/* =========================================
-   ONLINE USERS
-========================================= */
+/* ================= ONLINE ================= */
 
 async function markOnline(){
 
   if(!currentUser){
-
     return;
   }
 
-  const result =
   await supabaseClient
-  .from("online_users")
-  .upsert(
-    {
+    .from("online_users")
+    .upsert({
       user_id:currentUser.id,
       last_seen:new Date().toISOString()
-    },
-    {
-      onConflict:"user_id"
-    }
-  );
-
-  if(result.error){
-
-    console.error(
-      "online error:",
-      result.error
-    );
-
-  }
+    });
 
 }
 
@@ -1716,74 +1727,134 @@ async function markOnline(){
 async function removeOnline(){
 
   if(!currentUser){
-
     return;
   }
 
   await supabaseClient
-  .from("online_users")
-  .delete()
-  .eq(
-    "user_id",
-    currentUser.id
-  );
+    .from("online_users")
+    .delete()
+    .eq(
+      "user_id",
+      currentUser.id
+    );
 
 }
 
 
 async function updateOnlineCount(){
 
-  const since =
+  const cutoff =
     new Date(
       Date.now() - 2 * 60 * 1000
     ).toISOString();
 
 
-  const result =
-  await supabaseClient
-  .from("online_users")
-  .select(
-    "user_id",
-    {
-      count:"exact",
-      head:true
-    }
-  )
-  .gte(
-    "last_seen",
-    since
-  );
+  const {
+    count
+  } =
+    await supabaseClient
+      .from("online_users")
+      .select(
+        "user_id",
+        {
+          count:"exact",
+          head:true
+        }
+      )
+      .gte(
+        "last_seen",
+        cutoff
+      );
 
 
-  if(!result.error){
+  const real =
+    count || 0;
 
-    document
-    .getElementById("onlineCount")
-    .textContent =
-      result.count || 0;
 
-  }
+  $("onlineCount").textContent =
+    FAKE_ONLINE + real;
 
 }
 
 
-/* =========================================
-   PING
-========================================= */
+function startHeartbeat(){
 
-async function updatePing(){
+  markOnline();
+
+  clearInterval(
+    window.heartbeatTimer
+  );
+
+  window.heartbeatTimer =
+    setInterval(
+      async () => {
+
+        await markOnline();
+
+        await updateOnlineCount();
+
+      },
+      60000
+    );
+
+}
+
+
+window.addEventListener(
+  "beforeunload",
+  () => {
+
+    if(currentUser){
+
+      supabaseClient
+        .from("online_users")
+        .delete()
+        .eq(
+          "user_id",
+          currentUser.id
+        );
+
+    }
+
+  }
+);
+
+
+/* ================= PING ================= */
+
+function startPing(){
+
+  ping();
+
+  clearInterval(
+    window.pingTimer
+  );
+
+  window.pingTimer =
+    setInterval(
+      ping,
+      10000
+    );
+
+}
+
+
+async function ping(){
 
   const start =
-  performance.now();
+    performance.now();
 
   try{
 
     await fetch(
       SUPABASE_URL +
-      "/rest/v1/",
+      "/rest/v1/products?select=id&limit=1",
       {
-        method:"HEAD",
-        cache:"no-store"
+        method:"GET",
+        cache:"no-store",
+        headers:{
+          apikey:SUPABASE_KEY
+        }
       }
     );
 
@@ -1792,409 +1863,336 @@ async function updatePing(){
         performance.now() - start
       );
 
-    document
-    .getElementById("ping")
-    .textContent =
-      "Ping: " + ms + "ms";
+    $("ping").textContent =
+      ms + "ms";
 
   }catch{
 
-    document
-    .getElementById("ping")
-    .textContent =
-      "Ping: —ms";
+    $("ping").textContent =
+      "—ms";
 
   }
 
 }
 
 
-/* =========================================
-   PRODUCTS
-========================================= */
+/* ================= PRODUCTS ================= */
 
 async function loadProducts(){
 
-  const result =
-  await supabaseClient
-  .from("products")
-  .select("*")
-  .order(
-    "created_at",
-    {
-      ascending:false
-    }
-  );
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
-  if(result.error){
+  if(error){
 
-    console.error(result.error);
-
-    toast(
-      "❌ خطا در دریافت محصولات."
+    showToast(
+      "خطا در دریافت آگهی‌ها"
     );
 
     return;
+
   }
 
 
-  products =
-    result.data || [];
+  productsCache =
+    data || [];
 
   renderProducts();
 
 }
 
 
-function formatPrice(
-  price,
-  type
-){
-
-  const number =
-    Number(price || 0)
-    .toLocaleString("fa-IR");
-
-  if(type === "toman"){
-
-    return number + " تومان";
-
-  }
-
-  return number + " سکه";
-
-}
-
-
-function categoryName(category){
-
-  const map = {
-    "آیتم":"آیتم",
-    "اکانت":"اکانت",
-    "سکه":"سکه",
-    "سایر":"سایر"
-  };
-
-  return map[category] || "سایر";
-
-}
-
-
-/* =========================================
-   RENDER PRODUCTS
-========================================= */
-
 function renderProducts(){
 
-  const container =
-  document.getElementById("products");
+  const box =
+    $("products");
 
   const search =
-  document
-  .getElementById("searchInput")
-  .value
-  .trim()
-  .toLowerCase();
+    $("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
 
   const category =
-  document
-  .getElementById("categoryFilter")
-  .value;
+    $("filterCategory")
+      .value;
 
 
-  const filtered =
-  products.filter(product=>{
+  const list =
+    productsCache.filter(
+      product => {
 
-    const categoryOK =
-      category === "all" ||
-      product.category === category;
-
-
-    const text = [
-      product.name,
-      product.description,
-      product.seller_id,
-      product.rubika_id,
-      product.bale_id
-    ]
-    .join(" ")
-    .toLowerCase();
+        const text =
+          (
+            product.name +
+            " " +
+            product.description +
+            " " +
+            product.category
+          )
+          .toLowerCase();
 
 
-    const searchOK =
-      !search ||
-      text.includes(search);
+        const matchesSearch =
+          !search ||
+          text.includes(search);
 
 
-    return (
-      categoryOK &&
-      searchOK
+        const matchesCategory =
+          !category ||
+          product.category === category;
+
+
+        return (
+          matchesSearch &&
+          matchesCategory
+        );
+
+      }
     );
 
-  });
 
+  if(!list.length){
 
-  if(!filtered.length){
-
-    container.innerHTML = "";
-
-    document
-    .getElementById("emptyProducts")
-    .classList.remove("hidden");
+    box.innerHTML =
+      `<div class="empty">
+        آگهی‌ای پیدا نشد 📦
+      </div>`;
 
     return;
 
   }
 
 
-  document
-  .getElementById("emptyProducts")
-  .classList.add("hidden");
+  box.innerHTML =
+    list
+      .map(renderProduct)
+      .join("");
+
+}
 
 
-  container.innerHTML =
-  filtered
-  .map(product=>{
+function renderProduct(product){
 
-    const rubika =
-      cleanId(product.rubika_id);
+  const rubika =
+    cleanId(product.rubika_id);
 
-    const bale =
-      cleanId(
-        product.bale_id ||
-        product.seller_id
-      );
+  const bale =
+    cleanId(
+      product.bale_id ||
+      product.seller_id
+    );
 
 
-    let contactHTML = "";
+  const price =
+    Number(product.price || 0)
+      .toLocaleString("fa-IR");
 
 
-    if(rubika || bale){
+  const priceText =
+    product.price_type === "toman"
+      ? `${price} تومان`
+      : `${price} سکه`;
 
-      contactHTML += `
-        <div class="contact-title">
-          👤 راه ارتباط با فروشنده
+
+  const image =
+    product.image_url ||
+    "";
+
+
+  const canDelete =
+    currentUser &&
+    product.owner_id === currentUser.id;
+
+
+  return `
+
+    <article class="product">
+
+      <div class="product-image">
+
+        ${
+          image
+            ?
+          `<img
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(product.name)}">`
+            :
+          `<div class="no-image">
+             🛍️
+           </div>`
+        }
+
+      </div>
+
+
+      <div class="product-body">
+
+        <span class="badge">
+          ${escapeHTML(product.category)}
+        </span>
+
+
+        <h3>
+          ${escapeHTML(product.name)}
+        </h3>
+
+
+        <div class="description">
+          ${escapeHTML(product.description || "")}
         </div>
+
+
+        <div class="price">
+          ${priceText}
+        </div>
+
+
+        <div class="contact-title">
+          📞 راه ارتباطی فروشنده
+        </div>
+
 
         <div class="contact-buttons">
-      `;
 
+          ${
+            rubika
+              ?
+            `
+            <button
+              class="contact-btn rubika"
+              type="button"
+              onclick="copySellerId('${escapeJS(rubika)}','روبیکا')">
 
-      if(rubika){
+              🟣 آیدی روبیکا
 
-        contactHTML += `
-          <button
-            type="button"
-            class="contact-btn rubika"
-            onclick="copySellerId(
-              '${escapeJS(rubika)}',
-              'روبیکا'
-            )">
+              <span class="contact-id">
+                ${escapeHTML(displayId(rubika))}
+              </span>
 
-            🟣 آیدی روبیکا
-
-            <span class="contact-id">
-              @${escapeHTML(rubika)}
-            </span>
-
-          </button>
-        `;
-
-      }
-
-
-      if(bale){
-
-        contactHTML += `
-          <button
-            type="button"
-            class="contact-btn bale"
-            onclick="copySellerId(
-              '${escapeJS(bale)}',
-              'بله'
-            )">
-
-            🔵 آیدی بله
-
-            <span class="contact-id">
-              @${escapeHTML(bale)}
-            </span>
-
-          </button>
-        `;
-
-      }
-
-
-      contactHTML += `
-        </div>
-      `;
-
-    }else{
-
-      contactHTML = `
-        <div class="seller">
-          👤 آیدی فروشنده ثبت نشده
-        </div>
-      `;
-
-    }
-
-
-    let imageHTML = "";
-
-    if(product.image_url){
-
-      imageHTML = `
-        <img
-          src="${escapeHTML(product.image_url)}"
-          alt="${escapeHTML(product.name)}"
-          onerror="
-            this.style.display='none';
-            this.nextElementSibling.style.display='block';
-          ">
-
-        <div
-          class="no-image"
-          style="display:none">
-          📦
-        </div>
-      `;
-
-    }else{
-
-      imageHTML = `
-        <div class="no-image">
-          📦
-        </div>
-      `;
-
-    }
-
-
-    const owner =
-      currentUser &&
-      product.owner_id === currentUser.id;
-
-
-    return `
-
-      <article class="product">
-
-        <div class="product-image">
-
-          ${imageHTML}
-
-        </div>
-
-
-        <div class="product-body">
-
-          <span class="badge">
-
-            ${escapeHTML(
-              categoryName(product.category)
-            )}
-
-          </span>
-
-
-          <h3>
-
-            ${escapeHTML(
-              product.name
-            )}
-
-          </h3>
-
-
-          <div class="description">
-
-            ${escapeHTML(
-              product.description ||
-              "بدون توضیحات"
-            )}
-
-          </div>
-
-
-          <div class="price">
-
-            ${formatPrice(
-              product.price,
-              product.price_type
-            )}
-
-          </div>
-
-
-          ${contactHTML}
+            </button>
+            `
+              :
+            ""
+          }
 
 
           ${
-            owner
-            ?
+            bale
+              ?
             `
-            <div class="actions">
+            <button
+              class="contact-btn bale"
+              type="button"
+              onclick="copySellerId('${escapeJS(bale)}','بله')">
 
-              <button
-                type="button"
-                class="delete"
-                onclick="
-                  deleteProduct(
-                    '${escapeJS(product.id)}'
-                  )
-                ">
+              🟢 آیدی بله
 
-                🗑 حذف محصول
+              <span class="contact-id">
+                ${escapeHTML(displayId(bale))}
+              </span>
 
-              </button>
-
-            </div>
+            </button>
             `
-            :
+              :
+            ""
+          }
+
+          ${
+            !rubika && !bale
+              ?
+            `<span class="seller">
+              آیدی فروشنده ثبت نشده
+            </span>`
+              :
             ""
           }
 
         </div>
 
-      </article>
 
-    `;
+        ${
+          canDelete
+            ?
+          `
+          <div class="actions">
 
-  })
-  .join("");
+            <button
+              class="delete"
+              type="button"
+              onclick="deleteProduct('${escapeJS(product.id)}')">
+
+              🗑️ حذف آگهی
+
+            </button>
+
+          </div>
+          `
+            :
+          ""
+        }
+
+      </div>
+
+    </article>
+
+  `;
 
 }
 
 
-function escapeJS(value){
-
-  return String(value ?? "")
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
-    .replace(/\n/g,"\\n")
-    .replace(/\r/g,"\\r");
-
-}
+$("searchInput")
+  .addEventListener(
+    "input",
+    renderProducts
+  );
 
 
-/* =========================================
-   IMAGE
-========================================= */
+$("filterCategory")
+  .addEventListener(
+    "change",
+    renderProducts
+  );
 
-productImage.addEventListener(
-"change",
-function(){
+
+/* ================= IMAGE ================= */
+
+$("imageFile")
+  .addEventListener(
+    "change",
+    previewImage
+  );
+
+
+function previewImage(){
 
   const file =
-    this.files[0];
+    $("imageFile")
+      .files[0];
+
+  const preview =
+    $("filePreview");
+
 
   if(!file){
 
-    imagePreview.style.display =
+    preview.style.display =
       "none";
+
+    preview.src =
+      "";
 
     return;
 
@@ -2203,27 +2201,15 @@ function(){
 
   if(file.size > 2 * 1024 * 1024){
 
-    toast(
-      "❌ حجم عکس بیشتر از ۲ مگابایت است."
+    showToast(
+      "حجم تصویر نباید بیشتر از ۲ مگابایت باشد."
     );
 
-    this.value = "";
+    $("imageFile").value =
+      "";
 
-    imagePreview.style.display =
+    preview.style.display =
       "none";
-
-    return;
-
-  }
-
-
-  if(!file.type.startsWith("image/")){
-
-    toast(
-      "❌ فقط فایل تصویری انتخاب کن."
-    );
-
-    this.value = "";
 
     return;
 
@@ -2235,40 +2221,40 @@ function(){
 
 
   reader.onload =
-  function(event){
+    event => {
 
-    imagePreview.src =
-      event.target.result;
+      preview.src =
+        event.target.result;
 
-    imagePreview.style.display =
-      "block";
+      preview.style.display =
+        "block";
 
-  };
+    };
 
 
   reader.readAsDataURL(file);
 
-});
+}
 
 
-/* =========================================
-   ADD PRODUCT
-========================================= */
+/* ================= ADD PRODUCT ================= */
 
-productForm.addEventListener(
-"submit",
-async function(event){
+$("productForm")
+  .addEventListener(
+    "submit",
+    addProduct
+  );
+
+
+async function addProduct(event){
 
   event.preventDefault();
-
-  productMessage.textContent = "";
-  productMessage.classList.remove("success");
 
 
   if(!currentUser){
 
-    toast(
-      "❌ ابتدا وارد حساب شو."
+    showToast(
+      "ابتدا وارد حساب شوید."
     );
 
     return;
@@ -2277,128 +2263,110 @@ async function(event){
 
 
   const name =
-    document
-    .getElementById("productName")
-    .value
-    .trim();
+    $("productName")
+      .value
+      .trim();
 
 
   const category =
-    document
-    .getElementById("productCategory")
-    .value;
+    $("category")
+      .value;
 
 
   const type =
-    priceType.value;
+    $("priceType")
+      .value;
 
 
   const price =
     Number(
-      productPrice.value
+      $("price")
+        .value
     );
 
 
   const rubikaId =
     cleanId(
-      document
-      .getElementById("rubikaId")
-      .value
+      $("rubikaId")
+        .value
     );
 
 
   const baleId =
     cleanId(
-      document
-      .getElementById("baleId")
-      .value
+      $("baleId")
+        .value
     );
 
 
   const description =
-    document
-    .getElementById("productDescription")
-    .value
-    .trim();
+    $("description")
+      .value
+      .trim();
 
 
   const file =
-    productImage.files[0];
+    $("imageFile")
+      .files[0];
 
 
-  if(name.length < 1){
+  if(!name){
 
-    productMessage.textContent =
-      "❌ نام محصول را وارد کن.";
-
-    return;
-
-  }
-
-
-  if(!Number.isFinite(price)){
-
-    productMessage.textContent =
-      "❌ قیمت صحیح نیست.";
+    showToast(
+      "نام محصول را وارد کن."
+    );
 
     return;
 
   }
 
 
-  if(type === "coin"){
+  if(type === "coin" && price < 500){
 
-    if(price < 500){
+    showToast(
+      "حداقل قیمت سکه ۵۰۰ است."
+    );
 
-      productMessage.textContent =
-        "❌ حداقل قیمت سکه ۵۰۰ است.";
+    return;
 
-      return;
+  }
 
-    }
 
-  }else{
+  if(type === "toman" && price > 500){
 
-    if(price < 0 || price > 500){
+    showToast(
+      "حداکثر قیمت تومان ۵۰۰ است."
+    );
 
-      productMessage.textContent =
-        "❌ قیمت تومان باید بین ۰ تا ۵۰۰ باشد.";
-
-      return;
-
-    }
+    return;
 
   }
 
 
   if(!rubikaId && !baleId){
 
-    productMessage.textContent =
-      "❌ حداقل یکی از آیدی‌های روبیکا یا بله را وارد کن.";
+    showToast(
+      "حداقل یکی از آیدی‌های روبیکا یا بله را وارد کن."
+    );
 
     return;
 
   }
 
 
-  if(file){
+  if(file && file.size > 2 * 1024 * 1024){
 
-    if(file.size > 2 * 1024 * 1024){
+    showToast(
+      "حجم تصویر بیشتر از ۲ مگابایت است."
+    );
 
-      productMessage.textContent =
-        "❌ حجم عکس باید کمتر از ۲ مگابایت باشد.";
-
-      return;
-
-    }
+    return;
 
   }
 
 
-  submitProduct.disabled = true;
-
-  submitProduct.textContent =
-    "⏳ در حال ثبت...";
+  $("productButton").disabled =
+    true;
 
 
   try{
@@ -2419,121 +2387,105 @@ async function(event){
       owner_id:
         currentUser.id,
 
-      name:
-
-        name,
+      name,
 
       price:
-
         Math.floor(price),
 
       price_type:
-
         type,
 
-      category:
-
-        category,
+      category,
 
       seller_id:
-
         baleId,
 
       rubika_id:
-
         rubikaId,
 
       bale_id:
-
         baleId,
 
-      description:
-
-        description,
+      description,
 
       image_url:
-
         imageURL,
 
       image_path:
-
         ""
 
     };
 
 
-    const result =
-    await supabaseClient
-    .from("products")
-    .insert(
-      insertData
-    );
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("products")
+        .insert(insertData);
 
 
-    if(result.error){
+    if(error){
 
-      throw result.error;
+      throw error;
 
     }
 
 
-    productForm.reset();
+    $("productForm")
+      .reset();
 
-    imagePreview.style.display =
+
+    $("filePreview")
+      .style.display =
       "none";
 
-    updatePriceRules();
+
+    $("productMessage").className =
+      "message success";
 
 
-    productMessage.textContent =
-      "✅ محصول با موفقیت ثبت شد.";
-
-    productMessage.classList.add(
-      "success"
-    );
+    $("productMessage").textContent =
+      "آگهی با موفقیت ثبت شد.";
 
 
-    toast(
-      "✅ محصول ثبت شد."
+    showToast(
+      "آگهی ثبت شد 🔥"
     );
 
 
     await loadProducts();
 
+
   }catch(error){
 
-    console.error(error);
+    $("productMessage").className =
+      "message";
 
-    productMessage.textContent =
-      "❌ " +
-      (
-        error.message ||
-        "خطا در ثبت محصول"
-      );
+    $("productMessage").textContent =
+      error.message ||
+      "خطا در ثبت آگهی.";
 
   }finally{
 
-    submitProduct.disabled =
+    $("productButton").disabled =
       false;
-
-    submitProduct.textContent =
-      "🚀 ثبت محصول";
 
   }
 
-});
+}
 
 
 function fileToDataURL(file){
 
   return new Promise(
-    function(resolve,reject){
+    (resolve,reject) => {
 
       const reader =
         new FileReader();
 
       reader.onload =
-        ()=>resolve(
+        () => resolve(
           reader.result
         );
 
@@ -2548,16 +2500,40 @@ function fileToDataURL(file){
 }
 
 
-/* =========================================
-   DELETE
-========================================= */
+/* ================= DELETE ================= */
 
 async function deleteProduct(id){
 
   if(!currentUser){
+    return;
+  }
 
-    toast(
-      "❌ وارد حساب نیستی."
+
+  if(
+    !confirm(
+      "آگهی حذف شود؟"
+    )
+  ){
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(error){
+
+    showToast(
+      "حذف انجام نشد."
     );
 
     return;
@@ -2565,48 +2541,8 @@ async function deleteProduct(id){
   }
 
 
-  const ok =
-    confirm(
-      "آیا از حذف این محصول مطمئنی؟"
-    );
-
-
-  if(!ok){
-
-    return;
-
-  }
-
-
-  const result =
-  await supabaseClient
-  .from("products")
-  .delete()
-  .eq(
-    "id",
-    id
-  )
-  .eq(
-    "owner_id",
-    currentUser.id
-  );
-
-
-  if(result.error){
-
-    console.error(result.error);
-
-    toast(
-      "❌ حذف محصول انجام نشد."
-    );
-
-    return;
-
-  }
-
-
-  toast(
-    "✅ محصول حذف شد."
+  showToast(
+    "آگهی حذف شد."
   );
 
 
@@ -2615,139 +2551,360 @@ async function deleteProduct(id){
 }
 
 
-/* =========================================
-   SEARCH
-========================================= */
+/* ================= CHAT ================= */
 
-document
-.getElementById("searchInput")
-.addEventListener(
-  "input",
-  renderProducts
-);
+async function loadChat(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("chat_messages")
+      .select(
+        "id,user_id,username,message,created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:true
+        }
+      )
+      .limit(100);
 
 
-document
-.getElementById("categoryFilter")
-.addEventListener(
-  "change",
-  renderProducts
-);
+  if(error){
+
+    console.error(error);
+
+    return;
+
+  }
 
 
-/* =========================================
-   LOGOUT
-========================================= */
-
-document
-.getElementById("logoutButton")
-.addEventListener(
-"click",
-async function(){
-
-  await removeOnline();
-
-  await supabaseClient.auth.signOut();
-
-  currentUser = null;
-
-  currentUsernameValue = "";
-
-  showAuth();
-
-  usernameInput.value = "";
-  passwordInput.value = "";
-  passwordAgain.value = "";
-
-  toast(
-    "از حساب خارج شدی."
+  renderChat(
+    data || []
   );
 
-});
+}
 
 
-/* =========================================
-   HEARTBEAT
-========================================= */
+function renderChat(messages){
 
-setInterval(
-async function(){
-
-  if(currentUser){
-
-    await markOnline();
-
-    await updateOnlineCount();
-
-    await updatePing();
-
-  }
-
-},
-60000
-);
+  const box =
+    $("chatMessages");
 
 
-/* =========================================
-   PING
-========================================= */
+  if(!messages.length){
 
-setInterval(
-function(){
+    box.innerHTML =
+      `<div class="chat-empty">
+        هنوز پیامی ارسال نشده 👋
+      </div>`;
 
-  if(currentUser){
-
-    updatePing();
+    return;
 
   }
 
-},
-10000
-);
+
+  box.innerHTML =
+    messages
+      .map(renderMessage)
+      .join("");
 
 
-/* =========================================
-   PRODUCTS REFRESH
-========================================= */
+  box.scrollTop =
+    box.scrollHeight;
 
-setInterval(
-function(){
+}
 
-  if(currentUser){
 
-    loadProducts();
+function renderMessage(message){
+
+  const mine =
+    currentUser &&
+    message.user_id === currentUser.id;
+
+
+  const time =
+    new Date(
+      message.created_at
+    )
+    .toLocaleTimeString(
+      "fa-IR",
+      {
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+
+  return `
+
+    <div class="chat-message ${mine ? "mine" : ""}">
+
+      <div class="chat-meta">
+
+        <span class="chat-user">
+          ${escapeHTML(message.username)}
+        </span>
+
+        <span class="chat-time">
+          ${time}
+        </span>
+
+      </div>
+
+      <div class="chat-text">
+        ${escapeHTML(message.message)}
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ================= REALTIME CHAT ================= */
+
+function subscribeChat(){
+
+  if(chatChannel){
+
+    supabaseClient
+      .removeChannel(
+        chatChannel
+      );
 
   }
 
-},
-30000
+
+  chatChannel =
+    supabaseClient
+      .channel(
+        "rpcity-chat-live"
+      )
+      .on(
+        "postgres_changes",
+        {
+          event:"INSERT",
+          schema:"public",
+          table:"chat_messages"
+        },
+        payload => {
+
+          addChatMessage(
+            payload.new
+          );
+
+        }
+      )
+      .subscribe();
+
+}
+
+
+function addChatMessage(message){
+
+  const box =
+    $("chatMessages");
+
+
+  const empty =
+    box.querySelector(
+      ".chat-empty"
+    );
+
+
+  if(empty){
+    empty.remove();
+  }
+
+
+  box.insertAdjacentHTML(
+    "beforeend",
+    renderMessage(message)
+  );
+
+
+  box.scrollTop =
+    box.scrollHeight;
+
+}
+
+
+/* ================= SEND CHAT ================= */
+
+$("chatForm")
+  .addEventListener(
+    "submit",
+    sendChatMessage
+  );
+
+
+async function sendChatMessage(event){
+
+  event.preventDefault();
+
+
+  if(!currentUser){
+
+    showToast(
+      "برای چت باید وارد حساب شوی."
+    );
+
+    return;
+
+  }
+
+
+  const input =
+    $("chatInput");
+
+
+  const message =
+    input.value.trim();
+
+
+  if(!message){
+    return;
+  }
+
+
+  if(message.length > 500){
+
+    showToast(
+      "پیام نباید بیشتر از ۵۰۰ کاراکتر باشد."
+    );
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("chat_messages")
+      .insert({
+
+        user_id:
+          currentUser.id,
+
+        username:
+          currentUsername,
+
+        message
+
+      });
+
+
+  if(error){
+
+    showToast(
+      error.message ||
+      "ارسال پیام انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  input.value =
+    "";
+
+}
+
+
+/* ================= EMOJIS ================= */
+
+document
+  .querySelectorAll(
+    ".emoji-btn"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const emoji =
+            button.dataset.emoji;
+
+          const input =
+            $("chatInput");
+
+          input.value +=
+            emoji;
+
+          input.focus();
+
+        }
+      );
+
+    }
+  );
+
+
+/* ================= LOGOUT ================= */
+
+$("logoutButton")
+  .addEventListener(
+    "click",
+    async () => {
+
+      await removeOnline();
+
+
+      if(chatChannel){
+
+        await supabaseClient
+          .removeChannel(
+            chatChannel
+          );
+
+      }
+
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+
+      location.reload();
+
+    }
+  );
+
+
+/* ================= REFRESH ================= */
+
+setInterval(
+  async () => {
+
+    if(
+      currentUser &&
+      !$("site").classList.contains("hidden")
+    ){
+
+      await loadProducts();
+
+    }
+
+  },
+  30000
 );
 
 
-/* =========================================
-   PAGE CLOSE
-========================================= */
+/* ================= INIT ================= */
 
-window.addEventListener(
-"beforeunload",
-function(){
-
-  /*
-   حذف آنلاین هنگام بستن صفحه
-   توسط مرورگر ممکن است همیشه اجرا نشود،
-   heartbeat باعث می‌شود رکورد بعد از مدتی stale شود.
-  */
-
-});
-
-
-/* =========================================
-   START
-========================================= */
-
-checkSession();
+restoreSession();
 
 </script>
 
 </body>
-        </html>
+  </html>
