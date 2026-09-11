@@ -84,6 +84,27 @@ header{
   border-radius:10px
 }
 
+/* SHOP BUTTON */
+.shop-button{
+  border:1px solid #174a34;
+  background:#0d1713;
+  color:#00ff88;
+  padding:9px 13px;
+  border-radius:10px;
+  font-weight:900;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:.2s
+}
+
+.shop-button:hover{
+  background:#10251b;
+  border-color:#00ff88;
+  transform:translateY(-1px)
+}
+
 .container{padding:30px 0 50px}
 
 .hero{
@@ -437,13 +458,33 @@ footer{
 }
 
 @media(max-width:600px){
+
   .nav{
     flex-direction:column;
     align-items:flex-start;
     padding:13px 0
   }
 
-  .filters{flex-direction:column}
+  .user-area{
+    width:100%;
+    justify-content:flex-start
+  }
+
+  .shop-button{
+    order:1
+  }
+
+  .online{
+    order:2
+  }
+
+  .logout{
+    order:3
+  }
+
+  .filters{
+    flex-direction:column
+  }
 
   .support{
     flex-direction:column;
@@ -472,14 +513,20 @@ footer{
     </div>
 
     <div class="tabs">
-      <button id="loginTab" class="active">ورود</button>
-      <button id="signupTab">ثبت نام</button>
+      <button id="loginTab" class="active">
+        ورود
+      </button>
+
+      <button id="signupTab">
+        ثبت نام
+      </button>
     </div>
 
     <form id="authForm">
 
       <div class="field">
         <label>نام کاربری</label>
+
         <input
           id="username"
           type="text"
@@ -493,6 +540,7 @@ footer{
 
       <div class="field">
         <label>رمز عبور</label>
+
         <input
           id="password"
           type="password"
@@ -504,7 +552,9 @@ footer{
       </div>
 
       <div id="passwordAgainBox" class="field hidden">
+
         <label>تکرار رمز عبور</label>
+
         <input
           id="passwordAgain"
           type="password"
@@ -512,16 +562,22 @@ footer{
           minlength="6"
           maxlength="72"
         >
+
       </div>
 
-      <button id="authButton" class="primary" type="submit">
+      <button
+        id="authButton"
+        class="primary"
+        type="submit">
         ورود به حساب
       </button>
 
       <div id="authMessage" class="message"></div>
 
     </form>
+
   </div>
+
 </section>
 
 
@@ -530,35 +586,76 @@ footer{
 <div id="site" class="hidden">
 
 <header>
+
   <div class="wrap nav">
 
     <div>
+
       <div class="logo">
         RP <span>CITY</span> MARKET
       </div>
 
       <div style="color:#7f8998;font-size:11px;margin-top:4px">
+
         کاربر:
         <strong id="currentUsername">—</strong>
+
         ·
-        <span id="ping">Ping: —</span>
+
+        <span id="ping">
+          Ping: —ms
+        </span>
+
       </div>
+
     </div>
+
 
     <div class="user-area">
 
+      <!-- فروشگاه -->
+
+      <a
+        href="#productsSection"
+        id="shopButton"
+        class="shop-button">
+
+        🛒 فروشگاه
+
+      </a>
+
+
+      <!-- آنلاین -->
+
       <div class="online">
+
         <span class="dot"></span>
-        <span>کاربران آنلاین:</span>
-        <strong id="onlineCount">0</strong>
+
+        <span>
+          کاربران آنلاین:
+        </span>
+
+        <strong id="onlineCount">
+          0
+        </strong>
+
       </div>
 
-      <button id="logoutButton" class="logout">
+
+      <!-- خروج -->
+
+      <button
+        id="logoutButton"
+        class="logout">
+
         خروج
+
       </button>
 
     </div>
+
   </div>
+
 </header>
 
 
@@ -590,27 +687,44 @@ footer{
   <form id="productForm">
 
     <div class="field">
-      <label>نام محصول</label>
+
+      <label>
+        نام محصول
+      </label>
 
       <input
         id="productName"
-        maxlength="80"
+        maxlength="100"
         placeholder="مثلاً اکانت لول 50"
         required
       >
+
     </div>
 
 
     <div class="field">
 
-      <label>دسته‌بندی</label>
+      <label>
+        دسته‌بندی
+      </label>
 
       <select id="productCategory">
 
-        <option value="آیتم">آیتم</option>
-        <option value="اکانت">اکانت</option>
-        <option value="سکه">سکه</option>
-        <option value="سایر">سایر</option>
+        <option value="آیتم">
+          آیتم
+        </option>
+
+        <option value="اکانت">
+          اکانت
+        </option>
+
+        <option value="سکه">
+          سکه
+        </option>
+
+        <option value="سایر">
+          سایر
+        </option>
 
       </select>
 
@@ -619,7 +733,9 @@ footer{
 
     <div class="field">
 
-      <label>قیمت</label>
+      <label>
+        قیمت
+      </label>
 
       <input
         id="productPrice"
@@ -634,7 +750,9 @@ footer{
 
     <div class="field">
 
-      <label>نوع قیمت</label>
+      <label>
+        نوع قیمت
+      </label>
 
       <select id="priceType">
 
@@ -691,8 +809,7 @@ footer{
       <textarea
         id="productDescription"
         maxlength="500"
-        placeholder="توضیحات محصول..."
-      ></textarea>
+        placeholder="توضیحات محصول..."></textarea>
 
     </div>
 
@@ -700,42 +817,71 @@ footer{
     <button
       id="productButton"
       class="primary"
-      type="submit"
-    >
-      🚀 ثبت محصول
+      type="submit">
+
+      ثبت محصول
+
     </button>
 
-    <div id="productMessage" class="status"></div>
+    <div
+      id="productMessage"
+      class="message">
+    </div>
 
   </form>
+
 </div>
 
 
 <!-- PRODUCTS -->
 
-<div>
+<div
+  id="productsSection"
+  class="panel">
+
+  <div class="panel-title">
+    🛒 فروشگاه — همه محصولات
+  </div>
 
   <div class="filters">
 
     <input
       id="searchInput"
+      type="text"
       placeholder="🔎 جستجوی محصول..."
     >
 
     <select id="categoryFilter">
 
-      <option value="">همه دسته‌ها</option>
-      <option value="آیتم">آیتم</option>
-      <option value="اکانت">اکانت</option>
-      <option value="سکه">سکه</option>
-      <option value="سایر">سایر</option>
+      <option value="all">
+        همه دسته‌ها
+      </option>
+
+      <option value="آیتم">
+        آیتم
+      </option>
+
+      <option value="اکانت">
+        اکانت
+      </option>
+
+      <option value="سکه">
+        سکه
+      </option>
+
+      <option value="سایر">
+        سایر
+      </option>
 
     </select>
 
   </div>
 
 
-  <div id="products" class="products"></div>
+  <div
+    id="products"
+    class="products">
+  </div>
 
 </div>
 
@@ -749,11 +895,11 @@ footer{
   <div>
 
     <h2>
-      🛟 پشتیبانی RP CITY
+      پشتیبانی RP City
     </h2>
 
     <p>
-      سؤال یا مشکلی داری؟ مستقیم با پشتیبانی در بله در ارتباط باش.
+      اگر مشکلی داشتی از طریق بله با پشتیبانی در ارتباط باش.
     </p>
 
   </div>
@@ -761,9 +907,10 @@ footer{
   <a
     href="https://ble.ir/rpcity_lor"
     target="_blank"
-    rel="noopener"
-  >
-    💬 ارتباط با پشتیبانی
+    rel="noopener">
+
+    💬 پشتیبانی در بله
+
   </a>
 
 </section>
@@ -772,7 +919,9 @@ footer{
 
 
 <footer>
-  RP CITY MARKET © 2026
+
+  RP CITY MARKET
+
 </footer>
 
 </div>
@@ -780,298 +929,141 @@ footer{
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
-
 const SUPABASE_URL =
   "https://cjntwmohtwbfqtxlgxrt.supabase.co";
 
 const SUPABASE_KEY =
   "sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY,
-    {
-      auth:{
-        persistSession:true,
-        autoRefreshToken:true,
-        detectSessionInUrl:false
-      }
-    }
-  );
-
-
 const AUTH_FUNCTION =
   SUPABASE_URL +
   "/functions/v1/username-auth";
 
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
-/* =====================================================
-   VARIABLES
-===================================================== */
 
 let currentUser = null;
-let currentUsername = "";
-let products = [];
 let authMode = "login";
-let onlineTimer = null;
+let products = [];
 
 
-/* =====================================================
-   HELPERS
-===================================================== */
+/* =========================
+   AUTH
+========================= */
 
-function $(id){
-  return document.getElementById(id);
-}
+function showAuthMessage(text,type="error"){
 
+  const box =
+    document.getElementById(
+      "authMessage"
+    );
 
-function escapeHTML(value){
-
-  return String(value ?? "")
-    .replace(/[&<>"']/g,function(char){
-
-      return {
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[char];
-
-    });
+  box.textContent = text;
+  box.className =
+    "message " + type;
 
 }
 
-
-function cleanUsername(value){
-  return value.trim();
-}
-
-
-function validUsername(value){
-
-  return /^[A-Za-z0-9_.-]{3,10}$/.test(
-    cleanUsername(value)
-  );
-
-}
-
-
-/*
-  فقط آیدی بله را نگه می‌داریم.
-  @ و کاراکترهای غیرمجاز حذف می‌شوند.
-*/
-
-function cleanBaleId(value){
-
-  return value
-    .trim()
-    .replace(/^@+/,"")
-    .replace(/[^A-Za-z0-9_.-]/g,"");
-
-}
-
-
-function baleURL(value){
-
-  const id =
-    cleanBaleId(value);
-
-  if(!id){
-    return "#";
-  }
-
-  return "https://ble.ir/" +
-    encodeURIComponent(id);
-
-}
-
-
-function formatNumber(value){
-
-  return Number(value || 0)
-    .toLocaleString("fa-IR");
-
-}
-
-
-function showAuthMessage(text,success=false){
-
-  $("authMessage").textContent =
-    text || "";
-
-  $("authMessage").classList.toggle(
-    "success",
-    success
-  );
-
-}
-
-
-function showProductMessage(text,success=false){
-
-  $("productMessage").textContent =
-    text || "";
-
-  $("productMessage").classList.toggle(
-    "success",
-    success
-  );
-
-}
-
-
-/* =====================================================
-   AUTH MODE
-===================================================== */
 
 function setAuthMode(mode){
 
   authMode = mode;
 
-  const login =
-    mode === "login";
+  document
+    .getElementById("loginTab")
+    .classList
+    .toggle(
+      "active",
+      mode === "login"
+    );
 
-  $("loginTab")
-    .classList.toggle("active",login);
+  document
+    .getElementById("signupTab")
+    .classList
+    .toggle(
+      "active",
+      mode === "signup"
+    );
 
-  $("signupTab")
-    .classList.toggle("active",!login);
+  document
+    .getElementById("passwordAgainBox")
+    .classList
+    .toggle(
+      "hidden",
+      mode !== "signup"
+    );
 
-  $("passwordAgainBox")
-    .classList.toggle("hidden",login);
+  document
+    .getElementById("authButton")
+    .textContent =
+      mode === "login"
+        ? "ورود به حساب"
+        : "ساخت حساب";
 
-  $("passwordAgain").required =
-    !login;
-
-  $("authButton").textContent =
-    login
-      ? "ورود به حساب"
-      : "ساخت حساب و ورود";
-
-  showAuthMessage("");
+  document
+    .getElementById("authMessage")
+    .textContent = "";
 
 }
 
 
-$("loginTab").onclick =
-function(){
-  setAuthMode("login");
-};
+document
+  .getElementById("loginTab")
+  .addEventListener(
+    "click",
+    () => setAuthMode("login")
+  );
 
 
-$("signupTab").onclick =
-function(){
-  setAuthMode("signup");
-};
+document
+  .getElementById("signupTab")
+  .addEventListener(
+    "click",
+    () => setAuthMode("signup")
+  );
 
 
-/* =====================================================
-   CUSTOM USERNAME AUTH
-===================================================== */
-
-async function usernameAuth(
-  action,
-  username,
-  password
-){
-
-  const response =
-    await fetch(
-      AUTH_FUNCTION,
-      {
-        method:"POST",
-
-        headers:{
-          "Content-Type":"application/json",
-          "apikey":SUPABASE_KEY
-        },
-
-        body:JSON.stringify({
-          action,
-          username,
-          password
-        })
-      }
-    );
+document
+  .getElementById("authForm")
+  .addEventListener(
+    "submit",
+    handleAuth
+  );
 
 
-  let data = {};
+async function handleAuth(e){
 
-  try{
-    data = await response.json();
-  }catch(e){}
-
-
-  if(!response.ok){
-
-    throw new Error(
-      data.error ||
-      "عملیات انجام نشد."
-    );
-
-  }
-
-
-  if(!data.session){
-
-    throw new Error(
-      "جلسه ورود از سرور دریافت نشد."
-    );
-
-  }
-
-
-  const result =
-    await supabaseClient.auth.setSession({
-
-      access_token:
-        data.session.access_token,
-
-      refresh_token:
-        data.session.refresh_token
-
-    });
-
-
-  if(result.error){
-    throw result.error;
-  }
-
-
-  return result.data.session;
-
-}
-
-
-/* =====================================================
-   LOGIN / SIGNUP
-===================================================== */
-
-$("authForm").onsubmit =
-async function(event){
-
-  event.preventDefault();
-
+  e.preventDefault();
 
   const username =
-    cleanUsername(
-      $("username").value
-    );
-
+    document
+      .getElementById("username")
+      .value
+      .trim();
 
   const password =
-    $("password").value;
+    document
+      .getElementById("password")
+      .value;
+
+  const again =
+    document
+      .getElementById("passwordAgain")
+      .value;
+
+  const button =
+    document
+      .getElementById("authButton");
 
 
-  if(!validUsername(username)){
+  if(!/^[A-Za-z0-9_.-]{3,10}$/.test(username)){
 
     showAuthMessage(
-      "نام کاربری باید ۳ تا ۱۰ کاراکتر باشد و فقط شامل حروف انگلیسی، عدد، نقطه، خط تیره یا زیرخط باشد."
+      "نام کاربری باید ۳ تا ۱۰ کاراکتر انگلیسی باشد."
     );
 
     return;
@@ -1092,12 +1084,11 @@ async function(event){
 
   if(
     authMode === "signup" &&
-    password !==
-    $("passwordAgain").value
+    password !== again
   ){
 
     showAuthMessage(
-      "رمز عبور و تکرار آن یکسان نیست."
+      "تکرار رمز عبور یکسان نیست."
     );
 
     return;
@@ -1105,204 +1096,303 @@ async function(event){
   }
 
 
-  $("authButton").disabled = true;
+  button.disabled = true;
 
-
-  showAuthMessage(
-    authMode === "login"
-      ? "در حال ورود..."
-      : "در حال ساخت حساب..."
-  );
+  button.textContent =
+    "در حال ورود...";
 
 
   try{
 
-    const session =
-      await usernameAuth(
-        authMode === "login"
-          ? "login"
-          : "signup",
-        username,
-        password
+    const response =
+      await fetch(
+        AUTH_FUNCTION,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+            action:authMode,
+            username,
+            password
+          })
+        }
       );
 
 
-    if(!session){
-      throw new Error("ورود انجام نشد.");
-    }
-
-
-    currentUser =
-      session.user;
-
-
-    currentUsername =
-      currentUser?.user_metadata?.username ||
-      username;
-
-
-    await enterSite(session);
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    let message =
-      error?.message ||
-      "خطایی رخ داد.";
-
-
-    const lower =
-      message.toLowerCase();
+    const data =
+      await response.json();
 
 
     if(
-      lower.includes("invalid") ||
-      lower.includes("credentials") ||
-      lower.includes("password")
+      !response.ok ||
+      !data.session
     ){
 
-      message =
-        "نام کاربری یا رمز عبور اشتباه است.";
+      throw new Error(
+        data.error ||
+        "ورود انجام نشد."
+      );
 
     }
 
 
-    showAuthMessage(message);
+    await supabaseClient.auth.setSession({
+      access_token:
+        data.session.access_token,
+
+      refresh_token:
+        data.session.refresh_token
+    });
 
 
-  }finally{
+    currentUser =
+      data.session.user;
 
-    $("authButton").disabled =
-      false;
-
-  }
-
-};
-
-
-/* =====================================================
-   ENTER SITE
-===================================================== */
-
-async function enterSite(session){
-
-  currentUser =
-    session.user;
-
-
-  currentUsername =
-    currentUser?.user_metadata?.username ||
-    currentUsername ||
-    "کاربر";
-
-
-  $("currentUsername").textContent =
-    "@" + currentUsername;
-
-
-  $("authPage")
-    .classList.add("hidden");
-
-
-  $("site")
-    .classList.remove("hidden");
-
-
-  await startOnline();
-
-  await loadProducts();
-
-  await ping();
-
-}
-
-
-/* =====================================================
-   SESSION CHECK
-===================================================== */
-
-async function checkSession(){
-
-  try{
-
-    const result =
-      await supabaseClient.auth.getSession();
-
-
-    const session =
-      result.data?.session;
-
-
-    if(session){
-
-      currentUser =
-        session.user;
-
-
-      currentUsername =
-        currentUser?.user_metadata?.username ||
-        "کاربر";
-
-
-      await enterSite(session);
-
-    }
+    showSite();
 
   }catch(error){
 
     console.error(error);
 
+    showAuthMessage(
+      error.message ||
+      "خطایی رخ داد."
+    );
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      authMode === "login"
+        ? "ورود به حساب"
+        : "ساخت حساب";
+
   }
 
 }
 
 
-checkSession();
+/* =========================
+   SHOW SITE
+========================= */
+
+async function showSite(){
+
+  document
+    .getElementById("authPage")
+    .classList
+    .add("hidden");
+
+  document
+    .getElementById("site")
+    .classList
+    .remove("hidden");
 
 
-/* =====================================================
+  const username =
+    currentUser
+      ?.user_metadata
+      ?.username ||
+    currentUser
+      ?.email
+      ?.split("@")[0] ||
+    "کاربر";
+
+
+  document
+    .getElementById(
+      "currentUsername"
+    )
+    .textContent =
+      username;
+
+
+  await markOnline();
+
+  await loadProducts();
+
+  updatePing();
+
+}
+
+
+/* =========================
+   SHOP BUTTON
+========================= */
+
+document
+  .getElementById("shopButton")
+  .addEventListener(
+    "click",
+    async function(e){
+
+      e.preventDefault();
+
+      /*
+        با زدن فروشگاه،
+        محصولات دوباره از دیتابیس
+        دریافت می‌شوند تا همه
+        محصولات جدید هم نمایش داده شوند.
+      */
+
+      await loadProducts();
+
+      const section =
+        document.getElementById(
+          "productsSection"
+        );
+
+      section.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    }
+  );
+
+
+/* =========================
    LOGOUT
-===================================================== */
+========================= */
 
-$("logoutButton").onclick =
-async function(){
-
-  await removeOnline();
-
-
-  if(onlineTimer){
-
-    clearInterval(onlineTimer);
-
-    onlineTimer = null;
-
-  }
+document
+  .getElementById("logoutButton")
+  .addEventListener(
+    "click",
+    logout
+  );
 
 
-  await supabaseClient.auth.signOut();
+async function logout(){
 
+  try{
+
+    if(currentUser){
+
+      await supabaseClient
+        .from("online_users")
+        .delete()
+        .eq(
+          "user_id",
+          currentUser.id
+        );
+
+    }
+
+  }catch(e){}
+
+  await supabaseClient
+    .auth
+    .signOut();
 
   currentUser = null;
 
+  document
+    .getElementById("site")
+    .classList
+    .add("hidden");
 
-  location.reload();
+  document
+    .getElementById("authPage")
+    .classList
+    .remove("hidden");
 
-};
+}
 
 
-/* =====================================================
-   PRODUCTS
-===================================================== */
+/* =========================
+   ONLINE
+========================= */
+
+async function markOnline(){
+
+  if(!currentUser)
+    return;
+
+  await supabaseClient
+    .from("online_users")
+    .upsert(
+      {
+        user_id:
+          currentUser.id,
+
+        last_seen:
+          new Date().toISOString()
+      },
+      {
+        onConflict:
+          "user_id"
+      }
+    );
+
+  updateOnlineCount();
+
+}
+
+
+async function updateOnlineCount(){
+
+  const cutoff =
+    new Date(
+      Date.now() -
+      2 * 60 * 1000
+    ).toISOString();
+
+
+  const {
+    count,
+    error
+  } =
+    await supabaseClient
+      .from("online_users")
+      .select(
+        "user_id",
+        {
+          count:"exact",
+          head:true
+        }
+      )
+      .gte(
+        "last_seen",
+        cutoff
+      );
+
+
+  if(!error){
+
+    document
+      .getElementById(
+        "onlineCount"
+      )
+      .textContent =
+        count || 0;
+
+  }
+
+}
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
 
 async function loadProducts(){
 
-  const result =
+  const {
+    data,
+    error
+  } =
     await supabaseClient
       .from("products")
-      .select("*")
+      .select(
+        "id,owner_id,name,price,price_type,category,seller_id,description,image_url,created_at"
+      )
       .order(
         "created_at",
         {
@@ -1311,14 +1401,13 @@ async function loadProducts(){
       );
 
 
-  if(result.error){
+  if(error){
 
-    $("products").innerHTML =
-      '<div class="empty">' +
-      escapeHTML(
-        result.error.message
-      ) +
-      '</div>';
+    console.error(error);
+
+    products = [];
+
+    renderProducts();
 
     return;
 
@@ -1326,59 +1415,70 @@ async function loadProducts(){
 
 
   products =
-    result.data || [];
-
+    data || [];
 
   renderProducts();
 
 }
 
 
-/* =====================================================
-   RENDER PRODUCTS
-===================================================== */
+/* =========================
+   RENDER
+========================= */
 
 function renderProducts(){
 
+  const box =
+    document.getElementById(
+      "products"
+    );
+
   const search =
-    $("searchInput")
+    document
+      .getElementById(
+        "searchInput"
+      )
       .value
       .trim()
       .toLowerCase();
 
-
   const category =
-    $("categoryFilter")
+    document
+      .getElementById(
+        "categoryFilter"
+      )
       .value;
+
+
+  box.innerHTML = "";
 
 
   const list =
     products.filter(
-      function(product){
+      product => {
 
-        const text =
-          (
-            product.name +
-            " " +
-            (product.description || "") +
-            " " +
-            (product.seller_id || "")
-          )
-          .toLowerCase();
-
-
-        const searchOK =
+        const matchSearch =
           !search ||
-          text.includes(search);
+          [
+            product.name,
+            product.category,
+            product.seller_id,
+            product.description
+          ]
+          .join(" ")
+          .toLowerCase()
+          .includes(search);
 
 
-        const categoryOK =
-          !category ||
+        const matchCategory =
+          category === "all" ||
           product.category === category;
 
 
-        return searchOK &&
-          categoryOK;
+        return (
+          matchSearch &&
+          matchCategory
+        );
 
       }
     );
@@ -1386,228 +1486,422 @@ function renderProducts(){
 
   if(!list.length){
 
-    $("products").innerHTML =
-      '<div class="empty">' +
-      'محصولی پیدا نشد.' +
-      '</div>';
+    box.innerHTML = `
+      <div class="empty"
+           style="display:block">
+        🛒 محصولی پیدا نشد.
+      </div>
+    `;
 
     return;
 
   }
 
 
-  $("products").innerHTML =
-    list
-      .map(createProductCard)
-      .join("");
+  list.forEach(
+    product => {
+
+      box.appendChild(
+        createProductCard(
+          product
+        )
+      );
+
+    }
+  );
 
 }
 
 
-/* =====================================================
+/* =========================
    PRODUCT CARD
-===================================================== */
+========================= */
 
 function createProductCard(product){
 
-  const owner =
-    currentUser &&
-    product.owner_id ===
-    currentUser.id;
+  const card =
+    document.createElement(
+      "article"
+    );
+
+  card.className =
+    "product";
 
 
   const image =
-    product.image_url || "";
-
-
-  const price =
-    product.price_type === "coin"
-
-      ? "🪙 " +
-        formatNumber(product.price) +
-        " سکه"
-
-      : "💰 " +
-        formatNumber(product.price) +
-        " تومان";
-
-
-  const seller =
-    cleanBaleId(
-      product.seller_id
+    document.createElement(
+      "div"
     );
 
-
-  const sellerLink =
-    seller
-      ? `
-        <a
-          class="seller-link"
-          href="${baleURL(product.seller_id)}"
-          target="_blank"
-          rel="noopener"
-        >
-          @${escapeHTML(seller)}
-        </a>
-      `
-      : "—";
+  image.className =
+    "product-image";
 
 
-  const deleteButton =
-    owner
+  if(product.image_url){
 
-      ? `
-        <button
-          class="delete"
-          onclick="deleteProduct('${product.id}')"
-        >
-          حذف
-        </button>
-      `
+    const img =
+      document.createElement(
+        "img"
+      );
 
-      : "";
+    img.src =
+      product.image_url;
 
+    img.alt =
+      product.name || "محصول";
 
-  const imageHTML =
-    image
+    img.onerror =
+      () => {
 
-      ? `
-        <div class="product-image">
+        image.innerHTML =
+          `<div class="no-image">📦</div>`;
 
-          <img
-            src="${escapeHTML(image)}"
-            alt="${escapeHTML(product.name)}"
-            loading="lazy"
-            onerror="this.style.display='none';this.parentElement.innerHTML='<div class=&quot;no-image&quot;>🖼️</div>'"
-          >
+      };
 
-        </div>
-      `
+    image.appendChild(img);
 
-      : `
-        <div class="product-image">
+  }else{
 
-          <div class="no-image">
-            🖼️
-          </div>
-
-        </div>
-      `;
-
-
-  return `
-    <article class="product">
-
-      ${imageHTML}
-
-      <div class="product-body">
-
-        <span class="badge">
-          ${escapeHTML(product.category)}
-        </span>
-
-        <h3>
-          ${escapeHTML(product.name)}
-        </h3>
-
-        <div class="description">
-          ${escapeHTML(
-            product.description || ""
-          )}
-        </div>
-
-        <div class="price">
-          ${price}
-        </div>
-
-        <div class="seller">
-          👤 فروشنده:
-          ${sellerLink}
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="buy"
-            href="${baleURL(product.seller_id)}"
-            target="_blank"
-            rel="noopener"
-          >
-            💬 پیام به فروشنده در بله
-          </a>
-
-          ${deleteButton}
-
-        </div>
-
-      </div>
-
-    </article>
-  `;
-
-}
-
-
-/* =====================================================
-   ADD PRODUCT
-===================================================== */
-
-$("productForm").onsubmit =
-async function(event){
-
-  event.preventDefault();
-
-
-  showProductMessage("");
-
-
-  if(!currentUser){
-
-    showProductMessage(
-      "ابتدا وارد حساب شوید."
-    );
-
-    return;
+    image.innerHTML =
+      `<div class="no-image">📦</div>`;
 
   }
 
 
+  const body =
+    document.createElement(
+      "div"
+    );
+
+  body.className =
+    "product-body";
+
+
+  const badge =
+    document.createElement(
+      "span"
+    );
+
+  badge.className =
+    "badge";
+
+  badge.textContent =
+    product.category ||
+    "سایر";
+
+
+  const title =
+    document.createElement(
+      "h3"
+    );
+
+  title.textContent =
+    product.name ||
+    "بدون نام";
+
+
+  const description =
+    document.createElement(
+      "div"
+    );
+
+  description.className =
+    "description";
+
+  description.textContent =
+    product.description ||
+    "بدون توضیحات";
+
+
+  const price =
+    document.createElement(
+      "div"
+    );
+
+  price.className =
+    "price";
+
+  const priceNumber =
+    new Intl.NumberFormat(
+      "fa-IR"
+    ).format(
+      Number(
+        product.price || 0
+      )
+    );
+
+
+  if(product.price_type === "toman"){
+
+    price.textContent =
+      "💰 " +
+      priceNumber +
+      " تومان";
+
+  }else{
+
+    price.textContent =
+      "🪙 " +
+      priceNumber +
+      " سکه";
+
+  }
+
+
+  const seller =
+    document.createElement(
+      "div"
+    );
+
+  seller.className =
+    "seller";
+
+
+  const sellerId =
+    String(
+      product.seller_id || ""
+    )
+    .replace(
+      /^@+/,
+      ""
+    )
+    .trim();
+
+
+  seller.innerHTML =
+    `فروشنده:
+     <a
+       class="seller-link"
+       href="https://ble.ir/${encodeURIComponent(sellerId)}"
+       target="_blank"
+       rel="noopener">
+       @${escapeHTML(sellerId)}
+     </a>`;
+
+
+  const actions =
+    document.createElement(
+      "div"
+    );
+
+  actions.className =
+    "actions";
+
+
+  const buy =
+    document.createElement(
+      "a"
+    );
+
+  buy.className =
+    "buy";
+
+  buy.textContent =
+    "💬 پیام به فروشنده";
+
+  buy.href =
+    sellerId
+      ? `https://ble.ir/${encodeURIComponent(sellerId)}`
+      : "#";
+
+  buy.target =
+    "_blank";
+
+  buy.rel =
+    "noopener";
+
+
+  actions.appendChild(
+    buy
+  );
+
+
+  if(
+    currentUser &&
+    currentUser.id ===
+    product.owner_id
+  ){
+
+    const del =
+      document.createElement(
+        "button"
+      );
+
+    del.className =
+      "delete";
+
+    del.textContent =
+      "حذف";
+
+    del.onclick =
+      () => deleteProduct(
+        product.id
+      );
+
+    actions.appendChild(
+      del
+    );
+
+  }
+
+
+  body.append(
+    badge,
+    title,
+    description,
+    price,
+    seller,
+    actions
+  );
+
+
+  card.append(
+    image,
+    body
+  );
+
+
+  return card;
+
+}
+
+
+/* =========================
+   ESCAPE
+========================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+function imageToDataURL(file){
+
+  return new Promise(
+    (resolve,reject) => {
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        () => resolve(
+          reader.result
+        );
+
+      reader.onerror =
+        reject;
+
+      reader.readAsDataURL(
+        file
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+document
+  .getElementById(
+    "productForm"
+  )
+  .addEventListener(
+    "submit",
+    addProduct
+  );
+
+
+async function addProduct(e){
+
+  e.preventDefault();
+
+
+  const button =
+    document.getElementById(
+      "productButton"
+    );
+
+
   const name =
-    $("productName")
+    document
+      .getElementById(
+        "productName"
+      )
       .value
       .trim();
+
+
+  const category =
+    document
+      .getElementById(
+        "productCategory"
+      )
+      .value;
 
 
   const price =
     Number(
-      $("productPrice").value
+      document
+        .getElementById(
+          "productPrice"
+        )
+        .value
     );
 
 
   const priceType =
-    $("priceType").value;
+    document
+      .getElementById(
+        "priceType"
+      )
+      .value;
 
 
-  const category =
-    $("productCategory").value;
-
-
-  const sellerId =
-    cleanBaleId(
-      $("sellerId").value
-    );
+  let sellerId =
+    document
+      .getElementById(
+        "sellerId"
+      )
+      .value
+      .trim();
 
 
   const description =
-    $("productDescription")
+    document
+      .getElementById(
+        "productDescription"
+      )
       .value
       .trim();
+
+
+  const imageFile =
+    document
+      .getElementById(
+        "productImage"
+      )
+      .files[0];
 
 
   if(!name){
 
     showProductMessage(
-      "نام محصول را وارد کنید."
+      "نام محصول را وارد کن."
     );
 
     return;
@@ -1615,10 +1909,11 @@ async function(event){
   }
 
 
-  if(name.length > 80){
+  if(priceType === "coin" &&
+     price < 500){
 
     showProductMessage(
-      "نام محصول نباید بیشتر از ۸۰ کاراکتر باشد."
+      "قیمت سکه باید حداقل ۵۰۰ باشد."
     );
 
     return;
@@ -1626,10 +1921,11 @@ async function(event){
   }
 
 
-  if(!Number.isFinite(price)){
+  if(priceType === "toman" &&
+     price > 500){
 
     showProductMessage(
-      "قیمت را درست وارد کنید."
+      "قیمت تومان نمی‌تواند بیشتر از ۵۰۰ باشد."
     );
 
     return;
@@ -1637,32 +1933,16 @@ async function(event){
   }
 
 
-  if(priceType === "coin" && price < 500){
-
-    showProductMessage(
-      "حداقل قیمت سکه ۵۰۰ است."
-    );
-
-    return;
-
-  }
-
-
-  if(priceType === "toman" && price > 500){
-
-    showProductMessage(
-      "بیشتر از ۵۰۰ تومان مجاز نیست."
-    );
-
-    return;
-
-  }
+  sellerId =
+    sellerId
+      .replace(/^@+/,"")
+      .trim();
 
 
   if(!sellerId){
 
     showProductMessage(
-      "آیدی بله فروشنده را وارد کنید."
+      "آیدی بله فروشنده را وارد کن."
     );
 
     return;
@@ -1670,60 +1950,71 @@ async function(event){
   }
 
 
-  $("productButton").disabled =
-    true;
+  if(
+    imageFile &&
+    imageFile.size >
+    2 * 1024 * 1024
+  ){
+
+    showProductMessage(
+      "حجم تصویر نباید بیشتر از ۲ مگابایت باشد."
+    );
+
+    return;
+
+  }
 
 
-  showProductMessage(
-    "در حال ثبت محصول..."
-  );
+  button.disabled = true;
+
+  button.textContent =
+    "در حال ثبت...";
 
 
   try{
 
-    let imageURL = "";
-
-
-    const file =
-      $("productImage").files[0];
-
-
-    if(file){
-
-      if(!file.type.startsWith("image/")){
-
-        throw new Error(
-          "فایل انتخاب‌شده تصویر نیست."
-        );
-
+    const {
+      data:{
+        user
       }
+    } =
+      await supabaseClient
+        .auth
+        .getUser();
 
 
-      if(
-        file.size >
-        2 * 1024 * 1024
-      ){
+    if(!user){
 
-        throw new Error(
-          "حجم تصویر نباید بیشتر از ۲ مگابایت باشد."
-        );
-
-      }
-
-
-      imageURL =
-        await fileToDataURL(file);
+      throw new Error(
+        "جلسه ورود منقضی شده است."
+      );
 
     }
 
 
-    const result =
+    let imageURL = "";
+
+
+    if(imageFile){
+
+      imageURL =
+        await imageToDataURL(
+          imageFile
+        );
+
+    }
+
+
+    const {
+      data,
+      error
+    } =
       await supabaseClient
         .from("products")
         .insert({
 
           owner_id:
-            currentUser.id,
+            user.id,
 
           name:
             name,
@@ -1749,133 +2040,114 @@ async function(event){
           image_path:
             ""
 
-        });
+        })
+        .select(
+          "id,owner_id,name,price,price_type,category,seller_id,description,image_url,created_at"
+        )
+        .single();
 
 
-    if(result.error){
-
-      throw result.error;
-
-    }
+    if(error)
+      throw error;
 
 
-    showProductMessage(
-      "محصول با موفقیت ثبت شد.",
-      true
+    products.unshift(
+      data
     );
 
 
-    $("productForm").reset();
+    renderProducts();
 
 
-    await loadProducts();
+    document
+      .getElementById(
+        "productForm"
+      )
+      .reset();
+
+
+    showProductMessage(
+      "✅ محصول با موفقیت ثبت شد.",
+      true
+    );
 
 
   }catch(error){
 
     console.error(error);
 
-
     showProductMessage(
-      error?.message ||
+      error.message ||
       "ثبت محصول انجام نشد."
     );
 
-
   }finally{
 
-    $("productButton").disabled =
-      false;
+    button.disabled = false;
+
+    button.textContent =
+      "ثبت محصول";
 
   }
-
-};
-
-
-/* =====================================================
-   IMAGE
-===================================================== */
-
-function fileToDataURL(file){
-
-  return new Promise(
-    function(resolve,reject){
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(){
-
-          resolve(
-            reader.result
-          );
-
-        };
-
-
-      reader.onerror =
-        function(){
-
-          reject(
-            new Error(
-              "خواندن تصویر انجام نشد."
-            )
-          );
-
-        };
-
-
-      reader.readAsDataURL(file);
-
-    }
-  );
 
 }
 
 
-/* =====================================================
-   DELETE PRODUCT
-===================================================== */
+/* =========================
+   PRODUCT MESSAGE
+========================= */
 
-window.deleteProduct =
-async function(id){
+function showProductMessage(
+  text,
+  success=false
+){
 
-  if(!currentUser){
-    return;
-  }
+  const box =
+    document.getElementById(
+      "productMessage"
+    );
 
+  box.textContent =
+    text;
+
+  box.className =
+    success
+      ? "message success"
+      : "message";
+
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteProduct(id){
 
   if(
     !confirm(
       "این محصول حذف شود؟"
     )
-  ){
-
+  )
     return;
 
-  }
 
-
-  const result =
+  const {
+    error
+  } =
     await supabaseClient
       .from("products")
       .delete()
       .eq(
         "id",
         id
-      )
-      .eq(
-        "owner_id",
-        currentUser.id
       );
 
 
-  if(result.error){
+  if(error){
 
-    alert(
-      result.error.message
+    showProductMessage(
+      error.message
     );
 
     return;
@@ -1883,344 +2155,197 @@ async function(id){
   }
 
 
-  await loadProducts();
+  products =
+    products.filter(
+      p => p.id !== id
+    );
 
-};
+
+  renderProducts();
 
 
-/* =====================================================
+  showProductMessage(
+    "محصول حذف شد.",
+    true
+  );
+
+}
+
+
+/* =========================
    SEARCH
-===================================================== */
+========================= */
 
-$("searchInput").oninput =
-function(){
-  renderProducts();
-};
-
-
-$("categoryFilter").onchange =
-function(){
-  renderProducts();
-};
+document
+  .getElementById(
+    "searchInput"
+  )
+  .addEventListener(
+    "input",
+    renderProducts
+  );
 
 
-/* =====================================================
+document
+  .getElementById(
+    "categoryFilter"
+  )
+  .addEventListener(
+    "change",
+    renderProducts
+  );
+
+
+/* =========================
    PING
-===================================================== */
+========================= */
 
-async function ping(){
-
-  if(!currentUser){
-    return;
-  }
-
+async function updatePing(){
 
   const start =
     performance.now();
 
 
-  const result =
-    await supabaseClient
-      .from("products")
-      .select(
-        "id",
-        {
-          head:true,
-          count:"exact"
-        }
+  try{
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("products")
+        .select(
+          "id"
+        )
+        .limit(1);
+
+
+    if(error)
+      throw error;
+
+
+    const ms =
+      Math.max(
+        1,
+        Math.round(
+          performance.now() -
+          start
+        )
       );
 
 
-  if(result.error){
+    document
+      .getElementById(
+        "ping"
+      )
+      .textContent =
+        "Ping: " +
+        ms +
+        "ms";
 
-    $("ping").textContent =
-      "Ping: —";
 
-    return;
+  }catch(error){
+
+    document
+      .getElementById(
+        "ping"
+      )
+      .textContent =
+        "Ping: OFF";
 
   }
-
-
-  const ms =
-    Math.round(
-      performance.now() -
-      start
-    );
-
-
-  $("ping").textContent =
-    "Ping: " +
-    ms +
-    "ms";
 
 }
 
 
+/* =========================
+   HEARTBEAT
+========================= */
+
 setInterval(
-  ping,
+  async () => {
+
+    if(!currentUser)
+      return;
+
+    await markOnline();
+
+    updateOnlineCount();
+
+    updatePing();
+
+  },
   10000
 );
 
 
-/* =====================================================
-   ONLINE USERS
-===================================================== */
+/* =========================
+   SESSION
+========================= */
 
-async function startOnline(){
+supabaseClient.auth
+  .onAuthStateChange(
+    async (
+      event,
+      session
+    ) => {
 
-  if(!currentUser){
-    return;
-  }
+      if(session){
 
+        currentUser =
+          session.user;
 
-  try{
+        await showSite();
 
-    const result =
-      await supabaseClient
-        .from("online_users")
-        .upsert(
-          {
-            user_id:
-              currentUser.id,
+      }
 
-            last_seen:
-              new Date().toISOString()
-          },
-          {
-            onConflict:
-              "user_id"
-          }
-        );
+      if(
+        event ===
+        "SIGNED_OUT"
+      ){
 
+        currentUser =
+          null;
 
-    if(result.error){
-      console.error(result.error);
+        document
+          .getElementById(
+            "site"
+          )
+          .classList
+          .add("hidden");
+
+        document
+          .getElementById(
+            "authPage"
+          )
+          .classList
+          .remove("hidden");
+
+      }
+
     }
+  );
 
 
-  }catch(error){
+(async()=>{
 
-    console.error(error);
-
-  }
-
-
-  await updateOnlineCount();
-
-
-  if(onlineTimer){
-
-    clearInterval(
-      onlineTimer
-    );
-
-  }
-
-
-  onlineTimer =
-    setInterval(
-      async function(){
-
-        await updateMyOnlineStatus();
-
-        await updateOnlineCount();
-
-      },
-      60000
-    );
-
-}
-
-
-async function updateMyOnlineStatus(){
-
-  if(!currentUser){
-    return;
-  }
-
-
-  const result =
+  const {
+    data
+  } =
     await supabaseClient
-      .from("online_users")
-      .upsert(
-        {
-          user_id:
-            currentUser.id,
-
-          last_seen:
-            new Date().toISOString()
-        },
-        {
-          onConflict:
-            "user_id"
-        }
-      );
+      .auth
+      .getSession();
 
 
-  if(result.error){
-    console.error(result.error);
-  }
+  if(data.session){
 
-}
+    currentUser =
+      data.session.user;
 
-
-async function updateOnlineCount(){
-
-  const limit =
-    new Date(
-      Date.now() -
-      2 * 60 * 1000
-    ).toISOString();
-
-
-  const result =
-    await supabaseClient
-      .from("online_users")
-      .select(
-        "user_id",
-        {
-          count:"exact",
-          head:true
-        }
-      )
-      .gte(
-        "last_seen",
-        limit
-      );
-
-
-  if(result.error){
-
-    console.error(result.error);
-
-    $("onlineCount").textContent =
-      "0";
-
-    return;
+    await showSite();
 
   }
 
-
-  $("onlineCount").textContent =
-    formatNumber(
-      result.count || 0
-    );
-
-}
-
-
-/* =====================================================
-   REMOVE ONLINE
-===================================================== */
-
-async function removeOnline(){
-
-  if(!currentUser){
-    return;
-  }
-
-
-  try{
-
-    const result =
-      await supabaseClient
-        .from("online_users")
-        .delete()
-        .eq(
-          "user_id",
-          currentUser.id
-        );
-
-
-    if(result.error){
-      console.error(result.error);
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-}
-
-
-/* =====================================================
-   REFRESH
-===================================================== */
-
-setInterval(
-  function(){
-
-    if(
-      currentUser &&
-      !$("site").classList.contains(
-        "hidden"
-      )
-    ){
-
-      loadProducts();
-
-    }
-
-  },
-  30000
-);
-
-
-setInterval(
-  function(){
-
-    if(currentUser){
-      updateOnlineCount();
-    }
-
-  },
-  60000
-);
-
-
-/* =====================================================
-   AUTH STATE
-===================================================== */
-
-supabaseClient.auth.onAuthStateChange(
-  function(event,session){
-
-    if(
-      session &&
-      !currentUser
-    ){
-
-      currentUser =
-        session.user;
-
-
-      currentUsername =
-        currentUser?.user_metadata?.username ||
-        "کاربر";
-
-
-      enterSite(session);
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   BEFORE UNLOAD
-===================================================== */
-
-window.addEventListener(
-  "beforeunload",
-  function(){
-
-    removeOnline();
-
-  }
-);
+})();
 
 </script>
 
