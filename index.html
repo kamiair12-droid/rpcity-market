@@ -33,6 +33,11 @@ button{
   cursor:pointer;
 }
 
+button:disabled{
+  cursor:not-allowed;
+  opacity:.55;
+}
+
 .hidden{
   display:none!important;
 }
@@ -48,7 +53,7 @@ header{
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(7,9,13,.96);
+  background:rgba(7,9,13,.97);
   backdrop-filter:blur(15px);
   border-bottom:1px solid #1c222c;
 }
@@ -85,15 +90,21 @@ header{
   flex-wrap:wrap;
 }
 
-.online{
+.online,
+.ping-box{
   display:flex;
   align-items:center;
   gap:7px;
-  background:#0d1713;
-  border:1px solid #174a34;
+  background:#10151c;
+  border:1px solid #222b36;
   padding:8px 11px;
   border-radius:11px;
   font-size:11px;
+}
+
+.online{
+  background:#0d1713;
+  border-color:#174a34;
 }
 
 .dot{
@@ -108,19 +119,9 @@ header{
   color:#6e7d72;
 }
 
-.ping-box{
-  display:flex;
-  align-items:center;
-  gap:5px;
-  background:#10151c;
-  border:1px solid #222b36;
-  padding:8px 11px;
-  border-radius:11px;
-  font-size:11px;
-}
-
 .logout,
-.shop-button{
+.shop-button,
+.admin-button{
   border:1px solid #26313b;
   background:#111820;
   color:#fff;
@@ -138,6 +139,12 @@ header{
   color:#00ff88;
   border-color:#174a34;
   background:#0d1713;
+}
+
+.admin-button{
+  color:#ffd86b;
+  border-color:#5a4720;
+  background:#211b0d;
 }
 
 /* ================= AUTH ================= */
@@ -249,10 +256,6 @@ header{
   background:#20ff9b;
 }
 
-.primary:disabled{
-  opacity:.6;
-}
-
 .message{
   min-height:20px;
   text-align:center;
@@ -323,7 +326,7 @@ header{
   gap:16px;
 }
 
-/* ================= FORM ================= */
+/* ================= FORMS ================= */
 
 .price-row{
   display:grid;
@@ -398,6 +401,16 @@ header{
   margin-bottom:9px;
 }
 
+.badge.sold{
+  color:#ffd86b;
+  background:#211b0d;
+}
+
+.badge.hidden-status{
+  color:#aaa;
+  background:#17191d;
+}
+
 .product h3{
   font-size:17px;
   margin-bottom:8px;
@@ -422,6 +435,28 @@ header{
   color:#858f9e;
   font-size:12px;
   margin-bottom:10px;
+}
+
+.seller-reputation{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:11px;
+}
+
+.rep{
+  background:#111820;
+  border:1px solid #26313b;
+  padding:5px 8px;
+  border-radius:8px;
+  color:#aeb7c4;
+  font-size:10px;
+}
+
+.trusted{
+  color:#00ff88;
+  border-color:#175538;
+  background:#0d2119;
 }
 
 .contact-title{
@@ -462,15 +497,42 @@ header{
 
 .actions{
   display:flex;
+  flex-wrap:wrap;
   gap:7px;
 }
 
-.delete{
-  border:1px solid #57202b;
-  background:#251116;
-  color:#ff6b7c;
+.delete,
+.report-btn,
+.buy-btn,
+.edit-btn{
+  border:1px solid #26313b;
+  background:#111820;
+  color:#fff;
   padding:10px 12px;
   border-radius:10px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.delete{
+  border-color:#57202b;
+  background:#251116;
+  color:#ff6b7c;
+}
+
+.report-btn{
+  border-color:#5a3a20;
+  color:#ffc26b;
+}
+
+.buy-btn{
+  border-color:#175538;
+  color:#00ff88;
+  background:#0d2119;
+}
+
+.edit-btn{
+  color:#8ec9ff;
 }
 
 .filters{
@@ -585,6 +647,15 @@ header{
   word-break:break-word;
 }
 
+.chat-report{
+  border:0;
+  background:transparent;
+  color:#ff9a7a;
+  font-size:9px;
+  padding:0;
+  margin-top:6px;
+}
+
 .chat-bottom{
   margin-top:10px;
 }
@@ -635,6 +706,224 @@ header{
   color:#03110a;
   font-weight:900;
   border-radius:11px;
+}
+
+/* ================= MARKET INFO ================= */
+
+.rules{
+  margin-top:18px;
+}
+
+.rules-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.rule-box{
+  background:#080c12;
+  border:1px solid #202936;
+  border-radius:14px;
+  padding:15px;
+}
+
+.rule-box h3{
+  font-size:14px;
+  margin-bottom:9px;
+}
+
+.rule-box p,
+.rule-box li{
+  color:#929aa8;
+  font-size:11px;
+  line-height:2;
+}
+
+.rule-box ul{
+  padding-right:18px;
+}
+
+/* ================= ADMIN ================= */
+
+.admin-panel{
+  margin-top:18px;
+  border-color:#55451d;
+  background:
+    radial-gradient(circle at top right,rgba(255,216,107,.07),transparent 35%),
+    #0d1015;
+}
+
+.admin-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.admin-title{
+  font-size:21px;
+  font-weight:1000;
+  color:#ffd86b;
+}
+
+.admin-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.stat{
+  background:#080c12;
+  border:1px solid #252e3a;
+  border-radius:13px;
+  padding:15px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+  margin-bottom:5px;
+  color:#00ff88;
+}
+
+.stat span{
+  color:#798493;
+  font-size:10px;
+}
+
+.admin-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:15px;
+}
+
+.admin-action{
+  border:1px solid #343c47;
+  background:#111820;
+  color:#fff;
+  border-radius:10px;
+  padding:10px 13px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.admin-content{
+  background:#080c12;
+  border:1px solid #202936;
+  border-radius:14px;
+  padding:13px;
+  max-height:420px;
+  overflow:auto;
+}
+
+.admin-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:11px 0;
+  border-bottom:1px solid #1b222c;
+}
+
+.admin-row:last-child{
+  border-bottom:0;
+}
+
+.admin-row-info{
+  min-width:0;
+}
+
+.admin-row-info strong{
+  display:block;
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.admin-row-info small{
+  color:#758090;
+  font-size:9px;
+}
+
+.admin-row-buttons{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.admin-mini{
+  border:1px solid #303946;
+  background:#111820;
+  color:#fff;
+  padding:7px 9px;
+  border-radius:8px;
+  font-size:9px;
+}
+
+.admin-mini.danger{
+  color:#ff7788;
+  border-color:#57202b;
+}
+
+.admin-mini.good{
+  color:#00ff88;
+  border-color:#175538;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(7px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-box{
+  width:min(520px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#0d1118;
+  border:1px solid #27313d;
+  border-radius:20px;
+  padding:20px;
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.modal-head h2{
+  font-size:18px;
+}
+
+.close-modal{
+  border:1px solid #303946;
+  background:#111820;
+  color:#fff;
+  border-radius:9px;
+  padding:7px 10px;
+}
+
+.modal-buttons{
+  display:flex;
+  gap:8px;
+}
+
+.modal-buttons button{
+  flex:1;
 }
 
 /* ================= SUPPORT ================= */
@@ -712,6 +1001,14 @@ footer{
     grid-template-columns:1fr;
   }
 
+  .admin-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .rules-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 @media(max-width:600px){
@@ -729,7 +1026,8 @@ footer{
   .online,
   .ping-box,
   .logout,
-  .shop-button{
+  .shop-button,
+  .admin-button{
     font-size:10px;
   }
 
@@ -765,6 +1063,19 @@ footer{
 
   .chat-message{
     max-width:92%;
+  }
+
+  .admin-row{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .admin-row-buttons{
+    width:100%;
+  }
+
+  .admin-mini{
+    flex:1;
   }
 
 }
@@ -803,7 +1114,6 @@ footer{
 
       <div class="field">
         <label>نام کاربری</label>
-
         <input
           id="username"
           type="text"
@@ -816,7 +1126,6 @@ footer{
 
       <div class="field">
         <label>رمز عبور</label>
-
         <input
           id="password"
           type="password"
@@ -861,6 +1170,7 @@ footer{
   <div class="wrap nav">
 
     <div>
+
       <div class="logo">
         RP <span>CITY</span> MARKET
       </div>
@@ -868,17 +1178,24 @@ footer{
       <div id="currentUsername" class="username-small">
         کاربر
       </div>
+
     </div>
 
     <div class="user-area">
 
-      <a
-        href="#chat"
-        class="shop-button">
+      <a href="#chat" class="shop-button">
         💬 گپ آنلاین
       </a>
 
+      <button
+        id="adminOpenButton"
+        class="admin-button hidden"
+        type="button">
+        👑 مدیریت
+      </button>
+
       <div class="online">
+
         <span class="dot"></span>
 
         <span>
@@ -892,18 +1209,26 @@ footer{
         <small>
           +۷ نمایشی
         </small>
+
       </div>
 
       <div class="ping-box">
+
         <span>Ping:</span>
-        <strong id="ping">—ms</strong>
+
+        <strong id="ping">
+          —ms
+        </strong>
+
       </div>
 
       <button
         id="logoutButton"
         class="logout"
         type="button">
+
         خروج
+
       </button>
 
     </div>
@@ -917,371 +1242,663 @@ footer{
 
 <div class="wrap">
 
-  <section class="hero">
+<section class="hero">
 
-    <h1>
-      RP <span>CITY</span> MARKET
-    </h1>
+  <h1>
+    RP <span>CITY</span> MARKET
+  </h1>
 
-    <p>
-      بازار خرید و فروش آیتم، اکانت و سکه RP City
-    </p>
+  <p>
+    بازار خرید و فروش آیتم، اکانت و سکه RP City
+  </p>
 
-  </section>
+</section>
 
 
-  <!-- ================= PRODUCTS ================= -->
+<!-- ================= PRODUCTS ================= -->
 
-  <div class="grid">
+<div class="grid">
 
-    <section class="panel">
+<section class="panel">
 
-      <div class="panel-title">
-        🛒 ثبت آگهی
-      </div>
+  <div class="panel-title">
+    🛒 ثبت آگهی
+  </div>
 
-      <form id="productForm">
+  <form id="productForm">
 
-        <div class="field">
+    <div class="field">
 
-          <label>
-            نام محصول
-          </label>
+      <label>
+        نام محصول
+      </label>
 
-          <input
-            id="productName"
-            type="text"
-            maxlength="100"
-            placeholder="مثلاً اسکین کمیاب"
-            required>
+      <input
+        id="productName"
+        type="text"
+        maxlength="100"
+        placeholder="مثلاً اسکین کمیاب"
+        required>
 
-        </div>
+    </div>
 
 
-        <div class="field">
+    <div class="field">
 
-          <label>
-            دسته‌بندی
-          </label>
+      <label>
+        دسته‌بندی
+      </label>
 
-          <select id="category">
+      <select id="category">
 
-            <option value="آیتم">
-              آیتم
-            </option>
+        <option value="آیتم">
+          آیتم
+        </option>
 
-            <option value="اکانت">
-              اکانت
-            </option>
+        <option value="اکانت">
+          اکانت
+        </option>
 
-            <option value="سکه">
-              سکه
-            </option>
+        <option value="سکه">
+          سکه
+        </option>
 
-            <option value="سایر">
-              سایر
-            </option>
+        <option value="سایر">
+          سایر
+        </option>
 
-          </select>
+      </select>
 
-        </div>
+    </div>
 
 
-        <div class="field">
+    <div class="field">
 
-          <label>
-            نوع قیمت
-          </label>
+      <label>
+        نوع قیمت
+      </label>
 
-          <select id="priceType">
+      <select id="priceType">
 
-            <option value="coin">
-              🪙 سکه
-            </option>
+        <option value="coin">
+          🪙 سکه
+        </option>
 
-            <option value="toman">
-              💵 تومان
-            </option>
+        <option value="toman">
+          💵 تومان
+        </option>
 
-          </select>
+      </select>
 
-        </div>
+    </div>
 
 
-        <div class="field">
+    <div class="field">
 
-          <label>
-            قیمت
-          </label>
+      <label>
+        قیمت
+      </label>
 
-          <input
-            id="price"
-            type="number"
-            min="0"
-            step="1"
-            placeholder="حداقل سکه ۵۰۰ / حداکثر تومان ۵۰۰"
-            required>
-
-          <div class="hint">
-            🪙 حداقل قیمت سکه: ۵۰۰
-            <br>
-            💵 حداکثر قیمت تومان: ۵۰۰
-          </div>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            آیدی روبیکا
-          </label>
-
-          <input
-            id="rubikaId"
-            type="text"
-            maxlength="100"
-            placeholder="@username">
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            آیدی بله
-          </label>
-
-          <input
-            id="baleId"
-            type="text"
-            maxlength="100"
-            placeholder="@username">
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            توضیحات
-          </label>
-
-          <textarea
-            id="description"
-            maxlength="2000"
-            placeholder="توضیحات محصول..."></textarea>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            تصویر محصول
-          </label>
-
-          <input
-            id="imageFile"
-            type="file"
-            accept="image/*">
-
-          <div class="hint">
-            حداکثر حجم تصویر: ۲ مگابایت
-          </div>
-
-          <img
-            id="filePreview"
-            class="file-preview"
-            alt="preview">
-
-        </div>
-
-
-        <button
-          id="productButton"
-          class="primary"
-          type="submit">
-
-          ثبت آگهی
-
-        </button>
-
-        <div
-          id="productMessage"
-          class="message">
-        </div>
-
-      </form>
-
-    </section>
-
-
-    <section class="panel">
-
-      <div class="panel-title">
-        🔎 آگهی‌ها
-      </div>
-
-      <div class="filters">
-
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="جستجو...">
-
-        <select id="filterCategory">
-
-          <option value="">
-            همه دسته‌ها
-          </option>
-
-          <option value="آیتم">
-            آیتم
-          </option>
-
-          <option value="اکانت">
-            اکانت
-          </option>
-
-          <option value="سکه">
-            سکه
-          </option>
-
-          <option value="سایر">
-            سایر
-          </option>
-
-        </select>
+      <input
+        id="price"
+        type="number"
+        min="0"
+        step="1"
+        placeholder="حداقل سکه ۵۰۰ / حداکثر تومان ۵۰۰"
+        required>
+
+      <div class="hint">
+
+        🪙 حداقل قیمت سکه: ۵۰۰
+        <br>
+        💵 حداکثر قیمت تومان: ۵۰۰
 
       </div>
 
-      <div
-        id="products"
-        class="products">
+    </div>
 
+
+    <div class="field">
+
+      <label>
+        آیدی روبیکا
+      </label>
+
+      <input
+        id="rubikaId"
+        type="text"
+        maxlength="100"
+        placeholder="@username">
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        آیدی بله
+      </label>
+
+      <input
+        id="baleId"
+        type="text"
+        maxlength="100"
+        placeholder="@username">
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        توضیحات
+      </label>
+
+      <textarea
+        id="description"
+        maxlength="2000"
+        placeholder="توضیحات محصول..."></textarea>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        تصویر محصول
+      </label>
+
+      <input
+        id="imageFile"
+        type="file"
+        accept="image/*">
+
+      <div class="hint">
+        حداکثر حجم تصویر: ۲ مگابایت
       </div>
 
-    </section>
+      <img
+        id="filePreview"
+        class="file-preview"
+        alt="preview">
+
+    </div>
+
+
+    <button
+      id="productButton"
+      class="primary"
+      type="submit">
+
+      ثبت آگهی
+
+    </button>
+
+    <div
+      id="productMessage"
+      class="message">
+    </div>
+
+  </form>
+
+</section>
+
+
+<section class="panel">
+
+  <div class="panel-title">
+    🔎 آگهی‌ها
+  </div>
+
+  <div class="filters">
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="جستجو...">
+
+    <select id="filterCategory">
+
+      <option value="">
+        همه دسته‌ها
+      </option>
+
+      <option value="آیتم">
+        آیتم
+      </option>
+
+      <option value="اکانت">
+        اکانت
+      </option>
+
+      <option value="سکه">
+        سکه
+      </option>
+
+      <option value="سایر">
+        سایر
+      </option>
+
+    </select>
+
+    <select id="sortProducts">
+
+      <option value="new">
+        جدیدترین
+      </option>
+
+      <option value="old">
+        قدیمی‌ترین
+      </option>
+
+      <option value="cheap">
+        ارزان‌ترین
+      </option>
+
+      <option value="expensive">
+        گران‌ترین
+      </option>
+
+    </select>
+
+  </div>
+
+  <div
+    id="products"
+    class="products">
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- ================= CHAT ================= -->
+
+<section id="chat" class="panel chat-panel">
+
+  <div class="chat-head">
+
+    <div class="chat-title">
+      💬 گپ آنلاین RP CITY
+    </div>
+
+    <div class="chat-status">
+      🟢 آنلاین
+    </div>
 
   </div>
 
 
-  <!-- ================= CHAT ================= -->
+  <div
+    id="chatMessages"
+    class="chat-messages">
 
-  <section id="chat" class="panel chat-panel">
+    <div class="chat-empty">
+      هنوز پیامی ارسال نشده 👋
+    </div>
 
-    <div class="chat-head">
+  </div>
 
-      <div class="chat-title">
-        💬 گپ آنلاین RP CITY
-      </div>
 
-      <div class="chat-status">
-        🟢 آنلاین
-      </div>
+  <div class="chat-bottom">
+
+    <div class="chat-emojis">
+
+      <button
+        class="emoji-btn"
+        type="button"
+        data-emoji="❤️">
+        ❤️
+      </button>
+
+      <button
+        class="emoji-btn"
+        type="button"
+        data-emoji="😂">
+        😂
+      </button>
+
+      <button
+        class="emoji-btn"
+        type="button"
+        data-emoji="🔥">
+        🔥
+      </button>
+
+      <button
+        class="emoji-btn"
+        type="button"
+        data-emoji="👍">
+        👍
+      </button>
 
     </div>
 
 
-    <div
-      id="chatMessages"
-      class="chat-messages">
+    <form id="chatForm" class="chat-form">
 
-      <div class="chat-empty">
-        هنوز پیامی ارسال نشده 👋
-      </div>
+      <input
+        id="chatInput"
+        class="chat-input"
+        maxlength="500"
+        placeholder="پیامت رو بنویس..."
+        autocomplete="off"
+        required>
+
+      <button
+        class="chat-send"
+        type="submit">
+
+        ارسال
+
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- ================= RULES ================= -->
+
+<section class="panel rules">
+
+  <div class="panel-title">
+    📜 قوانین RP CITY MARKET
+  </div>
+
+  <div class="rules-grid">
+
+    <div class="rule-box">
+
+      <h3>
+        🛒 قوانین فروشنده
+      </h3>
+
+      <ul>
+
+        <li>
+          اطلاعات محصول باید واقعی باشد.
+        </li>
+
+        <li>
+          قیمت و توضیحات نباید گمراه‌کننده باشد.
+        </li>
+
+        <li>
+          فروشنده مسئول صحت اطلاعات آگهی است.
+        </li>
+
+        <li>
+          آگهی متخلف می‌تواند حذف شود.
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="rule-box">
+
+      <h3>
+        🛍️ قوانین خریدار
+      </h3>
+
+      <ul>
+
+        <li>
+          قبل از خرید اطلاعات محصول را بررسی کن.
+        </li>
+
+        <li>
+          اطلاعات شخصی یا رمز حساب را برای دیگران ارسال نکن.
+        </li>
+
+        <li>
+          در صورت مشکل از سیستم گزارش و اختلاف استفاده کن.
+        </li>
+
+      </ul>
 
     </div>
 
 
-    <div class="chat-bottom">
+    <div class="rule-box">
 
-      <div class="chat-emojis">
+      <h3>
+        🚫 موارد ممنوع
+      </h3>
 
-        <button
-          class="emoji-btn"
-          type="button"
-          data-emoji="❤️">
-          ❤️
-        </button>
+      <ul>
 
-        <button
-          class="emoji-btn"
-          type="button"
-          data-emoji="😂">
-          😂
-        </button>
+        <li>
+          کلاهبرداری و اطلاعات جعلی
+        </li>
 
-        <button
-          class="emoji-btn"
-          type="button"
-          data-emoji="🔥">
-          🔥
-        </button>
+        <li>
+          جعل هویت یا فریب کاربران
+        </li>
 
-        <button
-          class="emoji-btn"
-          type="button"
-          data-emoji="👍">
-          👍
-        </button>
+        <li>
+          اسپم و سوءاستفاده از چت
+        </li>
 
-      </div>
+        <li>
+          کالا یا خدمات غیرمجاز
+        </li>
 
-
-      <form id="chatForm" class="chat-form">
-
-        <input
-          id="chatInput"
-          class="chat-input"
-          maxlength="500"
-          placeholder="پیامت رو بنویس..."
-          autocomplete="off"
-          required>
-
-        <button
-          class="chat-send"
-          type="submit">
-
-          ارسال
-
-        </button>
-
-      </form>
+      </ul>
 
     </div>
 
-  </section>
 
+    <div class="rule-box">
 
-  <!-- ================= SUPPORT ================= -->
+      <h3>
+        ⚖️ رسیدگی به شکایت
+      </h3>
 
-  <section class="support">
+      <ul>
 
-    <div>
+        <li>
+          گزارش‌ها توسط مدیریت بررسی می‌شوند.
+        </li>
 
-      <h2>
-        🛟 پشتیبانی RP CITY
-      </h2>
+        <li>
+          تخلف می‌تواند باعث اخطار یا تعلیق شود.
+        </li>
 
-      <p>
-        اگر مشکلی داشتی از طریق پشتیبانی با ما در ارتباط باش.
-      </p>
+        <li>
+          برای معامله مشکل‌دار امکان ثبت اختلاف وجود دارد.
+        </li>
+
+      </ul>
 
     </div>
 
-    <a
-      href="https://ble.ir/rpcity_lor"
-      target="_blank"
-      rel="noopener">
+  </div>
 
-      پشتیبانی
+</section>
 
-    </a>
 
-  </section>
+<!-- ================= SUPPORT ================= -->
 
+<section class="support">
+
+  <div>
+
+    <h2>
+      🛟 پشتیبانی RP CITY
+    </h2>
+
+    <p>
+      اگر مشکلی داشتی از طریق پشتیبانی با ما در ارتباط باش.
+    </p>
+
+  </div>
+
+  <a
+    href="https://ble.ir/rpcity_lor"
+    target="_blank"
+    rel="noopener">
+
+    پشتیبانی
+
+  </a>
+
+</section>
+
+
+<!-- ================= ADMIN ================= -->
+
+<section
+  id="adminPanel"
+  class="panel admin-panel hidden">
+
+  <div class="admin-head">
+
+    <div class="admin-title">
+      👑 پنل مدیریت
+    </div>
+
+    <button
+      id="adminCloseButton"
+      class="close-modal"
+      type="button">
+
+      بستن
+
+    </button>
+
+  </div>
+
+
+  <div class="admin-grid">
+
+    <div class="stat">
+
+      <strong id="statProducts">
+        0
+      </strong>
+
+      <span>
+        آگهی‌ها
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <strong id="statUsers">
+        0
+      </strong>
+
+      <span>
+        کاربران
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <strong id="statReports">
+        0
+      </strong>
+
+      <span>
+        گزارش‌ها
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <strong id="statTransactions">
+        0
+      </strong>
+
+      <span>
+        معاملات
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="admin-actions">
+
+    <button
+      class="admin-action"
+      data-admin-view="users"
+      type="button">
+
+      👤 کاربران
+
+    </button>
+
+    <button
+      class="admin-action"
+      data-admin-view="products"
+      type="button">
+
+      📦 آگهی‌ها
+
+    </button>
+
+    <button
+      class="admin-action"
+      data-admin-view="reports"
+      type="button">
+
+      🚨 گزارش‌ها
+
+    </button>
+
+    <button
+      class="admin-action"
+      data-admin-view="transactions"
+      type="button">
+
+      🛒 معاملات
+
+    </button>
+
+    <button
+      class="admin-action"
+      data-admin-view="disputes"
+      type="button">
+
+      ⚖️ اختلاف‌ها
+
+    </button>
+
+    <button
+      class="admin-action"
+      data-admin-view="logs"
+      type="button">
+
+      🧾 لاگ امنیتی
+
+    </button>
+
+  </div>
+
+
+  <div
+    id="adminContent"
+    class="admin-content">
+
+    پنل مدیریت را انتخاب کن.
+
+  </div>
+
+</section>
 
 </div>
 
@@ -1295,10 +1912,288 @@ footer{
 </div>
 
 
+<!-- ================= REPORT MODAL ================= -->
+
+<div
+  id="reportModal"
+  class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>
+        🚨 گزارش
+      </h2>
+
+      <button
+        class="close-modal"
+        type="button"
+        onclick="closeReportModal()">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <form id="reportForm">
+
+      <input
+        id="reportTargetType"
+        type="hidden">
+
+      <input
+        id="reportTargetId"
+        type="hidden">
+
+
+      <div class="field">
+
+        <label>
+          دلیل
+        </label>
+
+        <select id="reportReason" required>
+
+          <option value="">
+            انتخاب دلیل
+          </option>
+
+          <option value="fraud">
+            کلاهبرداری
+          </option>
+
+          <option value="fake_information">
+            اطلاعات جعلی
+          </option>
+
+          <option value="spam">
+            اسپم
+          </option>
+
+          <option value="abuse">
+            توهین / سوءاستفاده
+          </option>
+
+          <option value="prohibited">
+            محتوای ممنوع
+          </option>
+
+          <option value="other">
+            سایر
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          توضیحات
+        </label>
+
+        <textarea
+          id="reportDetails"
+          maxlength="2000"
+          placeholder="جزئیات گزارش..."></textarea>
+
+      </div>
+
+
+      <div class="modal-buttons">
+
+        <button
+          class="primary"
+          type="submit">
+
+          ارسال گزارش
+
+        </button>
+
+        <button
+          class="logout"
+          type="button"
+          onclick="closeReportModal()">
+
+          لغو
+
+        </button>
+
+      </div>
+
+      <div
+        id="reportMessage"
+        class="message">
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- ================= PURCHASE MODAL ================= -->
+
+<div
+  id="purchaseModal"
+  class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>
+        🛒 درخواست خرید
+      </h2>
+
+      <button
+        class="close-modal"
+        type="button"
+        onclick="closePurchaseModal()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div id="purchaseInfo"></div>
+
+    <form id="purchaseForm">
+
+      <input
+        id="purchaseProductId"
+        type="hidden">
+
+      <div class="field">
+
+        <label>
+          پیام برای فروشنده
+        </label>
+
+        <textarea
+          id="purchaseMessage"
+          maxlength="500"
+          placeholder="مثلاً سلام، این محصول هنوز موجوده؟"></textarea>
+
+      </div>
+
+      <button
+        class="primary"
+        type="submit">
+
+        ارسال درخواست خرید
+
+      </button>
+
+      <div
+        id="purchaseMessageBox"
+        class="message">
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- ================= DISPUTE MODAL ================= -->
+
+<div
+  id="disputeModal"
+  class="modal hidden">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <h2>
+        ⚖️ ثبت اختلاف
+      </h2>
+
+      <button
+        class="close-modal"
+        type="button"
+        onclick="closeDisputeModal()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <form id="disputeForm">
+
+      <input
+        id="disputeTransactionId"
+        type="hidden">
+
+      <div class="field">
+
+        <label>
+          دلیل اختلاف
+        </label>
+
+        <input
+          id="disputeReason"
+          maxlength="200"
+          required
+          placeholder="مثلاً محصول تحویل نشده">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          توضیحات
+        </label>
+
+        <textarea
+          id="disputeDetails"
+          maxlength="3000"
+          required
+          placeholder="توضیحات کامل..."></textarea>
+
+      </div>
+
+      <button
+        class="primary"
+        type="submit">
+
+        ثبت اختلاف
+
+      </button>
+
+      <div
+        id="disputeMessage"
+        class="message">
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
 <div id="toast" class="toast"></div>
 
 
 <script>
+
+/* =========================================================
+   RP CITY MARKET
+   FRONTEND
+========================================================= */
+
+
+/* ================= SUPABASE ================= */
 
 const SUPABASE_URL =
   "https://cjntwmohtwbfqtxlgxrt.supabase.co";
@@ -1316,12 +2211,22 @@ const supabaseClient =
 /* ================= STATE ================= */
 
 let currentUser = null;
+
 let currentUsername = "";
+
+let currentProfile = null;
+
+let currentIsAdmin = false;
+
 let authMode = "login";
 
 let productsCache = [];
 
+let sellerRepCache = new Map();
+
 let chatChannel = null;
+
+let adminLoaded = false;
 
 const FAKE_ONLINE = 7;
 
@@ -1389,15 +2294,34 @@ function showToast(text){
   window.toastTimer =
     setTimeout(
       () => toast.classList.remove("show"),
-      2200
+      2500
     );
 
 }
 
 
-async function copySellerId(value, platform){
+function formatDate(value){
 
-  const id = displayId(value);
+  if(!value){
+    return "—";
+  }
+
+  return new Date(value)
+    .toLocaleString(
+      "fa-IR",
+      {
+        dateStyle:"short",
+        timeStyle:"short"
+      }
+    );
+
+}
+
+
+async function copySellerId(value,platform){
+
+  const id =
+    displayId(value);
 
   if(!id){
     return;
@@ -1405,19 +2329,26 @@ async function copySellerId(value, platform){
 
   try{
 
-    await navigator.clipboard.writeText(id);
+    await navigator.clipboard
+      .writeText(id);
 
   }catch{
 
     const textarea =
       document.createElement("textarea");
 
-    textarea.value = id;
+    textarea.value =
+      id;
 
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
+    textarea.style.position =
+      "fixed";
 
-    document.body.appendChild(textarea);
+    textarea.style.opacity =
+      "0";
+
+    document.body.appendChild(
+      textarea
+    );
 
     textarea.focus();
     textarea.select();
@@ -1452,7 +2383,8 @@ $("signupTab").addEventListener(
 
 function setAuthMode(mode){
 
-  authMode = mode;
+  authMode =
+    mode;
 
   $("loginTab")
     .classList.toggle(
@@ -1472,22 +2404,26 @@ function setAuthMode(mode){
       mode !== "signup"
     );
 
-  $("authButton").textContent =
-    mode === "login"
-      ? "ورود به حساب"
-      : "ساخت حساب";
+  $("authButton")
+    .textContent =
+      mode === "login"
+        ? "ورود به حساب"
+        : "ساخت حساب";
 
-  $("authMessage").textContent = "";
+  $("authMessage")
+    .textContent =
+    "";
 
 }
 
 
 /* ================= CUSTOM AUTH ================= */
 
-$("authForm").addEventListener(
-  "submit",
-  handleAuth
-);
+$("authForm")
+  .addEventListener(
+    "submit",
+    handleAuth
+  );
 
 
 async function handleAuth(event){
@@ -1495,47 +2431,66 @@ async function handleAuth(event){
   event.preventDefault();
 
   const username =
-    $("username").value.trim();
+    $("username")
+      .value
+      .trim();
 
   const password =
-    $("password").value;
+    $("password")
+      .value;
 
   const again =
-    $("passwordAgain").value;
+    $("passwordAgain")
+      .value;
 
-  $("authMessage").className =
+  $("authMessage")
+    .className =
     "message";
 
-  if(!/^[A-Za-z0-9_.-]{3,10}$/.test(username)){
+  if(
+    !/^[A-Za-z0-9_.-]{3,10}$/
+      .test(username)
+  ){
 
-    $("authMessage").textContent =
+    $("authMessage")
+      .textContent =
       "نام کاربری باید ۳ تا ۱۰ کاراکتر انگلیسی باشد.";
 
     return;
 
   }
 
-  if(password.length < 6){
+  if(
+    password.length < 6
+  ){
 
-    $("authMessage").textContent =
+    $("authMessage")
+      .textContent =
       "رمز عبور باید حداقل ۶ کاراکتر باشد.";
 
     return;
 
   }
 
-  if(authMode === "signup" && password !== again){
+  if(
+    authMode === "signup" &&
+    password !== again
+  ){
 
-    $("authMessage").textContent =
+    $("authMessage")
+      .textContent =
       "تکرار رمز عبور یکسان نیست.";
 
     return;
 
   }
 
-  $("authButton").disabled = true;
+  $("authButton")
+    .disabled =
+    true;
 
-  $("authMessage").textContent =
+  $("authMessage")
+    .textContent =
     "در حال اتصال...";
 
 
@@ -1547,11 +2502,10 @@ async function handleAuth(event){
         "/functions/v1/username-auth",
         {
           method:"POST",
-
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":
+              "application/json"
           },
-
           body:JSON.stringify({
             action:authMode,
             username,
@@ -1585,39 +2539,144 @@ async function handleAuth(event){
     }
 
 
-    await supabaseClient.auth.setSession({
-      access_token:data.session.access_token,
-      refresh_token:data.session.refresh_token
-    });
+    await supabaseClient
+      .auth
+      .setSession({
+        access_token:
+          data.session.access_token,
+        refresh_token:
+          data.session.refresh_token
+      });
 
 
-    currentUsername = username;
+    currentUsername =
+      username;
 
-    $("authMessage").className =
+
+    $("authMessage")
+      .className =
       "message success";
 
-    $("authMessage").textContent =
+
+    $("authMessage")
+      .textContent =
       authMode === "signup"
         ? "حساب ساخته شد."
         : "ورود موفق بود.";
 
+
     await new Promise(
-      resolve => setTimeout(resolve,300)
+      resolve =>
+        setTimeout(resolve,300)
     );
+
 
     await startSite();
 
+
   }catch(error){
 
-    $("authMessage").textContent =
+    $("authMessage")
+      .textContent =
       error.message ||
       "خطا رخ داد.";
 
   }finally{
 
-    $("authButton").disabled = false;
+    $("authButton")
+      .disabled =
+      false;
 
   }
+
+}
+
+
+/* ================= PROFILE ================= */
+
+async function loadProfile(){
+
+  if(!currentUser){
+    return false;
+  }
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("profiles")
+      .select(
+        "id,username,role,account_status,trust_score,sales_count,warning_count"
+      )
+      .eq(
+        "id",
+        currentUser.id
+      )
+      .maybeSingle();
+
+
+  if(error){
+
+    console.error(
+      "profile:",
+      error
+    );
+
+    return false;
+
+  }
+
+
+  currentProfile =
+    data;
+
+
+  currentUsername =
+    data?.username ||
+    currentUsername ||
+    currentUser
+      .email
+      ?.split("@")[0] ||
+    "کاربر";
+
+
+  currentIsAdmin =
+    data?.role === "admin";
+
+
+  if(
+    data &&
+    (
+      data.account_status ===
+        "banned" ||
+      data.account_status ===
+        "suspended"
+    )
+  ){
+
+    await supabaseClient
+      .auth
+      .signOut();
+
+    $("authPage")
+      .classList.remove("hidden");
+
+    $("site")
+      .classList.add("hidden");
+
+    $("authMessage")
+      .textContent =
+      data.account_status === "banned"
+        ? "حساب شما مسدود شده است."
+        : "حساب شما موقتاً تعلیق شده است.";
+
+    return false;
+
+  }
+
+
+  return true;
 
 }
 
@@ -1629,44 +2688,43 @@ async function restoreSession(){
   const {
     data
   } =
-    await supabaseClient.auth.getSession();
+    await supabaseClient
+      .auth
+      .getSession();
 
 
-  if(data.session){
+  if(
+    data &&
+    data.session
+  ){
 
     currentUser =
       data.session.user;
 
-    const {
-      data:profile
-    } =
-      await supabaseClient
-        .from("profiles")
-        .select("username")
-        .eq("id",currentUser.id)
-        .maybeSingle();
+    const valid =
+      await loadProfile();
 
+    if(valid){
 
-    currentUsername =
-      profile?.username ||
-      currentUser.email?.split("@")[0] ||
-      "کاربر";
+      await startSite();
 
-    await startSite();
+    }
 
   }
 
 }
 
 
-/* ================= START SITE ================= */
+/* ================= START ================= */
 
 async function startSite(){
 
   const {
     data
   } =
-    await supabaseClient.auth.getUser();
+    await supabaseClient
+      .auth
+      .getUser();
 
 
   currentUser =
@@ -1678,6 +2736,15 @@ async function startSite(){
   }
 
 
+  const valid =
+    await loadProfile();
+
+
+  if(!valid){
+    return;
+  }
+
+
   $("authPage")
     .classList.add("hidden");
 
@@ -1685,8 +2752,17 @@ async function startSite(){
     .classList.remove("hidden");
 
 
-  $("currentUsername").textContent =
-    "👤 " + currentUsername;
+  $("currentUsername")
+    .textContent =
+    "👤 " +
+    currentUsername;
+
+
+  $("adminOpenButton")
+    .classList.toggle(
+      "hidden",
+      !currentIsAdmin
+    );
 
 
   await markOnline();
@@ -1697,7 +2773,7 @@ async function startSite(){
 
   subscribeChat();
 
-  updateOnlineCount();
+  await updateOnlineCount();
 
   startHeartbeat();
 
@@ -1717,8 +2793,10 @@ async function markOnline(){
   await supabaseClient
     .from("online_users")
     .upsert({
-      user_id:currentUser.id,
-      last_seen:new Date().toISOString()
+      user_id:
+        currentUser.id,
+      last_seen:
+        new Date().toISOString()
     });
 
 }
@@ -1745,7 +2823,8 @@ async function updateOnlineCount(){
 
   const cutoff =
     new Date(
-      Date.now() - 2 * 60 * 1000
+      Date.now() -
+      2 * 60 * 1000
     ).toISOString();
 
 
@@ -1771,7 +2850,8 @@ async function updateOnlineCount(){
     count || 0;
 
 
-  $("onlineCount").textContent =
+  $("onlineCount")
+    .textContent =
     FAKE_ONLINE + real;
 
 }
@@ -1853,25 +2933,94 @@ async function ping(){
         method:"GET",
         cache:"no-store",
         headers:{
-          apikey:SUPABASE_KEY
+          apikey:
+            SUPABASE_KEY
         }
       }
     );
 
     const ms =
       Math.round(
-        performance.now() - start
+        performance.now() -
+        start
       );
 
-    $("ping").textContent =
+    $("ping")
+      .textContent =
       ms + "ms";
 
   }catch{
 
-    $("ping").textContent =
+    $("ping")
+      .textContent =
       "—ms";
 
   }
+
+}
+
+
+/* ================= SELLER REPUTATION ================= */
+
+async function loadSellerReputations(){
+
+  sellerRepCache =
+    new Map();
+
+
+  const sellerIds =
+    [
+      ...new Set(
+        productsCache
+          .map(
+            p => p.owner_id
+          )
+          .filter(Boolean)
+      )
+    ];
+
+
+  if(!sellerIds.length){
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("seller_reputation")
+      .select("*")
+      .in(
+        "seller_id",
+        sellerIds
+      );
+
+
+  if(error){
+
+    console.warn(
+      "seller reputation:",
+      error
+    );
+
+    return;
+
+  }
+
+
+  (data || [])
+    .forEach(
+      row => {
+
+        sellerRepCache.set(
+          row.seller_id,
+          row
+        );
+
+      }
+    );
 
 }
 
@@ -1909,6 +3058,9 @@ async function loadProducts(){
   productsCache =
     data || [];
 
+
+  await loadSellerReputations();
+
   renderProducts();
 
 }
@@ -1919,49 +3071,91 @@ function renderProducts(){
   const box =
     $("products");
 
+
   const search =
     $("searchInput")
       .value
       .trim()
       .toLowerCase();
 
+
   const category =
     $("filterCategory")
       .value;
 
 
-  const list =
-    productsCache.filter(
-      product => {
-
-        const text =
-          (
-            product.name +
-            " " +
-            product.description +
-            " " +
-            product.category
-          )
-          .toLowerCase();
+  const sort =
+    $("sortProducts")
+      .value;
 
 
-        const matchesSearch =
-          !search ||
-          text.includes(search);
+  let list =
+    productsCache
+      .filter(
+        product => {
+
+          const text =
+            (
+              product.name +
+              " " +
+              product.description +
+              " " +
+              product.category
+            )
+            .toLowerCase();
 
 
-        const matchesCategory =
-          !category ||
-          product.category === category;
+          const matchesSearch =
+            !search ||
+            text.includes(search);
 
 
-        return (
-          matchesSearch &&
-          matchesCategory
-        );
+          const matchesCategory =
+            !category ||
+            product.category ===
+              category;
 
-      }
+
+          return (
+            matchesSearch &&
+            matchesCategory
+          );
+
+        }
+      );
+
+
+  if(sort === "old"){
+
+    list.sort(
+      (a,b) =>
+        new Date(a.created_at) -
+        new Date(b.created_at)
     );
+
+  }
+
+
+  if(sort === "cheap"){
+
+    list.sort(
+      (a,b) =>
+        Number(a.price || 0) -
+        Number(b.price || 0)
+    );
+
+  }
+
+
+  if(sort === "expensive"){
+
+    list.sort(
+      (a,b) =>
+        Number(b.price || 0) -
+        Number(a.price || 0)
+    );
+
+  }
 
 
   if(!list.length){
@@ -1987,7 +3181,10 @@ function renderProducts(){
 function renderProduct(product){
 
   const rubika =
-    cleanId(product.rubika_id);
+    cleanId(
+      product.rubika_id
+    );
+
 
   const bale =
     cleanId(
@@ -1997,12 +3194,15 @@ function renderProduct(product){
 
 
   const price =
-    Number(product.price || 0)
-      .toLocaleString("fa-IR");
+    Number(
+      product.price || 0
+    )
+    .toLocaleString("fa-IR");
 
 
   const priceText =
-    product.price_type === "toman"
+    product.price_type ===
+      "toman"
       ? `${price} تومان`
       : `${price} سکه`;
 
@@ -2014,7 +3214,47 @@ function renderProduct(product){
 
   const canDelete =
     currentUser &&
-    product.owner_id === currentUser.id;
+    product.owner_id ===
+      currentUser.id;
+
+
+  const isOwner =
+    currentUser &&
+    product.owner_id ===
+      currentUser.id;
+
+
+  const status =
+    product.status ||
+    "active";
+
+
+  const rep =
+    sellerRepCache.get(
+      product.owner_id
+    );
+
+
+  const trust =
+    Number(
+      rep?.trust_score || 0
+    );
+
+
+  const rating =
+    Number(
+      rep?.average_rating || 0
+    );
+
+
+  const sales =
+    Number(
+      rep?.sales_count || 0
+    );
+
+
+  const trusted =
+    trust >= 80;
 
 
   return `
@@ -2028,7 +3268,8 @@ function renderProduct(product){
             ?
           `<img
             src="${escapeHTML(image)}"
-            alt="${escapeHTML(product.name)}">`
+            alt="${escapeHTML(product.name)}"
+            loading="lazy">`
             :
           `<div class="no-image">
              🛍️
@@ -2040,8 +3281,14 @@ function renderProduct(product){
 
       <div class="product-body">
 
-        <span class="badge">
+        <span class="badge ${status !== "active" ? "sold" : ""}">
           ${escapeHTML(product.category)}
+          ${
+            status !== "active"
+              ? " • " +
+                escapeHTML(status)
+              : ""
+          }
         </span>
 
 
@@ -2057,6 +3304,36 @@ function renderProduct(product){
 
         <div class="price">
           ${priceText}
+        </div>
+
+
+        <div class="seller-reputation">
+
+          <span class="rep">
+            ⭐
+            ${rating.toFixed(1)}
+          </span>
+
+          <span class="rep">
+            فروش:
+            ${sales}
+          </span>
+
+          <span class="rep">
+            اعتبار:
+            ${trust}
+          </span>
+
+          ${
+            trusted
+              ?
+            `<span class="rep trusted">
+              ✓ فروشنده قابل اعتماد
+            </span>`
+              :
+            ""
+          }
+
         </div>
 
 
@@ -2078,7 +3355,7 @@ function renderProduct(product){
 
               🟣 آیدی روبیکا
 
-              <span class="contact-id">
+              <span>
                 ${escapeHTML(displayId(rubika))}
               </span>
 
@@ -2100,7 +3377,7 @@ function renderProduct(product){
 
               🟢 آیدی بله
 
-              <span class="contact-id">
+              <span>
                 ${escapeHTML(displayId(bale))}
               </span>
 
@@ -2109,6 +3386,7 @@ function renderProduct(product){
               :
             ""
           }
+
 
           ${
             !rubika && !bale
@@ -2123,26 +3401,55 @@ function renderProduct(product){
         </div>
 
 
-        ${
-          canDelete
-            ?
-          `
-          <div class="actions">
+        <div class="actions">
 
+          ${
+            status === "active" &&
+            !isOwner
+              ?
+            `
+            <button
+              class="buy-btn"
+              type="button"
+              onclick="openPurchaseModal('${escapeJS(product.id)}')">
+
+              🛒 درخواست خرید
+
+            </button>
+            `
+              :
+            ""
+          }
+
+
+          <button
+            class="report-btn"
+            type="button"
+            onclick="openReportModal('product','${escapeJS(product.id)}')">
+
+            🚨 گزارش
+
+          </button>
+
+
+          ${
+            canDelete
+              ?
+            `
             <button
               class="delete"
               type="button"
               onclick="deleteProduct('${escapeJS(product.id)}')">
 
-              🗑️ حذف آگهی
+              🗑️ حذف
 
             </button>
+            `
+              :
+            ""
+          }
 
-          </div>
-          `
-            :
-          ""
-        }
+        </div>
 
       </div>
 
@@ -2167,6 +3474,13 @@ $("filterCategory")
   );
 
 
+$("sortProducts")
+  .addEventListener(
+    "change",
+    renderProducts
+  );
+
+
 /* ================= IMAGE ================= */
 
 $("imageFile")
@@ -2181,6 +3495,7 @@ function previewImage(){
   const file =
     $("imageFile")
       .files[0];
+
 
   const preview =
     $("filePreview");
@@ -2199,17 +3514,38 @@ function previewImage(){
   }
 
 
-  if(file.size > 2 * 1024 * 1024){
+  if(
+    file.size >
+    2 * 1024 * 1024
+  ){
 
     showToast(
       "حجم تصویر نباید بیشتر از ۲ مگابایت باشد."
     );
 
-    $("imageFile").value =
+    $("imageFile")
+      .value =
       "";
 
     preview.style.display =
       "none";
+
+    return;
+
+  }
+
+
+  if(
+    !file.type.startsWith("image/")
+  ){
+
+    showToast(
+      "فقط فایل تصویر مجاز است."
+    );
+
+    $("imageFile")
+      .value =
+      "";
 
     return;
 
@@ -2321,7 +3657,13 @@ async function addProduct(event){
   }
 
 
-  if(type === "coin" && price < 500){
+  if(
+    type === "coin" &&
+    (
+      !Number.isInteger(price) ||
+      price < 500
+    )
+  ){
 
     showToast(
       "حداقل قیمت سکه ۵۰۰ است."
@@ -2332,10 +3674,17 @@ async function addProduct(event){
   }
 
 
-  if(type === "toman" && price > 500){
+  if(
+    type === "toman" &&
+    (
+      !Number.isInteger(price) ||
+      price > 500 ||
+      price < 0
+    )
+  ){
 
     showToast(
-      "حداکثر قیمت تومان ۵۰۰ است."
+      "قیمت تومان باید بین ۰ تا ۵۰۰ باشد."
     );
 
     return;
@@ -2343,7 +3692,10 @@ async function addProduct(event){
   }
 
 
-  if(!rubikaId && !baleId){
+  if(
+    !rubikaId &&
+    !baleId
+  ){
 
     showToast(
       "حداقل یکی از آیدی‌های روبیکا یا بله را وارد کن."
@@ -2354,7 +3706,11 @@ async function addProduct(event){
   }
 
 
-  if(file && file.size > 2 * 1024 * 1024){
+  if(
+    file &&
+    file.size >
+    2 * 1024 * 1024
+  ){
 
     showToast(
       "حجم تصویر بیشتر از ۲ مگابایت است."
@@ -2365,7 +3721,8 @@ async function addProduct(event){
   }
 
 
-  $("productButton").disabled =
+  $("productButton")
+    .disabled =
     true;
 
 
@@ -2412,7 +3769,10 @@ async function addProduct(event){
         imageURL,
 
       image_path:
-        ""
+        "",
+
+      status:
+        "active"
 
     };
 
@@ -2422,7 +3782,9 @@ async function addProduct(event){
     } =
       await supabaseClient
         .from("products")
-        .insert(insertData);
+        .insert(
+          insertData
+        );
 
 
     if(error){
@@ -2441,11 +3803,13 @@ async function addProduct(event){
       "none";
 
 
-    $("productMessage").className =
+    $("productMessage")
+      .className =
       "message success";
 
 
-    $("productMessage").textContent =
+    $("productMessage")
+      .textContent =
       "آگهی با موفقیت ثبت شد.";
 
 
@@ -2459,16 +3823,20 @@ async function addProduct(event){
 
   }catch(error){
 
-    $("productMessage").className =
+    $("productMessage")
+      .className =
       "message";
 
-    $("productMessage").textContent =
+
+    $("productMessage")
+      .textContent =
       error.message ||
       "خطا در ثبت آگهی.";
 
   }finally{
 
-    $("productButton").disabled =
+    $("productButton")
+      .disabled =
       false;
 
   }
@@ -2484,13 +3852,17 @@ function fileToDataURL(file){
       const reader =
         new FileReader();
 
+
       reader.onload =
-        () => resolve(
-          reader.result
-        );
+        () =>
+          resolve(
+            reader.result
+          );
+
 
       reader.onerror =
         reject;
+
 
       reader.readAsDataURL(file);
 
@@ -2500,7 +3872,7 @@ function fileToDataURL(file){
 }
 
 
-/* ================= DELETE ================= */
+/* ================= DELETE PRODUCT ================= */
 
 async function deleteProduct(id){
 
@@ -2609,7 +3981,9 @@ function renderChat(messages){
 
   box.innerHTML =
     messages
-      .map(renderMessage)
+      .map(
+        renderMessage
+      )
       .join("");
 
 
@@ -2623,7 +3997,8 @@ function renderMessage(message){
 
   const mine =
     currentUser &&
-    message.user_id === currentUser.id;
+    message.user_id ===
+      currentUser.id;
 
 
   const time =
@@ -2641,7 +4016,8 @@ function renderMessage(message){
 
   return `
 
-    <div class="chat-message ${mine ? "mine" : ""}">
+    <div
+      class="chat-message ${mine ? "mine" : ""}">
 
       <div class="chat-meta">
 
@@ -2658,6 +4034,24 @@ function renderMessage(message){
       <div class="chat-text">
         ${escapeHTML(message.message)}
       </div>
+
+
+      ${
+        !mine
+          ?
+        `
+        <button
+          class="chat-report"
+          type="button"
+          onclick="openReportModal('message','${escapeJS(message.id)}')">
+
+          🚨 گزارش پیام
+
+        </button>
+        `
+          :
+        ""
+      }
 
     </div>
 
@@ -2724,7 +4118,9 @@ function addChatMessage(message){
 
   box.insertAdjacentHTML(
     "beforeend",
-    renderMessage(message)
+    renderMessage(
+      message
+    )
   );
 
 
@@ -2734,7 +4130,11 @@ function addChatMessage(message){
 }
 
 
-/* ================= SEND CHAT ================= */
+/* ================= CHAT SPAM ================= */
+
+let lastChatSend =
+  0;
+
 
 $("chatForm")
   .addEventListener(
@@ -2759,6 +4159,24 @@ async function sendChatMessage(event){
   }
 
 
+  const now =
+    Date.now();
+
+
+  if(
+    now - lastChatSend <
+    2500
+  ){
+
+    showToast(
+      "کمی صبر کن و بعد پیام بفرست."
+    );
+
+    return;
+
+  }
+
+
   const input =
     $("chatInput");
 
@@ -2772,7 +4190,10 @@ async function sendChatMessage(event){
   }
 
 
-  if(message.length > 500){
+  if(
+    message.length >
+    500
+  ){
 
     showToast(
       "پیام نباید بیشتر از ۵۰۰ کاراکتر باشد."
@@ -2781,6 +4202,10 @@ async function sendChatMessage(event){
     return;
 
   }
+
+
+  lastChatSend =
+    now;
 
 
   const {
@@ -2850,6 +4275,1730 @@ document
   );
 
 
+/* ================= REPORT ================= */
+
+function openReportModal(
+  targetType,
+  targetId
+){
+
+  if(!currentUser){
+
+    showToast(
+      "ابتدا وارد حساب شوید."
+    );
+
+    return;
+
+  }
+
+
+  $("reportTargetType")
+    .value =
+    targetType;
+
+
+  $("reportTargetId")
+    .value =
+    targetId;
+
+
+  $("reportReason")
+    .value =
+    "";
+
+
+  $("reportDetails")
+    .value =
+    "";
+
+
+  $("reportMessage")
+    .textContent =
+    "";
+
+
+  $("reportModal")
+    .classList
+    .remove("hidden");
+
+}
+
+
+function closeReportModal(){
+
+  $("reportModal")
+    .classList
+    .add("hidden");
+
+}
+
+
+$("reportForm")
+  .addEventListener(
+    "submit",
+    submitReport
+  );
+
+
+async function submitReport(event){
+
+  event.preventDefault();
+
+
+  if(!currentUser){
+    return;
+  }
+
+
+  const targetType =
+    $("reportTargetType")
+      .value;
+
+
+  const targetId =
+    $("reportTargetId")
+      .value;
+
+
+  const reason =
+    $("reportReason")
+      .value;
+
+
+  const details =
+    $("reportDetails")
+      .value
+      .trim();
+
+
+  if(!reason){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("market_reports")
+      .insert({
+
+        reporter_id:
+          currentUser.id,
+
+        target_type:
+          targetType,
+
+        target_id:
+          targetId,
+
+        reason,
+
+        details
+
+      });
+
+
+  if(error){
+
+    $("reportMessage")
+      .textContent =
+      error.message ||
+      "ثبت گزارش انجام نشد.";
+
+    return;
+
+  }
+
+
+  closeReportModal();
+
+  showToast(
+    "گزارش ثبت شد 🚨"
+  );
+
+}
+
+
+/* ================= PURCHASE ================= */
+
+function openPurchaseModal(
+  productId
+){
+
+  const product =
+    productsCache.find(
+      p =>
+        p.id ===
+        productId
+    );
+
+
+  if(!product){
+    return;
+  }
+
+
+  if(
+    product.status &&
+    product.status !==
+      "active"
+  ){
+
+    showToast(
+      "این آگهی دیگر فعال نیست."
+    );
+
+    return;
+
+  }
+
+
+  $("purchaseProductId")
+    .value =
+    productId;
+
+
+  $("purchaseMessage")
+    .value =
+    "";
+
+
+  $("purchaseMessageBox")
+    .textContent =
+    "";
+
+
+  $("purchaseInfo")
+    .innerHTML =
+    `
+      <div class="rule-box">
+
+        <h3>
+          ${escapeHTML(product.name)}
+        </h3>
+
+        <p>
+          قیمت:
+          ${
+            Number(product.price || 0)
+              .toLocaleString("fa-IR")
+          }
+          ${
+            product.price_type ===
+              "toman"
+              ? " تومان"
+              : " سکه"
+          }
+        </p>
+
+      </div>
+    `;
+
+
+  $("purchaseModal")
+    .classList
+    .remove("hidden");
+
+}
+
+
+function closePurchaseModal(){
+
+  $("purchaseModal")
+    .classList
+    .add("hidden");
+
+}
+
+
+$("purchaseForm")
+  .addEventListener(
+    "submit",
+    createPurchase
+  );
+
+
+async function createPurchase(event){
+
+  event.preventDefault();
+
+
+  if(!currentUser){
+    return;
+  }
+
+
+  const productId =
+    $("purchaseProductId")
+      .value;
+
+
+  const product =
+    productsCache.find(
+      p =>
+        p.id ===
+        productId
+    );
+
+
+  if(!product){
+
+    $("purchaseMessageBox")
+      .textContent =
+      "محصول پیدا نشد.";
+
+    return;
+
+  }
+
+
+  if(
+    product.owner_id ===
+    currentUser.id
+  ){
+
+    $("purchaseMessageBox")
+      .textContent =
+      "نمی‌توانی محصول خودت را بخری.";
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("market_transactions")
+      .insert({
+
+        product_id:
+          product.id,
+
+        buyer_id:
+          currentUser.id,
+
+        seller_id:
+          product.owner_id,
+
+        amount:
+          Number(product.price),
+
+        price_type:
+          product.price_type,
+
+        status:
+          "requested"
+
+      });
+
+
+  if(error){
+
+    $("purchaseMessageBox")
+      .textContent =
+      error.message ||
+      "ثبت درخواست انجام نشد.";
+
+    return;
+
+  }
+
+
+  closePurchaseModal();
+
+  showToast(
+    "درخواست خرید ثبت شد 🛒"
+  );
+
+}
+
+
+/* ================= DISPUTE ================= */
+
+function openDisputeModal(
+  transactionId
+){
+
+  $("disputeTransactionId")
+    .value =
+    transactionId;
+
+
+  $("disputeReason")
+    .value =
+    "";
+
+
+  $("disputeDetails")
+    .value =
+    "";
+
+
+  $("disputeMessage")
+    .textContent =
+    "";
+
+
+  $("disputeModal")
+    .classList
+    .remove("hidden");
+
+}
+
+
+function closeDisputeModal(){
+
+  $("disputeModal")
+    .classList
+    .add("hidden");
+
+}
+
+
+$("disputeForm")
+  .addEventListener(
+    "submit",
+    createDispute
+  );
+
+
+async function createDispute(event){
+
+  event.preventDefault();
+
+
+  if(!currentUser){
+    return;
+  }
+
+
+  const transactionId =
+    $("disputeTransactionId")
+      .value;
+
+
+  const reason =
+    $("disputeReason")
+      .value
+      .trim();
+
+
+  const details =
+    $("disputeDetails")
+      .value
+      .trim();
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("market_disputes")
+      .insert({
+
+        transaction_id:
+          transactionId,
+
+        opened_by:
+          currentUser.id,
+
+        reason,
+
+        details
+
+      });
+
+
+  if(error){
+
+    $("disputeMessage")
+      .textContent =
+      error.message ||
+      "ثبت اختلاف انجام نشد.";
+
+    return;
+
+  }
+
+
+  closeDisputeModal();
+
+  showToast(
+    "اختلاف ثبت شد ⚖️"
+  );
+
+}
+
+
+/* ================= ADMIN SECURITY ================= */
+
+$("adminOpenButton")
+  .addEventListener(
+    "click",
+    async () => {
+
+      if(!currentIsAdmin){
+
+        showToast(
+          "دسترسی غیرمجاز."
+        );
+
+        return;
+
+      }
+
+
+      $("adminPanel")
+        .classList
+        .remove("hidden");
+
+
+      await loadAdminStats();
+
+      await loadAdminView(
+        "users"
+      );
+
+      $("adminPanel")
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    }
+  );
+
+
+$("adminCloseButton")
+  .addEventListener(
+    "click",
+    () => {
+
+      $("adminPanel")
+        .classList
+        .add("hidden");
+
+    }
+  );
+
+
+async function verifyAdmin(){
+
+  if(!currentUser){
+    return false;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .rpc(
+        "is_admin"
+      );
+
+
+  if(error){
+
+    console.error(
+      "admin check:",
+      error
+    );
+
+    return false;
+
+  }
+
+
+  return data === true;
+
+}
+
+
+async function secureAdminCheck(){
+
+  if(!currentUser){
+    return false;
+  }
+
+
+  const serverAdmin =
+    await verifyAdmin();
+
+
+  if(!serverAdmin){
+
+    currentIsAdmin =
+      false;
+
+
+    $("adminOpenButton")
+      .classList
+      .add("hidden");
+
+
+    showToast(
+      "دسترسی مدیریت رد شد."
+    );
+
+    return false;
+
+  }
+
+
+  currentIsAdmin =
+    true;
+
+
+  return true;
+
+}
+
+
+/* ================= ADMIN STATS ================= */
+
+async function loadAdminStats(){
+
+  if(
+    !(await secureAdminCheck())
+  ){
+    return;
+
+  }
+
+
+  const [
+    products,
+    users,
+    reports,
+    transactions
+  ] =
+    await Promise.all([
+
+      supabaseClient
+        .from("products")
+        .select(
+          "id",
+          {
+            count:"exact",
+            head:true
+          }
+        ),
+
+      supabaseClient
+        .from("profiles")
+        .select(
+          "id",
+          {
+            count:"exact",
+            head:true
+          }
+        ),
+
+      supabaseClient
+        .from("market_reports")
+        .select(
+          "id",
+          {
+            count:"exact",
+            head:true
+          }
+        ),
+
+      supabaseClient
+        .from("market_transactions")
+        .select(
+          "id",
+          {
+            count:"exact",
+            head:true
+          }
+        )
+
+    ]);
+
+
+  $("statProducts")
+    .textContent =
+    products.count || 0;
+
+
+  $("statUsers")
+    .textContent =
+    users.count || 0;
+
+
+  $("statReports")
+    .textContent =
+    reports.count || 0;
+
+
+  $("statTransactions")
+    .textContent =
+    transactions.count || 0;
+
+}
+
+
+/* ================= ADMIN NAV ================= */
+
+document
+  .querySelectorAll(
+    "[data-admin-view]"
+  )
+  .forEach(
+    button => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          loadAdminView(
+            button.dataset.adminView
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+async function loadAdminView(view){
+
+  if(
+    !(await secureAdminCheck())
+  ){
+    return;
+
+  }
+
+
+  const box =
+    $("adminContent");
+
+
+  box.innerHTML =
+    "در حال دریافت اطلاعات...";
+
+
+  if(view === "users"){
+
+    await adminUsers();
+
+  }
+
+
+  if(view === "products"){
+
+    await adminProducts();
+
+  }
+
+
+  if(view === "reports"){
+
+    await adminReports();
+
+  }
+
+
+  if(view === "transactions"){
+
+    await adminTransactions();
+
+  }
+
+
+  if(view === "disputes"){
+
+    await adminDisputes();
+
+  }
+
+
+  if(view === "logs"){
+
+    await adminLogs();
+
+  }
+
+}
+
+
+/* ================= ADMIN USERS ================= */
+
+async function adminUsers(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("profiles")
+      .select(
+        "id,username,role,account_status,trust_score,sales_count,warning_count,updated_at"
+      )
+      .order(
+        "updated_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(100);
+
+
+  if(error){
+
+    $("adminContent")
+      .textContent =
+      error.message;
+
+    return;
+
+  }
+
+
+  if(!data?.length){
+
+    $("adminContent")
+      .textContent =
+      "کاربری پیدا نشد.";
+
+    return;
+
+  }
+
+
+  $("adminContent")
+    .innerHTML =
+    data
+      .map(
+        user => `
+
+        <div class="admin-row">
+
+          <div class="admin-row-info">
+
+            <strong>
+              👤 ${escapeHTML(user.username)}
+              ${
+                user.role === "admin"
+                  ? " 👑"
+                  : ""
+              }
+            </strong>
+
+            <small>
+              وضعیت:
+              ${escapeHTML(user.account_status || "active")}
+              • اعتبار:
+              ${Number(user.trust_score || 0)}
+              • فروش:
+              ${Number(user.sales_count || 0)}
+              • اخطار:
+              ${Number(user.warning_count || 0)}
+            </small>
+
+          </div>
+
+
+          <div class="admin-row-buttons">
+
+            ${
+              user.account_status !==
+                "suspended"
+                &&
+              user.role !== "admin"
+                ?
+              `
+              <button
+                class="admin-mini"
+                onclick="adminSetUserStatus('${escapeJS(user.id)}','suspended')">
+
+                تعلیق
+
+              </button>
+              `
+                :
+              ""
+            }
+
+
+            ${
+              user.account_status !==
+                "banned"
+                &&
+              user.role !== "admin"
+                ?
+              `
+              <button
+                class="admin-mini danger"
+                onclick="adminSetUserStatus('${escapeJS(user.id)}','banned')">
+
+                بن
+
+              </button>
+              `
+                :
+              ""
+            }
+
+
+            ${
+              user.account_status !==
+                "active"
+                &&
+              user.role !== "admin"
+                ?
+              `
+              <button
+                class="admin-mini good"
+                onclick="adminSetUserStatus('${escapeJS(user.id)}','active')">
+
+                فعال
+
+              </button>
+              `
+                :
+              ""
+            }
+
+          </div>
+
+        </div>
+
+      `
+      )
+      .join("");
+
+}
+
+
+/* ================= ADMIN USER STATUS ================= */
+
+async function adminSetUserStatus(
+  userId,
+  status
+){
+
+  if(
+    !(await secureAdminCheck())
+  ){
+    return;
+
+  }
+
+
+  if(
+    userId ===
+    currentUser.id
+  ){
+
+    showToast(
+      "نمی‌توانی وضعیت خودت را تغییر بدهی."
+    );
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("profiles")
+      .update({
+        account_status:
+          status
+      })
+      .eq(
+        "id",
+        userId
+      );
+
+
+  if(error){
+
+    showToast(
+      "تغییر وضعیت انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "وضعیت کاربر تغییر کرد."
+  );
+
+
+  await adminUsers();
+
+}
+
+
+/* ================= ADMIN PRODUCTS ================= */
+
+async function adminProducts(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .select(
+        "id,name,category,price,price_type,status,owner_id,created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(100);
+
+
+  if(error){
+
+    $("adminContent")
+      .textContent =
+      error.message;
+
+    return;
+
+  }
+
+
+  $("adminContent")
+    .innerHTML =
+    (data || [])
+      .map(
+        product => `
+
+        <div class="admin-row">
+
+          <div class="admin-row-info">
+
+            <strong>
+              📦 ${escapeHTML(product.name)}
+            </strong>
+
+            <small>
+              ${escapeHTML(product.category)}
+              •
+              ${Number(product.price || 0).toLocaleString("fa-IR")}
+              ${product.price_type === "toman" ? "تومان" : "سکه"}
+              • وضعیت:
+              ${escapeHTML(product.status || "active")}
+            </small>
+
+          </div>
+
+
+          <div class="admin-row-buttons">
+
+            ${
+              product.status !== "hidden"
+                ?
+              `
+              <button
+                class="admin-mini"
+                onclick="adminSetProductStatus('${escapeJS(product.id)}','hidden')">
+
+                مخفی
+
+              </button>
+              `
+                :
+              `
+              <button
+                class="admin-mini good"
+                onclick="adminSetProductStatus('${escapeJS(product.id)}','active')">
+
+                فعال
+
+              </button>
+              `
+            }
+
+
+            <button
+              class="admin-mini danger"
+              onclick="adminSetProductStatus('${escapeJS(product.id)}','removed')">
+
+              حذف
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `
+      )
+      .join("");
+
+}
+
+
+/* ================= ADMIN PRODUCT STATUS ================= */
+
+async function adminSetProductStatus(
+  productId,
+  status
+){
+
+  if(
+    !(await secureAdminCheck())
+  ){
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("products")
+      .update({
+        status
+      })
+      .eq(
+        "id",
+        productId
+      );
+
+
+  if(error){
+
+    showToast(
+      "تغییر آگهی انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "وضعیت آگهی تغییر کرد."
+  );
+
+
+  await loadProducts();
+
+  await adminProducts();
+
+}
+
+
+/* ================= ADMIN REPORTS ================= */
+
+async function adminReports(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("market_reports")
+      .select(
+        "id,reporter_id,target_type,target_id,reason,details,status,reviewed_by,resolution,created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(100);
+
+
+  if(error){
+
+    $("adminContent")
+      .textContent =
+      error.message;
+
+    return;
+
+  }
+
+
+  if(!data?.length){
+
+    $("adminContent")
+      .textContent =
+      "گزارشی وجود ندارد.";
+
+    return;
+
+  }
+
+
+  $("adminContent")
+    .innerHTML =
+    data
+      .map(
+        report => `
+
+        <div class="admin-row">
+
+          <div class="admin-row-info">
+
+            <strong>
+              🚨
+              ${escapeHTML(report.reason)}
+            </strong>
+
+            <small>
+              هدف:
+              ${escapeHTML(report.target_type)}
+              • وضعیت:
+              ${escapeHTML(report.status)}
+              •
+              ${escapeHTML(report.details || "بدون توضیح")}
+            </small>
+
+          </div>
+
+
+          <div class="admin-row-buttons">
+
+            ${
+              report.status === "open"
+                ?
+              `
+              <button
+                class="admin-mini"
+                onclick="adminSetReportStatus('${escapeJS(report.id)}','in_review')">
+
+                بررسی
+
+              </button>
+              `
+                :
+              ""
+            }
+
+
+            ${
+              report.status !== "resolved"
+                ?
+              `
+              <button
+                class="admin-mini good"
+                onclick="adminSetReportStatus('${escapeJS(report.id)}','resolved')">
+
+                حل شد
+
+              </button>
+              `
+                :
+              ""
+            }
+
+
+            ${
+              report.status !== "rejected"
+                ?
+              `
+              <button
+                class="admin-mini"
+                onclick="adminSetReportStatus('${escapeJS(report.id)}','rejected')">
+
+                رد
+
+              </button>
+              `
+                :
+              ""
+            }
+
+          </div>
+
+        </div>
+
+      `
+      )
+      .join("");
+
+}
+
+
+/* ================= ADMIN REPORT STATUS ================= */
+
+async function adminSetReportStatus(
+  reportId,
+  status
+){
+
+  if(
+    !(await secureAdminCheck())
+  ){
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("market_reports")
+      .update({
+        status,
+        reviewed_by:
+          currentUser.id,
+        resolution:
+          status === "resolved"
+            ? "بررسی و رسیدگی توسط مدیریت"
+            : null
+      })
+      .eq(
+        "id",
+        reportId
+      );
+
+
+  if(error){
+
+    showToast(
+      "تغییر گزارش انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "گزارش به‌روزرسانی شد."
+  );
+
+
+  await loadAdminStats();
+
+  await adminReports();
+
+}
+
+
+/* ================= ADMIN TRANSACTIONS ================= */
+
+async function adminTransactions(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("market_transactions")
+      .select(
+        "id,product_id,buyer_id,seller_id,amount,price_type,status,buyer_confirmed,seller_confirmed,created_at,updated_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(100);
+
+
+  if(error){
+
+    $("adminContent")
+      .textContent =
+      error.message;
+
+    return;
+
+  }
+
+
+  if(!data?.length){
+
+    $("adminContent")
+      .textContent =
+      "معامله‌ای وجود ندارد.";
+
+    return;
+
+  }
+
+
+  $("adminContent")
+    .innerHTML =
+    data
+      .map(
+        tx => `
+
+        <div class="admin-row">
+
+          <div class="admin-row-info">
+
+            <strong>
+              🛒 معامله
+              ${escapeHTML(tx.id.slice(0,8))}
+            </strong>
+
+            <small>
+              مبلغ:
+              ${Number(tx.amount || 0).toLocaleString("fa-IR")}
+              ${tx.price_type === "toman" ? "تومان" : "سکه"}
+              • وضعیت:
+              ${escapeHTML(tx.status)}
+            </small>
+
+          </div>
+
+
+          <div class="admin-row-buttons">
+
+            ${
+              tx.status !== "cancelled" &&
+              tx.status !== "completed"
+                ?
+              `
+              <button
+                class="admin-mini danger"
+                onclick="adminCancelTransaction('${escapeJS(tx.id)}')">
+
+                لغو
+
+              </button>
+              `
+                :
+              ""
+            }
+
+          </div>
+
+        </div>
+
+      `
+      )
+      .join("");
+
+}
+
+
+/* ================= ADMIN CANCEL TX ================= */
+
+async function adminCancelTransaction(
+  transactionId
+){
+
+  if(
+    !(await secureAdminCheck())
+  ){
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("market_transactions")
+      .update({
+        status:
+          "cancelled"
+      })
+      .eq(
+        "id",
+        transactionId
+      );
+
+
+  if(error){
+
+    showToast(
+      "لغو معامله انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "معامله لغو شد."
+  );
+
+
+  await adminTransactions();
+
+}
+
+
+/* ================= ADMIN DISPUTES ================= */
+
+async function adminDisputes(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("market_disputes")
+      .select(
+        "id,transaction_id,opened_by,reason,details,status,resolution,resolved_by,created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(100);
+
+
+  if(error){
+
+    $("adminContent")
+      .textContent =
+      error.message;
+
+    return;
+
+  }
+
+
+  if(!data?.length){
+
+    $("adminContent")
+      .textContent =
+      "اختلافی وجود ندارد.";
+
+    return;
+
+  }
+
+
+  $("adminContent")
+    .innerHTML =
+    data
+      .map(
+        dispute => `
+
+        <div class="admin-row">
+
+          <div class="admin-row-info">
+
+            <strong>
+              ⚖️ ${escapeHTML(dispute.reason)}
+            </strong>
+
+            <small>
+              ${escapeHTML(dispute.details)}
+              • وضعیت:
+              ${escapeHTML(dispute.status)}
+            </small>
+
+          </div>
+
+
+          <div class="admin-row-buttons">
+
+            ${
+              dispute.status !== "resolved"
+                ?
+              `
+              <button
+                class="admin-mini good"
+                onclick="adminResolveDispute('${escapeJS(dispute.id)}')">
+
+                حل اختلاف
+
+              </button>
+              `
+                :
+              ""
+            }
+
+          </div>
+
+        </div>
+
+      `
+      )
+      .join("");
+
+}
+
+
+/* ================= ADMIN RESOLVE DISPUTE ================= */
+
+async function adminResolveDispute(
+  disputeId
+){
+
+  if(
+    !(await secureAdminCheck())
+  ){
+    return;
+
+  }
+
+
+  const resolution =
+    prompt(
+      "نتیجه رسیدگی را وارد کن:"
+    );
+
+
+  if(
+    !resolution ||
+    !resolution.trim()
+  ){
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("market_disputes")
+      .update({
+
+        status:
+          "resolved",
+
+        resolution:
+          resolution.trim(),
+
+        resolved_by:
+          currentUser.id
+
+      })
+      .eq(
+        "id",
+        disputeId
+      );
+
+
+  if(error){
+
+    showToast(
+      "حل اختلاف انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    "اختلاف حل شد."
+  );
+
+
+  await adminDisputes();
+
+}
+
+
+/* ================= ADMIN LOGS ================= */
+
+async function adminLogs(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("market_audit_logs")
+      .select(
+        "id,actor_id,action,entity_type,entity_id,metadata,created_at"
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      )
+      .limit(100);
+
+
+  if(error){
+
+    $("adminContent")
+      .textContent =
+      error.message;
+
+    return;
+
+  }
+
+
+  if(!data?.length){
+
+    $("adminContent")
+      .textContent =
+      "لاگ امنیتی وجود ندارد.";
+
+    return;
+
+  }
+
+
+  $("adminContent")
+    .innerHTML =
+    data
+      .map(
+        log => `
+
+        <div class="admin-row">
+
+          <div class="admin-row-info">
+
+            <strong>
+              🧾 ${escapeHTML(log.action)}
+            </strong>
+
+            <small>
+              ${escapeHTML(log.entity_type || "")}
+              •
+              ${escapeHTML(
+                JSON.stringify(
+                  log.metadata || {}
+                )
+              )}
+              •
+              ${escapeHTML(
+                formatDate(
+                  log.created_at
+                )
+              )}
+            </small>
+
+          </div>
+
+        </div>
+
+      `
+      )
+      .join("");
+
+}
+
+
 /* ================= LOGOUT ================= */
 
 $("logoutButton")
@@ -2888,7 +6037,9 @@ setInterval(
 
     if(
       currentUser &&
-      !$("site").classList.contains("hidden")
+      !$("site")
+        .classList
+        .contains("hidden")
     ){
 
       await loadProducts();
@@ -2898,6 +6049,30 @@ setInterval(
   },
   30000
 );
+
+
+/* ================= AUTH STATE ================= */
+
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    async (event,session) => {
+
+      if(
+        event ===
+          "SIGNED_OUT"
+      ){
+
+        currentUser =
+          null;
+
+        currentIsAdmin =
+          false;
+
+      }
+
+    }
+  );
 
 
 /* ================= INIT ================= */
