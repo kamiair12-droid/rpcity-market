@@ -51,7 +51,7 @@ header{
   gap:8px
 }
 
-.ping,.userbox,.shop-btn{
+.ping,.userbox,.shop-btn,.online-box{
   padding:9px 12px;
   background:#12141b;
   border:1px solid #292c36;
@@ -60,6 +60,10 @@ header{
 }
 
 .ping b{color:#62ff9a}
+
+.online-box b{
+  color:#62ff9a
+}
 
 .userbox{color:#c9cbd3}
 
@@ -193,7 +197,13 @@ textarea{
   background:#101219;
   border:1px solid #242733;
   border-radius:18px;
-  padding:18px
+  padding:18px;
+  transition:.2s
+}
+
+.card:hover{
+  transform:translateY(-2px);
+  border-color:#38305f
 }
 
 .card h3{
@@ -219,7 +229,8 @@ textarea{
   color:#c6c8d1;
   font-size:13px;
   line-height:1.9;
-  white-space:pre-wrap
+  white-space:pre-wrap;
+  word-break:break-word
 }
 
 .actions{
@@ -385,7 +396,6 @@ footer a{
   display:none!important
 }
 
-/* ردیف پایین برای موبایل */
 @media(max-width:650px){
 
   header{
@@ -406,8 +416,9 @@ footer a{
     direction:rtl;
     align-items:center;
     justify-content:flex-start;
-    gap:7px;
-    flex-wrap:nowrap
+    gap:6px;
+    flex-wrap:nowrap;
+    overflow-x:auto
   }
 
   .userbox{
@@ -416,7 +427,8 @@ footer a{
 
   .ping,
   .logout,
-  .shop-btn{
+  .shop-btn,
+  .online-box{
     flex:none;
     white-space:nowrap
   }
@@ -458,7 +470,8 @@ footer a{
 
 <body>
 
-<!-- ورود -->
+<!-- ================= AUTH ================= -->
+
 <div id="authScreen">
 
   <div class="auth-card">
@@ -472,6 +485,7 @@ footer a{
     </div>
 
     <div class="tabs">
+
       <button
         id="loginTab"
         class="tab active"
@@ -487,11 +501,15 @@ footer a{
         onclick="setAuthMode('signup')">
         ثبت‌نام
       </button>
+
     </div>
 
     <div id="authMessage" class="message"></div>
 
-    <form id="authForm" class="auth-form" onsubmit="handleAuth(event)">
+    <form
+      id="authForm"
+      class="auth-form"
+      onsubmit="handleAuth(event)">
 
       <input
         id="authUsername"
@@ -507,7 +525,7 @@ footer a{
         minlength="6"
         maxlength="72"
         autocomplete="current-password"
-        placeholder="رمز عبور (حداقل ۶ کاراکتر)"
+        placeholder="رمز عبور"
         required>
 
       <button id="authButton" type="submit">
@@ -517,7 +535,9 @@ footer a{
     </form>
 
     <div class="auth-help">
-      نام کاربری باید ۳ تا ۱۰ کاراکتر و فقط شامل حروف انگلیسی، عدد، _، . یا - باشد.<br>
+      نام کاربری باید ۳ تا ۱۰ کاراکتر و فقط شامل حروف انگلیسی،
+      عدد، _، . یا - باشد.
+      <br>
       رمز عبور خودت را با کسی به اشتراک نگذار.
     </div>
 
@@ -526,7 +546,8 @@ footer a{
 </div>
 
 
-<!-- هدر -->
+<!-- ================= HEADER ================= -->
+
 <header>
 
   <div class="logo">
@@ -535,7 +556,6 @@ footer a{
 
   <div class="head-right">
 
-    <!-- گزینه فروشگاه -->
     <a
       href="#products"
       class="shop-btn"
@@ -543,20 +563,22 @@ footer a{
       🛒 فروشگاه
     </a>
 
-    <!-- Ping -->
+    <div class="online-box">
+      🟢 آنلاین:
+      <b id="onlineCount">0</b>
+    </div>
+
     <div class="ping">
       PING:
       <b id="pingValue">...</b>
     </div>
 
-    <!-- خروج -->
     <button
       class="logout"
       onclick="logout()">
       خروج
     </button>
 
-    <!-- کاربر -->
     <div class="userbox">
       👤 <span id="currentUser">...</span>
     </div>
@@ -565,6 +587,8 @@ footer a{
 
 </header>
 
+
+<!-- ================= APP ================= -->
 
 <main id="app" class="hidden">
 
@@ -585,7 +609,8 @@ footer a{
   </section>
 
 
-  <!-- ثبت محصول -->
+  <!-- ================= ADD PRODUCT ================= -->
+
   <section class="panel">
 
     <h2>➕ ثبت محصول</h2>
@@ -605,6 +630,18 @@ footer a{
         type="number"
         min="0"
         placeholder="قیمت">
+
+      <select id="priceType">
+
+        <option value="coin">
+          🪙 قیمت به سکه
+        </option>
+
+        <option value="toman">
+          💵 قیمت به تومان
+        </option>
+
+      </select>
 
       <select id="category">
 
@@ -649,7 +686,8 @@ footer a{
   </section>
 
 
-  <!-- محصولات -->
+  <!-- ================= PRODUCTS ================= -->
+
   <section
     class="panel"
     id="productsSection">
@@ -712,6 +750,8 @@ footer a{
 </main>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer id="footer" class="hidden">
 
   RP City Market
@@ -719,6 +759,7 @@ footer a{
   <br><br>
 
   پشتیبانی:
+
   <a
     href="https://ble.ir/rpcity_lor"
     target="_blank"
@@ -733,9 +774,9 @@ footer a{
 
 <script>
 
-/* =========================
+/* =========================================================
    SUPABASE
-========================= */
+========================================================= */
 
 const SUPABASE_URL =
   "https://cjntwmohtwbfqtxlgxrt.supabase.co";
@@ -743,7 +784,12 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
 
-const supabase =
+const AUTH_FUNCTION_URL =
+  SUPABASE_URL +
+  "/functions/v1/username-auth";
+
+
+const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY,
@@ -757,27 +803,33 @@ const supabase =
   );
 
 
-/* =========================
+/* =========================================================
    VARIABLES
-========================= */
+========================================================= */
 
 let products = [];
 let authMode = "login";
+let heartbeatTimer = null;
+let productTimer = null;
+let pingTimer = null;
 
 
-/* =========================
-   MESSAGE
-========================= */
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function showBox(id,text,type){
 
   const x =
     document.getElementById(id);
 
+  if(!x) return;
+
   x.className =
     "message " + type;
 
-  x.textContent = text;
+  x.textContent =
+    text;
 }
 
 
@@ -786,21 +838,13 @@ function hideBox(id){
   const x =
     document.getElementById(id);
 
-  x.className = "message";
-  x.textContent = "";
+  if(!x) return;
 
-}
+  x.className =
+    "message";
 
-
-/* =========================
-   AUTH
-========================= */
-
-function authEmail(username){
-
-  return username.toLowerCase()
-    + "@rpcity.local";
-
+  x.textContent =
+    "";
 }
 
 
@@ -808,9 +852,20 @@ function validUsername(username){
 
   return /^[A-Za-z0-9_.-]{3,10}$/
     .test(username);
-
 }
 
+
+function cleanUsername(username){
+
+  return String(username || "")
+    .trim()
+    .replace(/^@+/,"");
+}
+
+
+/* =========================================================
+   AUTH MODE
+========================================================= */
 
 function setAuthMode(mode){
 
@@ -850,9 +905,9 @@ function setAuthMode(mode){
 }
 
 
-/* =========================
-   LOGIN / SIGNUP
-========================= */
+/* =========================================================
+   CUSTOM USERNAME AUTH
+========================================================= */
 
 async function handleAuth(e){
 
@@ -864,10 +919,11 @@ async function handleAuth(e){
     );
 
   const username =
-    document
-      .getElementById("authUsername")
-      .value
-      .trim();
+    cleanUsername(
+      document
+        .getElementById("authUsername")
+        .value
+    );
 
   const password =
     document
@@ -911,76 +967,97 @@ async function handleAuth(e){
 
   try{
 
-    if(authMode === "signup"){
+    const response =
+      await fetch(
+        AUTH_FUNCTION_URL,
+        {
+          method:"POST",
 
-      const {
-        data,
-        error
-      } =
-        await supabase.auth.signUp({
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
 
-          email:
-            authEmail(username),
+          body:JSON.stringify({
+            action:authMode,
+            username,
+            password
+          })
+        }
+      );
 
-          password,
 
-          options:{
-            data:{
-              username:
-                username.toLowerCase()
-            }
-          }
+    let result = null;
+
+    try{
+      result =
+        await response.json();
+    }catch(_){
+      result = null;
+    }
+
+
+    if(!response.ok){
+
+      throw new Error(
+        result?.error ||
+        result?.message ||
+        "ورود یا ثبت‌نام انجام نشد."
+      );
+
+    }
+
+
+    if(
+      !result?.session?.access_token ||
+      !result?.session?.refresh_token
+    ){
+
+      throw new Error(
+        "جلسه ورود از سرور دریافت نشد."
+      );
+
+    }
+
+
+    const {
+      error:setSessionError
+    } =
+      await supabaseClient.auth
+        .setSession({
+
+          access_token:
+            result.session.access_token,
+
+          refresh_token:
+            result.session.refresh_token
 
         });
 
 
-      if(error)
-        throw error;
+    if(setSessionError)
+      throw setSessionError;
 
 
-      if(data.session){
-
-        showApp(
-          data.session.user
-        );
-
-      }else{
-
-        showBox(
-          "authMessage",
-          "حساب ساخته شد، اما ورود خودکار انجام نشد.",
-          "info"
-        );
-
-      }
+    const {
+      data:sessionData
+    } =
+      await supabaseClient.auth
+        .getSession();
 
 
-    }else{
+    if(!sessionData?.session){
 
-      const {
-        data,
-        error
-      } =
-        await supabase.auth
-          .signInWithPassword({
-
-            email:
-              authEmail(username),
-
-            password
-
-          });
-
-
-      if(error)
-        throw error;
-
-
-      showApp(
-        data.session.user
+      throw new Error(
+        "ورود انجام شد ولی جلسه ذخیره نشد."
       );
 
     }
+
+
+    showApp(
+      sessionData.session.user
+    );
 
 
   }catch(err){
@@ -1007,22 +1084,25 @@ async function handleAuth(e){
 }
 
 
-/* =========================
-   AUTH ERRORS
-========================= */
+/* =========================================================
+   AUTH ERROR
+========================================================= */
 
 function translateAuthError(err){
 
   const m =
-    (err && err.message) || "";
+    String(
+      err?.message || ""
+    );
 
   const lower =
     m.toLowerCase();
 
 
   if(
-    lower.includes("invalid login") ||
-    lower.includes("invalid credentials")
+    lower.includes("invalid") ||
+    lower.includes("credentials") ||
+    lower.includes("password")
   ){
 
     return "نام کاربری یا رمز عبور اشتباه است.";
@@ -1031,25 +1111,12 @@ function translateAuthError(err){
 
 
   if(
-    lower.includes("already registered") ||
-    lower.includes("already been registered")
+    lower.includes("already") ||
+    lower.includes("registered") ||
+    lower.includes("exists")
   ){
 
     return "این نام کاربری قبلاً ثبت شده است.";
-
-  }
-
-
-  if(lower.includes("password")){
-
-    return "رمز عبور باید حداقل ۶ کاراکتر باشد.";
-
-  }
-
-
-  if(lower.includes("email")){
-
-    return "اطلاعات ورود معتبر نیست.";
 
   }
 
@@ -1062,11 +1129,11 @@ function translateAuthError(err){
 }
 
 
-/* =========================
+/* =========================================================
    SHOW APP
-========================= */
+========================================================= */
 
-function showApp(user){
+async function showApp(user){
 
   document
     .getElementById("authScreen")
@@ -1096,15 +1163,20 @@ function showApp(user){
       username;
 
 
-  loadProducts();
-  updatePing();
+  await markOnline();
+
+  await loadProducts();
+
+  await updatePing();
+
+  startTimers();
 
 }
 
 
-/* =========================
+/* =========================================================
    LOGIN SCREEN
-========================= */
+========================================================= */
 
 function showLogin(){
 
@@ -1123,16 +1195,47 @@ function showLogin(){
     .classList
     .add("hidden");
 
+  stopTimers();
+
 }
 
 
-/* =========================
+/* =========================================================
    LOGOUT
-========================= */
+========================================================= */
 
 async function logout(){
 
-  await supabase.auth.signOut();
+  try{
+
+    const {
+      data
+    } =
+      await supabaseClient.auth
+        .getUser();
+
+    if(data?.user){
+
+      await supabaseClient
+        .from("online_users")
+        .delete()
+        .eq(
+          "user_id",
+          data.user.id
+        );
+
+    }
+
+  }catch(e){
+
+    console.error(e);
+
+  }
+
+
+  await supabaseClient.auth
+    .signOut();
+
 
   showLogin();
 
@@ -1145,9 +1248,9 @@ async function logout(){
 }
 
 
-/* =========================
-   SHOP BUTTON
-========================= */
+/* =========================================================
+   SHOP
+========================================================= */
 
 function goToShop(e){
 
@@ -1170,24 +1273,240 @@ function goToShop(e){
 }
 
 
-/* =========================
-   MONEY
-========================= */
+/* =========================================================
+   PRICE
+========================================================= */
 
-function money(n){
+function formatPrice(value,type){
 
-  return new Intl.NumberFormat(
-    "fa-IR"
-  ).format(
-    Number(n || 0)
-  ) + " تومان";
+  const number =
+    Number(value || 0);
+
+  const formatted =
+    new Intl.NumberFormat(
+      "fa-IR"
+    ).format(number);
+
+
+  if(type === "toman"){
+
+    return formatted +
+      " تومان";
+
+  }
+
+
+  return formatted +
+    " سکه";
 
 }
 
 
-/* =========================
+/* =========================================================
+   ONLINE USERS
+========================================================= */
+
+async function markOnline(){
+
+  try{
+
+    const {
+      data:{
+        user
+      }
+    } =
+      await supabaseClient.auth
+        .getUser();
+
+
+    if(!user)
+      return;
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("online_users")
+        .upsert(
+          {
+            user_id:user.id,
+            last_seen:new Date().toISOString()
+          },
+          {
+            onConflict:"user_id"
+          }
+        );
+
+
+    if(error)
+      console.error(
+        "online error:",
+        error
+      );
+
+
+  }catch(e){
+
+    console.error(e);
+
+  }
+
+}
+
+
+/* =========================================================
+   ONLINE COUNT
+========================================================= */
+
+async function updateOnlineCount(){
+
+  try{
+
+    const cutoff =
+      new Date(
+        Date.now() - 2 * 60 * 1000
+      )
+      .toISOString();
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("online_users")
+        .select(
+          "user_id",
+          {
+            count:"exact",
+            head:false
+          }
+        )
+        .gte(
+          "last_seen",
+          cutoff
+        );
+
+
+    if(error)
+      throw error;
+
+
+    document
+      .getElementById("onlineCount")
+      .textContent =
+        data?.length || 0;
+
+
+  }catch(e){
+
+    console.error(e);
+
+    document
+      .getElementById("onlineCount")
+      .textContent =
+        "—";
+
+  }
+
+}
+
+
+/* =========================================================
+   TIMERS
+========================================================= */
+
+function startTimers(){
+
+  stopTimers();
+
+
+  heartbeatTimer =
+    setInterval(
+      async()=>{
+
+        await markOnline();
+        await updateOnlineCount();
+
+      },
+      60000
+    );
+
+
+  productTimer =
+    setInterval(
+      ()=>{
+
+        if(
+          !document
+            .getElementById("app")
+            .classList
+            .contains("hidden")
+        ){
+
+          loadProducts();
+
+        }
+
+      },
+      30000
+    );
+
+
+  pingTimer =
+    setInterval(
+      ()=>{
+
+        if(
+          !document
+            .getElementById("app")
+            .classList
+            .contains("hidden")
+        ){
+
+          updatePing();
+
+        }
+
+      },
+      10000
+    );
+
+
+  updateOnlineCount();
+
+}
+
+
+function stopTimers(){
+
+  if(heartbeatTimer)
+    clearInterval(
+      heartbeatTimer
+    );
+
+  if(productTimer)
+    clearInterval(
+      productTimer
+    );
+
+  if(pingTimer)
+    clearInterval(
+      pingTimer
+    );
+
+
+  heartbeatTimer = null;
+  productTimer = null;
+  pingTimer = null;
+
+}
+
+
+/* =========================================================
    LOAD PRODUCTS
-========================= */
+========================================================= */
 
 async function loadProducts(){
 
@@ -1195,6 +1514,7 @@ async function loadProducts(){
     document.getElementById(
       "loading"
     );
+
 
   loading.style.display =
     "block";
@@ -1206,10 +1526,10 @@ async function loadProducts(){
       data,
       error
     } =
-      await supabase
+      await supabaseClient
         .from("products")
         .select(
-          "id,owner_id,name,price,category,seller_id,description,created_at"
+          "id,owner_id,name,price,price_type,category,seller_id,description,created_at"
         )
         .order(
           "created_at",
@@ -1225,22 +1545,29 @@ async function loadProducts(){
 
     products =
       (data || []).filter(
-        x =>
-          ![
+        p => {
+
+          const name =
+            String(
+              p.name || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+          return ![
             "50k coin",
             "100k coin",
             "200k coin"
-          ].includes(
-            String(
-              x.name || ""
-            )
-              .trim()
-              .toLowerCase()
-          )
+          ].includes(name);
+
+        }
       );
 
 
     renderProducts();
+
+    updateOnlineCount();
 
 
   }catch(e){
@@ -1253,7 +1580,7 @@ async function loadProducts(){
 
     showBox(
       "message",
-      "دریافت محصولات انجام نشد. تنظیمات Supabase را بررسی کن.",
+      "دریافت محصولات انجام نشد. اتصال سایت به Supabase را بررسی کن.",
       "error"
     );
 
@@ -1268,9 +1595,9 @@ async function loadProducts(){
 }
 
 
-/* =========================
-   RENDER PRODUCTS
-========================= */
+/* =========================================================
+   RENDER
+========================================================= */
 
 function renderProducts(){
 
@@ -1285,18 +1612,29 @@ function renderProducts(){
     );
 
 
+  const searchEl =
+    document.getElementById(
+      "search"
+    );
+
+  const filterEl =
+    document.getElementById(
+      "filter"
+    );
+
+
   const q =
-    document
-      .getElementById("search")
-      .value
-      .trim()
-      .toLowerCase();
+    searchEl
+      ? searchEl.value
+          .trim()
+          .toLowerCase()
+      : "";
 
 
   const f =
-    document
-      .getElementById("filter")
-      .value;
+    filterEl
+      ? filterEl.value
+      : "همه";
 
 
   box.innerHTML = "";
@@ -1307,8 +1645,10 @@ function renderProducts(){
 
       p =>
 
-        (f === "همه" ||
-          p.category === f)
+        (
+          f === "همه" ||
+          p.category === f
+        )
 
         &&
 
@@ -1353,9 +1693,9 @@ function renderProducts(){
 }
 
 
-/* =========================
+/* =========================================================
    PRODUCT CARD
-========================= */
+========================================================= */
 
 function createCard(p){
 
@@ -1364,7 +1704,8 @@ function createCard(p){
       "div"
     );
 
-  card.className = "card";
+  card.className =
+    "card";
 
 
   const h =
@@ -1385,7 +1726,10 @@ function createCard(p){
     "price";
 
   price.textContent =
-    money(p.price);
+    formatPrice(
+      p.price,
+      p.price_type
+    );
 
 
   const meta =
@@ -1398,7 +1742,10 @@ function createCard(p){
 
   meta.textContent =
     "دسته: " +
-    (p.category || "سایر");
+    (
+      p.category ||
+      "سایر"
+    );
 
 
   const seller =
@@ -1409,12 +1756,16 @@ function createCard(p){
   seller.className =
     "meta";
 
-  seller.textContent =
-    "فروشنده: @" +
+  const sellerName =
     String(
       p.seller_id || ""
     )
     .replace(/^@+/,"");
+
+
+  seller.textContent =
+    "فروشنده: @" +
+    sellerName;
 
 
   const desc =
@@ -1444,7 +1795,8 @@ function createCard(p){
       "button"
     );
 
-  buy.className = "buy";
+  buy.className =
+    "buy";
 
   buy.textContent =
     "خرید / پیام به فروشنده";
@@ -1460,22 +1812,23 @@ function createCard(p){
       .trim();
 
 
-    if(s){
-
-      window.open(
-        "https://rubika.ir/" +
-        encodeURIComponent(s),
-        "_blank",
-        "noopener"
-      );
-
-    }else{
+    if(!s){
 
       alert(
         "آیدی فروشنده ثبت نشده است."
       );
 
+      return;
+
     }
+
+
+    window.open(
+      "https://rubika.ir/" +
+      encodeURIComponent(s),
+      "_blank",
+      "noopener"
+    );
 
   };
 
@@ -1485,37 +1838,41 @@ function createCard(p){
   );
 
 
-  supabase.auth
+  supabaseClient.auth
     .getUser()
-    .then(({data}) => {
+    .then(
+      ({data}) => {
 
-      if(
-        data?.user?.id ===
-        p.owner_id
-      ){
+        if(
+          data?.user?.id ===
+          p.owner_id
+        ){
 
-        const del =
-          document.createElement(
-            "button"
+          const del =
+            document.createElement(
+              "button"
+            );
+
+          del.className =
+            "delete";
+
+          del.textContent =
+            "حذف";
+
+          del.onclick =
+            () =>
+              deleteProduct(
+                p.id
+              );
+
+          actions.appendChild(
+            del
           );
 
-        del.className =
-          "delete";
-
-        del.textContent =
-          "حذف";
-
-        del.onclick =
-          () =>
-            deleteProduct(p.id);
-
-        actions.appendChild(
-          del
-        );
+        }
 
       }
-
-    });
+    );
 
 
   card.append(
@@ -1533,9 +1890,9 @@ function createCard(p){
 }
 
 
-/* =========================
+/* =========================================================
    ADD PRODUCT
-========================= */
+========================================================= */
 
 async function addProduct(){
 
@@ -1555,6 +1912,12 @@ async function addProduct(){
   const price =
     document
       .getElementById("price")
+      .value;
+
+
+  const priceType =
+    document
+      .getElementById("priceType")
       .value;
 
 
@@ -1580,40 +1943,90 @@ async function addProduct(){
 
   if(!name){
 
-    return showBox(
+    showBox(
       "message",
       "نام محصول را وارد کن.",
       "error"
     );
+
+    return;
 
   }
 
 
   if(
     price === "" ||
+    !Number.isFinite(
+      Number(price)
+    ) ||
     Number(price) < 0
   ){
 
-    return showBox(
+    showBox(
       "message",
       "قیمت محصول را درست وارد کن.",
       "error"
     );
 
+    return;
+
+  }
+
+
+  const numericPrice =
+    Number(price);
+
+
+  if(priceType === "coin"){
+
+    if(numericPrice < 500){
+
+      showBox(
+        "message",
+        "قیمت سکه باید حداقل ۵۰۰ سکه باشد.",
+        "error"
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  if(priceType === "toman"){
+
+    if(numericPrice > 500){
+
+      showBox(
+        "message",
+        "قیمت تومانی نمی‌تواند بیشتر از ۵۰۰ تومان باشد.",
+        "error"
+      );
+
+      return;
+
+    }
+
   }
 
 
   seller =
-    seller.replace(/^@+/,"");
+    seller.replace(
+      /^@+/,
+      ""
+    );
 
 
   if(!seller){
 
-    return showBox(
+    showBox(
       "message",
       "آیدی روبیکا فروشنده را وارد کن.",
       "error"
     );
+
+    return;
 
   }
 
@@ -1633,21 +2046,24 @@ async function addProduct(){
         user
       }
     } =
-      await supabase.auth
+      await supabaseClient.auth
         .getUser();
 
 
-    if(!user)
+    if(!user){
+
       throw new Error(
-        "جلسه ورود منقضی شده است."
+        "جلسه ورود منقضی شده است. دوباره وارد شو."
       );
+
+    }
 
 
     const {
       data,
       error
     } =
-      await supabase
+      await supabaseClient
         .from("products")
         .insert({
 
@@ -1655,7 +2071,9 @@ async function addProduct(){
 
           name,
 
-          price:Number(price),
+          price:numericPrice,
+
+          price_type:priceType,
 
           category,
 
@@ -1665,7 +2083,7 @@ async function addProduct(){
 
         })
         .select(
-          "id,owner_id,name,price,category,seller_id,description,created_at"
+          "id,owner_id,name,price,price_type,category,seller_id,description,created_at"
         )
         .single();
 
@@ -1674,26 +2092,29 @@ async function addProduct(){
       throw error;
 
 
-    products.unshift(data);
+    products.unshift(
+      data
+    );
+
 
     renderProducts();
 
 
-    document.getElementById(
-      "name"
-    ).value = "";
+    document
+      .getElementById("name")
+      .value = "";
 
-    document.getElementById(
-      "price"
-    ).value = "";
+    document
+      .getElementById("price")
+      .value = "";
 
-    document.getElementById(
-      "seller"
-    ).value = "";
+    document
+      .getElementById("seller")
+      .value = "";
 
-    document.getElementById(
-      "description"
-    ).value = "";
+    document
+      .getElementById("description")
+      .value = "";
 
 
     showBox(
@@ -1727,9 +2148,9 @@ async function addProduct(){
 }
 
 
-/* =========================
+/* =========================================================
    DELETE
-========================= */
+========================================================= */
 
 async function deleteProduct(id){
 
@@ -1744,12 +2165,37 @@ async function deleteProduct(id){
   try{
 
     const {
+      data:{
+        user
+      }
+    } =
+      await supabaseClient.auth
+        .getUser();
+
+
+    if(!user){
+
+      throw new Error(
+        "جلسه ورود منقضی شده است."
+      );
+
+    }
+
+
+    const {
       error
     } =
-      await supabase
+      await supabaseClient
         .from("products")
         .delete()
-        .eq("id",id);
+        .eq(
+          "id",
+          id
+        )
+        .eq(
+          "owner_id",
+          user.id
+        );
 
 
     if(error)
@@ -1758,7 +2204,8 @@ async function deleteProduct(id){
 
     products =
       products.filter(
-        p => p.id !== id
+        p =>
+          p.id !== id
       );
 
 
@@ -1774,6 +2221,8 @@ async function deleteProduct(id){
 
   }catch(e){
 
+    console.error(e);
+
     showBox(
       "message",
       e.message ||
@@ -1786,9 +2235,9 @@ async function deleteProduct(id){
 }
 
 
-/* =========================
+/* =========================================================
    PING
-========================= */
+========================================================= */
 
 async function updatePing(){
 
@@ -1807,9 +2256,11 @@ async function updatePing(){
     const {
       error
     } =
-      await supabase
+      await supabaseClient
         .from("products")
-        .select("id")
+        .select(
+          "id"
+        )
         .limit(1);
 
 
@@ -1833,6 +2284,8 @@ async function updatePing(){
 
   }catch(e){
 
+    console.error(e);
+
     el.textContent =
       "OFF";
 
@@ -1841,13 +2294,13 @@ async function updatePing(){
 }
 
 
-/* =========================
+/* =========================================================
    AUTH STATE
-========================= */
+========================================================= */
 
-supabase.auth
+supabaseClient.auth
   .onAuthStateChange(
-    (event,session) => {
+    async(event,session) => {
 
       if(session){
 
@@ -1855,8 +2308,11 @@ supabase.auth
           session.user
         );
 
-      }else if(
-        event === "SIGNED_OUT"
+      }
+
+      else if(
+        event ===
+        "SIGNED_OUT"
       ){
 
         showLogin();
@@ -1867,55 +2323,47 @@ supabase.auth
   );
 
 
-/* =========================
-   CHECK SESSION
-========================= */
+/* =========================================================
+   INITIAL SESSION
+========================================================= */
 
 (async()=>{
 
-  const {
-    data
-  } =
-    await supabase.auth
-      .getSession();
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth
+        .getSession();
 
 
-  if(data.session){
+    if(error)
+      throw error;
 
-    showApp(
-      data.session.user
-    );
 
-  }else{
+    if(data?.session){
+
+      showApp(
+        data.session.user
+      );
+
+    }else{
+
+      showLogin();
+
+    }
+
+  }catch(e){
+
+    console.error(e);
 
     showLogin();
 
   }
 
 })();
-
-
-/* =========================
-   PING EVERY 10 SEC
-========================= */
-
-setInterval(
-  () => {
-
-    if(
-      !document
-        .getElementById("app")
-        .classList
-        .contains("hidden")
-    ){
-
-      updatePing();
-
-    }
-
-  },
-  10000
-);
 
 </script>
 
