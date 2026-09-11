@@ -8,11 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:Tahoma,Arial,sans-serif;
@@ -21,24 +17,16 @@ body{
   min-height:100vh
 }
 
-button,input,textarea,select{
-  font-family:inherit
-}
+button,input,textarea,select{font-family:inherit}
 
-button{
-  cursor:pointer
-}
+button{cursor:pointer}
 
-.hidden{
-  display:none!important
-}
+.hidden{display:none!important}
 
 .wrap{
   width:min(1150px,92%);
   margin:auto
 }
-
-/* HEADER */
 
 header{
   position:sticky;
@@ -73,13 +61,6 @@ header{
   flex-wrap:wrap
 }
 
-.online-wrap{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  flex-wrap:wrap
-}
-
 .online{
   display:flex;
   align-items:center;
@@ -99,25 +80,6 @@ header{
   box-shadow:0 0 10px #00ff88
 }
 
-/* PING */
-
-.ping-box{
-  display:flex;
-  align-items:center;
-  gap:4px;
-  background:#0d1713;
-  border:1px solid #174a34;
-  padding:8px 12px;
-  border-radius:12px;
-  font-size:12px;
-  color:#b8c0cc
-}
-
-.ping-box strong{
-  color:#00ff88;
-  font-weight:900
-}
-
 .logout{
   border:1px solid #2a323e;
   background:#151a22;
@@ -130,23 +92,13 @@ header{
   padding:30px 0 50px
 }
 
-/* HERO */
-
 .hero{
   text-align:center;
   padding:35px 20px;
   margin-bottom:25px;
   background:
-    radial-gradient(
-      circle at top right,
-      rgba(0,255,136,.13),
-      transparent 35%
-    ),
-    linear-gradient(
-      145deg,
-      #0c1017,
-      #080a0f
-    );
+    radial-gradient(circle at top right,rgba(0,255,136,.13),transparent 35%),
+    linear-gradient(145deg,#0c1017,#080a0f);
   border:1px solid #1d2530;
   border-radius:24px
 }
@@ -174,11 +126,7 @@ header{
   justify-content:center;
   padding:25px;
   background:
-    radial-gradient(
-      circle at top,
-      #10251d,
-      #07090d 55%
-    )
+    radial-gradient(circle at top,#10251d,#07090d 55%)
 }
 
 .auth-box{
@@ -310,10 +258,7 @@ header{
 
 .products{
   display:grid;
-  grid-template-columns:repeat(
-    2,
-    minmax(0,1fr)
-  );
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:16px
 }
 
@@ -451,11 +396,7 @@ header{
   border-radius:20px;
   border:1px solid #1e3a2d;
   background:
-    radial-gradient(
-      circle at left,
-      #00ff8820,
-      transparent 35%
-    ),
+    radial-gradient(circle at left,#00ff8820,transparent 35%),
     #0c1218;
   display:flex;
   align-items:center;
@@ -496,10 +437,7 @@ footer{
   padding:25px
 }
 
-/* MOBILE */
-
 @media(max-width:850px){
-
   .grid{
     grid-template-columns:1fr
   }
@@ -510,25 +448,10 @@ footer{
 }
 
 @media(max-width:600px){
-
   .nav{
     flex-direction:column;
     align-items:flex-start;
     padding:13px 0
-  }
-
-  .user-area{
-    width:100%
-  }
-
-  .online-wrap{
-    width:100%
-  }
-
-  .online,
-  .ping-box{
-    flex:1;
-    justify-content:center
   }
 
   .filters{
@@ -564,7 +487,6 @@ footer{
     </div>
 
     <div class="tabs">
-
       <button id="loginTab" class="active">
         ورود
       </button>
@@ -572,17 +494,12 @@ footer{
       <button id="signupTab">
         ثبت نام
       </button>
-
     </div>
 
     <form id="authForm">
 
       <div class="field">
-
-        <label>
-          نام کاربری
-        </label>
-
+        <label>نام کاربری</label>
         <input
           id="username"
           type="text"
@@ -592,15 +509,10 @@ footer{
           placeholder="مثلاً Saeed"
           required
         >
-
       </div>
 
       <div class="field">
-
-        <label>
-          رمز عبور
-        </label>
-
+        <label>رمز عبور</label>
         <input
           id="password"
           type="password"
@@ -609,18 +521,10 @@ footer{
           maxlength="72"
           required
         >
-
       </div>
 
-      <div
-        id="passwordAgainBox"
-        class="field hidden"
-      >
-
-        <label>
-          تکرار رمز عبور
-        </label>
-
+      <div id="passwordAgainBox" class="field hidden">
+        <label>تکرار رمز عبور</label>
         <input
           id="passwordAgain"
           type="password"
@@ -628,21 +532,13 @@ footer{
           minlength="6"
           maxlength="72"
         >
-
       </div>
 
-      <button
-        id="authButton"
-        class="primary"
-        type="submit"
-      >
+      <button id="authButton" class="primary" type="submit">
         ورود به حساب
       </button>
 
-      <div
-        id="authMessage"
-        class="message"
-      ></div>
+      <div id="authMessage" class="message"></div>
 
     </form>
 
@@ -656,86 +552,40 @@ footer{
 <div id="site" class="hidden">
 
 <header>
-
   <div class="wrap nav">
 
     <div>
-
       <div class="logo">
         RP <span>CITY</span> MARKET
       </div>
 
-      <div
-        style="
-          color:#7f8998;
-          font-size:11px;
-          margin-top:4px
-        "
-      >
+      <div style="color:#7f8998;font-size:11px;margin-top:4px">
         کاربر:
-        <strong id="currentUsername">
-          —
-        </strong>
+        <strong id="currentUsername">—</strong>
+        ·
+        <span id="ping">Ping: —</span>
       </div>
-
     </div>
-
 
     <div class="user-area">
 
-      <div class="online-wrap">
-
-        <!-- PING -->
-
-        <div class="ping-box">
-
-          <span>
-            Ping:
-          </span>
-
-          <strong id="ping">
-            —ms
-          </strong>
-
-        </div>
-
-
-        <!-- ONLINE -->
-
-        <div class="online">
-
-          <span class="dot"></span>
-
-          <span>
-            کاربران آنلاین:
-          </span>
-
-          <strong id="onlineCount">
-            0
-          </strong>
-
-        </div>
-
+      <div class="online">
+        <span class="dot"></span>
+        <span>کاربران آنلاین:</span>
+        <strong id="onlineCount">0</strong>
       </div>
 
-
-      <button
-        id="logoutButton"
-        class="logout"
-      >
+      <button id="logoutButton" class="logout">
         خروج
       </button>
 
     </div>
 
   </div>
-
 </header>
 
 
 <main class="wrap container">
-
-  <!-- HERO -->
 
   <section class="hero">
 
@@ -752,7 +602,6 @@ footer{
 
   <section class="grid">
 
-
     <!-- ADD PRODUCT -->
 
     <div class="panel">
@@ -761,31 +610,22 @@ footer{
         ➕ ثبت محصول جدید
       </div>
 
-
       <form id="productForm">
 
-
         <div class="field">
-
-          <label>
-            نام محصول
-          </label>
-
+          <label>نام محصول</label>
           <input
             id="productName"
             maxlength="80"
             placeholder="مثلاً اکانت لول 50"
             required
           >
-
         </div>
 
 
         <div class="field">
 
-          <label>
-            دسته‌بندی
-          </label>
+          <label>دسته‌بندی</label>
 
           <select id="productCategory">
 
@@ -812,9 +652,7 @@ footer{
 
         <div class="field">
 
-          <label>
-            قیمت
-          </label>
+          <label>قیمت</label>
 
           <input
             id="productPrice"
@@ -829,9 +667,7 @@ footer{
 
         <div class="field">
 
-          <label>
-            نوع قیمت
-          </label>
+          <label>نوع قیمت</label>
 
           <select id="priceType">
 
@@ -901,11 +737,7 @@ footer{
           🚀 ثبت محصول
         </button>
 
-
-        <div
-          id="productMessage"
-          class="status"
-        ></div>
+        <div id="productMessage" class="status"></div>
 
       </form>
 
@@ -976,7 +808,6 @@ footer{
 
     </div>
 
-
     <a
       href="https://ble.ir/rpcity_lor"
       target="_blank"
@@ -1009,7 +840,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
 
-
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
@@ -1024,7 +854,7 @@ const supabaseClient =
   );
 
 
-/* EDGE FUNCTION */
+/* Edge Function */
 
 const AUTH_FUNCTION =
   SUPABASE_URL +
@@ -1065,29 +895,26 @@ function $(id){
 function escapeHTML(value){
 
   return String(value ?? "")
-    .replace(
-      /[&<>"']/g,
-      function(char){
+    .replace(/[&<>"']/g,function(char){
 
-        return {
+      return {
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
 
-          "&":"&amp;",
-          "<":"&lt;",
-          ">":"&gt;",
-          '"':"&quot;",
-          "'":"&#039;"
+      }[char];
 
-        }[char];
-
-      }
-    );
+    });
 
 }
 
 
 function cleanUsername(value){
 
-  return value.trim();
+  return value
+    .trim();
 
 }
 
@@ -1134,10 +961,7 @@ function formatNumber(value){
 }
 
 
-function showAuthMessage(
-  text,
-  success=false
-){
+function showAuthMessage(text,success=false){
 
   $("authMessage").textContent =
     text || "";
@@ -1150,10 +974,7 @@ function showAuthMessage(
 }
 
 
-function showProductMessage(
-  text,
-  success=false
-){
+function showProductMessage(text,success=false){
 
   $("productMessage").textContent =
     text || "";
@@ -1178,22 +999,13 @@ function setAuthMode(mode){
     mode === "login";
 
   $("loginTab")
-    .classList.toggle(
-      "active",
-      login
-    );
+    .classList.toggle("active",login);
 
   $("signupTab")
-    .classList.toggle(
-      "active",
-      !login
-    );
+    .classList.toggle("active",!login);
 
   $("passwordAgainBox")
-    .classList.toggle(
-      "hidden",
-      login
-    );
+    .classList.toggle("hidden",login);
 
   $("passwordAgain").required =
     !login;
@@ -1208,16 +1020,14 @@ function setAuthMode(mode){
 }
 
 
-$("loginTab").onclick =
-function(){
+$("loginTab").onclick = function(){
 
   setAuthMode("login");
 
 };
 
 
-$("signupTab").onclick =
-function(){
+$("signupTab").onclick = function(){
 
   setAuthMode("signup");
 
@@ -1228,11 +1038,7 @@ function(){
    CUSTOM USERNAME AUTH
 ===================================================== */
 
-async function usernameAuth(
-  action,
-  username,
-  password
-){
+async function usernameAuth(action,username,password){
 
   const response =
     await fetch(
@@ -1241,21 +1047,15 @@ async function usernameAuth(
         method:"POST",
 
         headers:{
-          "Content-Type":
-            "application/json",
-
-          "apikey":
-            SUPABASE_KEY
+          "Content-Type":"application/json",
+          "apikey":SUPABASE_KEY
         },
 
         body:JSON.stringify({
-
           action,
           username,
           password
-
         })
-
       }
     );
 
@@ -1263,10 +1063,7 @@ async function usernameAuth(
   let data = {};
 
   try{
-
-    data =
-      await response.json();
-
+    data = await response.json();
   }catch(e){}
 
 
@@ -1289,15 +1086,16 @@ async function usernameAuth(
   }
 
 
+  /*
+    مهم:
+    setSession روی خود supabaseClient اجرا میشه
+    و دیگه خطای undefined/setSession نداریم.
+  */
+
   const result =
     await supabaseClient.auth.setSession({
-
-      access_token:
-        data.session.access_token,
-
-      refresh_token:
-        data.session.refresh_token
-
+      access_token:data.session.access_token,
+      refresh_token:data.session.refresh_token
     });
 
 
@@ -1322,16 +1120,13 @@ async function(event){
 
   event.preventDefault();
 
-
   const username =
     cleanUsername(
       $("username").value
     );
 
-
   const password =
     $("password").value;
-
 
   if(!validUsername(username)){
 
@@ -1357,8 +1152,7 @@ async function(event){
 
   if(
     authMode === "signup" &&
-    password !==
-    $("passwordAgain").value
+    password !== $("passwordAgain").value
   ){
 
     showAuthMessage(
@@ -1370,9 +1164,7 @@ async function(event){
   }
 
 
-  $("authButton").disabled =
-    true;
-
+  $("authButton").disabled = true;
 
   showAuthMessage(
     authMode === "login"
@@ -1385,15 +1177,11 @@ async function(event){
 
     const session =
       await usernameAuth(
-
         authMode === "login"
           ? "login"
           : "signup",
-
         username,
-
         password
-
       );
 
 
@@ -1422,15 +1210,13 @@ async function(event){
 
     console.error(error);
 
-
     let message =
       error?.message ||
       "خطایی رخ داد.";
 
 
     if(
-      message
-        .toLowerCase()
+      message.toLowerCase()
         .includes("invalid")
     ){
 
@@ -1478,7 +1264,6 @@ async function enterSite(session){
   $("authPage")
     .classList.add("hidden");
 
-
   $("site")
     .classList.remove("hidden");
 
@@ -1513,9 +1298,7 @@ async function checkSession(){
         result.data.session.user;
 
       currentUsername =
-        currentUser
-          ?.user_metadata
-          ?.username ||
+        currentUser?.user_metadata?.username ||
         "کاربر";
 
 
@@ -1612,42 +1395,33 @@ function renderProducts(){
 
 
   const list =
-    products.filter(
-      function(product){
+    products.filter(function(product){
 
-        const text =
-          (
-            product.name +
-            " " +
-            (
-              product.description ||
-              ""
-            ) +
-            " " +
-            (
-              product.seller_id ||
-              ""
-            )
-          )
-          .toLowerCase();
+      const text =
+        (
+          product.name +
+          " " +
+          (product.description || "") +
+          " " +
+          (product.seller_id || "")
+        )
+        .toLowerCase();
 
 
-        const searchOK =
-          !search ||
-          text.includes(search);
+      const searchOK =
+        !search ||
+        text.includes(search);
 
 
-        const categoryOK =
-          !category ||
-          product.category ===
-          category;
+      const categoryOK =
+        !category ||
+        product.category === category;
 
 
-        return searchOK &&
-          categoryOK;
+      return searchOK &&
+        categoryOK;
 
-      }
-    );
+    });
 
 
   if(!list.length){
@@ -1663,11 +1437,9 @@ function renderProducts(){
 
 
   $("products").innerHTML =
-    list
-      .map(
-        createProductCard
-      )
-      .join("");
+    list.map(
+      createProductCard
+    ).join("");
 
 }
 
@@ -1694,17 +1466,11 @@ function createProductCard(product){
 
   const price =
     product.price_type === "coin"
-
       ? "🪙 " +
-        formatNumber(
-          product.price
-        ) +
+        formatNumber(product.price) +
         " سکه"
-
       : "💰 " +
-        formatNumber(
-          product.price
-        ) +
+        formatNumber(product.price) +
         " تومان";
 
 
@@ -1716,7 +1482,6 @@ function createProductCard(product){
 
   const deleteButton =
     owner
-
       ? `
         <button
           class="delete"
@@ -1725,42 +1490,30 @@ function createProductCard(product){
           حذف
         </button>
       `
-
       : "";
 
 
   const imageHTML =
     image
-
       ? `
         <div class="product-image">
-
           <img
             src="${escapeHTML(image)}"
             alt=""
-
-            onerror="
-              this.parentElement.innerHTML=
-              '<div class=&quot;no-image&quot;>🖼️</div>'
-            "
+            onerror="this.parentElement.innerHTML='<div class=&quot;no-image&quot;>🖼️</div>'"
           >
-
         </div>
       `
-
       : `
         <div class="product-image">
-
           <div class="no-image">
             🖼️
           </div>
-
         </div>
       `;
 
 
   return `
-
     <article class="product">
 
       ${imageHTML}
@@ -1768,18 +1521,12 @@ function createProductCard(product){
       <div class="product-body">
 
         <span class="badge">
-          ${escapeHTML(
-            product.category
-          )}
+          ${escapeHTML(product.category)}
         </span>
 
-
         <h3>
-          ${escapeHTML(
-            product.name
-          )}
+          ${escapeHTML(product.name)}
         </h3>
-
 
         <div class="description">
           ${escapeHTML(
@@ -1787,24 +1534,19 @@ function createProductCard(product){
           )}
         </div>
 
-
         <div class="price">
           ${price}
         </div>
-
 
         <div class="seller">
           👤 @${escapeHTML(seller)}
         </div>
 
-
         <div class="actions">
 
           <a
             class="buy"
-            href="${baleURL(
-              product.seller_id
-            )}"
+            href="${baleURL(product.seller_id)}"
             target="_blank"
             rel="noopener"
           >
@@ -1818,7 +1560,6 @@ function createProductCard(product){
       </div>
 
     </article>
-
   `;
 
 }
@@ -1834,7 +1575,6 @@ async function(event){
   event.preventDefault();
 
   showProductMessage("");
-
 
   if(!currentUser){
 
@@ -1890,8 +1630,7 @@ async function(event){
   }
 
 
-  if(priceType === "coin" &&
-     price < 500){
+  if(priceType === "coin" && price < 500){
 
     showProductMessage(
       "حداقل قیمت سکه ۵۰۰ است."
@@ -1902,8 +1641,7 @@ async function(event){
   }
 
 
-  if(priceType === "toman" &&
-     price > 500){
+  if(priceType === "toman" && price > 500){
 
     showProductMessage(
       "بیشتر از ۵۰۰ تومان مجاز نیست."
@@ -1939,17 +1677,18 @@ async function(event){
     let imageURL = "";
 
 
+    /*
+      تصویر را به Data URL تبدیل می‌کنیم.
+      حجم را محدود می‌کنیم تا دیتابیس بیش از حد سنگین نشود.
+    */
+
     const file =
-      $("productImage")
-        .files[0];
+      $("productImage").files[0];
 
 
     if(file){
 
-      if(
-        file.size >
-        2 * 1024 * 1024
-      ){
+      if(file.size > 2 * 1024 * 1024){
 
         throw new Error(
           "حجم تصویر نباید بیشتر از ۲ مگابایت باشد."
@@ -1959,9 +1698,7 @@ async function(event){
 
 
       imageURL =
-        await fileToDataURL(
-          file
-        );
+        await fileToDataURL(file);
 
     }
 
@@ -2064,9 +1801,7 @@ function fileToDataURL(file){
         reject;
 
 
-      reader.readAsDataURL(
-        file
-      );
+      reader.readAsDataURL(file);
 
     }
   );
@@ -2174,7 +1909,7 @@ async function ping(){
   if(result.error){
 
     $("ping").textContent =
-      "—ms";
+      "Ping: —";
 
     return;
 
@@ -2189,7 +1924,9 @@ async function ping(){
 
 
   $("ping").textContent =
-    ms + "ms";
+    "Ping: " +
+    ms +
+    "ms";
 
 }
 
@@ -2221,23 +1958,16 @@ async function startOnline(){
     await supabaseClient
       .from("online_users")
       .upsert(
-
         {
-
           user_id:
             currentUser.id,
 
           last_seen:
-            new Date()
-              .toISOString()
-
+            new Date().toISOString()
         },
-
         {
-          onConflict:
-            "user_id"
+          onConflict:"user_id"
         }
-
       );
 
   }catch(error){
@@ -2259,9 +1989,12 @@ async function startOnline(){
   }
 
 
+  /*
+    هر ۱ دقیقه وضعیت کاربر به‌روز می‌شود.
+  */
+
   onlineTimer =
     setInterval(
-
       async function(){
 
         await updateMyOnlineStatus();
@@ -2269,9 +2002,7 @@ async function startOnline(){
         await updateOnlineCount();
 
       },
-
       60000
-
     );
 
 }
@@ -2289,29 +2020,26 @@ async function updateMyOnlineStatus(){
   await supabaseClient
     .from("online_users")
     .upsert(
-
       {
-
         user_id:
           currentUser.id,
 
         last_seen:
-          new Date()
-            .toISOString()
-
+          new Date().toISOString()
       },
-
       {
-        onConflict:
-          "user_id"
+        onConflict:"user_id"
       }
-
     );
 
 }
 
 
 async function updateOnlineCount(){
+
+  /*
+    کاربران فعال در دو دقیقه اخیر
+  */
 
   const limit =
     new Date(
@@ -2324,14 +2052,11 @@ async function updateOnlineCount(){
     await supabaseClient
       .from("online_users")
       .select(
-
         "user_id",
-
         {
           count:"exact",
           head:true
         }
-
       )
       .gte(
         "last_seen",
@@ -2393,6 +2118,10 @@ window.addEventListener(
   "beforeunload",
   function(){
 
+    /*
+      best effort
+    */
+
     removeOnline();
 
   }
@@ -2400,18 +2129,21 @@ window.addEventListener(
 
 
 /* =====================================================
-   REFRESH PRODUCTS
+   REFRESH
 ===================================================== */
 
-setInterval(
+/*
+  محصولات هر ۳۰ ثانیه تازه می‌شوند.
+*/
 
+setInterval(
   function(){
 
     if(
       currentUser &&
-      !$("site")
-        .classList
-        .contains("hidden")
+      !$("site").classList.contains(
+        "hidden"
+      )
     ){
 
       loadProducts();
@@ -2419,18 +2151,15 @@ setInterval(
     }
 
   },
-
   30000
-
 );
 
 
-/* =====================================================
-   REFRESH ONLINE COUNT
-===================================================== */
+/*
+  تعداد آنلاین هر ۱ دقیقه
+*/
 
 setInterval(
-
   function(){
 
     if(currentUser){
@@ -2440,9 +2169,7 @@ setInterval(
     }
 
   },
-
   60000
-
 );
 
 
@@ -2451,7 +2178,6 @@ setInterval(
 ===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
-
   function(event,session){
 
     if(
@@ -2463,23 +2189,18 @@ supabaseClient.auth.onAuthStateChange(
         session.user;
 
       currentUsername =
-        currentUser
-          ?.user_metadata
-          ?.username ||
+        currentUser?.user_metadata?.username ||
         "کاربر";
 
 
-      enterSite(
-        session
-      );
+      enterSite(session);
 
     }
 
   }
-
 );
 
 </script>
 
 </body>
-  </html>
+</html>
