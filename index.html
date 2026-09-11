@@ -11,40 +11,47 @@
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
   font-family:Tahoma,Arial,sans-serif;
   background:#07090d;
   color:#fff;
-  min-height:100vh
+  min-height:100vh;
 }
 
-button,input,textarea,select{
-  font-family:inherit
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
 }
 
 button{
-  cursor:pointer
+  cursor:pointer;
 }
 
 .hidden{
-  display:none!important
+  display:none!important;
 }
 
 .wrap{
   width:min(1150px,92%);
-  margin:auto
+  margin:auto;
 }
 
 header{
   position:sticky;
   top:0;
   z-index:20;
-  background:rgba(7,9,13,.95);
+  background:rgba(7,9,13,.96);
   backdrop-filter:blur(15px);
-  border-bottom:1px solid #1c222c
+  border-bottom:1px solid #1c222c;
 }
 
 .nav{
@@ -52,23 +59,23 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px
+  gap:15px;
 }
 
 .logo{
   font-size:23px;
-  font-weight:1000
+  font-weight:1000;
 }
 
 .logo span{
-  color:#00ff88
+  color:#00ff88;
 }
 
 .user-area{
   display:flex;
   align-items:center;
   gap:9px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .online{
@@ -79,7 +86,7 @@ header{
   border:1px solid #174a34;
   padding:8px 12px;
   border-radius:12px;
-  font-size:12px
+  font-size:12px;
 }
 
 .dot{
@@ -87,7 +94,7 @@ header{
   height:8px;
   border-radius:50%;
   background:#00ff88;
-  box-shadow:0 0 10px #00ff88
+  box-shadow:0 0 10px #00ff88;
 }
 
 .logout{
@@ -95,7 +102,11 @@ header{
   background:#151a22;
   color:#fff;
   padding:9px 13px;
-  border-radius:10px
+  border-radius:10px;
+}
+
+.logout:hover{
+  border-color:#00ff88;
 }
 
 .shop-button{
@@ -108,16 +119,16 @@ header{
   text-decoration:none;
   display:inline-flex;
   align-items:center;
-  justify-content:center
+  justify-content:center;
 }
 
 .shop-button:hover{
   background:#10251b;
-  border-color:#00ff88
+  border-color:#00ff88;
 }
 
 .container{
-  padding:30px 0 50px
+  padding:30px 0 50px;
 }
 
 .hero{
@@ -132,21 +143,21 @@ header{
     ),
     linear-gradient(145deg,#0c1017,#080a0f);
   border:1px solid #1d2530;
-  border-radius:24px
+  border-radius:24px;
 }
 
 .hero h1{
   font-size:clamp(30px,6vw,52px);
-  margin-bottom:10px
+  margin-bottom:10px;
 }
 
 .hero h1 span{
-  color:#00ff88
+  color:#00ff88;
 }
 
 .hero p{
   color:#929aa8;
-  line-height:2
+  line-height:2;
 }
 
 /* AUTH */
@@ -162,7 +173,7 @@ header{
       circle at top,
       #10251d,
       #07090d 55%
-    )
+    );
 }
 
 .auth-box{
@@ -171,31 +182,31 @@ header{
   border:1px solid #202936;
   border-radius:23px;
   padding:28px;
-  box-shadow:0 20px 70px rgba(0,0,0,.5)
+  box-shadow:0 20px 70px rgba(0,0,0,.5);
 }
 
 .auth-logo{
   text-align:center;
   font-size:28px;
   font-weight:1000;
-  margin-bottom:8px
+  margin-bottom:8px;
 }
 
 .auth-logo span{
-  color:#00ff88
+  color:#00ff88;
 }
 
 .auth-sub{
   text-align:center;
   color:#818b9a;
   font-size:13px;
-  margin-bottom:22px
+  margin-bottom:22px;
 }
 
 .tabs{
   display:flex;
   gap:8px;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 .tabs button{
@@ -204,25 +215,25 @@ header{
   background:#111720;
   color:#aaa;
   padding:13px;
-  border-radius:11px
+  border-radius:11px;
 }
 
 .tabs button.active{
   background:#00ff88;
   border-color:#00ff88;
   color:#03110a;
-  font-weight:900
+  font-weight:900;
 }
 
 .field{
-  margin-bottom:14px
+  margin-bottom:14px;
 }
 
 .field label{
   display:block;
   color:#b8c0cc;
   font-size:13px;
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
 .field input,
@@ -234,18 +245,18 @@ header{
   border:1px solid #27303b;
   border-radius:11px;
   padding:13px;
-  outline:none
+  outline:none;
 }
 
 .field textarea{
   min-height:100px;
-  resize:vertical
+  resize:vertical;
 }
 
 .field input:focus,
 .field textarea:focus,
 .field select:focus{
-  border-color:#00ff88
+  border-color:#00ff88;
 }
 
 .primary{
@@ -256,12 +267,16 @@ header{
   font-weight:900;
   padding:14px;
   border-radius:11px;
-  margin-top:5px
+  margin-top:5px;
+}
+
+.primary:hover{
+  background:#20ff9b;
 }
 
 .primary:disabled{
   opacity:.6;
-  cursor:not-allowed
+  cursor:not-allowed;
 }
 
 .message{
@@ -269,11 +284,11 @@ header{
   text-align:center;
   font-size:13px;
   margin-top:12px;
-  color:#ff6878
+  color:#ff6878;
 }
 
 .success{
-  color:#00ff88!important
+  color:#00ff88!important;
 }
 
 /* MAIN */
@@ -281,29 +296,26 @@ header{
 .grid{
   display:grid;
   grid-template-columns:350px 1fr;
-  gap:18px
+  gap:18px;
 }
 
 .panel{
   background:#0c1016;
   border:1px solid #1d2530;
   border-radius:20px;
-  padding:21px
+  padding:21px;
 }
 
 .panel-title{
   font-size:20px;
   font-weight:900;
-  margin-bottom:17px
+  margin-bottom:17px;
 }
 
 .products{
   display:grid;
-  grid-template-columns:repeat(
-    2,
-    minmax(0,1fr)
-  );
-  gap:16px
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
 }
 
 .product{
@@ -311,12 +323,12 @@ header{
   border:1px solid #1d2631;
   border-radius:18px;
   overflow:hidden;
-  transition:.2s
+  transition:.2s;
 }
 
 .product:hover{
   transform:translateY(-3px);
-  border-color:#00a95b
+  border-color:#00a95b;
 }
 
 .product-image{
@@ -326,22 +338,22 @@ header{
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow:hidden
+  overflow:hidden;
 }
 
 .product-image img{
   width:100%;
   height:100%;
-  object-fit:cover
+  object-fit:cover;
 }
 
 .no-image{
   color:#424d5d;
-  font-size:45px
+  font-size:45px;
 }
 
 .product-body{
-  padding:16px
+  padding:16px;
 }
 
 .badge{
@@ -351,12 +363,12 @@ header{
   padding:5px 9px;
   border-radius:8px;
   font-size:11px;
-  margin-bottom:9px
+  margin-bottom:9px;
 }
 
 .product h3{
   font-size:17px;
-  margin-bottom:8px
+  margin-bottom:8px;
 }
 
 .description{
@@ -365,46 +377,71 @@ header{
   line-height:1.9;
   min-height:42px;
   margin-bottom:10px;
-  white-space:pre-wrap
+  white-space:pre-wrap;
 }
 
 .price{
   font-size:19px;
   font-weight:1000;
-  margin-bottom:11px
+  margin-bottom:11px;
 }
 
 .seller{
   color:#858f9e;
   font-size:12px;
-  margin-bottom:11px
+  margin-bottom:12px;
 }
 
-.seller-link{
-  color:#00ff88;
-  text-decoration:none;
-  font-weight:900
+.contact-title{
+  color:#cbd3dd;
+  margin-bottom:8px;
+  font-weight:900;
 }
 
-.seller-link:hover{
-  text-decoration:underline
+.contact-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:12px;
+}
+
+.contact-btn{
+  border:1px solid #26313b;
+  background:#111820;
+  color:#fff;
+  padding:9px 11px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:900;
+  transition:.2s;
+}
+
+.contact-btn:hover{
+  transform:translateY(-2px);
+}
+
+.contact-btn.rubika{
+  border-color:#6638c7;
+  background:#191128;
+  color:#b996ff;
+}
+
+.contact-btn.bale{
+  border-color:#087c62;
+  background:#0d211b;
+  color:#50ffc5;
+}
+
+.contact-id{
+  display:block;
+  margin-top:4px;
+  font-size:11px;
+  color:#8e99a8;
 }
 
 .actions{
   display:flex;
-  gap:7px
-}
-
-.buy{
-  flex:1;
-  text-align:center;
-  text-decoration:none;
-  background:#00ff88;
-  color:#03110a;
-  padding:11px;
-  border-radius:10px;
-  font-size:12px;
-  font-weight:900
+  gap:7px;
 }
 
 .delete{
@@ -412,13 +449,13 @@ header{
   background:#251116;
   color:#ff6b7c;
   padding:10px 12px;
-  border-radius:10px
+  border-radius:10px;
 }
 
 .filters{
   display:flex;
   gap:9px;
-  margin-bottom:17px
+  margin-bottom:17px;
 }
 
 .filters input,
@@ -427,11 +464,11 @@ header{
   border:1px solid #252e3a;
   color:#fff;
   border-radius:11px;
-  padding:13px
+  padding:13px;
 }
 
 .filters input{
-  flex:1
+  flex:1;
 }
 
 .empty{
@@ -440,7 +477,48 @@ header{
   padding:45px;
   border:1px dashed #29313c;
   border-radius:15px;
-  grid-column:1/-1
+  grid-column:1/-1;
+}
+
+.hint{
+  color:#697584;
+  font-size:11px;
+  line-height:1.8;
+  margin-top:4px;
+}
+
+.file-preview{
+  width:100%;
+  max-height:180px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-top:8px;
+  display:none;
+  border:1px solid #26313c;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,120px);
+  background:#101820;
+  border:1px solid #284033;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:12px;
+  opacity:0;
+  transition:.25s;
+  z-index:9999;
+  text-align:center;
+  max-width:90%;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
 }
 
 /* SUPPORT */
@@ -460,16 +538,16 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:15px
+  gap:15px;
 }
 
 .support h2{
-  margin-bottom:7px
+  margin-bottom:7px;
 }
 
 .support p{
   color:#8f99a7;
-  font-size:13px
+  font-size:13px;
 }
 
 .support a{
@@ -480,25 +558,24 @@ header{
   padding:12px 20px;
   border-radius:11px;
   font-weight:900;
-  white-space:nowrap
+  white-space:nowrap;
 }
 
 footer{
   text-align:center;
   color:#596474;
-  padding:25px
+  padding:25px;
 }
 
 @media(max-width:850px){
 
   .grid{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
 
   .products{
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
   }
-
 }
 
 @media(max-width:600px){
@@ -506,39 +583,46 @@ footer{
   .nav{
     flex-direction:column;
     align-items:flex-start;
-    padding:13px 0
+    padding:13px 0;
   }
 
   .user-area{
     width:100%;
-    justify-content:flex-start
+    justify-content:flex-start;
   }
 
   .shop-button{
-    order:1
+    order:1;
   }
 
   .online{
-    order:2
+    order:2;
   }
 
   .logout{
-    order:3
+    order:3;
   }
 
   .filters{
-    flex-direction:column
+    flex-direction:column;
   }
 
   .support{
     flex-direction:column;
-    text-align:center
+    text-align:center;
   }
 
   .support a{
-    width:100%
+    width:100%;
   }
 
+  .contact-buttons{
+    flex-direction:column;
+  }
+
+  .contact-btn{
+    width:100%;
+  }
 }
 </style>
 </head>
@@ -697,7 +781,6 @@ footer{
 
       </a>
 
-
       <div class="online">
 
         <span class="dot"></span>
@@ -711,7 +794,6 @@ footer{
         </strong>
 
       </div>
-
 
       <button
         id="logoutButton"
@@ -802,64 +884,26 @@ footer{
     <div class="field">
 
       <label>
-        قیمت
-      </label>
-
-      <input
-        id="productPrice"
-        type="number"
-        min="1"
-        step="1"
-        required>
-
-    </div>
-
-
-    <div class="field">
-
-      <label>
         نوع قیمت
       </label>
 
       <select id="priceType">
 
         <option value="coin">
-          🪙 سکه — حداقل ۵۰۰
+          🪙 سکه
         </option>
 
         <option value="toman">
-          💰 تومان — حداکثر ۵۰۰
+          💵 تومان
         </option>
 
       </select>
 
-    </div>
-
-
-    <div class="field">
-
-      <label>
-        آیدی بله فروشنده
-      </label>
-
-      <input
-        id="sellerId"
-        maxlength="100"
-        placeholder="@KING7AMIR404"
-        required>
-
       <div
-        style="
-          color:#687383;
-          font-size:11px;
-          line-height:1.8;
-          margin-top:6px
-        ">
+        id="priceHint"
+        class="hint">
 
-        یوزرنیم بله مثل
-        @KING7AMIR404
-        وارد کن.
-        اگر UID عددی داری، همان عدد را وارد کن.
+        حداقل قیمت سکه: ۵۰۰
 
       </div>
 
@@ -869,13 +913,52 @@ footer{
     <div class="field">
 
       <label>
-        تصویر محصول
+        قیمت
       </label>
 
       <input
-        id="productImage"
-        type="file"
-        accept="image/*">
+        id="productPrice"
+        type="number"
+        min="500"
+        inputmode="numeric"
+        placeholder="مثلاً 500"
+        required>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        🟣 آیدی روبیکا
+      </label>
+
+      <input
+        id="rubikaId"
+        maxlength="100"
+        placeholder="@username">
+
+      <div class="hint">
+        اختیاری — فقط اگر فروشنده روبیکا دارد
+      </div>
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        🔵 آیدی بله
+      </label>
+
+      <input
+        id="baleId"
+        maxlength="100"
+        placeholder="@username">
+
+      <div class="hint">
+        اختیاری — فقط اگر فروشنده بله دارد
+      </div>
 
     </div>
 
@@ -894,12 +977,35 @@ footer{
     </div>
 
 
+    <div class="field">
+
+      <label>
+        🖼️ عکس محصول
+      </label>
+
+      <input
+        id="productImage"
+        type="file"
+        accept="image/*">
+
+      <img
+        id="imagePreview"
+        class="file-preview"
+        alt="پیش‌نمایش">
+
+      <div class="hint">
+        حداکثر حجم عکس: ۲ مگابایت
+      </div>
+
+    </div>
+
+
     <button
-      id="productButton"
+      id="submitProduct"
       class="primary"
       type="submit">
 
-      ثبت محصول
+      🚀 ثبت محصول
 
     </button>
 
@@ -920,15 +1026,14 @@ footer{
   class="panel">
 
   <div class="panel-title">
-    🛒 فروشگاه — همه محصولات
+    🛍 محصولات فروشگاه
   </div>
 
   <div class="filters">
 
     <input
       id="searchInput"
-      type="text"
-      placeholder="🔎 جستجوی محصول...">
+      placeholder="🔎 جستجوی محصول یا فروشنده...">
 
     <select id="categoryFilter">
 
@@ -962,6 +1067,14 @@ footer{
     class="products">
   </div>
 
+  <div
+    id="emptyProducts"
+    class="empty hidden">
+
+    هنوز محصولی ثبت نشده.
+
+  </div>
+
 </div>
 
 </section>
@@ -972,11 +1085,11 @@ footer{
   <div>
 
     <h2>
-      پشتیبانی RP City
+      🛟 پشتیبانی RP City
     </h2>
 
     <p>
-      اگر مشکلی داشتی از طریق بله با پشتیبانی در ارتباط باش.
+      برای مشکل در ثبت یا حذف محصول با پشتیبانی ارتباط بگیر.
     </p>
 
   </div>
@@ -984,9 +1097,9 @@ footer{
   <a
     href="https://ble.ir/rpcity_lor"
     target="_blank"
-    rel="noopener noreferrer">
+    rel="noopener">
 
-    💬 پشتیبانی در بله
+    📢 پشتیبانی
 
   </a>
 
@@ -996,243 +1109,433 @@ footer{
 
 
 <footer>
-  RP CITY MARKET
+
+  RP CITY MARKET © 2026
+
 </footer>
 
 </div>
 
 
+<div
+  id="toast"
+  class="toast">
+</div>
+
+
 <script>
 
+/* =========================================
+   SUPABASE
+========================================= */
+
 const SUPABASE_URL =
-  "https://cjntwmohtwbfqtxlgxrt.supabase.co";
+"https://cjntwmohtwbfqtxlgxrt.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
+"sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
 
 const AUTH_FUNCTION =
-  SUPABASE_URL +
-  "/functions/v1/username-auth";
+SUPABASE_URL + "/functions/v1/username-auth";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
+
+/* =========================================
+   STATE
+========================================= */
 
 let currentUser = null;
-let authMode = "login";
+let currentUsernameValue = "";
 let products = [];
+let authMode = "login";
 
 
-/* =========================
-   AUTH MESSAGE
-========================= */
+/* =========================================
+   ELEMENTS
+========================================= */
 
-function showAuthMessage(
-  text,
-  type="error"
-){
+const authPage =
+document.getElementById("authPage");
+
+const site =
+document.getElementById("site");
+
+const loginTab =
+document.getElementById("loginTab");
+
+const signupTab =
+document.getElementById("signupTab");
+
+const authForm =
+document.getElementById("authForm");
+
+const usernameInput =
+document.getElementById("username");
+
+const passwordInput =
+document.getElementById("password");
+
+const passwordAgain =
+document.getElementById("passwordAgain");
+
+const passwordAgainBox =
+document.getElementById("passwordAgainBox");
+
+const authButton =
+document.getElementById("authButton");
+
+const authMessage =
+document.getElementById("authMessage");
+
+const productForm =
+document.getElementById("productForm");
+
+const productMessage =
+document.getElementById("productMessage");
+
+const submitProduct =
+document.getElementById("submitProduct");
+
+const priceType =
+document.getElementById("priceType");
+
+const productPrice =
+document.getElementById("productPrice");
+
+const priceHint =
+document.getElementById("priceHint");
+
+const productImage =
+document.getElementById("productImage");
+
+const imagePreview =
+document.getElementById("imagePreview");
+
+
+/* =========================================
+   HELPERS
+========================================= */
+
+function toast(message){
 
   const box =
-    document.getElementById(
-      "authMessage"
-    );
+  document.getElementById("toast");
 
-  box.textContent = text;
+  box.textContent = message;
 
-  box.className =
-    "message " + type;
+  box.classList.add("show");
+
+  setTimeout(()=>{
+    box.classList.remove("show");
+  },2500);
+}
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+  .replace(/[&<>"']/g,function(char){
+
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char];
+
+  });
 
 }
 
 
-/* =========================
-   AUTH MODE
-========================= */
+function cleanId(value){
+
+  return String(value || "")
+  .trim()
+  .replace(/^@+/,"")
+  .replace(/\s/g,"");
+
+}
+
+
+function displayId(value){
+
+  const id =
+  cleanId(value);
+
+  return id
+    ? "@" + id
+    : "";
+
+}
+
+
+/* =========================================
+   COPY ID
+========================================= */
+
+async function copySellerId(value,label){
+
+  const id =
+  cleanId(value);
+
+  if(!id){
+
+    toast("❌ آیدی وجود ندارد.");
+
+    return;
+  }
+
+  const finalId =
+  "@" + id;
+
+  try{
+
+    if(
+      navigator.clipboard &&
+      window.isSecureContext
+    ){
+
+      await navigator.clipboard.writeText(finalId);
+
+    }else{
+
+      const area =
+      document.createElement("textarea");
+
+      area.value = finalId;
+
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+
+      document.body.appendChild(area);
+
+      area.focus();
+      area.select();
+
+      document.execCommand("copy");
+
+      area.remove();
+
+    }
+
+    toast(
+      "✅ آیدی " +
+      label +
+      " کپی شد: " +
+      finalId
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "❌ کپی کردن آیدی انجام نشد."
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   PRICE TYPE
+========================================= */
+
+function updatePriceRules(){
+
+  if(priceType.value === "coin"){
+
+    productPrice.min = "500";
+    productPrice.max = "";
+    productPrice.placeholder =
+      "حداقل ۵۰۰ سکه";
+
+    priceHint.textContent =
+      "🪙 حداقل قیمت سکه: ۵۰۰";
+
+  }else{
+
+    productPrice.min = "0";
+    productPrice.max = "500";
+    productPrice.placeholder =
+      "حداکثر ۵۰۰ تومان";
+
+    priceHint.textContent =
+      "💵 حداکثر قیمت تومان: ۵۰۰";
+
+  }
+
+}
+
+
+priceType.addEventListener(
+  "change",
+  updatePriceRules
+);
+
+updatePriceRules();
+
+
+/* =========================================
+   AUTH UI
+========================================= */
 
 function setAuthMode(mode){
 
   authMode = mode;
 
-  document
-    .getElementById("loginTab")
-    .classList
-    .toggle(
-      "active",
-      mode === "login"
-    );
+  authMessage.textContent = "";
+  authMessage.classList.remove("success");
 
-  document
-    .getElementById("signupTab")
-    .classList
-    .toggle(
-      "active",
-      mode === "signup"
-    );
+  if(mode === "login"){
 
-  document
-    .getElementById("passwordAgainBox")
-    .classList
-    .toggle(
-      "hidden",
-      mode !== "signup"
-    );
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
 
-  document
-    .getElementById("authButton")
-    .textContent =
-      mode === "login"
-        ? "ورود به حساب"
-        : "ساخت حساب";
+    passwordAgainBox.classList.add("hidden");
 
-  document
-    .getElementById("authMessage")
-    .textContent = "";
+    passwordAgain.required = false;
+
+    authButton.textContent =
+      "ورود به حساب";
+
+  }else{
+
+    signupTab.classList.add("active");
+    loginTab.classList.remove("active");
+
+    passwordAgainBox.classList.remove("hidden");
+
+    passwordAgain.required = true;
+
+    authButton.textContent =
+      "ساخت حساب";
+
+  }
 
 }
 
 
-document
-  .getElementById("loginTab")
-  .addEventListener(
-    "click",
-    () => setAuthMode("login")
-  );
+loginTab.addEventListener(
+  "click",
+  ()=>setAuthMode("login")
+);
+
+signupTab.addEventListener(
+  "click",
+  ()=>setAuthMode("signup")
+);
 
 
-document
-  .getElementById("signupTab")
-  .addEventListener(
-    "click",
-    () => setAuthMode("signup")
-  );
-
-
-document
-  .getElementById("authForm")
-  .addEventListener(
-    "submit",
-    handleAuth
-  );
-
-
-/* =========================
+/* =========================================
    AUTH
-========================= */
+========================================= */
 
-async function handleAuth(e){
+authForm.addEventListener(
+"submit",
+async function(event){
 
-  e.preventDefault();
+  event.preventDefault();
+
+  authMessage.textContent = "";
+  authMessage.classList.remove("success");
 
   const username =
-    document
-      .getElementById("username")
-      .value
-      .trim();
+  usernameInput.value.trim();
 
   const password =
-    document
-      .getElementById("password")
-      .value;
-
-  const again =
-    document
-      .getElementById("passwordAgain")
-      .value;
-
-  const button =
-    document.getElementById(
-      "authButton"
-    );
-
+  passwordInput.value;
 
   if(
-    !/^[A-Za-z0-9_.-]{3,10}$/.test(
-      username
-    )
+    !/^[A-Za-z0-9_.-]{3,10}$/.test(username)
   ){
 
-    showAuthMessage(
-      "نام کاربری باید ۳ تا ۱۰ کاراکتر انگلیسی باشد."
-    );
+    authMessage.textContent =
+      "❌ نام کاربری باید ۳ تا ۱۰ کاراکتر انگلیسی باشد.";
 
     return;
-
   }
-
 
   if(password.length < 6){
 
-    showAuthMessage(
-      "رمز عبور باید حداقل ۶ کاراکتر باشد."
-    );
+    authMessage.textContent =
+      "❌ رمز عبور حداقل ۶ کاراکتر باشد.";
 
     return;
+  }
+
+  if(authMode === "signup"){
+
+    if(password !== passwordAgain.value){
+
+      authMessage.textContent =
+        "❌ تکرار رمز عبور صحیح نیست.";
+
+      return;
+    }
 
   }
 
+  authButton.disabled = true;
 
-  if(
-    authMode === "signup" &&
-    password !== again
-  ){
-
-    showAuthMessage(
-      "تکرار رمز عبور یکسان نیست."
-    );
-
-    return;
-
-  }
-
-
-  button.disabled = true;
-
-  button.textContent =
-    "در حال ورود...";
+  authButton.textContent =
+    "⏳ لطفاً صبر کن...";
 
 
   try{
 
     const response =
-      await fetch(
-        AUTH_FUNCTION,
-        {
-          method:"POST",
+    await fetch(
+      AUTH_FUNCTION,
+      {
+        method:"POST",
 
-          headers:{
-            "Content-Type":
-              "application/json"
-          },
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
 
-          body:JSON.stringify({
-            action:authMode,
-            username,
-            password
-          })
-        }
-      );
+        body:JSON.stringify({
+          action:authMode,
+          username,
+          password
+        })
+      }
+    );
 
 
     const data =
-      await response.json();
+    await response.json();
 
 
-    if(
-      !response.ok ||
-      !data.session
-    ){
+    if(!response.ok){
 
       throw new Error(
         data.error ||
-        "ورود انجام نشد."
+        "خطا در احراز هویت"
       );
 
     }
 
 
+    if(!data.session){
+
+      throw new Error(
+        "Session دریافت نشد."
+      );
+
+    }
+
+
+    const sessionResult =
     await supabaseClient.auth.setSession({
       access_token:
         data.session.access_token,
@@ -1242,829 +1545,791 @@ async function handleAuth(e){
     });
 
 
+    if(sessionResult.error){
+
+      throw sessionResult.error;
+
+    }
+
+
     currentUser =
-      data.session.user;
+      sessionResult.data.user;
 
-    await showSite();
+    currentUsernameValue =
+      username;
 
+
+    await afterLogin();
 
   }catch(error){
 
     console.error(error);
 
-    showAuthMessage(
-      error.message ||
-      "خطایی رخ داد."
-    );
+    authMessage.textContent =
+      "❌ " +
+      (
+        error.message ||
+        "خطا در ورود"
+      );
 
   }finally{
 
-    button.disabled = false;
+    authButton.disabled = false;
 
-    button.textContent =
+    authButton.textContent =
       authMode === "login"
-        ? "ورود به حساب"
-        : "ساخت حساب";
+      ? "ورود به حساب"
+      : "ساخت حساب";
+
+  }
+
+});
+
+
+/* =========================================
+   SESSION
+========================================= */
+
+async function checkSession(){
+
+  const result =
+  await supabaseClient.auth.getSession();
+
+  if(
+    result.data &&
+    result.data.session
+  ){
+
+    currentUser =
+      result.data.session.user;
+
+    await loadCurrentUsername();
+
+    await afterLogin();
+
+  }else{
+
+    showAuth();
 
   }
 
 }
 
 
-/* =========================
-   SHOW SITE
-========================= */
+async function loadCurrentUsername(){
 
-async function showSite(){
+  if(!currentUser){
+
+    return;
+  }
+
+  const result =
+  await supabaseClient
+  .from("profiles")
+  .select("username")
+  .eq("id",currentUser.id)
+  .maybeSingle();
+
+  if(
+    !result.error &&
+    result.data
+  ){
+
+    currentUsernameValue =
+      result.data.username;
+
+  }
+
+}
+
+
+function showAuth(){
+
+  authPage.classList.remove("hidden");
+  site.classList.add("hidden");
+
+}
+
+
+function showSite(){
+
+  authPage.classList.add("hidden");
+  site.classList.remove("hidden");
+
+}
+
+
+async function afterLogin(){
+
+  showSite();
 
   document
-    .getElementById("authPage")
-    .classList
-    .add("hidden");
-
-  document
-    .getElementById("site")
-    .classList
-    .remove("hidden");
-
-
-  const username =
-    currentUser
-      ?.user_metadata
-      ?.username ||
-    currentUser
-      ?.email
-      ?.split("@")[0] ||
-    "کاربر";
-
-
-  document
-    .getElementById("currentUsername")
-    .textContent =
-      username;
-
+  .getElementById("currentUsername")
+  .textContent =
+    currentUsernameValue || "—";
 
   await markOnline();
 
   await loadProducts();
 
-  updatePing();
+  await updateOnlineCount();
 
 }
 
 
-/* =========================
-   SHOP BUTTON
-========================= */
-
-document
-  .getElementById("shopButton")
-  .addEventListener(
-    "click",
-    async function(e){
-
-      e.preventDefault();
-
-      await loadProducts();
-
-      document
-        .getElementById(
-          "productsSection"
-        )
-        .scrollIntoView({
-          behavior:"smooth",
-          block:"start"
-        });
-
-    }
-  );
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-document
-  .getElementById("logoutButton")
-  .addEventListener(
-    "click",
-    logout
-  );
-
-
-async function logout(){
-
-  try{
-
-    if(currentUser){
-
-      await supabaseClient
-        .from("online_users")
-        .delete()
-        .eq(
-          "user_id",
-          currentUser.id
-        );
-
-    }
-
-  }catch(e){}
-
-
-  await supabaseClient
-    .auth
-    .signOut();
-
-
-  currentUser = null;
-
-  document
-    .getElementById("site")
-    .classList
-    .add("hidden");
-
-  document
-    .getElementById("authPage")
-    .classList
-    .remove("hidden");
-
-}
-
-
-/* =========================
-   ONLINE
-========================= */
+/* =========================================
+   ONLINE USERS
+========================================= */
 
 async function markOnline(){
 
-  if(!currentUser)
+  if(!currentUser){
+
     return;
+  }
 
-
+  const result =
   await supabaseClient
-    .from("online_users")
-    .upsert(
-      {
-        user_id:
-          currentUser.id,
+  .from("online_users")
+  .upsert(
+    {
+      user_id:currentUser.id,
+      last_seen:new Date().toISOString()
+    },
+    {
+      onConflict:"user_id"
+    }
+  );
 
-        last_seen:
-          new Date().toISOString()
-      },
-      {
-        onConflict:
-          "user_id"
-      }
+  if(result.error){
+
+    console.error(
+      "online error:",
+      result.error
     );
 
+  }
 
-  updateOnlineCount();
+}
+
+
+async function removeOnline(){
+
+  if(!currentUser){
+
+    return;
+  }
+
+  await supabaseClient
+  .from("online_users")
+  .delete()
+  .eq(
+    "user_id",
+    currentUser.id
+  );
 
 }
 
 
 async function updateOnlineCount(){
 
-  const cutoff =
+  const since =
     new Date(
-      Date.now() -
-      2 * 60 * 1000
+      Date.now() - 2 * 60 * 1000
     ).toISOString();
 
 
-  const {
-    count,
-    error
-  } =
-    await supabaseClient
-      .from("online_users")
-      .select(
-        "user_id",
-        {
-          count:"exact",
-          head:true
-        }
-      )
-      .gte(
-        "last_seen",
-        cutoff
-      );
+  const result =
+  await supabaseClient
+  .from("online_users")
+  .select(
+    "user_id",
+    {
+      count:"exact",
+      head:true
+    }
+  )
+  .gte(
+    "last_seen",
+    since
+  );
 
 
-  if(!error){
+  if(!result.error){
 
     document
-      .getElementById("onlineCount")
-      .textContent =
-        count || 0;
+    .getElementById("onlineCount")
+    .textContent =
+      result.count || 0;
 
   }
 
 }
 
 
-/* =========================
-   LOAD PRODUCTS
-========================= */
+/* =========================================
+   PING
+========================================= */
+
+async function updatePing(){
+
+  const start =
+  performance.now();
+
+  try{
+
+    await fetch(
+      SUPABASE_URL +
+      "/rest/v1/",
+      {
+        method:"HEAD",
+        cache:"no-store"
+      }
+    );
+
+    const ms =
+      Math.round(
+        performance.now() - start
+      );
+
+    document
+    .getElementById("ping")
+    .textContent =
+      "Ping: " + ms + "ms";
+
+  }catch{
+
+    document
+    .getElementById("ping")
+    .textContent =
+      "Ping: —ms";
+
+  }
+
+}
+
+
+/* =========================================
+   PRODUCTS
+========================================= */
 
 async function loadProducts(){
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("products")
-      .select(
-        "id,owner_id,name,price,price_type,category,seller_id,description,image_url,created_at"
-      )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
+  const result =
+  await supabaseClient
+  .from("products")
+  .select("*")
+  .order(
+    "created_at",
+    {
+      ascending:false
+    }
+  );
 
 
-  if(error){
+  if(result.error){
 
-    console.error(error);
+    console.error(result.error);
 
-    products = [];
-
-    renderProducts();
+    toast(
+      "❌ خطا در دریافت محصولات."
+    );
 
     return;
-
   }
 
 
   products =
-    data || [];
+    result.data || [];
 
   renderProducts();
 
 }
 
 
-/* =========================
+function formatPrice(
+  price,
+  type
+){
+
+  const number =
+    Number(price || 0)
+    .toLocaleString("fa-IR");
+
+  if(type === "toman"){
+
+    return number + " تومان";
+
+  }
+
+  return number + " سکه";
+
+}
+
+
+function categoryName(category){
+
+  const map = {
+    "آیتم":"آیتم",
+    "اکانت":"اکانت",
+    "سکه":"سکه",
+    "سایر":"سایر"
+  };
+
+  return map[category] || "سایر";
+
+}
+
+
+/* =========================================
    RENDER PRODUCTS
-========================= */
+========================================= */
 
 function renderProducts(){
 
-  const box =
-    document.getElementById(
-      "products"
-    );
-
+  const container =
+  document.getElementById("products");
 
   const search =
-    document
-      .getElementById(
-        "searchInput"
-      )
-      .value
-      .trim()
-      .toLowerCase();
-
+  document
+  .getElementById("searchInput")
+  .value
+  .trim()
+  .toLowerCase();
 
   const category =
-    document
-      .getElementById(
-        "categoryFilter"
-      )
-      .value;
+  document
+  .getElementById("categoryFilter")
+  .value;
 
 
-  box.innerHTML = "";
+  const filtered =
+  products.filter(product=>{
+
+    const categoryOK =
+      category === "all" ||
+      product.category === category;
 
 
-  const list =
-    products.filter(
-      product => {
-
-        const text = [
-          product.name,
-          product.category,
-          product.seller_id,
-          product.description
-        ]
-        .join(" ")
-        .toLowerCase();
+    const text = [
+      product.name,
+      product.description,
+      product.seller_id,
+      product.rubika_id,
+      product.bale_id
+    ]
+    .join(" ")
+    .toLowerCase();
 
 
-        const matchSearch =
-          !search ||
-          text.includes(search);
+    const searchOK =
+      !search ||
+      text.includes(search);
 
 
-        const matchCategory =
-          category === "all" ||
-          product.category === category;
-
-
-        return (
-          matchSearch &&
-          matchCategory
-        );
-
-      }
+    return (
+      categoryOK &&
+      searchOK
     );
 
+  });
 
-  if(!list.length){
 
-    box.innerHTML = `
-      <div class="empty">
-        🛒 محصولی پیدا نشد.
-      </div>
-    `;
+  if(!filtered.length){
+
+    container.innerHTML = "";
+
+    document
+    .getElementById("emptyProducts")
+    .classList.remove("hidden");
 
     return;
 
   }
 
 
-  list.forEach(
-    product => {
+  document
+  .getElementById("emptyProducts")
+  .classList.add("hidden");
 
-      box.appendChild(
-        createProductCard(
-          product
-        )
+
+  container.innerHTML =
+  filtered
+  .map(product=>{
+
+    const rubika =
+      cleanId(product.rubika_id);
+
+    const bale =
+      cleanId(
+        product.bale_id ||
+        product.seller_id
       );
+
+
+    let contactHTML = "";
+
+
+    if(rubika || bale){
+
+      contactHTML += `
+        <div class="contact-title">
+          👤 راه ارتباط با فروشنده
+        </div>
+
+        <div class="contact-buttons">
+      `;
+
+
+      if(rubika){
+
+        contactHTML += `
+          <button
+            type="button"
+            class="contact-btn rubika"
+            onclick="copySellerId(
+              '${escapeJS(rubika)}',
+              'روبیکا'
+            )">
+
+            🟣 آیدی روبیکا
+
+            <span class="contact-id">
+              @${escapeHTML(rubika)}
+            </span>
+
+          </button>
+        `;
+
+      }
+
+
+      if(bale){
+
+        contactHTML += `
+          <button
+            type="button"
+            class="contact-btn bale"
+            onclick="copySellerId(
+              '${escapeJS(bale)}',
+              'بله'
+            )">
+
+            🔵 آیدی بله
+
+            <span class="contact-id">
+              @${escapeHTML(bale)}
+            </span>
+
+          </button>
+        `;
+
+      }
+
+
+      contactHTML += `
+        </div>
+      `;
+
+    }else{
+
+      contactHTML = `
+        <div class="seller">
+          👤 آیدی فروشنده ثبت نشده
+        </div>
+      `;
 
     }
-  );
 
-}
 
+    let imageHTML = "";
 
-/* =========================
-   BALE LINK
-========================= */
+    if(product.image_url){
 
-function getBaleLink(value){
+      imageHTML = `
+        <img
+          src="${escapeHTML(product.image_url)}"
+          alt="${escapeHTML(product.name)}"
+          onerror="
+            this.style.display='none';
+            this.nextElementSibling.style.display='block';
+          ">
 
-  const id =
-    String(value || "")
-      .trim()
-      .replace(/^@+/,"");
+        <div
+          class="no-image"
+          style="display:none">
+          📦
+        </div>
+      `;
 
+    }else{
 
-  if(!id)
-    return "#";
+      imageHTML = `
+        <div class="no-image">
+          📦
+        </div>
+      `;
 
+    }
 
-  /*
-    اگر UID عددی باشد،
-    لینک چت مستقیم بله ساخته می‌شود.
-  */
 
-  if(/^\d+$/.test(id)){
+    const owner =
+      currentUser &&
+      product.owner_id === currentUser.id;
 
-    return (
-      "https://web.bale.ai/chat?uid=" +
-      encodeURIComponent(id)
-    );
 
-  }
+    return `
 
+      <article class="product">
 
-  /*
-    اگر یوزرنیم باشد،
-    لینک یوزرنیم بله باز می‌شود.
-  */
+        <div class="product-image">
 
-  return (
-    "https://ble.ir/" +
-    encodeURIComponent(id)
-  );
+          ${imageHTML}
 
-}
+        </div>
 
 
-/* =========================
-   PRODUCT CARD
-========================= */
+        <div class="product-body">
 
-function createProductCard(product){
+          <span class="badge">
 
-  const card =
-    document.createElement(
-      "article"
-    );
+            ${escapeHTML(
+              categoryName(product.category)
+            )}
 
-  card.className =
-    "product";
+          </span>
 
 
-  const image =
-    document.createElement(
-      "div"
-    );
+          <h3>
 
-  image.className =
-    "product-image";
+            ${escapeHTML(
+              product.name
+            )}
 
+          </h3>
 
-  if(product.image_url){
 
-    const img =
-      document.createElement(
-        "img"
-      );
+          <div class="description">
 
-    img.src =
-      product.image_url;
+            ${escapeHTML(
+              product.description ||
+              "بدون توضیحات"
+            )}
 
-    img.alt =
-      product.name ||
-      "محصول";
+          </div>
 
 
-    img.onerror =
-      () => {
+          <div class="price">
 
-        image.innerHTML =
-          `<div class="no-image">📦</div>`;
+            ${formatPrice(
+              product.price,
+              product.price_type
+            )}
 
-      };
+          </div>
 
 
-    image.appendChild(img);
+          ${contactHTML}
 
-  }else{
 
-    image.innerHTML =
-      `<div class="no-image">📦</div>`;
+          ${
+            owner
+            ?
+            `
+            <div class="actions">
 
-  }
+              <button
+                type="button"
+                class="delete"
+                onclick="
+                  deleteProduct(
+                    '${escapeJS(product.id)}'
+                  )
+                ">
 
+                🗑 حذف محصول
 
-  const body =
-    document.createElement(
-      "div"
-    );
+              </button>
 
-  body.className =
-    "product-body";
+            </div>
+            `
+            :
+            ""
+          }
 
+        </div>
 
-  const badge =
-    document.createElement(
-      "span"
-    );
+      </article>
 
-  badge.className =
-    "badge";
-
-  badge.textContent =
-    product.category ||
-    "سایر";
-
-
-  const title =
-    document.createElement(
-      "h3"
-    );
-
-  title.textContent =
-    product.name ||
-    "بدون نام";
-
-
-  const description =
-    document.createElement(
-      "div"
-    );
-
-  description.className =
-    "description";
-
-  description.textContent =
-    product.description ||
-    "بدون توضیحات";
-
-
-  const price =
-    document.createElement(
-      "div"
-    );
-
-  price.className =
-    "price";
-
-
-  const priceNumber =
-    new Intl.NumberFormat(
-      "fa-IR"
-    ).format(
-      Number(
-        product.price || 0
-      )
-    );
-
-
-  if(
-    product.price_type ===
-    "toman"
-  ){
-
-    price.textContent =
-      "💰 " +
-      priceNumber +
-      " تومان";
-
-  }else{
-
-    price.textContent =
-      "🪙 " +
-      priceNumber +
-      " سکه";
-
-  }
-
-
-  const seller =
-    document.createElement(
-      "div"
-    );
-
-  seller.className =
-    "seller";
-
-
-  const sellerId =
-    String(
-      product.seller_id || ""
-    )
-    .replace(/^@+/,"")
-    .trim();
-
-
-  seller.innerHTML =
-    `
-      فروشنده:
-      <a
-        class="seller-link"
-        href="${getBaleLink(sellerId)}"
-        target="_blank"
-        rel="noopener noreferrer">
-
-        @${escapeHTML(sellerId)}
-
-      </a>
     `;
 
+  })
+  .join("");
 
-  const actions =
-    document.createElement(
-      "div"
-    );
-
-  actions.className =
-    "actions";
+}
 
 
-  const buy =
-    document.createElement(
-      "a"
-    );
+function escapeJS(value){
 
-  buy.className =
-    "buy";
+  return String(value ?? "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/\n/g,"\\n")
+    .replace(/\r/g,"\\r");
 
-  buy.textContent =
-    "💬 پیام به فروشنده";
-
-
-  buy.href =
-    getBaleLink(
-      sellerId
-    );
+}
 
 
-  buy.target =
-    "_blank";
+/* =========================================
+   IMAGE
+========================================= */
 
-  buy.rel =
-    "noopener noreferrer";
+productImage.addEventListener(
+"change",
+function(){
 
+  const file =
+    this.files[0];
 
-  actions.appendChild(
-    buy
-  );
+  if(!file){
 
+    imagePreview.style.display =
+      "none";
 
-  if(
-    currentUser &&
-    currentUser.id ===
-    product.owner_id
-  ){
-
-    const del =
-      document.createElement(
-        "button"
-      );
-
-    del.className =
-      "delete";
-
-    del.textContent =
-      "حذف";
-
-
-    del.onclick =
-      () => deleteProduct(
-        product.id
-      );
-
-
-    actions.appendChild(
-      del
-    );
+    return;
 
   }
 
 
-  body.append(
-    badge,
-    title,
-    description,
-    price,
-    seller,
-    actions
-  );
+  if(file.size > 2 * 1024 * 1024){
 
-
-  card.append(
-    image,
-    body
-  );
-
-
-  return card;
-
-}
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
+    toast(
+      "❌ حجم عکس بیشتر از ۲ مگابایت است."
     );
 
-}
+    this.value = "";
+
+    imagePreview.style.display =
+      "none";
+
+    return;
+
+  }
 
 
-/* =========================
-   IMAGE
-========================= */
+  if(!file.type.startsWith("image/")){
 
-function imageToDataURL(file){
+    toast(
+      "❌ فقط فایل تصویری انتخاب کن."
+    );
 
-  return new Promise(
-    (resolve,reject) => {
+    this.value = "";
 
-      const reader =
-        new FileReader();
+    return;
 
-
-      reader.onload =
-        () => resolve(
-          reader.result
-        );
+  }
 
 
-      reader.onerror =
-        reject;
+  const reader =
+    new FileReader();
 
 
-      reader.readAsDataURL(
-        file
-      );
+  reader.onload =
+  function(event){
 
-    }
-  );
+    imagePreview.src =
+      event.target.result;
 
-}
+    imagePreview.style.display =
+      "block";
+
+  };
 
 
-/* =========================
+  reader.readAsDataURL(file);
+
+});
+
+
+/* =========================================
    ADD PRODUCT
-========================= */
+========================================= */
 
-document
-  .getElementById(
-    "productForm"
-  )
-  .addEventListener(
-    "submit",
-    addProduct
-  );
+productForm.addEventListener(
+"submit",
+async function(event){
 
+  event.preventDefault();
 
-async function addProduct(e){
-
-  e.preventDefault();
+  productMessage.textContent = "";
+  productMessage.classList.remove("success");
 
 
-  const button =
-    document.getElementById(
-      "productButton"
+  if(!currentUser){
+
+    toast(
+      "❌ ابتدا وارد حساب شو."
     );
+
+    return;
+
+  }
 
 
   const name =
     document
-      .getElementById(
-        "productName"
-      )
-      .value
-      .trim();
+    .getElementById("productName")
+    .value
+    .trim();
 
 
   const category =
     document
-      .getElementById(
-        "productCategory"
-      )
-      .value;
+    .getElementById("productCategory")
+    .value;
+
+
+  const type =
+    priceType.value;
 
 
   const price =
     Number(
-      document
-        .getElementById(
-          "productPrice"
-        )
-        .value
+      productPrice.value
     );
 
 
-  const priceType =
-    document
-      .getElementById(
-        "priceType"
-      )
-      .value;
-
-
-  let sellerId =
-    document
-      .getElementById(
-        "sellerId"
-      )
+  const rubikaId =
+    cleanId(
+      document
+      .getElementById("rubikaId")
       .value
-      .trim();
+    );
+
+
+  const baleId =
+    cleanId(
+      document
+      .getElementById("baleId")
+      .value
+    );
 
 
   const description =
     document
-      .getElementById(
-        "productDescription"
-      )
-      .value
-      .trim();
+    .getElementById("productDescription")
+    .value
+    .trim();
 
 
-  const imageFile =
-    document
-      .getElementById(
-        "productImage"
-      )
-      .files[0];
+  const file =
+    productImage.files[0];
 
 
-  if(!name){
+  if(name.length < 1){
 
-    showProductMessage(
-      "نام محصول را وارد کن."
-    );
+    productMessage.textContent =
+      "❌ نام محصول را وارد کن.";
 
     return;
 
@@ -2073,461 +2338,416 @@ async function addProduct(e){
 
   if(!Number.isFinite(price)){
 
-    showProductMessage(
-      "قیمت معتبر وارد کن."
-    );
+    productMessage.textContent =
+      "❌ قیمت صحیح نیست.";
 
     return;
 
   }
 
 
-  if(
-    priceType === "coin" &&
-    price < 500
-  ){
+  if(type === "coin"){
 
-    showProductMessage(
-      "قیمت سکه باید حداقل ۵۰۰ باشد."
-    );
+    if(price < 500){
+
+      productMessage.textContent =
+        "❌ حداقل قیمت سکه ۵۰۰ است.";
+
+      return;
+
+    }
+
+  }else{
+
+    if(price < 0 || price > 500){
+
+      productMessage.textContent =
+        "❌ قیمت تومان باید بین ۰ تا ۵۰۰ باشد.";
+
+      return;
+
+    }
+
+  }
+
+
+  if(!rubikaId && !baleId){
+
+    productMessage.textContent =
+      "❌ حداقل یکی از آیدی‌های روبیکا یا بله را وارد کن.";
 
     return;
 
   }
 
 
-  if(
-    priceType === "toman" &&
-    price > 500
-  ){
+  if(file){
 
-    showProductMessage(
-      "قیمت تومان نمی‌تواند بیشتر از ۵۰۰ باشد."
-    );
+    if(file.size > 2 * 1024 * 1024){
 
-    return;
+      productMessage.textContent =
+        "❌ حجم عکس باید کمتر از ۲ مگابایت باشد.";
 
-  }
+      return;
 
-
-  sellerId =
-    sellerId
-      .replace(/^@+/,"")
-      .trim();
-
-
-  if(!sellerId){
-
-    showProductMessage(
-      "آیدی بله فروشنده را وارد کن."
-    );
-
-    return;
+    }
 
   }
 
 
-  if(
-    imageFile &&
-    imageFile.size >
-    2 * 1024 * 1024
-  ){
+  submitProduct.disabled = true;
 
-    showProductMessage(
-      "حجم تصویر نباید بیشتر از ۲ مگابایت باشد."
-    );
-
-    return;
-
-  }
-
-
-  button.disabled = true;
-
-  button.textContent =
-    "در حال ثبت...";
+  submitProduct.textContent =
+    "⏳ در حال ثبت...";
 
 
   try{
 
-    const {
-      data:{
-        user
-      }
-    } =
-      await supabaseClient
-        .auth
-        .getUser();
-
-
-    if(!user){
-
-      throw new Error(
-        "جلسه ورود منقضی شده است."
-      );
-
-    }
-
-
     let imageURL = "";
 
 
-    if(imageFile){
+    if(file){
 
       imageURL =
-        await imageToDataURL(
-          imageFile
-        );
+        await fileToDataURL(file);
 
     }
 
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("products")
-        .insert({
+    const insertData = {
 
-          owner_id:
-            user.id,
+      owner_id:
+        currentUser.id,
 
-          name:
-            name,
+      name:
 
-          price:
-            Math.floor(price),
+        name,
 
-          price_type:
-            priceType,
+      price:
 
-          category:
-            category,
+        Math.floor(price),
 
-          seller_id:
-            sellerId,
+      price_type:
 
-          description:
-            description,
+        type,
 
-          image_url:
-            imageURL,
+      category:
 
-          image_path:
-            ""
+        category,
 
-        })
-        .select(
-          "id,owner_id,name,price,price_type,category,seller_id,description,image_url,created_at"
-        )
-        .single();
+      seller_id:
+
+        baleId,
+
+      rubika_id:
+
+        rubikaId,
+
+      bale_id:
+
+        baleId,
+
+      description:
+
+        description,
+
+      image_url:
+
+        imageURL,
+
+      image_path:
+
+        ""
+
+    };
 
 
-    if(error)
-      throw error;
-
-
-    products.unshift(
-      data
+    const result =
+    await supabaseClient
+    .from("products")
+    .insert(
+      insertData
     );
 
 
-    renderProducts();
+    if(result.error){
+
+      throw result.error;
+
+    }
 
 
-    document
-      .getElementById(
-        "productForm"
-      )
-      .reset();
+    productForm.reset();
+
+    imagePreview.style.display =
+      "none";
+
+    updatePriceRules();
 
 
-    showProductMessage(
-      "✅ محصول با موفقیت ثبت شد.",
-      true
+    productMessage.textContent =
+      "✅ محصول با موفقیت ثبت شد.";
+
+    productMessage.classList.add(
+      "success"
     );
 
+
+    toast(
+      "✅ محصول ثبت شد."
+    );
+
+
+    await loadProducts();
 
   }catch(error){
 
     console.error(error);
 
-    showProductMessage(
-      error.message ||
-      "ثبت محصول انجام نشد."
-    );
+    productMessage.textContent =
+      "❌ " +
+      (
+        error.message ||
+        "خطا در ثبت محصول"
+      );
 
   }finally{
 
-    button.disabled = false;
+    submitProduct.disabled =
+      false;
 
-    button.textContent =
-      "ثبت محصول";
-
-  }
-
-}
-
-
-/* =========================
-   PRODUCT MESSAGE
-========================= */
-
-function showProductMessage(
-  text,
-  success=false
-){
-
-  const box =
-    document.getElementById(
-      "productMessage"
-    );
-
-  box.textContent =
-    text;
-
-  box.className =
-    success
-      ? "message success"
-      : "message";
-
-}
-
-
-/* =========================
-   DELETE
-========================= */
-
-async function deleteProduct(id){
-
-  if(
-    !confirm(
-      "این محصول حذف شود؟"
-    )
-  )
-    return;
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-      .from("products")
-      .delete()
-      .eq(
-        "id",
-        id
-      );
-
-
-  if(error){
-
-    showProductMessage(
-      error.message
-    );
-
-    return;
+    submitProduct.textContent =
+      "🚀 ثبت محصول";
 
   }
 
-
-  products =
-    products.filter(
-      p => p.id !== id
-    );
+});
 
 
-  renderProducts();
+function fileToDataURL(file){
 
+  return new Promise(
+    function(resolve,reject){
 
-  showProductMessage(
-    "محصول حذف شد.",
-    true
-  );
+      const reader =
+        new FileReader();
 
-}
+      reader.onload =
+        ()=>resolve(
+          reader.result
+        );
 
+      reader.onerror =
+        reject;
 
-/* =========================
-   SEARCH
-========================= */
-
-document
-  .getElementById(
-    "searchInput"
-  )
-  .addEventListener(
-    "input",
-    renderProducts
-  );
-
-
-document
-  .getElementById(
-    "categoryFilter"
-  )
-  .addEventListener(
-    "change",
-    renderProducts
-  );
-
-
-/* =========================
-   PING
-========================= */
-
-async function updatePing(){
-
-  const start =
-    performance.now();
-
-
-  try{
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .from("products")
-        .select("id")
-        .limit(1);
-
-
-    if(error)
-      throw error;
-
-
-    const ms =
-      Math.max(
-        1,
-        Math.round(
-          performance.now() -
-          start
-        )
-      );
-
-
-    document
-      .getElementById(
-        "ping"
-      )
-      .textContent =
-        "Ping: " +
-        ms +
-        "ms";
-
-
-  }catch(error){
-
-    document
-      .getElementById(
-        "ping"
-      )
-      .textContent =
-        "Ping: OFF";
-
-  }
-
-}
-
-
-/* =========================
-   HEARTBEAT
-========================= */
-
-setInterval(
-  async () => {
-
-    if(!currentUser)
-      return;
-
-    await markOnline();
-
-    updateOnlineCount();
-
-    updatePing();
-
-  },
-  10000
-);
-
-
-/* =========================
-   SESSION
-========================= */
-
-supabaseClient.auth
-  .onAuthStateChange(
-    async (
-      event,
-      session
-    ) => {
-
-      if(session){
-
-        currentUser =
-          session.user;
-
-        await showSite();
-
-      }
-
-
-      if(
-        event ===
-        "SIGNED_OUT"
-      ){
-
-        currentUser =
-          null;
-
-        document
-          .getElementById(
-            "site"
-          )
-          .classList
-          .add("hidden");
-
-        document
-          .getElementById(
-            "authPage"
-          )
-          .classList
-          .remove("hidden");
-
-      }
+      reader.readAsDataURL(file);
 
     }
   );
 
-
-/* =========================
-   INITIAL SESSION
-========================= */
-
-(async()=>{
-
-  const {
-    data
-  } =
-    await supabaseClient
-      .auth
-      .getSession();
+}
 
 
-  if(data.session){
+/* =========================================
+   DELETE
+========================================= */
 
-    currentUser =
-      data.session.user;
+async function deleteProduct(id){
 
-    await showSite();
+  if(!currentUser){
+
+    toast(
+      "❌ وارد حساب نیستی."
+    );
+
+    return;
 
   }
 
-})();
+
+  const ok =
+    confirm(
+      "آیا از حذف این محصول مطمئنی؟"
+    );
+
+
+  if(!ok){
+
+    return;
+
+  }
+
+
+  const result =
+  await supabaseClient
+  .from("products")
+  .delete()
+  .eq(
+    "id",
+    id
+  )
+  .eq(
+    "owner_id",
+    currentUser.id
+  );
+
+
+  if(result.error){
+
+    console.error(result.error);
+
+    toast(
+      "❌ حذف محصول انجام نشد."
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    "✅ محصول حذف شد."
+  );
+
+
+  await loadProducts();
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+  "input",
+  renderProducts
+);
+
+
+document
+.getElementById("categoryFilter")
+.addEventListener(
+  "change",
+  renderProducts
+);
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+"click",
+async function(){
+
+  await removeOnline();
+
+  await supabaseClient.auth.signOut();
+
+  currentUser = null;
+
+  currentUsernameValue = "";
+
+  showAuth();
+
+  usernameInput.value = "";
+  passwordInput.value = "";
+  passwordAgain.value = "";
+
+  toast(
+    "از حساب خارج شدی."
+  );
+
+});
+
+
+/* =========================================
+   HEARTBEAT
+========================================= */
+
+setInterval(
+async function(){
+
+  if(currentUser){
+
+    await markOnline();
+
+    await updateOnlineCount();
+
+    await updatePing();
+
+  }
+
+},
+60000
+);
+
+
+/* =========================================
+   PING
+========================================= */
+
+setInterval(
+function(){
+
+  if(currentUser){
+
+    updatePing();
+
+  }
+
+},
+10000
+);
+
+
+/* =========================================
+   PRODUCTS REFRESH
+========================================= */
+
+setInterval(
+function(){
+
+  if(currentUser){
+
+    loadProducts();
+
+  }
+
+},
+30000
+);
+
+
+/* =========================================
+   PAGE CLOSE
+========================================= */
+
+window.addEventListener(
+"beforeunload",
+function(){
+
+  /*
+   حذف آنلاین هنگام بستن صفحه
+   توسط مرورگر ممکن است همیشه اجرا نشود،
+   heartbeat باعث می‌شود رکورد بعد از مدتی stale شود.
+  */
+
+});
+
+
+/* =========================================
+   START
+========================================= */
+
+checkSession();
 
 </script>
 
 </body>
-  </html>
+        </html>
