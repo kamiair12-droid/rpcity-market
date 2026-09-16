@@ -3,489 +3,906 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#07130d">
-<title>RP LOR | Shop</title>
+<meta name="theme-color" content="#07140d">
+
+<title>RP LOR | فروشگاه</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
-font-family:Tahoma,Arial,sans-serif;
-background:
-radial-gradient(circle at 20% 0%,#16452f 0,transparent 35%),
-radial-gradient(circle at 100% 20%,#103d29 0,transparent 30%),
-#030806;
-color:#fff;
-min-height:100vh;
+    font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+    background:
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(45,180,105,.20),
+        transparent 32%
+    ),
+    radial-gradient(
+        circle at 100% 20%,
+        rgba(0,255,140,.12),
+        transparent 30%
+    ),
+    #030806;
+
+    color:#fff;
+    min-height:100vh;
 }
 
-button,input,textarea,select{font:inherit}
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
 
-button{cursor:pointer}
+button{
+    cursor:pointer;
+}
 
 .container{
-width:min(1150px,94%);
-margin:auto;
+    width:min(1180px,94%);
+    margin:auto;
 }
 
+/* ================= HEADER ================= */
+
 header{
-position:sticky;
-top:0;
-z-index:50;
-background:rgba(3,10,7,.88);
-backdrop-filter:blur(18px);
-border-bottom:1px solid rgba(90,255,165,.15);
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(3,10,7,.86);
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+    1px solid rgba(100,255,170,.13);
 }
 
 .nav{
-min-height:72px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
+    min-height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
 }
 
 .logo{
-font-size:27px;
-font-weight:1000;
-letter-spacing:1px;
-color:#7dffb8;
+    font-size:27px;
+    font-weight:1000;
+
+    color:#7dffb8;
+
+    text-shadow:
+    0 0 25px rgba(70,255,150,.2);
 }
 
-.nav-buttons{
-display:flex;
-gap:8px;
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
 }
 
 .btn{
-border:1px solid rgba(125,255,184,.16);
-background:#0d281b;
-color:white;
-padding:11px 16px;
-border-radius:13px;
-transition:.2s;
+    border:
+    1px solid rgba(125,255,184,.16);
+
+    background:#0c271a;
+    color:white;
+
+    padding:
+    11px 16px;
+
+    border-radius:13px;
+
+    transition:.2s;
 }
 
 .btn:hover{
-background:#17462f;
-transform:translateY(-1px);
+    transform:translateY(-2px);
+    background:#15462d;
 }
 
 .btn.primary{
-background:#2bd07f;
-color:#021109;
-font-weight:900;
+    background:#2bd17f;
+    color:#021109;
+    font-weight:900;
 }
 
 .btn.danger{
-background:#762525;
+    background:#762727;
 }
 
-.hero{
-text-align:center;
-padding:75px 0 45px;
-}
-
-.hero-badge{
-display:inline-block;
-padding:8px 14px;
-border-radius:30px;
-background:#0d2b1d;
-border:1px solid #24573b;
-color:#7dffb8;
-margin-bottom:18px;
-}
-
-.hero h1{
-font-size:clamp(45px,9vw,85px);
-font-weight:1000;
-color:#82ffc0;
-text-shadow:0 0 35px rgba(70,255,160,.2);
-}
-
-.hero p{
-margin-top:15px;
-color:#a9c3b4;
-font-size:17px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:13px;
-margin-bottom:35px;
-}
-
-.stat{
-background:rgba(10,35,23,.78);
-border:1px solid rgba(125,255,184,.12);
-border-radius:20px;
-padding:20px;
-text-align:center;
-}
-
-.stat strong{
-display:block;
-font-size:28px;
-color:#7dffb8;
-margin-bottom:7px;
-}
-
-.search{
-width:100%;
-background:#06110b;
-border:1px solid #19442e;
-outline:none;
-color:#fff;
-padding:16px;
-border-radius:16px;
-margin-bottom:15px;
-}
-
-.filters{
-display:flex;
-gap:8px;
-overflow-x:auto;
-padding-bottom:10px;
-margin-bottom:20px;
-}
-
-.filter{
-white-space:nowrap;
-border:1px solid #19432d;
-background:#092015;
-color:#c7ded1;
-padding:10px 16px;
-border-radius:30px;
-}
-
-.filter.active{
-background:#2bd07f;
-color:#021109;
-font-weight:bold;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
-}
-
-.card{
-position:relative;
-overflow:hidden;
-background:linear-gradient(145deg,#103725,#06120c);
-border:1px solid rgba(125,255,184,.12);
-border-radius:23px;
-padding:22px;
-box-shadow:0 15px 50px rgba(0,0,0,.25);
-transition:.25s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-border-color:rgba(125,255,184,.35);
-}
-
-.icon{
-font-size:45px;
-margin-bottom:15px;
-}
-
-.card h3{
-font-size:20px;
-margin-bottom:9px;
-}
-
-.card p{
-color:#98b2a3;
-line-height:1.8;
-min-height:50px;
-}
-
-.price{
-font-size:23px;
-font-weight:1000;
-color:#7dffb8;
-margin:18px 0;
-}
-
-.full{width:100%}
-
-.panel{
-margin-top:25px;
-background:rgba(6,20,13,.9);
-border:1px solid #173e29;
-border-radius:23px;
-padding:22px;
-}
-
-.panel h2{
-color:#83ffbf;
-margin-bottom:18px;
-}
-
-.chat{
-height:320px;
-overflow:auto;
-background:#020805;
-border-radius:16px;
-padding:15px;
-margin-bottom:12px;
-}
-
-.message{
-background:#0d2619;
-border:1px solid #153a27;
-border-radius:14px;
-padding:11px 13px;
-margin-bottom:9px;
-}
-
-.message b{
-color:#7dffb8;
-}
-
-.message small{
-color:#668173;
-margin-right:8px;
-}
-
-.chat-row{
-display:flex;
-gap:8px;
-}
-
-input,textarea,select{
-width:100%;
-background:#050e09;
-border:1px solid #1b4930;
-border-radius:13px;
-padding:13px;
-color:white;
-outline:none;
-}
-
-textarea{
-min-height:90px;
-resize:vertical;
-}
-
-.form{
-display:grid;
-gap:10px;
-}
-
-.admin{
-display:none;
-}
-
-.admin-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-margin-bottom:25px;
-}
-
-.admin-stat{
-background:#0c2518;
-border-radius:16px;
-padding:18px;
-border:1px solid #163d29;
-}
-
-.admin-stat strong{
-display:block;
-font-size:28px;
-color:#7dffb8;
-margin-bottom:5px;
-}
-
-.admin-list{
-display:grid;
-gap:10px;
-margin-top:15px;
-}
-
-.admin-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-background:#0a2015;
-border:1px solid #153927;
-border-radius:15px;
-padding:13px;
-}
-
-.admin-actions{
-display:flex;
-gap:6px;
-flex-wrap:wrap;
-}
-
-.empty{
-grid-column:1/-1;
-text-align:center;
-padding:45px;
-color:#668173;
-}
-
-.modal{
-position:fixed;
-inset:0;
-z-index:100;
-display:none;
-align-items:center;
-justify-content:center;
-background:rgba(0,0,0,.75);
-padding:15px;
-}
-
-.modal.show{
-display:flex;
-}
-
-.modal-box{
-width:min(480px,100%);
-background:#07150d;
-border:1px solid #24583a;
-border-radius:24px;
-padding:25px;
-box-shadow:0 20px 80px rgba(0,0,0,.5);
-}
-
-.modal-title{
-font-size:23px;
-font-weight:900;
-color:#83ffbf;
-margin-bottom:20px;
-}
-
-.close{
-float:left;
-border:0;
-background:#15251c;
-color:white;
-border-radius:10px;
-padding:6px 11px;
-}
-
-.auth-switch{
-margin-top:10px;
+.btn.orange{
+    background:#a56b18;
 }
 
 .user-box{
-display:none;
-align-items:center;
-gap:8px;
+    display:none;
+
+    align-items:center;
+    gap:8px;
 }
 
 .user-name{
-color:#7dffb8;
-font-weight:bold;
+    color:#7dffb8;
+    font-weight:bold;
 }
 
-footer{
-text-align:center;
-padding:35px 0;
-margin-top:50px;
-color:#5f796b;
+/* ================= HERO ================= */
+
+.hero{
+    text-align:center;
+    padding:
+    80px 0
+    50px;
 }
 
-@media(max-width:800px){
+.hero-badge{
+    display:inline-block;
+
+    padding:
+    8px 15px;
+
+    border-radius:30px;
+
+    color:#7dffb8;
+
+    background:#0b2b1c;
+
+    border:
+    1px solid #205538;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:
+    clamp(50px,10vw,90px);
+
+    line-height:1;
+
+    font-weight:1000;
+
+    color:#82ffc0;
+
+    text-shadow:
+    0 0 45px
+    rgba(70,255,150,.18);
+}
+
+.hero p{
+    margin-top:20px;
+
+    color:#a7c1b2;
+
+    font-size:17px;
+
+    line-height:2;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:13px;
+
+    margin-bottom:35px;
+}
+
+.stat{
+    padding:21px;
+
+    text-align:center;
+
+    border-radius:21px;
+
+    background:
+    rgba(10,38,24,.78);
+
+    border:
+    1px solid rgba(125,255,184,.12);
+}
+
+.stat strong{
+    display:block;
+
+    color:#7dffb8;
+
+    font-size:30px;
+
+    margin-bottom:7px;
+}
+
+/* ================= SHOP ================= */
+
+.section-title{
+    font-size:25px;
+
+    color:#83ffbf;
+
+    margin-bottom:18px;
+}
+
+.search{
+    width:100%;
+
+    padding:16px;
+
+    background:#06110b;
+
+    border:
+    1px solid #1a4630;
+
+    color:white;
+
+    outline:none;
+
+    border-radius:16px;
+
+    margin-bottom:15px;
+}
+
+.filters{
+    display:flex;
+
+    gap:8px;
+
+    overflow-x:auto;
+
+    padding-bottom:10px;
+
+    margin-bottom:20px;
+}
+
+.filter{
+    white-space:nowrap;
+
+    border:
+    1px solid #19452f;
+
+    background:#092116;
+
+    color:#c5ded0;
+
+    padding:
+    10px 17px;
+
+    border-radius:30px;
+}
+
+.filter.active{
+    background:#2bd17f;
+
+    color:#021109;
+
+    font-weight:bold;
+}
+
 .products{
-grid-template-columns:repeat(2,1fr);
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.card{
+    background:
+    linear-gradient(
+        145deg,
+        #103725,
+        #06120c
+    );
+
+    border:
+    1px solid
+    rgba(125,255,184,.12);
+
+    border-radius:23px;
+
+    padding:22px;
+
+    box-shadow:
+    0 15px 50px
+    rgba(0,0,0,.25);
+
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+
+    border-color:
+    rgba(125,255,184,.35);
+}
+
+.icon{
+    font-size:45px;
+
+    margin-bottom:15px;
+}
+
+.card h3{
+    font-size:20px;
+
+    margin-bottom:9px;
+}
+
+.card p{
+    color:#96b1a2;
+
+    line-height:1.8;
+
+    min-height:52px;
+}
+
+.category{
+    display:inline-block;
+
+    margin-top:10px;
+
+    padding:
+    5px 9px;
+
+    border-radius:8px;
+
+    background:#0d2c1e;
+
+    color:#79dca4;
+
+    font-size:12px;
+}
+
+.price{
+    color:#7dffb8;
+
+    font-size:23px;
+
+    font-weight:1000;
+
+    margin:
+    18px 0;
+}
+
+.full{
+    width:100%;
+}
+
+/* ================= PANELS ================= */
+
+.panel{
+    margin-top:25px;
+
+    padding:23px;
+
+    border-radius:23px;
+
+    background:
+    rgba(6,20,13,.92);
+
+    border:
+    1px solid #173e2a;
+}
+
+.panel h2{
+    color:#83ffbf;
+
+    margin-bottom:18px;
+}
+
+/* ================= CHAT ================= */
+
+.chat{
+    height:330px;
+
+    overflow:auto;
+
+    background:#020805;
+
+    border-radius:17px;
+
+    padding:15px;
+
+    margin-bottom:12px;
+}
+
+.message{
+    background:#0c2719;
+
+    border:
+    1px solid #153a27;
+
+    border-radius:14px;
+
+    padding:11px 13px;
+
+    margin-bottom:9px;
+}
+
+.message b{
+    color:#7dffb8;
+}
+
+.message small{
+    color:#648073;
+
+    margin-right:8px;
+}
+
+.message-text{
+    margin-top:6px;
+
+    line-height:1.7;
+}
+
+.chat-row{
+    display:flex;
+
+    gap:8px;
+}
+
+/* ================= FORMS ================= */
+
+.form{
+    display:grid;
+
+    gap:10px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+
+    background:#050e09;
+
+    border:
+    1px solid #1a4930;
+
+    color:white;
+
+    outline:none;
+
+    border-radius:13px;
+
+    padding:13px;
+}
+
+textarea{
+    min-height:90px;
+
+    resize:vertical;
+}
+
+/* ================= ADMIN ================= */
+
+.admin{
+    display:none;
+}
+
+.admin-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:20px;
+}
+
+.admin-badge{
+    padding:
+    7px 12px;
+
+    border-radius:10px;
+
+    background:#143c28;
+
+    color:#7dffb8;
+
+    font-weight:bold;
 }
 
 .admin-grid{
-grid-template-columns:1fr;
-}
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+
+    margin-bottom:25px;
 }
 
-@media(max-width:550px){
-.nav{
-flex-direction:column;
-padding:13px 0;
+.admin-stat{
+    padding:19px;
+
+    border-radius:17px;
+
+    background:#0c2518;
+
+    border:
+    1px solid #173d29;
 }
 
-.nav-buttons{
-width:100%;
+.admin-stat strong{
+    display:block;
+
+    color:#7dffb8;
+
+    font-size:29px;
+
+    margin-bottom:5px;
 }
 
-.nav-buttons .btn{
-flex:1;
-}
+.admin-list{
+    display:grid;
 
-.products{
-grid-template-columns:1fr;
-}
+    gap:10px;
 
-.stats{
-grid-template-columns:1fr;
-}
-
-.hero{
-padding-top:45px;
+    margin-top:15px;
 }
 
 .admin-item{
-align-items:flex-start;
-flex-direction:column;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#0a2015;
+
+    border:
+    1px solid #153927;
+
+    border-radius:15px;
+
+    padding:14px;
 }
 
 .admin-actions{
-width:100%;
+    display:flex;
+
+    gap:6px;
+
+    flex-wrap:wrap;
 }
 
-.admin-actions .btn{
-flex:1;
+.status{
+    display:inline-block;
+
+    padding:
+    5px 9px;
+
+    border-radius:8px;
+
+    font-size:12px;
+
+    margin-top:5px;
 }
+
+.status.pending{
+    background:#5b4514;
+    color:#ffd76a;
 }
+
+.status.paid{
+    background:#174a31;
+    color:#7dffb8;
+}
+
+.status.completed{
+    background:#153c54;
+    color:#8dd8ff;
+}
+
+.status.cancelled{
+    background:#552020;
+    color:#ff9c9c;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+    grid-column:1/-1;
+
+    text-align:center;
+
+    color:#607a6c;
+
+    padding:45px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:1000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+    rgba(0,0,0,.76);
+
+    padding:15px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(480px,100%);
+
+    background:#07150d;
+
+    border:
+    1px solid #24583a;
+
+    border-radius:24px;
+
+    padding:25px;
+
+    box-shadow:
+    0 25px 90px
+    rgba(0,0,0,.55);
+}
+
+.modal-title{
+    color:#83ffbf;
+
+    font-size:23px;
+
+    font-weight:900;
+
+    margin-bottom:20px;
+}
+
+.close{
+    float:left;
+
+    border:0;
+
+    background:#15251c;
+
+    color:white;
+
+    border-radius:10px;
+
+    padding:
+    6px 11px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:
+    translate(-50%,120px);
+
+    z-index:2000;
+
+    background:#123624;
+
+    border:
+    1px solid #2b704b;
+
+    color:white;
+
+    padding:
+    13px 18px;
+
+    border-radius:14px;
+
+    transition:.3s;
+
+    opacity:0;
+}
+
+.toast.show{
+    transform:
+    translate(-50%,0);
+
+    opacity:1;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+
+    color:#587365;
+
+    padding:
+    35px 0;
+
+    margin-top:50px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
+
+    .products{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:580px){
+
+    .nav{
+        flex-direction:column;
+
+        padding:
+        13px 0;
+    }
+
+    .nav-actions{
+        width:100%;
+    }
+
+    .nav-actions .btn{
+        flex:1;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:
+        50px 0
+        35px;
+    }
+
+    .admin-item{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .admin-actions{
+        width:100%;
+    }
+
+    .admin-actions .btn{
+        flex:1;
+    }
+
+    .chat-row{
+        flex-direction:column;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
+
 <div class="container nav">
 
-<div class="logo">RP LOR</div>
-
-<div class="nav-buttons">
-
-<div id="userBox" class="user-box">
-<span id="userName" class="user-name"></span>
-<button class="btn" onclick="logout()">خروج</button>
+<div class="logo">
+RP LOR
 </div>
+
+<div class="nav-actions">
 
 <div id="guestButtons">
-<button class="btn" onclick="openAuth()">ورود / ثبت‌نام</button>
-<button class="btn primary" onclick="goShop()">فروشگاه</button>
+
+<button
+class="btn"
+onclick="openAuth()">
+ورود / ثبت‌نام
+</button>
+
+<button
+class="btn primary"
+onclick="goShop()">
+فروشگاه
+</button>
+
+</div>
+
+<div
+id="userBox"
+class="user-box">
+
+<span
+id="userName"
+class="user-name">
+</span>
+
+<button
+class="btn"
+onclick="logout()">
+خروج
+</button>
+
 </div>
 
 </div>
+
 </div>
+
 </header>
 
 
 <main class="container">
 
+
 <section class="hero">
 
-<div class="hero-badge">فروشگاه رسمی RP LOR</div>
+<div class="hero-badge">
+🟢 RP LOR SHOP
+</div>
 
-<h1>RP LOR</h1>
+<h1>
+RP LOR
+</h1>
 
 <p>
-محصولات و خدمات RP را سریع و راحت سفارش بده
+فروشگاه حرفه‌ای محصولات و خدمات RP
+<br>
+سریع، ساده و امن
 </p>
 
 <br>
 
-<button class="btn primary" onclick="goShop()">
+<button
+class="btn primary"
+onclick="goShop()">
 مشاهده محصولات
 </button>
 
@@ -495,24 +912,45 @@ flex:1;
 <section class="stats">
 
 <div class="stat">
-<strong id="productCount">0</strong>
+
+<strong id="productCount">
+0
+</strong>
+
 محصول فعال
+
 </div>
 
+
 <div class="stat">
-<strong id="userCount">0</strong>
+
+<strong id="userCount">
+0
+</strong>
+
 کاربر
+
 </div>
 
+
 <div class="stat">
-<strong id="orderCount">0</strong>
+
+<strong id="orderCount">
+0
+</strong>
+
 سفارش
+
 </div>
 
 </section>
 
 
 <section id="shop">
+
+<h2 class="section-title">
+🛍️ فروشگاه
+</h2>
 
 <input
 id="search"
@@ -521,44 +959,69 @@ placeholder="🔎 جستجوی محصول..."
 oninput="renderProducts()"
 >
 
+
 <div class="filters">
 
-<button class="filter active" onclick="setCategory('همه',this)">
+<button
+class="filter active"
+onclick="setCategory('همه',this)">
 همه
 </button>
 
-<button class="filter" onclick="setCategory('سکه',this)">
+<button
+class="filter"
+onclick="setCategory('سکه',this)">
 🪙 سکه
 </button>
 
-<button class="filter" onclick="setCategory('تلگرام',this)">
+<button
+class="filter"
+onclick="setCategory('ماشین',this)">
+🚗 ماشین
+</button>
+
+<button
+class="filter"
+onclick="setCategory('اکانت',this)">
+👤 اکانت
+</button>
+
+<button
+class="filter"
+onclick="setCategory('تلگرام',this)">
 ✈️ تلگرام
 </button>
 
-<button class="filter" onclick="setCategory('جم',this)">
+<button
+class="filter"
+onclick="setCategory('جم',this)">
 💎 جم
 </button>
 
-<button class="filter" onclick="setCategory('دیجیتال',this)">
+<button
+class="filter"
+onclick="setCategory('دیجیتال',this)">
 👾 دیجیتال
 </button>
 
-<button class="filter" onclick="setCategory('آموزش',this)">
-🎓 آموزش
-</button>
-
-<button class="filter" onclick="setCategory('روبیکا',this)">
+<button
+class="filter"
+onclick="setCategory('روبیکا',this)">
 🟣 روبیکا
 </button>
 
-<button class="filter" onclick="setCategory('سایر',this)">
+<button
+class="filter"
+onclick="setCategory('سایر',this)">
 📦 سایر
 </button>
 
 </div>
 
 
-<div id="products" class="products">
+<div
+id="products"
+class="products">
 
 <div class="empty">
 در حال دریافت محصولات...
@@ -569,25 +1032,35 @@ oninput="renderProducts()"
 </section>
 
 
+<!-- ================= CHAT ================= -->
+
 <section>
 
 <div class="panel">
 
-<h2>💬 چت عمومی کاربران</h2>
+<h2>
+💬 چت عمومی کاربران
+</h2>
 
-<div id="chat" class="chat">
+<div
+id="chat"
+class="chat">
+
 برای استفاده از چت وارد حساب شو.
+
 </div>
 
 <div class="chat-row">
 
 <input
 id="chatInput"
+maxlength="500"
 placeholder="پیامت رو بنویس..."
-maxlength="1000"
 >
 
-<button class="btn primary" onclick="sendMessage()">
+<button
+class="btn primary"
+onclick="sendMessage()">
 ارسال
 </button>
 
@@ -598,33 +1071,69 @@ maxlength="1000"
 </section>
 
 
-<section id="adminPanel" class="admin">
+<!-- ================= ADMIN ================= -->
+
+<section
+id="adminPanel"
+class="admin">
 
 <div class="panel">
 
-<h2>👑 پنل مدیریت RP LOR</h2>
+<div class="admin-header">
+
+<h2>
+👑 پنل مدیریت
+</h2>
+
+<span class="admin-badge">
+ADMIN
+</span>
+
+</div>
+
 
 <div class="admin-grid">
 
 <div class="admin-stat">
-<strong id="aProducts">0</strong>
+
+<strong id="aProducts">
+0
+</strong>
+
 محصول
+
 </div>
 
+
 <div class="admin-stat">
-<strong id="aUsers">0</strong>
+
+<strong id="aUsers">
+0
+</strong>
+
 کاربر
+
 </div>
+
 
 <div class="admin-stat">
-<strong id="aOrders">0</strong>
+
+<strong id="aOrders">
+0
+</strong>
+
 سفارش
-</div>
 
 </div>
 
+</div>
 
-<h3>➕ افزودن محصول</h3>
+
+<!-- ADD PRODUCT -->
+
+<h3>
+➕ افزودن محصول
+</h3>
 
 <br>
 
@@ -633,6 +1142,7 @@ maxlength="1000"
 <input
 id="newName"
 placeholder="نام محصول"
+maxlength="100"
 >
 
 <input
@@ -644,31 +1154,64 @@ placeholder="قیمت به تومان"
 
 <select id="newCategory">
 
-<option value="سکه">سکه</option>
-<option value="تلگرام">تلگرام</option>
-<option value="جم">جم</option>
-<option value="دیجیتال">دیجیتال</option>
-<option value="آموزش">آموزش</option>
-<option value="روبیکا">روبیکا</option>
-<option value="سایر">سایر</option>
+<option value="سکه">
+🪙 سکه
+</option>
+
+<option value="ماشین">
+🚗 ماشین
+</option>
+
+<option value="اکانت">
+👤 اکانت
+</option>
+
+<option value="تلگرام">
+✈️ تلگرام
+</option>
+
+<option value="جم">
+💎 جم
+</option>
+
+<option value="دیجیتال">
+👾 دیجیتال
+</option>
+
+<option value="روبیکا">
+🟣 روبیکا
+</option>
+
+<option value="سایر">
+📦 سایر
+</option>
 
 </select>
 
 <input
 id="newIcon"
 placeholder="ایموجی محصول"
+maxlength="10"
+>
+
+<input
+id="newSeller"
+placeholder="آیدی فروشنده"
+maxlength="100"
 >
 
 <textarea
 id="newDescription"
-placeholder="توضیحات محصول"
-></textarea>
+maxlength="1000"
+placeholder="توضیحات محصول">
+</textarea>
 
 <button
 class="btn primary"
-onclick="addProduct()"
->
+onclick="addProduct()">
+
 ➕ افزودن محصول
+
 </button>
 
 </div>
@@ -676,53 +1219,93 @@ onclick="addProduct()"
 
 <br><br>
 
-<h3>📦 مدیریت محصولات</h3>
 
-<div id="adminProducts" class="admin-list"></div>
+<!-- ADMIN PRODUCTS -->
+
+<h3>
+📦 مدیریت محصولات
+</h3>
+
+<div
+id="adminProducts"
+class="admin-list">
+
+</div>
 
 
 <br><br>
 
-<h3>🛒 سفارش‌ها</h3>
 
-<div id="adminOrders" class="admin-list"></div>
+<!-- ADMIN ORDERS -->
+
+<h3>
+🛒 مدیریت سفارش‌ها
+</h3>
+
+<div
+id="adminOrders"
+class="admin-list">
+
+</div>
 
 
 <br><br>
 
-<h3>💬 مدیریت پیام‌ها</h3>
 
-<div id="adminChat" class="admin-list"></div>
+<!-- ADMIN CHAT -->
+
+<h3>
+🗑️ مدیریت پیام‌ها
+</h3>
+
+<div
+id="adminChat"
+class="admin-list">
+
+</div>
 
 </div>
 
 </section>
 
+
 </main>
 
 
 <footer>
-© 2026 RP LOR — تمامی حقوق محفوظ است
+
+© 2026 RP LOR
+
 </footer>
 
 
-<!-- LOGIN -->
+<!-- ================= AUTH MODAL ================= -->
 
-<div id="authModal" class="modal">
+<div
+id="authModal"
+class="modal">
 
 <div class="modal-box">
 
-<button class="close" onclick="closeAuth()">×</button>
+<button
+class="close"
+onclick="closeAuth()">
+×
+</button>
 
-<div id="authTitle" class="modal-title">
+<div
+id="authTitle"
+class="modal-title">
 ورود به حساب
 </div>
+
 
 <div class="form">
 
 <input
 id="authUsername"
 placeholder="نام کاربری"
+maxlength="50"
 >
 
 <input
@@ -740,38 +1323,46 @@ placeholder="رمز عبور"
 <button
 id="authSubmit"
 class="btn primary"
-onclick="submitAuth()"
->
+onclick="submitAuth()">
 ورود
 </button>
 
 <button
-class="btn auth-switch"
-onclick="toggleAuth()"
->
+id="authSwitch"
+class="btn"
+onclick="toggleAuth()">
 ثبت‌نام
 </button>
 
-<div id="authStatus"></div>
+<div
+id="authStatus">
+</div>
+
+</div>
 
 </div>
 
 </div>
 
+
+<div
+id="toast"
+class="toast">
 </div>
 
 
 <script>
 
-/* =====================================
-   SUPABASE
-===================================== */
+/* =========================================================
+   RP LOR
+   SUPABASE CONFIG
+========================================================= */
 
 const SUPABASE_URL =
-"YOUR_SUPABASE_URL";
+"https://cjntwmohtwbfqtxlgxrt.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
-"YOUR_SUPABASE_PUBLISHABLE_KEY";
+"sb_publishable_mvO9kjx83dBLbsea0C7sAg_O4hHBRL9";
 
 const supabaseClient =
 window.supabase.createClient(
@@ -780,23 +1371,26 @@ SUPABASE_PUBLISHABLE_KEY
 );
 
 
-/* =====================================
+/* =========================================================
    SHOP SETTINGS
-===================================== */
+========================================================= */
 
-const SHOP_NAME = "RP LOR";
+const SHOP_NAME =
+"RP LOR";
 
-const RUBIKA_ID = "AMOO__SAEED";
+const RUBIKA_ID =
+"AMOO_LOR";
 
 const RUBIKA_URL =
-"https://rubika.ir/AMOO__SAEED";
+"https://rubika.ir/AMOO_LOR";
 
 
-/* =====================================
+/* =========================================================
    VARIABLES
-===================================== */
+========================================================= */
 
 let currentUser = null;
+
 let currentProfile = null;
 
 let products = [];
@@ -805,1487 +1399,2307 @@ let currentCategory = "همه";
 
 let authMode = "login";
 
+let realtimeChannel = null;
 
-/* =====================================
+
+/* =========================================================
    START
-===================================== */
+========================================================= */
 
 document.addEventListener(
 "DOMContentLoaded",
 async function(){
 
-await checkSession();
+    await checkSession();
 
-await loadProducts();
+    await loadProducts();
 
-await loadStats();
+    await loadStats();
+
+    setupRealtime();
 
 }
 );
 
 
-/* =====================================
+/* =========================================================
    SESSION
-===================================== */
+========================================================= */
 
 async function checkSession(){
 
-const result =
-await supabaseClient.auth.getSession();
+    const result =
+    await supabaseClient
+    .auth
+    .getSession();
 
-const session =
-result.data.session;
+    if(result.data.session){
 
-if(session){
+        currentUser =
+        result.data.session.user;
 
-currentUser = session.user;
+        await loadProfile();
 
-await loadProfile();
+    }
 
 }
 
-}
 
-
-/* =====================================
+/* =========================================================
    AUTH STATE
-===================================== */
+========================================================= */
 
-supabaseClient.auth.onAuthStateChange(
+supabaseClient
+.auth
+.onAuthStateChange(
 async function(event,session){
 
-currentUser =
-session?.user || null;
+    currentUser =
+    session?.user || null;
 
-if(currentUser){
+    if(currentUser){
 
-await loadProfile();
+        await loadProfile();
 
-}else{
+    }else{
 
-currentProfile = null;
+        currentProfile = null;
 
-updateHeader();
+        updateHeader();
 
-}
+        document.getElementById(
+            "adminPanel"
+        ).style.display = "none";
+
+        await loadChat();
+
+    }
 
 }
 );
 
 
-/* =====================================
+/* =========================================================
    PROFILE
-===================================== */
+========================================================= */
 
 async function loadProfile(){
 
-if(!currentUser)return;
+    if(!currentUser)return;
 
-const result =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.single();
 
-if(result.error){
+    const result =
+    await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq(
+        "id",
+        currentUser.id
+    )
+    .maybeSingle();
 
-console.log(result.error);
 
-return;
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        return;
+
+    }
+
+
+    currentProfile =
+    result.data;
+
+
+    updateHeader();
+
+
+    await loadChat();
+
+
+    if(
+        currentProfile &&
+        currentProfile.role === "admin"
+    ){
+
+        document.getElementById(
+            "adminPanel"
+        ).style.display = "block";
+
+        await loadAdmin();
+
+    }else{
+
+        document.getElementById(
+            "adminPanel"
+        ).style.display = "none";
+
+    }
 
 }
 
-currentProfile =
-result.data;
 
-updateHeader();
-
-await loadChat();
-
-if(currentProfile.role === "admin"){
-
-document.getElementById(
-"adminPanel"
-).style.display = "block";
-
-await loadAdmin();
-
-}
-
-}
-
-
-/* =====================================
+/* =========================================================
    HEADER
-===================================== */
+========================================================= */
 
 function updateHeader(){
 
-const guest =
-document.getElementById(
-"guestButtons"
-);
+    const guest =
+    document.getElementById(
+        "guestButtons"
+    );
 
-const user =
-document.getElementById(
-"userBox"
-);
+    const user =
+    document.getElementById(
+        "userBox"
+    );
 
-if(currentUser){
 
-guest.style.display = "none";
+    if(currentUser){
 
-user.style.display = "flex";
+        guest.style.display =
+        "none";
 
-document.getElementById(
-"userName"
-).textContent =
-currentProfile?.username ||
-currentUser.email;
+        user.style.display =
+        "flex";
 
-}else{
 
-guest.style.display = "flex";
+        document.getElementById(
+            "userName"
+        ).textContent =
+        currentProfile?.username ||
+        currentUser.email ||
+        "کاربر";
 
-user.style.display = "none";
+    }else{
+
+        guest.style.display =
+        "flex";
+
+        user.style.display =
+        "none";
+
+    }
 
 }
 
-}
 
-
-/* =====================================
-   AUTH MODAL
-===================================== */
+/* =========================================================
+   AUTH
+========================================================= */
 
 function openAuth(){
 
-document
-.getElementById("authModal")
-.classList.add("show");
+    document
+    .getElementById(
+        "authModal"
+    )
+    .classList.add("show");
 
 }
+
 
 function closeAuth(){
 
-document
-.getElementById("authModal")
-.classList.remove("show");
+    document
+    .getElementById(
+        "authModal"
+    )
+    .classList.remove("show");
 
 }
+
 
 function toggleAuth(){
 
-authMode =
-authMode === "login"
-? "signup"
-: "login";
+    authMode =
+    authMode === "login"
+    ? "signup"
+    : "login";
 
-document.getElementById(
-"authTitle"
-).textContent =
-authMode === "login"
-? "ورود به حساب"
-: "ساخت حساب";
 
-document.getElementById(
-"authSubmit"
-).textContent =
-authMode === "login"
-? "ورود"
-: "ساخت حساب";
+    document.getElementById(
+        "authTitle"
+    ).textContent =
+    authMode === "login"
+    ? "ورود به حساب"
+    : "ساخت حساب";
 
-document.querySelector(
-".auth-switch"
-).textContent =
-authMode === "login"
-? "ثبت‌نام"
-: "بازگشت به ورود";
+
+    document.getElementById(
+        "authSubmit"
+    ).textContent =
+    authMode === "login"
+    ? "ورود"
+    : "ساخت حساب";
+
+
+    document.getElementById(
+        "authSwitch"
+    ).textContent =
+    authMode === "login"
+    ? "ثبت‌نام"
+    : "بازگشت به ورود";
 
 }
 
 
-/* =====================================
+/* =========================================================
    LOGIN / SIGNUP
-===================================== */
+========================================================= */
 
 async function submitAuth(){
 
-const username =
-document.getElementById(
-"authUsername"
-).value.trim();
+    const username =
+    document
+    .getElementById(
+        "authUsername"
+    )
+    .value
+    .trim();
 
-const email =
-document.getElementById(
-"authEmail"
-).value.trim();
 
-const password =
-document.getElementById(
-"authPassword"
-).value;
+    const email =
+    document
+    .getElementById(
+        "authEmail"
+    )
+    .value
+    .trim();
 
-const status =
-document.getElementById(
-"authStatus"
-);
 
-status.textContent = "";
+    const password =
+    document
+    .getElementById(
+        "authPassword"
+    )
+    .value;
 
-if(!email || !password){
 
-status.textContent =
-"ایمیل و رمز عبور را وارد کن.";
+    const status =
+    document.getElementById(
+        "authStatus"
+    );
 
-return;
+
+    status.textContent = "";
+
+
+    if(!email || !password){
+
+        status.textContent =
+        "ایمیل و رمز عبور را وارد کن.";
+
+        return;
+
+    }
+
+
+    if(password.length < 6){
+
+        status.textContent =
+        "رمز عبور باید حداقل ۶ کاراکتر باشد.";
+
+        return;
+
+    }
+
+
+    if(authMode === "signup"){
+
+        const result =
+        await supabaseClient
+        .auth
+        .signUp({
+
+            email,
+
+            password,
+
+            options:{
+                data:{
+                    username:
+                    username ||
+                    email.split("@")[0]
+                }
+            }
+
+        });
+
+
+        if(result.error){
+
+            status.textContent =
+            result.error.message;
+
+            return;
+
+        }
+
+
+        if(result.data.session){
+
+            showToast(
+                "حساب با موفقیت ساخته شد."
+            );
+
+            closeAuth();
+
+        }else{
+
+            status.textContent =
+            "حساب ساخته شد. ایمیل تأیید را بررسی کن.";
+
+        }
+
+
+    }else{
+
+        const result =
+        await supabaseClient
+        .auth
+        .signInWithPassword({
+
+            email,
+
+            password
+
+        });
+
+
+        if(result.error){
+
+            status.textContent =
+            result.error.message;
+
+            return;
+
+        }
+
+
+        currentUser =
+        result.data.user;
+
+
+        await loadProfile();
+
+        closeAuth();
+
+        showToast(
+            "با موفقیت وارد شدی."
+        );
+
+    }
 
 }
 
-if(password.length < 6){
 
-status.textContent =
-"رمز عبور باید حداقل ۶ کاراکتر باشد.";
-
-return;
-
-}
-
-
-if(authMode === "signup"){
-
-const result =
-await supabaseClient.auth.signUp({
-
-email:email,
-
-password:password,
-
-options:{
-data:{
-username:
-username ||
-email.split("@")[0]
-}
-}
-
-});
-
-if(result.error){
-
-status.textContent =
-result.error.message;
-
-return;
-
-}
-
-status.textContent =
-"حساب ساخته شد. اگر تأیید ایمیل فعال است، ایمیل خود را تأیید کن.";
-
-}else{
-
-const result =
-await supabaseClient.auth.signInWithPassword({
-
-email:email,
-
-password:password
-
-});
-
-if(result.error){
-
-status.textContent =
-result.error.message;
-
-return;
-
-}
-
-currentUser =
-result.data.user;
-
-await loadProfile();
-
-closeAuth();
-
-}
-
-}
-
-
-/* =====================================
+/* =========================================================
    LOGOUT
-===================================== */
+========================================================= */
 
 async function logout(){
 
-await supabaseClient.auth.signOut();
+    await supabaseClient
+    .auth
+    .signOut();
 
-location.reload();
+    currentUser = null;
+
+    currentProfile = null;
+
+    location.reload();
 
 }
 
 
-/* =====================================
+/* =========================================================
    PRODUCTS
-===================================== */
+========================================================= */
 
 async function loadProducts(){
 
-const result =
-await supabaseClient
-.from("products")
-.select("*")
-.order("created_at",{ascending:false});
+    const result =
+    await supabaseClient
+    .from("products")
+    .select("*")
+    .eq(
+        "status",
+        "active"
+    )
+    .order(
+        "created_at",
+        {
+            ascending:false
+        }
+    );
 
-if(result.error){
 
-console.log(result.error);
+    if(result.error){
 
-document.getElementById(
-"products"
-).innerHTML =
-`<div class="empty">
-خطا در دریافت محصولات
-</div>`;
+        console.error(
+            result.error
+        );
 
-return;
+        document.getElementById(
+            "products"
+        ).innerHTML =
+        `
+        <div class="empty">
+        خطا در دریافت محصولات
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    products =
+    result.data || [];
+
+
+    renderProducts();
 
 }
 
-products =
-result.data || [];
 
-renderProducts();
-
-}
-
-
-/* =====================================
+/* =========================================================
    CATEGORY
-===================================== */
+========================================================= */
 
-function setCategory(category,button){
+function setCategory(
+    category,
+    button
+){
 
-currentCategory =
-category;
+    currentCategory =
+    category;
 
-document
-.querySelectorAll(".filter")
-.forEach(function(x){
-x.classList.remove("active");
-});
 
-button.classList.add("active");
+    document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        function(item){
 
-renderProducts();
+            item.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    renderProducts();
 
 }
 
 
-/* =====================================
-   RENDER
-===================================== */
+/* =========================================================
+   RENDER PRODUCTS
+========================================================= */
 
 function renderProducts(){
 
-const box =
-document.getElementById(
-"products"
-);
-
-const search =
-document.getElementById(
-"search"
-).value
-.trim()
-.toLowerCase();
-
-const list =
-products.filter(function(p){
-
-const categoryOK =
-currentCategory === "همه" ||
-p.category === currentCategory;
-
-const searchOK =
-!search ||
-String(p.name)
-.toLowerCase()
-.includes(search) ||
-String(p.description || "")
-.toLowerCase()
-.includes(search);
-
-return categoryOK && searchOK;
-
-});
+    const box =
+    document.getElementById(
+        "products"
+    );
 
 
-if(!list.length){
+    const search =
+    document.getElementById(
+        "search"
+    )
+    .value
+    .trim()
+    .toLowerCase();
 
-box.innerHTML =
-`<div class="empty">
-محصولی پیدا نشد.
-</div>`;
 
-return;
+    const list =
+    products.filter(
+        function(product){
+
+            const categoryOK =
+            currentCategory === "همه" ||
+            product.category ===
+            currentCategory;
+
+
+            const text =
+            (
+                product.name +
+                " " +
+                (
+                    product.description ||
+                    ""
+                )
+            ).toLowerCase();
+
+
+            return (
+                categoryOK &&
+                (
+                    !search ||
+                    text.includes(search)
+                )
+            );
+
+        }
+    );
+
+
+    if(!list.length){
+
+        box.innerHTML =
+        `
+        <div class="empty">
+        محصولی پیدا نشد.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    list.map(
+        function(product){
+
+            return `
+
+            <article class="card">
+
+                <div class="icon">
+                    ${escapeHTML(
+                        product.image_url
+                        ? "🖼️"
+                        : product.category === "سکه"
+                        ? "🪙"
+                        : product.category === "جم"
+                        ? "💎"
+                        : product.category === "ماشین"
+                        ? "🚗"
+                        : product.category === "اکانت"
+                        ? "👤"
+                        : product.category === "تلگرام"
+                        ? "✈️"
+                        : product.category === "روبیکا"
+                        ? "🟣"
+                        : "🛍️"
+                    )}
+                </div>
+
+                <h3>
+                    ${escapeHTML(
+                        product.name
+                    )}
+                </h3>
+
+                <p>
+                    ${escapeHTML(
+                        product.description ||
+                        "بدون توضیحات"
+                    )}
+                </p>
+
+                <span class="category">
+                    ${escapeHTML(
+                        product.category ||
+                        "سایر"
+                    )}
+                </span>
+
+                <div class="price">
+                    ${formatPrice(
+                        product.price
+                    )}
+                </div>
+
+                <button
+                    class="btn primary full"
+                    onclick="orderProduct('${product.id}')"
+                >
+                    🛒 سفارش
+                </button>
+
+            </article>
+
+            `;
+
+        }
+    ).join("");
 
 }
 
 
-box.innerHTML =
-list.map(function(p){
-
-return `
-
-<div class="card">
-
-<div class="icon">
-${escapeHTML(p.icon || "🛍️")}
-</div>
-
-<h3>
-${escapeHTML(p.name)}
-</h3>
-
-<p>
-${escapeHTML(p.description || "بدون توضیحات")}
-</p>
-
-<div class="price">
-${formatPrice(p.price)}
-</div>
-
-<button
-class="btn primary full"
-onclick="orderProduct('${p.id}')"
->
-🛒 سفارش محصول
-</button>
-
-</div>
-
-`;
-
-}).join("");
-
-}
-
-
-/* =====================================
+/* =========================================================
    ORDER
-===================================== */
+========================================================= */
 
-async function orderProduct(id){
+async function orderProduct(
+    productId
+){
 
-if(!currentUser){
+    if(!currentUser){
 
-alert(
-"برای ثبت سفارش ابتدا وارد حساب شو."
-);
+        showToast(
+            "برای سفارش ابتدا وارد حساب شو."
+        );
 
-openAuth();
+        openAuth();
 
-return;
+        return;
 
-}
-
-
-const product =
-products.find(function(p){
-return p.id === id;
-});
-
-if(!product)return;
+    }
 
 
-const result =
-await supabaseClient
-.from("orders")
-.insert({
-
-user_id:currentUser.id,
-
-product_id:product.id,
-
-product_name:product.name,
-
-price:product.price,
-
-status:"pending"
-
-});
+    const product =
+    products.find(
+        function(item){
+            return item.id === productId;
+        }
+    );
 
 
-if(result.error){
+    if(!product){
 
-console.log(result.error);
+        showToast(
+            "محصول پیدا نشد."
+        );
 
-alert(
-"ثبت سفارش انجام نشد."
-);
+        return;
 
-return;
-
-}
+    }
 
 
-const message =
+    const result =
+    await supabaseClient
+    .from("shop_orders")
+    .insert({
+
+        buyer_id:
+        currentUser.id,
+
+        product_id:
+        product.id,
+
+        product_name:
+        product.name,
+
+        price:
+        product.price,
+
+        status:
+        "pending",
+
+        note:
+        "سفارش از RP LOR"
+
+    });
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        showToast(
+            "ثبت سفارش انجام نشد."
+        );
+
+        return;
+
+    }
+
+
+    const orderText =
 `سلام، برای خرید از RP LOR پیام دادم.
 
 محصول: ${product.name}
 قیمت: ${formatPrice(product.price)}
 
+کد پیگیری سفارش:
+از پنل فروشگاه قابل مشاهده است.
+
 آیدی خرید:
 @${RUBIKA_ID}`;
 
 
-try{
+    try{
 
-await navigator.clipboard.writeText(
-message
-);
+        await navigator
+        .clipboard
+        .writeText(
+            orderText
+        );
 
-}catch(e){}
+    }catch(error){}
 
 
-alert(
-"سفارش ثبت شد.\n\nمتن سفارش کپی شد؛ حالا در روبیکا برای فروشنده ارسالش کن."
-);
+    showToast(
+        "سفارش ثبت شد؛ متن سفارش کپی شد."
+    );
 
-await loadStats();
 
-window.open(
-RUBIKA_URL,
-"_blank"
-);
+    await loadStats();
+
+
+    setTimeout(
+        function(){
+
+            window.open(
+                RUBIKA_URL,
+                "_blank"
+            );
+
+        },
+        500
+    );
 
 }
 
 
-/* =====================================
+/* =========================================================
    CHAT
-===================================== */
+========================================================= */
 
 async function loadChat(){
 
-const box =
-document.getElementById("chat");
-
-if(!currentUser){
-
-box.innerHTML =
-"برای استفاده از چت وارد حساب شو.";
-
-return;
-
-}
+    const box =
+    document.getElementById(
+        "chat"
+    );
 
 
-const result =
-await supabaseClient
-.from("chat_messages")
-.select("*")
-.order("created_at",{ascending:true})
-.limit(100);
+    if(!currentUser){
+
+        box.innerHTML =
+        "برای استفاده از چت وارد حساب شو.";
+
+        return;
+
+    }
 
 
-if(result.error){
-
-console.log(result.error);
-
-return;
-
-}
-
-
-renderChat(
-result.data || []
-);
-
-}
+    const result =
+    await supabaseClient
+    .from("chat_messages")
+    .select("*")
+    .order(
+        "created_at",
+        {
+            ascending:true
+        }
+    )
+    .limit(100);
 
 
-function renderChat(messages){
+    if(result.error){
 
-const box =
-document.getElementById("chat");
+        console.error(
+            result.error
+        );
 
-if(!messages.length){
+        return;
 
-box.innerHTML =
-`<div class="empty">
-هنوز پیامی وجود ندارد.
-</div>`;
+    }
 
-return;
+
+    renderChat(
+        result.data || []
+    );
 
 }
 
 
-box.innerHTML =
-messages.map(function(m){
+function renderChat(
+    messages
+){
 
-return `
-
-<div class="message">
-
-<b>
-${escapeHTML(m.username)}
-</b>
-
-<small>
-${new Date(
-m.created_at
-).toLocaleTimeString("fa-IR")}
-</small>
-
-<div style="margin-top:5px">
-${escapeHTML(m.message)}
-</div>
-
-</div>
-
-`;
-
-}).join("");
+    const box =
+    document.getElementById(
+        "chat"
+    );
 
 
-box.scrollTop =
-box.scrollHeight;
+    if(!messages.length){
+
+        box.innerHTML =
+        `
+        <div class="empty">
+        هنوز پیامی وجود ندارد.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    messages.map(
+        function(message){
+
+            return `
+
+            <div class="message">
+
+                <b>
+                    ${escapeHTML(
+                        message.username
+                    )}
+                </b>
+
+                <small>
+                    ${new Date(
+                        message.created_at
+                    ).toLocaleTimeString(
+                        "fa-IR"
+                    )}
+                </small>
+
+                <div class="message-text">
+                    ${escapeHTML(
+                        message.message
+                    )}
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
+
+
+    box.scrollTop =
+    box.scrollHeight;
 
 }
 
 
-/* =====================================
-   SEND CHAT
-===================================== */
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
 
 async function sendMessage(){
 
-if(!currentUser){
+    if(!currentUser){
 
-alert(
-"ابتدا وارد حساب شو."
-);
+        showToast(
+            "ابتدا وارد حساب شو."
+        );
 
-openAuth();
+        openAuth();
 
-return;
+        return;
+
+    }
+
+
+    const input =
+    document.getElementById(
+        "chatInput"
+    );
+
+
+    const message =
+    input.value.trim();
+
+
+    if(!message)return;
+
+
+    const username =
+    currentProfile?.username ||
+    currentUser.email?.split("@")[0] ||
+    "کاربر";
+
+
+    const result =
+    await supabaseClient
+    .from("chat_messages")
+    .insert({
+
+        user_id:
+        currentUser.id,
+
+        username:
+        username,
+
+        message:
+        message
+
+    });
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        showToast(
+            "ارسال پیام انجام نشد."
+        );
+
+        return;
+
+    }
+
+
+    input.value = "";
+
+
+    await loadChat();
 
 }
 
 
-const input =
-document.getElementById(
-"chatInput"
-);
-
-const message =
-input.value.trim();
-
-if(!message)return;
-
-
-const username =
-currentProfile?.username ||
-currentUser.email
-?.split("@")[0] ||
-"کاربر";
-
-
-const result =
-await supabaseClient
-.from("chat_messages")
-.insert({
-
-user_id:currentUser.id,
-
-username:username,
-
-message:message
-
-});
-
-
-if(result.error){
-
-alert(
-"ارسال پیام انجام نشد."
-);
-
-return;
-
-}
-
-
-input.value = "";
-
-await loadChat();
-
-}
-
-
-/* =====================================
+/* =========================================================
    REALTIME
-===================================== */
+========================================================= */
 
-supabaseClient
-.channel("rp-lor-chat")
-.on(
-"postgres_changes",
-{
-event:"*",
-schema:"public",
-table:"chat_messages"
-},
-async function(){
+function setupRealtime(){
 
-await loadChat();
+    if(realtimeChannel){
 
-if(currentProfile?.role === "admin"){
+        supabaseClient
+        .removeChannel(
+            realtimeChannel
+        );
 
-await loadAdminChat();
+    }
+
+
+    realtimeChannel =
+    supabaseClient
+    .channel(
+        "rp-lor-live"
+    )
+
+
+    .on(
+        "postgres_changes",
+        {
+            event:"*",
+            schema:"public",
+            table:"chat_messages"
+        },
+        async function(){
+
+            await loadChat();
+
+            if(
+                currentProfile?.role ===
+                "admin"
+            ){
+
+                await loadAdminChat();
+
+            }
+
+        }
+    )
+
+
+    .on(
+        "postgres_changes",
+        {
+            event:"*",
+            schema:"public",
+            table:"shop_orders"
+        },
+        async function(){
+
+            await loadStats();
+
+            if(
+                currentProfile?.role ===
+                "admin"
+            ){
+
+                await loadAdminOrders();
+
+            }
+
+        }
+    )
+
+
+    .on(
+        "postgres_changes",
+        {
+            event:"*",
+            schema:"public",
+            table:"products"
+        },
+        async function(){
+
+            await loadProducts();
+
+            if(
+                currentProfile?.role ===
+                "admin"
+            ){
+
+                await loadAdminProducts();
+
+            }
+
+        }
+    )
+
+
+    .subscribe();
 
 }
 
-}
-)
-.subscribe();
 
-
-/* =====================================
+/* =========================================================
    STATS
-===================================== */
+========================================================= */
 
 async function loadStats(){
 
-const productsResult =
-await supabaseClient
-.from("products")
-.select("id",{count:"exact",head:true})
-.eq("active",true);
+    const productsResult =
+    await supabaseClient
+    .from("products")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    )
+    .eq(
+        "status",
+        "active"
+    );
 
 
-const usersResult =
-await supabaseClient
-.from("profiles")
-.select("id",{count:"exact",head:true});
+    const usersResult =
+    await supabaseClient
+    .from("profiles")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
 
 
-const ordersResult =
-await supabaseClient
-.from("orders")
-.select("id",{count:"exact",head:true});
+    const ordersResult =
+    await supabaseClient
+    .from("shop_orders")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
 
 
-document.getElementById(
-"productCount"
-).textContent =
-productsResult.count || 0;
+    document.getElementById(
+        "productCount"
+    ).textContent =
+    productsResult.count || 0;
 
-document.getElementById(
-"userCount"
-).textContent =
-usersResult.count || 0;
 
-document.getElementById(
-"orderCount"
-).textContent =
-ordersResult.count || 0;
+    document.getElementById(
+        "userCount"
+    ).textContent =
+    usersResult.count || 0;
+
+
+    document.getElementById(
+        "orderCount"
+    ).textContent =
+    ordersResult.count || 0;
 
 }
 
 
-/* =====================================
+/* =========================================================
    ADMIN
-===================================== */
+========================================================= */
 
 async function loadAdmin(){
 
-await loadAdminProducts();
+    await loadAdminStats();
 
-await loadAdminOrders();
+    await loadAdminProducts();
 
-await loadAdminChat();
+    await loadAdminOrders();
 
-await loadAdminStats();
+    await loadAdminChat();
 
 }
 
+
+/* =========================================================
+   ADMIN STATS
+========================================================= */
 
 async function loadAdminStats(){
 
-const productsResult =
-await supabaseClient
-.from("products")
-.select("id",{count:"exact",head:true});
-
-const usersResult =
-await supabaseClient
-.from("profiles")
-.select("id",{count:"exact",head:true});
-
-const ordersResult =
-await supabaseClient
-.from("orders")
-.select("id",{count:"exact",head:true});
+    const productsResult =
+    await supabaseClient
+    .from("products")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
 
 
-document.getElementById(
-"aProducts"
-).textContent =
-productsResult.count || 0;
+    const usersResult =
+    await supabaseClient
+    .from("profiles")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
 
-document.getElementById(
-"aUsers"
-).textContent =
-usersResult.count || 0;
 
-document.getElementById(
-"aOrders"
-).textContent =
-ordersResult.count || 0;
+    const ordersResult =
+    await supabaseClient
+    .from("shop_orders")
+    .select(
+        "id",
+        {
+            count:"exact",
+            head:true
+        }
+    );
+
+
+    document.getElementById(
+        "aProducts"
+    ).textContent =
+    productsResult.count || 0;
+
+
+    document.getElementById(
+        "aUsers"
+    ).textContent =
+    usersResult.count || 0;
+
+
+    document.getElementById(
+        "aOrders"
+    ).textContent =
+    ordersResult.count || 0;
 
 }
 
 
-/* =====================================
+/* =========================================================
    ADD PRODUCT
-===================================== */
+========================================================= */
 
 async function addProduct(){
 
-if(currentProfile?.role !== "admin"){
+    if(
+        currentProfile?.role !==
+        "admin"
+    ){
 
-alert("دسترسی غیرمجاز");
+        showToast(
+            "دسترسی غیرمجاز."
+        );
 
-return;
+        return;
+
+    }
+
+
+    const name =
+    document.getElementById(
+        "newName"
+    ).value.trim();
+
+
+    const price =
+    Number(
+        document.getElementById(
+            "newPrice"
+        ).value
+    );
+
+
+    const category =
+    document.getElementById(
+        "newCategory"
+    ).value;
+
+
+    const icon =
+    document.getElementById(
+        "newIcon"
+    ).value.trim() ||
+    "🛍️";
+
+
+    const seller =
+    document.getElementById(
+        "newSeller"
+    ).value.trim() ||
+    RUBIKA_ID;
+
+
+    const description =
+    document.getElementById(
+        "newDescription"
+    ).value.trim();
+
+
+    if(!name){
+
+        showToast(
+            "نام محصول را وارد کن."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !Number.isFinite(price) ||
+        price < 0
+    ){
+
+        showToast(
+            "قیمت نامعتبر است."
+        );
+
+        return;
+
+    }
+
+
+    const result =
+    await supabaseClient
+    .from("products")
+    .insert({
+
+        owner_id:
+        currentUser.id,
+
+        name:
+        name,
+
+        price:
+        price,
+
+        category:
+        category,
+
+        seller_id:
+        seller,
+
+        description:
+        description,
+
+        image_url:
+        "",
+
+        image_path:
+        "",
+
+        price_type:
+        "toman",
+
+        rubika_id:
+        seller,
+
+        bale_id:
+        "",
+
+        status:
+        "active"
+
+    });
+
+
+    if(result.error){
+
+        console.error(
+            result.error
+        );
+
+        showToast(
+            "افزودن محصول انجام نشد."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "newName"
+    ).value = "";
+
+
+    document.getElementById(
+        "newPrice"
+    ).value = "";
+
+
+    document.getElementById(
+        "newIcon"
+    ).value = "";
+
+
+    document.getElementById(
+        "newSeller"
+    ).value = "";
+
+
+    document.getElementById(
+        "newDescription"
+    ).value = "";
+
+
+    showToast(
+        "محصول اضافه شد."
+    );
+
+
+    await loadProducts();
+
+    await loadAdminProducts();
+
+    await loadAdminStats();
 
 }
 
 
-const name =
-document.getElementById(
-"newName"
-).value.trim();
-
-const price =
-Number(
-document.getElementById(
-"newPrice"
-).value
-);
-
-const category =
-document.getElementById(
-"newCategory"
-).value;
-
-const icon =
-document.getElementById(
-"newIcon"
-).value.trim() ||
-"🛍️";
-
-const description =
-document.getElementById(
-"newDescription"
-).value.trim();
-
-
-if(!name){
-
-alert("نام محصول را وارد کن.");
-
-return;
-
-}
-
-if(!Number.isFinite(price) || price < 0){
-
-alert("قیمت صحیح نیست.");
-
-return;
-
-}
-
-
-const result =
-await supabaseClient
-.from("products")
-.insert({
-
-name:name,
-
-price:price,
-
-category:category,
-
-icon:icon,
-
-description:description,
-
-active:true
-
-});
-
-
-if(result.error){
-
-console.log(result.error);
-
-alert(
-"افزودن محصول انجام نشد."
-);
-
-return;
-
-}
-
-
-document.getElementById(
-"newName"
-).value = "";
-
-document.getElementById(
-"newPrice"
-).value = "";
-
-document.getElementById(
-"newIcon"
-).value = "";
-
-document.getElementById(
-"newDescription"
-).value = "";
-
-
-await loadProducts();
-
-await loadAdminProducts();
-
-await loadStats();
-
-await loadAdminStats();
-
-}
-
-
-/* =====================================
+/* =========================================================
    ADMIN PRODUCTS
-===================================== */
+========================================================= */
 
 async function loadAdminProducts(){
 
-const box =
-document.getElementById(
-"adminProducts"
-);
-
-const result =
-await supabaseClient
-.from("products")
-.select("*")
-.order("created_at",{ascending:false});
+    const box =
+    document.getElementById(
+        "adminProducts"
+    );
 
 
-if(result.error)return;
+    if(!box)return;
 
 
-box.innerHTML =
-(result.data || [])
-.map(function(p){
-
-return `
-
-<div class="admin-item">
-
-<div>
-
-<strong>
-${escapeHTML(p.icon || "🛍️")}
-${escapeHTML(p.name)}
-</strong>
-
-<br>
-
-<span style="color:#7dffb8">
-${formatPrice(p.price)}
-</span>
-
-<br>
-
-<small>
-${escapeHTML(p.category)}
-</small>
-
-</div>
+    const result =
+    await supabaseClient
+    .from("products")
+    .select("*")
+    .order(
+        "created_at",
+        {
+            ascending:false
+        }
+    );
 
 
-<div class="admin-actions">
+    if(result.error){
 
-<button
-class="btn"
-onclick="editProduct('${p.id}')"
->
-✏️ ویرایش
-</button>
+        console.error(
+            result.error
+        );
 
-<button
-class="btn"
-onclick="editPrice('${p.id}')"
->
-💰 قیمت
-</button>
+        return;
 
-<button
-class="btn danger"
-onclick="deleteProduct('${p.id}')"
->
-🗑️ حذف
-</button>
+    }
 
-</div>
 
-</div>
+    const list =
+    result.data || [];
 
-`;
 
-}).join("");
+    if(!list.length){
+
+        box.innerHTML =
+        `
+        <div class="empty">
+        محصولی وجود ندارد.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    list.map(
+        function(product){
+
+            return `
+
+            <div class="admin-item">
+
+                <div>
+
+                    <strong>
+                    ${escapeHTML(
+                        product.name
+                    )}
+                    </strong>
+
+                    <br>
+
+                    <span
+                    style="color:#7dffb8">
+
+                    ${formatPrice(
+                        product.price
+                    )}
+
+                    </span>
+
+                    <br>
+
+                    <small>
+                    ${escapeHTML(
+                        product.category ||
+                        "سایر"
+                    )}
+                    </small>
+
+                </div>
+
+
+                <div class="admin-actions">
+
+                    <button
+                    class="btn"
+                    onclick="editProduct('${product.id}')">
+                    ✏️ ویرایش
+                    </button>
+
+
+                    <button
+                    class="btn"
+                    onclick="editPrice('${product.id}')">
+                    💰 قیمت
+                    </button>
+
+
+                    <button
+                    class="btn orange"
+                    onclick="toggleProduct('${product.id}','${product.status}')">
+
+                    ${
+                        product.status ===
+                        "active"
+                        ? "⏸️ مخفی"
+                        : "▶️ فعال"
+                    }
+
+                    </button>
+
+
+                    <button
+                    class="btn danger"
+                    onclick="deleteProduct('${product.id}')">
+                    🗑️ حذف
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
 
 }
 
 
-/* =====================================
+/* =========================================================
    EDIT PRODUCT
-===================================== */
+========================================================= */
 
 async function editProduct(id){
 
-const product =
-products.find(function(p){
-return p.id === id;
-});
-
-if(!product)return;
-
-
-const name =
-prompt(
-"نام جدید محصول:",
-product.name
-);
-
-if(name === null)return;
+    const result =
+    await supabaseClient
+    .from("products")
+    .select("*")
+    .eq(
+        "id",
+        id
+    )
+    .single();
 
 
-const description =
-prompt(
-"توضیحات جدید:",
-product.description || ""
-);
+    if(result.error){
 
-if(description === null)return;
+        showToast(
+            "محصول پیدا نشد."
+        );
 
+        return;
 
-const result =
-await supabaseClient
-.from("products")
-.update({
-
-name:name.trim(),
-
-description:description.trim()
-
-})
-.eq("id",id);
+    }
 
 
-if(result.error){
+    const product =
+    result.data;
 
-alert(
-"ویرایش انجام نشد."
-);
 
-return;
+    const name =
+    prompt(
+        "نام محصول:",
+        product.name
+    );
+
+
+    if(name === null)return;
+
+
+    const description =
+    prompt(
+        "توضیحات:",
+        product.description || ""
+    );
+
+
+    if(description === null)return;
+
+
+    const category =
+    prompt(
+        "دسته‌بندی:",
+        product.category || "سایر"
+    );
+
+
+    if(category === null)return;
+
+
+    const resultUpdate =
+    await supabaseClient
+    .from("products")
+    .update({
+
+        name:
+        name.trim(),
+
+        description:
+        description.trim(),
+
+        category:
+        category.trim()
+
+    })
+    .eq(
+        "id",
+        id
+    );
+
+
+    if(resultUpdate.error){
+
+        showToast(
+            "ویرایش انجام نشد."
+        );
+
+        return;
+
+    }
+
+
+    showToast(
+        "محصول ویرایش شد."
+    );
+
+
+    await loadProducts();
+
+    await loadAdminProducts();
 
 }
 
 
-await loadProducts();
-
-await loadAdminProducts();
-
-}
-
-
-/* =====================================
+/* =========================================================
    EDIT PRICE
-===================================== */
+========================================================= */
 
 async function editPrice(id){
 
-const product =
-products.find(function(p){
-return p.id === id;
-});
-
-if(!product)return;
-
-
-const value =
-prompt(
-"قیمت جدید به تومان:",
-product.price
-);
-
-if(value === null)return;
+    const result =
+    await supabaseClient
+    .from("products")
+    .select("name,price")
+    .eq(
+        "id",
+        id
+    )
+    .single();
 
 
-const price =
-Number(value);
+    if(result.error)return;
 
-if(!Number.isFinite(price) || price < 0){
 
-alert("قیمت نامعتبر است.");
+    const value =
+    prompt(
+        "قیمت جدید به تومان:",
+        result.data.price
+    );
 
-return;
+
+    if(value === null)return;
+
+
+    const price =
+    Number(value);
+
+
+    if(
+        !Number.isFinite(price) ||
+        price < 0
+    ){
+
+        showToast(
+            "قیمت نامعتبر است."
+        );
+
+        return;
+
+    }
+
+
+    const update =
+    await supabaseClient
+    .from("products")
+    .update({
+        price:price
+    })
+    .eq(
+        "id",
+        id
+    );
+
+
+    if(update.error){
+
+        showToast(
+            "تغییر قیمت انجام نشد."
+        );
+
+        return;
+
+    }
+
+
+    showToast(
+        "قیمت تغییر کرد."
+    );
+
+
+    await loadProducts();
+
+    await loadAdminProducts();
 
 }
 
 
-const result =
-await supabaseClient
-.from("products")
-.update({price:price})
-.eq("id",id);
+/* =========================================================
+   TOGGLE PRODUCT
+========================================================= */
+
+async function toggleProduct(
+    id,
+    status
+){
+
+    const newStatus =
+    status === "active"
+    ? "hidden"
+    : "active";
 
 
-if(result.error){
+    const result =
+    await supabaseClient
+    .from("products")
+    .update({
+        status:newStatus
+    })
+    .eq(
+        "id",
+        id
+    );
 
-alert(
-"تغییر قیمت انجام نشد."
-);
 
-return;
+    if(result.error){
+
+        showToast(
+            "تغییر وضعیت انجام نشد."
+        );
+
+        return;
+
+    }
+
+
+    await loadProducts();
+
+    await loadAdminProducts();
 
 }
 
 
-await loadProducts();
-
-await loadAdminProducts();
-
-}
-
-
-/* =====================================
+/* =========================================================
    DELETE PRODUCT
-===================================== */
+========================================================= */
 
 async function deleteProduct(id){
 
-if(!confirm(
-"این محصول حذف شود؟"
-))return;
+    if(
+        !confirm(
+            "این محصول حذف شود؟"
+        )
+    ){
+
+        return;
+
+    }
 
 
-const result =
-await supabaseClient
-.from("products")
-.delete()
-.eq("id",id);
+    const result =
+    await supabaseClient
+    .from("products")
+    .delete()
+    .eq(
+        "id",
+        id
+    );
 
 
-if(result.error){
+    if(result.error){
 
-alert(
-"حذف محصول انجام نشد."
-);
+        console.error(
+            result.error
+        );
 
-return;
+        showToast(
+            "حذف محصول انجام نشد."
+        );
+
+        return;
+
+    }
+
+
+    showToast(
+        "محصول حذف شد."
+    );
+
+
+    await loadProducts();
+
+    await loadAdminProducts();
+
+    await loadAdminStats();
 
 }
 
 
-await loadProducts();
-
-await loadAdminProducts();
-
-await loadStats();
-
-}
-
-
-/* =====================================
+/* =========================================================
    ADMIN ORDERS
-===================================== */
+========================================================= */
 
 async function loadAdminOrders(){
 
-const box =
-document.getElementById(
-"adminOrders"
-);
-
-const result =
-await supabaseClient
-.from("orders")
-.select("*")
-.order("created_at",{ascending:false})
-.limit(100);
+    const box =
+    document.getElementById(
+        "adminOrders"
+    );
 
 
-if(result.error)return;
+    if(!box)return;
 
 
-box.innerHTML =
-(result.data || [])
-.map(function(o){
-
-return `
-
-<div class="admin-item">
-
-<div>
-
-<strong>
-🛒 ${escapeHTML(o.product_name)}
-</strong>
-
-<br>
-
-<span style="color:#7dffb8">
-${formatPrice(o.price)}
-</span>
-
-<br>
-
-<small>
-وضعیت:
-${escapeHTML(o.status)}
-</small>
-
-</div>
+    const result =
+    await supabaseClient
+    .from("shop_orders")
+    .select("*")
+    .order(
+        "created_at",
+        {
+            ascending:false
+        }
+    )
+    .limit(100);
 
 
-<div class="admin-actions">
+    if(result.error){
 
-<button
-class="btn"
-onclick="changeOrderStatus('${o.id}')"
->
-تغییر وضعیت
-</button>
+        console.error(
+            result.error
+        );
 
-</div>
+        return;
 
-</div>
+    }
 
-`;
 
-}).join("");
+    const orders =
+    result.data || [];
+
+
+    if(!orders.length){
+
+        box.innerHTML =
+        `
+        <div class="empty">
+        هنوز سفارشی ثبت نشده.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    orders.map(
+        function(order){
+
+            return `
+
+            <div class="admin-item">
+
+                <div>
+
+                    <strong>
+                    🛒 ${escapeHTML(
+                        order.product_name
+                    )}
+                    </strong>
+
+                    <br>
+
+                    <span
+                    style="color:#7dffb8">
+
+                    ${formatPrice(
+                        order.price
+                    )}
+
+                    </span>
+
+                    <br>
+
+                    <span
+                    class="status ${escapeHTML(
+                        order.status
+                    )}">
+
+                    ${orderStatusText(
+                        order.status
+                    )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="admin-actions">
+
+                    <button
+                    class="btn"
+                    onclick="changeOrderStatus('${order.id}','pending')">
+                    ⏳
+                    </button>
+
+
+                    <button
+                    class="btn"
+                    onclick="changeOrderStatus('${order.id}','paid')">
+                    💳
+                    </button>
+
+
+                    <button
+                    class="btn primary"
+                    onclick="changeOrderStatus('${order.id}','completed')">
+                    ✅
+                    </button>
+
+
+                    <button
+                    class="btn danger"
+                    onclick="changeOrderStatus('${order.id}','cancelled')">
+                    ❌
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
 
 }
 
 
-/* =====================================
-   ORDER STATUS
-===================================== */
+/* =========================================================
+   CHANGE ORDER STATUS
+========================================================= */
 
-async function changeOrderStatus(id){
+async function changeOrderStatus(
+    id,
+    status
+){
 
-const status =
-prompt(
-"وضعیت جدید را وارد کن:\npending\npaid\ncompleted\ncancelled"
-);
-
-if(!status)return;
-
-
-const allowed =
-[
-"pending",
-"paid",
-"completed",
-"cancelled"
-];
+    const result =
+    await supabaseClient
+    .from("shop_orders")
+    .update({
+        status:status
+    })
+    .eq(
+        "id",
+        id
+    );
 
 
-if(!allowed.includes(status)){
+    if(result.error){
 
-alert(
-"وضعیت نامعتبر است."
-);
+        console.error(
+            result.error
+        );
 
-return;
+        showToast(
+            "تغییر وضعیت سفارش انجام نشد."
+        );
 
-}
+        return;
 
-
-const result =
-await supabaseClient
-.from("orders")
-.update({
-status:status
-})
-.eq("id",id);
+    }
 
 
-if(result.error){
+    showToast(
+        "وضعیت سفارش تغییر کرد."
+    );
 
-alert(
-"تغییر وضعیت انجام نشد."
-);
 
-return;
+    await loadAdminOrders();
+
+    await loadAdminStats();
+
+    await loadStats();
 
 }
 
 
-await loadAdminOrders();
-
-}
-
-
-/* =====================================
+/* =========================================================
    ADMIN CHAT
-===================================== */
+========================================================= */
 
 async function loadAdminChat(){
 
-const box =
-document.getElementById(
-"adminChat"
-);
-
-if(!box)return;
+    const box =
+    document.getElementById(
+        "adminChat"
+    );
 
 
-const result =
-await supabaseClient
-.from("chat_messages")
-.select("*")
-.order("created_at",{ascending:false})
-.limit(100);
+    if(!box)return;
 
 
-if(result.error)return;
+    const result =
+    await supabaseClient
+    .from("chat_messages")
+    .select("*")
+    .order(
+        "created_at",
+        {
+            ascending:false
+        }
+    )
+    .limit(100);
 
 
-box.innerHTML =
-(result.data || [])
-.map(function(m){
+    if(result.error){
 
-return `
+        console.error(
+            result.error
+        );
 
-<div class="admin-item">
+        return;
 
-<div>
-
-<strong>
-${escapeHTML(m.username)}
-</strong>
-
-<br>
-
-${escapeHTML(m.message)}
-
-</div>
+    }
 
 
-<button
-class="btn danger"
-onclick="deleteMessage('${m.id}')"
->
-🗑️ حذف
-</button>
+    const messages =
+    result.data || [];
 
-</div>
 
-`;
+    if(!messages.length){
 
-}).join("");
+        box.innerHTML =
+        `
+        <div class="empty">
+        پیامی وجود ندارد.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    messages.map(
+        function(message){
+
+            return `
+
+            <div class="admin-item">
+
+                <div>
+
+                    <strong>
+                    ${escapeHTML(
+                        message.username
+                    )}
+                    </strong>
+
+                    <br>
+
+                    ${escapeHTML(
+                        message.message
+                    )}
+
+                </div>
+
+
+                <button
+                class="btn danger"
+                onclick="deleteMessage('${message.id}')">
+
+                🗑️ حذف
+
+                </button>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
 
 }
 
 
-/* =====================================
+/* =========================================================
    DELETE MESSAGE
-===================================== */
+========================================================= */
 
 async function deleteMessage(id){
 
-if(currentProfile?.role !== "admin")return;
+    if(
+        currentProfile?.role !==
+        "admin"
+    ){
+
+        return;
+
+    }
 
 
-const result =
-await supabaseClient
-.from("chat_messages")
-.delete()
-.eq("id",id);
+    const result =
+    await supabaseClient
+    .from("chat_messages")
+    .delete()
+    .eq(
+        "id",
+        id
+    );
 
 
-if(result.error){
+    if(result.error){
 
-alert(
-"حذف پیام انجام نشد."
-);
+        showToast(
+            "حذف پیام انجام نشد."
+        );
 
-return;
+        return;
+
+    }
+
+
+    showToast(
+        "پیام حذف شد."
+    );
+
+
+    await loadChat();
+
+    await loadAdminChat();
 
 }
 
 
-await loadChat();
-
-await loadAdminChat();
-
-}
-
-
-/* =====================================
+/* =========================================================
    HELPERS
-===================================== */
+========================================================= */
 
-function formatPrice(price){
+function formatPrice(
+    price
+){
 
-return Number(price)
-.toLocaleString("fa-IR")
-+
-" تومان";
+    return Number(
+        price || 0
+    )
+    .toLocaleString(
+        "fa-IR"
+    )
+    + " تومان";
 
 }
 
 
-function escapeHTML(value){
+function orderStatusText(
+    status
+){
 
-return String(value ?? "")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+    const map = {
+
+        pending:
+        "در انتظار",
+
+        paid:
+        "پرداخت شده",
+
+        completed:
+        "تکمیل شده",
+
+        cancelled:
+        "لغو شده"
+
+    };
+
+
+    return map[status] ||
+    status;
+
+}
+
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
 
 }
 
 
 function goShop(){
 
-document
-.getElementById("shop")
-.scrollIntoView({
-behavior:"smooth"
-});
+    document
+    .getElementById(
+        "shop"
+    )
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function showToast(
+    text
+){
+
+    const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+    toast.textContent =
+    text;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.__toastTimer
+    );
+
+
+    window.__toastTimer =
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
 
 }
 
 </script>
 
 </body>
-                           </html>
+   </html>
